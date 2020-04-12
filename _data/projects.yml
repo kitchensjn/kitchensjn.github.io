@@ -3,4 +3,4 @@
   link: jkitchensf16.shinyapps.io/topotable
   github: kitchensjn/TopoTable
   description: | # this will include new lines to allow paragraphs
-    This project seeks to build a dynamic 3D topographic relief table that is built with moveable pillars. Rather than being constrained to a single region, the motors within the TopoTable would all it to shift from one map to the next. A more in depth discussion of the project and its goals can be found at [here](https://www.jkitchensf16.shinyapps.io/topotable).
+    This project seeks to build a dynamic 3D topographic relief table that is built with moveable pillars. Rather than being constrained to a single region, the motors within the TopoTable would all it to shift from one map to the next. A more in depth discussion of the project and its goals can be found at [here](www.jkitchensf16.shinyapps.io/topotable).
