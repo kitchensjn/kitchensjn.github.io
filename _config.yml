@@ -40,9 +40,9 @@ about_content: | # this will include new lines to allow paragraphs
 # More Section
 # more_title: Interests and Activities
 more_content: | # this will include new lines to allow paragraphs
-   - Musician : Guitar and Cello
-   - Long Distance Backpacker : Appalachian Trail Thru-Hike and John Muir Trail Section Hike
-   - Whitewater Kayaker : Former Site Director & Kayak Instructor for Passages Adventure Camp
+   - **Musician** : Guitar and Cello
+   - **Long Distance Backpacker** : Appalachian Trail Thru-Hike (~2200 miles) and John Muir Trail Section Hike (~200 miles)
+   - **Whitewater Kayaker** : Former Site Director & Kayak Instructor for Passages Adventure Camp
 
 # Footer
 footer_show_references: false
