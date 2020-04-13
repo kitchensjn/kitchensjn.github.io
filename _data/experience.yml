@@ -4,4 +4,20 @@
   job_title: NASA Develop Intern - Jet Propulsion Laboratory
   dates: January 2020 - April 2020
   description: | # this will include new lines to allow paragraphs
-    I worked on a team of Earth Scientists testing the feasibility of using remote sensing data to monitor groundwater capacitiy within California's Central Valley. We partnered with the California Department of Water Resources and California State University - Los Angeles to develop a tool that managemers could use to combine and analyze in-situ and remotely sensed groundwater measurements.
+    I worked on a team of Earth Scientists testing the feasibility of using remote sensing data to monitor groundwater capacitiy within California's Central Valley. We partnered with the California Department of Water Resources and California State University - Los Angeles to develop a tool in <mark>Shiny</mark> that managemers could use to combine and analyze in-situ and remotely sensed groundwater measurements. A more in depth explanantion of the research performed within this position can be found in Projects under Improving California Groundwater Assessments using GRACE and InSAR Datasets for Water Resource Management.
+
+- layout: left
+  company: Arizona State University’s Mathematical and Theoretical Biology Institute
+  link: www.mtbi.asu.edu/
+  job_title: Summer Research Intern
+  dates: June 2019 - July 2019
+  description: | # this will include new lines to allow paragraphs
+    During Summer 2019, I worked as a Research Intern during an eight week long summer term at ASU. The first four weeks of the program included guest lectures on complex mathematical topics and their application to biological reseach. The last four weeks surrounded the development of an original research project. I was the creator and team lead for the Topography and Behavior Based Movement Modeling for Missing Hikers in Land-Wilderness Settings including the development of <mark>Cellular Automata</mark> simulations in <mark>Python</mark>.
+
+- layout: left
+  company: University of Wisconsin - La Crosse
+  link: https://www.uwlax.edu/mathematics/
+  job_title: Summer Research Intern
+  dates: May 2018 - August 2018
+  description: | # this will include new lines to allow paragraphs
+    Paired with professors from UW - La Crosse and members of the United States Geological Survey, I worked to use environmental DNA to model population size of an invasive species (*Petromyzon marinus*) within the Great Lakes. I developed models in <mark>R</mark> and during this time, greatly expanded my understanding of statistical programming.
