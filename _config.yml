@@ -38,13 +38,11 @@ about_content: | # this will include new lines to allow paragraphs
 # educaton_title: Education
 
 # More Section
-# more_title: A Little More About Me
+# more_title: Interests and Activities
 more_content: | # this will include new lines to allow paragraphs
-  Alongside my interests in networks and software engineering some of my other interests and hobbies are:
-   - Rock climbing
-   - Gaming
-   - Knitting
-   - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
+   - Musician : Guitar and Cello
+   - Long Distance Backpacker : Appalachian Trail Thru-Hike and John Muir Trail Section Hike
+   - Whitewater Kayaker : Former Site Director & Kayak Instructor for Passages Adventure Camp
 
 # Footer
 footer_show_references: false
