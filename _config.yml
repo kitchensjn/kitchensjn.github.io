@@ -24,9 +24,9 @@ linkedin_username: james-kitchens-668825b2
 # about_title: About Me
 about_profile_image: images/profilePicture.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name is James. I am a recent graduate from Warren Wilson College and interested in conservation research. I have a background in biology and genetics. I recently moved to Pomona, California from Virginia and am excited to explore the West Coast.
+  Hi, my name is James. I am a recent graduate from Warren Wilson College and interested in conservation research. I have a background in biology and genetics, having worked in conservation genetics and human genomics labs during high school and college. I enjoy creative programming and data visaulization, including creating <mark>Shiny</mark> web applications.
   
-  I enjoy creative programming and data visaulization, including creating <mark>Shiny</mark> web applications.
+  In January 2020, I moved to Pomona, California from Virginia and am excited to explore the West Coast.
 
 # Projects Section
 projects_title: Research Projects
