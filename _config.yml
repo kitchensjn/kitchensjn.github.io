@@ -37,6 +37,9 @@ about_content: | # this will include new lines to allow paragraphs
 # Education Section
 # educaton_title: Education
 
+# Publication Section
+# publication_title: Publications
+
 # More Section
 # more_title: A Little More About Me
 more_content: | # this will include new lines to allow paragraphs
@@ -45,11 +48,6 @@ more_content: | # this will include new lines to allow paragraphs
    - Gaming
    - Knitting
    - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
-
-# More Section
-# more_title: More More More
-more_content: |
-  More More More
 
 # Footer
 footer_show_references: true
