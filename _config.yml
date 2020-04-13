@@ -24,9 +24,9 @@ linkedin_username: james-kitchens-668825b2
 # about_title: About Me
 about_profile_image: images/profilePicture.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name is James.
-
-  I am most skilled in: <mark>Python</mark> and <mark>R</mark>
+  Hi, my name is James. I am a recent graduate from Warren Wilson College and interested in conservation research. I recently moved to Pomona, California from Virginia and am excited to explore the West Coast.
+  
+  I enjoy creative programming and data visaulization, as well as creating <mark>Shiny</mark> web applications.
 
 # Projects Section
 projects_title: Research Projects
@@ -45,6 +45,8 @@ more_content: | # this will include new lines to allow paragraphs
   **Long Distance Backpacker** : Appalachian Trail Thru-Hike (~2200 miles) and John Muir Trail Section Hike (~200 miles)
   
   **Whitewater Kayaker** : Former Site Director & Kayak Instructor for Passages Adventure Camp
+  
+  **Visiting All National Parks** : Currently at 22!
 
 # Footer
 footer_show_references: false
