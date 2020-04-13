@@ -3,7 +3,7 @@
   link: jkitchensf16.shinyapps.io/topotable
   github: kitchensjn/TopoTable
   description: | # this will include new lines to allow paragraphs
-    The TopoTable Project seeks to build a dynamic 3D topographic relief table that is built with moveable pillars. Rather than being constrained to a single region, the motors within the TopoTable would all it to shift from one map to the next. I have worked to develop the user interface for downloading and processing elevation data using <mark>Python</mark>, <mark>R</mark>, <mark>Leaflet</mark> and <mark>Shiny</mark>. This application is hosted through <mark>shinyapps.io</mark>.
+    The TopoTable Project seeks to build a dynamic 3D topographic relief table that is built with moveable pillars. Rather than being constrained to a single region, the motors within the TopoTable would allow it to shift from one map to the next. I have worked to develop the user interface for downloading and processing elevation data using <mark>Python</mark>, <mark>R</mark>, <mark>Leaflet</mark> and <mark>Shiny</mark>. This application is hosted through <mark>shinyapps.io</mark>.
 
 - layout: top-middle
   name: Marine Tardigrades of the World
