@@ -4,7 +4,7 @@
   job_title: NASA Develop Intern - Jet Propulsion Laboratory
   dates: January 2020 - April 2020
   description: | # this will include new lines to allow paragraphs
-    I worked on a team of Earth Scientists testing the feasibility of using remote sensing data to monitor groundwater capacitiy within California's Central Valley. We partnered with the California Department of Water Resources and California State University - Los Angeles to develop a tool in <mark>Shiny</mark> that managemers could use to combine and analyze in-situ and remotely sensed groundwater measurements. A more in depth explanantion of the research performed within this position can be found in Projects under Improving California Groundwater Assessments using GRACE and InSAR Datasets for Water Resource Management.
+    I worked on a team of Earth Scientists testing the feasibility of using remote sensing data to monitor groundwater capacitiy within California's Central Valley. We partnered with the California Department of Water Resources and California State University - Los Angeles to develop a tool in <mark>Shiny</mark> that managers could use to combine and analyze in-situ and remotely sensed groundwater measurements. A more in depth explanantion of the research performed within this position can be found in Projects under Improving California Groundwater Assessments using GRACE and InSAR Datasets for Water Resource Management.
 
 - layout: left
   company: Mathematical and Theoretical Biology Institute
