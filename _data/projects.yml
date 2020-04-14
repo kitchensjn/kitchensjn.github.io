@@ -1,4 +1,10 @@
 - layout: top-middle
+  name: Improving California Groundwater Assessments using GRACE and InSAR Datasets for Water Resource Management
+  description: | # this will include new lines to allow paragraphs
+    Over the past 20 years, California has experienced a number of droughts that affect the security of critical groundwater reserves. California's Central Valley is one of the most productive agricultural regions of the United States, producing
+approximately $20 billion in crops annually. Through a collaboration California's Department of Water Resources, California State University - Los Angeles, and NASA's Jet Propulsion Laboratory, the team is testing the feasibility of using <mark>remote sensing</mark> datasets to supplement in-situ well and GPS measurements for the purpose of measuring groundwater storage changes in within the Central Valley. Modelling is being performed in <mark>Python</mark> and <mark>R</mark>. We are currently developing a <mark>Shiny</mark> application that will be provided to Groundwater Sustainability Agency Managers to aid in assessment of current conditions and trends.
+
+- layout: top-middle
   name: The TopoTable Project
   link: jkitchensf16.shinyapps.io/topotable
   github: kitchensjn/TopoTable
@@ -10,4 +16,4 @@
   link: paul-bartels.shinyapps.io/marine-tardigrades
   github: kitchensjn/marine-tardigrades
   description: | # this will include new lines to allow paragraphs
-    In October 2019, Dr. Paul Bartels asked if I could develop a <mark>Shiny</mark> application that would display agregated marine tardigrade findings from [Kaczmarek, L., Bartels, P.J., Roszkowska, M. & Nelson, D. (2015). The Zoogeography of Marine Tardigrada, *Zootaxa* 4037:1-189](https://www.biotaxa.org/Zootaxa/article/view/zootaxa.4037.1.1){:target="_blank"}. Using <mark>R</mark>, this application accesses data through the Google Sheets API, allowing for quick updating without the need for a full redeploy. Findings are then displayed within a <mark>Leaflet</mark> map, hosted through <mark>shinyapps.io</mark>.
+    In October 2019, Dr. Paul Bartels and I collaborated to develop a <mark>Shiny</mark> application that would display agregated marine tardigrade findings from [Kaczmarek, L., Bartels, P.J., Roszkowska, M. & Nelson, D. (2015). The Zoogeography of Marine Tardigrada, *Zootaxa* 4037:1-189](https://www.biotaxa.org/Zootaxa/article/view/zootaxa.4037.1.1){:target="_blank"}. Using <mark>R</mark>, this application accesses data through the Google Sheets API, allowing for quick updating without the need for a full redeploy. Findings are then displayed within a <mark>Leaflet</mark> map, hosted through <mark>shinyapps.io</mark>.
