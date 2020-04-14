@@ -8,7 +8,7 @@
 
 - layout: left
   company: Mathematical and Theoretical Biology Institute
-  link: www.mtbi.asu.edu/
+  link: www.mtbi.asu.edu
   job_title: Summer Research Intern
   dates: June 2019 - July 2019
   description: | # this will include new lines to allow paragraphs
@@ -16,7 +16,7 @@
 
 - layout: left
   company: University of Wisconsin - La Crosse
-  link: https://www.uwlax.edu/mathematics/
+  link: https://www.uwlax.edu/mathematics
   job_title: Summer Research Intern
   dates: May 2018 - August 2018
   description: | # this will include new lines to allow paragraphs
