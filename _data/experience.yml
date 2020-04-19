@@ -28,3 +28,11 @@
   dates: May 2018 - August 2018
   description: | # this will include new lines to allow paragraphs
     Paired with professors from UW - La Crosse and members of the United States Geological Survey, I worked to use environmental DNA to model population size of an invasive species (*Petromyzon marinus*) within the Great Lakes. I developed models in <mark>R</mark> and during this time, greatly expanded my understanding of statistical programming.
+    
+- layout: left
+  company: Virginia Institute for Psychiatric and Behavioral Genetics
+  link:
+  job_title: Research Assistant
+  dates: May 2014 - February 2016
+  description: | # this will include new lines to allow paragraphs
+    I managed a dataset of over 6000 individuals who participated in the Spit for Science Project at Virginia Commonwealth University. More information on the Spit for Science Project can be found [here](https://spit4science.vcu.edu). I wrote programs in Python to generate phenotypic risk scores for individuals based on single nucleotide polymorphism and performed quality control of statistical analysis processes as part of a larger research team.
