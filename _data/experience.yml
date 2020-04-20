@@ -27,7 +27,7 @@
   job_title: Summer Research Intern
   dates: May 2018 - August 2018
   description: | # this will include new lines to allow paragraphs
-    Paired with professors from UW - La Crosse and members of the United States Geological Survey, I used environmental DNA to model population size of an invasive species (*Petromyzon marinus*) within the Great Lakes. I developed models in <mark>R</mark> and during this time, greatly expanded my understanding of statistical programming.
+    Paired with professors from UW - La Crosse and members of the United States Geological Survey, I used environmental DNA to model population size of an invasive species (*Petromyzon marinus*) within the Great Lakes. I developed these models in <mark>R</mark> and during this time, greatly expanded my understanding of statistical programming.
     
 - layout: left
   company: Virginia Institute for Psychiatric and Behavioral Genetics
