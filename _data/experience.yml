@@ -4,14 +4,14 @@
   job_title: NASA Develop Intern
   dates: January 2020 - April 2020
   description: | # this will include new lines to allow paragraphs
-    Through a collaboration between the California Department of Water Resources, California State University - Los Angeles, and NASA's Jet Propulsion Laboratory, the team was testing the feasibility of using <mark>Remote Sensing</mark> datasets to supplement in-situ well and GPS measurements for the purpose of measuring groundwater storage changes in within the Central Valley. Modeling was performed in <mark>Python</mark> and <mark>R</mark>. We began the development of a <mark>Shiny</mark> application (VIRGO) that will be provided to Groundwater Sustainability Agency managers to aid in assessment of current conditions and trends.
+    Through a collaboration between the California Department of Water Resources, California State University - Los Angeles, and NASA's Jet Propulsion Laboratory, the team tested the feasibility of using <mark>Remote Sensing</mark> datasets to supplement in-situ well and GPS measurements for the purpose of measuring groundwater storage changes in within the Central Valley. Modeling was performed in <mark>Python</mark> and <mark>R</mark>. We began the development of a <mark>Shiny</mark> application (VIRGO) that will be provided to Groundwater Sustainability Agency managers to aid in assessment of current conditions and trends.
 
 - layout: left
   company: Warren Wilson College Genetics and Plant Physiology Research Laboratory
   job_title: Research Assistant
   dates: September 2017 - December 2019
   description: | # this will include new lines to allow paragraphs
-    While at Warren Wilson College, I worked as a research assistant within Dr. Alisa Hove's research laboratory, where we studied human-impacted species, including the American pika (*Ochotona princeps*) and American ginseng (*Panax quinquefolius*). My capstone project was a genetic sex ratio analysis of American pika populations found in the Rocky Mountain Region. I performed <mark>DNA Extraction and Quantification</mark> from hair, tissue, and scat samples collected by University of Colorado Boulder. Through my work in the lab, I advanced my skills in <mark>PCR</mark>, <mark>Gel Electrophoresis</mark>, <mark>NMR Spectroscopy</mark>, <mark>Field Sampling</mark> and <mark>Phenological Monitoring</mark>.
+    While at Warren Wilson College, I worked as a research assistant within Dr. Alisa Hove's research laboratory, where we studied human-impacted species, including the American pika (*Ochotona princeps*) and American ginseng (*Panax quinquefolius*). My capstone project was a genetic sex ratio analysis of American pika populations found in the Rocky Mountain Region. Working with samples collected by partners at University of Colorado Boulder, I created a protocol for <mark>DNA Extraction and Quantification</mark> from pika hair, tissue, and scat samples. Preliminary findings suggested that there was a slight male bias across our samples. Continued observation and further testing is still needed to determine if this bias is apparent within the population or due to inadvertent effects of the sampling methodology. Through my work in the lab, I advanced my skills in <mark>PCR</mark>, <mark>Gel Electrophoresis</mark>, <mark>NMR Spectroscopy</mark>, <mark>Field Sampling</mark> and <mark>Phenological Monitoring</mark>.
 
 - layout: left
   company: Mathematical and Theoretical Biology Institute - Arizona State University
@@ -19,7 +19,7 @@
   job_title: Summer Research Intern
   dates: June 2019 - July 2019
   description: | # this will include new lines to allow paragraphs
-    During Summer 2019, I worked as a Research Intern during an eight week long summer term at Arizona State University. The first four weeks of the program included guest lectures on complex mathematical topics and their application to biological research. The last four weeks focused on the development of an original research project. I was the creator and team lead for a team studying the Topography and Behavior Based Movement Modeling for Missing Hikers in Land-Wilderness Settings, including the development of <mark>Cellular Automata</mark> simulations in <mark>Python</mark>.
+    During Summer 2019, I worked as a research intern during an eight week long summer term at Arizona State University. The first four weeks of the program included guest lectures on complex mathematical topics and their application to biological research. The last four weeks focused on the development of an original research project. I was the creator and lead for a team studying the Topography and Behavior Based Movement Modeling for Missing Hikers in Land-Wilderness Settings, including the development of <mark>Cellular Automata</mark> simulations in <mark>Python</mark>. We analyzed how certain terrain features generate natural bottlenecking effects, which may funnel a lost hiker in more predictable directions. Knowledge of these effects could potentially aid in efficient search efforts across terrain that is less familiar to Search And Rescue teams.
 
 - layout: left
   company: University of Wisconsin - La Crosse
@@ -27,7 +27,7 @@
   job_title: Summer Research Intern
   dates: May 2018 - August 2018
   description: | # this will include new lines to allow paragraphs
-    Paired with professors from UW - La Crosse and members of the United States Geological Survey, I used environmental DNA to model population size of an invasive species (*Petromyzon marinus*) within the Great Lakes. I developed these models in <mark>R</mark> and during this time, greatly expanded my understanding of statistical programming.
+    Paired with professors from UW - La Crosse and members of the United States Geological Survey, I used environmental DNA data to model population size of an invasive species (*Petromyzon marinus*) within the Great Lakes. Data had been previously collected by a graduate student at the university, including sample extraction and quanititative PCR. I developed models in <mark>R</mark> to analyze both copy number measurements and presence/absence observations. I found that environmental DNA was strongly correlated with population size in a very controlled setting, such as a pool), but had limited use beyond presence/absence detection when utilized in a natural setting. Through this project, I greatly expanded my understanding of statistical programming.
     
 - layout: left
   company: Virginia Institute for Psychiatric and Behavioral Genetics
