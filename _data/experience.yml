@@ -4,7 +4,7 @@
   job_title: NASA Develop Intern
   dates: January 2020 - April 2020
   description: | # this will include new lines to allow paragraphs
-    Through a collaboration between the California Department of Water Resources, California State University - Los Angeles, and NASA's Jet Propulsion Laboratory, the team tested the feasibility of using <mark>Remote Sensing</mark> datasets to supplement in-situ well and GPS measurements for the purpose of measuring groundwater storage changes in within the Central Valley. Modeling was performed in <mark>Python</mark> and <mark>R</mark>. We began the development of a <mark>Shiny</mark> application (VIRGO) that will be provided to Groundwater Sustainability Agency managers to aid in assessment of current conditions and trends.
+    Through a collaboration between the California Department of Water Resources, California State University - Los Angeles, and NASA's Jet Propulsion Laboratory, the team tested the feasibility of using <mark>Remote Sensing</mark> datasets to supplement in-situ well and GPS measurements for the purpose of measuring groundwater storage changes in the Central Valley. Modeling was performed in <mark>Python</mark> and <mark>R</mark>. We began the development of a <mark>Shiny</mark> application (VIRGO) that will be provided to Groundwater Sustainability Agency managers to aid in assessment of current conditions and trends.
 
 - layout: left
   company: Warren Wilson College Genetics and Plant Physiology Research Laboratory
