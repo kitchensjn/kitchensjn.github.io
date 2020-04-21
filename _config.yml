@@ -24,7 +24,7 @@ linkedin_username: james-kitchens-668825b2
 # about_title: About Me
 about_profile_image: images/profilePicture.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name is James. I am a recent graduate of Warren Wilson College in Asheville, North Carolina where I graduated with Honors, earning a BS in Biology and a BS in Chemistry. Throughout college and high school, I developed my interests and skills in the areas of conservation genetics, human genomics, and statistical modeling. I enjoy creative programming and data visualizations, including developing applications in <mark>Python</mark> and <mark>Shiny</mark>.
+  Hi, my name is James. I am a recent graduate of Warren Wilson College in Asheville, North Carolina, where I graduated with Honors, earning a BS in Biology and a BS in Chemistry. Throughout college and high school, I developed my interests and skills in the areas of conservation genetics, human genomics, and statistical modeling. I enjoy creative programming and data visualizations, including developing applications in <mark>Python</mark> and <mark>Shiny</mark>.
   
   In January 2020, I moved to Pomona, California from Virginia. I am excited to explore the West Coast!
 
