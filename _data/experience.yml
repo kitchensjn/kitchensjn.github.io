@@ -30,7 +30,7 @@
     Paired with professors from UW - La Crosse and members of the United States Geological Survey, I used <mark>Environmental DNA</mark> data to model population size of an invasive species (*Petromyzon marinus*) within the Great Lakes. Data had been previously collected by a graduate student at the university, including sample extraction and quantitative PCR. I developed models in <mark>R</mark> to analyze both copy number measurements and presence/absence observations. I found that environmental DNA was strongly correlated with population size in a very controlled setting, such as a pool), but had limited use beyond presence/absence detection when utilized in a natural setting due to the more complex system of compounding factors. Through this project, I gained experience in <mark>Statistical Programming</mark>.
     
 - layout: left
-  company: Virginia Institute for Psychiatric and Behavioral Genetics
+  company: Virginia Institute for Psychiatric and Behavioral Genetics - Virginia Commonwealth University
   link: vipbg.vcu.edu
   job_title: Research Assistant
   dates: May 2014 - February 2016
