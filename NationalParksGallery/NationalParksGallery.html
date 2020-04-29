@@ -3,13 +3,13 @@
   <title>James Kitchens - National Parks Photo Gallery</title>
   <meta charset="UTF-8">
   <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="library/slick.css"/>
-  <link rel="stylesheet" type="text/css" href="library/slick-theme.css"/>
-  <script type="text/javascript" src="library/slick.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="library/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="library/slick/slick-theme.css"/>
+  <script type="text/javascript" src="library/slick/slick.min.js"></script>
   <link rel="stylesheet" type="text/css" href="library/magnific-popup.css"/>
   <script type="text/javascript" src="library/jquery.magnific-popup.js"></script>
-  <link rel="stylesheet" type="text/css" href="library/leaflet.css"/>
-  <script type="text/javascript" src="library/leaflet.js"></script>
+  <link rel="stylesheet" type="text/css" href="library/leaflet/leaflet.css"/>
+  <script type="text/javascript" src="library/leaflet/leaflet.js"></script>
   <link rel="stylesheet" type="text/css" href="styles.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
   <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
@@ -54,7 +54,7 @@
 	  
   var unhighlightedIcon = L.Icon.extend({
     options: {
-        iconUrl: "leaflet/images/marker-icon.png",
+        iconUrl: "library/leaflet/images/marker-icon.png",
 		iconAnchor: [12, 41],
 		iconSize: [25, 41]
     }
@@ -62,7 +62,7 @@
 	  
   var highlightedIcon = L.Icon.extend({
 	options: {
-		iconUrl: "leaflet/images/marker-icon-highlighted.png",
+		iconUrl: "library/leaflet/images/marker-icon-highlighted.png",
 		iconAnchor: [12, 41],
 		iconSize: [25, 41]
 	}
@@ -70,7 +70,7 @@
   
   var otherIcon = L.Icon.extend({
 	options: {
-		iconUrl: "leaflet/images/marker-icon-other.png",
+		iconUrl: "library/leaflet/images/marker-icon-other.png",
 		iconAnchor: [12, 41],
 		iconSize: [25, 41]
 	}
