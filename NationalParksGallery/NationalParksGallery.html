@@ -24,14 +24,19 @@
 
   function displayMarkerGallery(marker, galleries) {
 	  	for (cursor=0; cursor<galleries.length; cursor++) {
-			d = document.getElementById(galleries[cursor]);
-			if (marker == galleries[cursor]) {
-				d.style.display = "block";
-    			$('#'+marker).get(0).slick.setPosition()
-			} else {
-				d.style.display = "none";
-			};
-		};
+  			d = document.getElementById(galleries[cursor]);
+  			if (marker == galleries[cursor]) {
+  				d.style.display = "block";
+      		if (marker != "BISC") {
+      		  $('#'+marker).get(0).slick.setPosition();
+      		};
+  			} else {
+  				d.style.display = "none";
+  				if (galleries[cursor] == "BISC") {
+  				  $('#BISC-video').attr('src', $('#BISC-video').attr('src'));
+  				};
+  			};
+  		};
   }; 		  
 	  
   // initialize the map
@@ -46,7 +51,7 @@
   L.easyButton('<i class="fas fa-house-user" style="padding-top:30%"></i>', function(btn, map){
     map.removeLayer(selectedPark);
 	map.setView([38.2700, -100.8603], 4);
-	displayMarkerGallery('ALL', ['ALL', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+	displayMarkerGallery('ALL', ['ALL', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
   }).addTo(map);
 	  
   //L.geoJSON(park_boundaries).addTo(map);
@@ -92,7 +97,7 @@
             }
           }).addTo(map);
 		  map.fitBounds(selectedPark.getBounds());
-		  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+		  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
 		  //map.setView(marker.latlng, 14);
 	  })
 	  layers.on('mouseover', function(marker) {
@@ -233,6 +238,9 @@
       </a>
       <a href="photos/White Sands/DSC_0565.jpg">
       	<img src="photos/White Sands/DSC_0565.jpg" alt="DSC_0565" height=100%>
+      </a>
+      <a href="photos/White Sands/white_sands_margaret.jpg">
+      	<img src="photos/White Sands/white_sands_margaret.jpg" alt="white_sands_margaret" height=100%>
       </a>
       <a href="photos/Grand Canyon/DSC_9188.jpg">
       	<img src="photos/Grand Canyon/DSC_9188.jpg" alt="DSC_9188" height=100%>
@@ -516,11 +524,23 @@
       <a href="photos/Everglades/DSC_1492.jpg">
       	<img src="photos/Everglades/DSC_1492.jpg" alt="DSC_1492" height=100%>
       </a>
+      <a href="photos/Shenandoah/_WJG56755x7.jpg">
+      	<img src="photos/Shenandoah/_WJG56755x7.jpg" alt="_WJG56755x7" height=100%>
+      </a>
     </div>
       
-      
-      
-      
+    
+    <div class="embeddedYoutube" id="BISC" style="display: none; text-align: center;">
+      <a href="https://www.youtube.com/embed/o1sJB5HSGeI">
+      	<iframe id="BISC-video" height="100%" src="https://www.youtube.com/embed/o1sJB5HSGeI" frameborder=0 allow="fullscreen" enablejsapi=1;></iframe>
+      </a>
+	  </div>  
+    
+    <div class="slick-slider" id="SHEN" style="display: none;">
+      <a href="photos/Shenandoah/_WJG56755x7.jpg">
+      	<img src="photos/Shenandoah/_WJG56755x7.jpg" alt="_WJG56755x7" height=100%>
+      </a>
+	  </div>  
       
     <div class="slick-slider" id="ARCH" style="display: none;">
       <a href="photos/Arches/DSC_9955.jpg">
@@ -654,6 +674,9 @@
       </a>
       <a href="photos/White Sands/DSC_0565.jpg">
       	<img src="photos/White Sands/DSC_0565.jpg" alt="DSC_0565" height=100%>
+      </a>
+      <a href="photos/White Sands/white_sands_margaret.jpg">
+      	<img src="photos/White Sands/white_sands_margaret.jpg" alt="white_sands_margaret" height=100%>
       </a>
 	  </div>
 	  
@@ -977,7 +1000,6 @@
 	  
   <script type="text/javascript">
 	  
-	  
     $(".slick-slider").slick({
         dots: false,
         infinite: true,
@@ -991,26 +1013,26 @@
         pauseOnFocus: false
       });
 
-	$(document).ready(function() {
-		$('.slick-slider').each(function() {
-     		$(this).magnificPopup({
-				delegate: 'a',
-				type: 'image',
-				showCloseBtn: false,
-				tLoading: 'Loading image #%curr%...',
-				mainClass: 'mfp-img-mobile',
-				gallery: {
-					enabled: true,
-					navigateByImgClick: true,
-					tCounter: '<span class="mfp-counter"></span>',
-					preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-				},
-				image: {
-					tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
-				}
-			});
-		});
-	});
+  	$(document).ready(function() {
+  		$('.slick-slider').each(function() {
+     		  $(this).magnificPopup({
+    				delegate: 'a',
+    				type: 'image',
+    				showCloseBtn: false,
+    				tLoading: 'Loading image #%curr%...',
+    				mainClass: 'mfp-img-mobile',
+    				gallery: {
+    					enabled: true,
+    					navigateByImgClick: true,
+    					tCounter: '<span class="mfp-counter"></span>',
+    					preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+    				},
+    				image: {
+    					tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+    				}
+    			});
+  		});
+  	});
 	  
 	//const lightbox = document.createElement("div");
 	//lightbox.id = "lightbox";
