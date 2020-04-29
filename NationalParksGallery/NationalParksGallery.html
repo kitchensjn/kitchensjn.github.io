@@ -51,7 +51,7 @@
   L.easyButton('<i class="fas fa-house-user" style="padding-top:30%"></i>', function(btn, map){
     map.removeLayer(selectedPark);
 	map.setView([38.2700, -100.8603], 4);
-	displayMarkerGallery('ALL', ['ALL', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+	displayMarkerGallery('ALL', ['ALL', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
   }).addTo(map);
 	  
   //L.geoJSON(park_boundaries).addTo(map);
@@ -97,7 +97,7 @@
             }
           }).addTo(map);
 		  map.fitBounds(selectedPark.getBounds());
-		  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+		  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
 		  //map.setView(marker.latlng, 14);
 	  })
 	  layers.on('mouseover', function(marker) {
@@ -527,11 +527,46 @@
       <a href="photos/Shenandoah/white_oak.jpg">
       	<img src="photos/Shenandoah/white_oak.jpg" alt="white_oak" height=100%>
       </a>
+      <a href="photos/Mount Rainier/IMG_0002.jpg">
+      	<img src="photos/Mount Rainier/IMG_0002.jpg" alt="IMG_0002" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/IMG_0060.jpg">
+      	<img src="photos/Mount Rainier/IMG_0060.jpg" alt="IMG_0060" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/IMG_0067.jpg">
+      	<img src="photos/Mount Rainier/IMG_0067.jpg" alt="IMG_0067" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/rainier.jpg">
+      	<img src="photos/Mount Rainier/rainier.jpg" alt="rainier" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/instagram_rainier.jpg">
+      	<img src="photos/Mount Rainier/instagram_rainier.jpg" alt="instagram_rainier" height=100%>
+      </a>
     </div>
+    
+    
     
     <div class="slick-slider" id="SHEN" style="display: none;">
       <a href="photos/Shenandoah/white_oak.jpg">
       	<img src="photos/Shenandoah/white_oak.jpg" alt="white_oak" height=100%>
+      </a>
+	  </div>  
+	  
+	  <div class="slick-slider" id="MORA" style="display: none;">
+      <a href="photos/Mount Rainier/IMG_0002.jpg">
+      	<img src="photos/Mount Rainier/IMG_0002.jpg" alt="IMG_0002" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/IMG_0060.jpg">
+      	<img src="photos/Mount Rainier/IMG_0060.jpg" alt="IMG_0060" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/IMG_0067.jpg">
+      	<img src="photos/Mount Rainier/IMG_0067.jpg" alt="IMG_0067" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/rainier.jpg">
+      	<img src="photos/Mount Rainier/rainier.jpg" alt="rainier" height=100%>
+      </a>
+      <a href="photos/Mount Rainier/instagram_rainier.jpg">
+      	<img src="photos/Mount Rainier/instagram_rainier.jpg" alt="instagram_rainier" height=100%>
       </a>
 	  </div>  
     
