@@ -1,0 +1,60 @@
+#map{ height: 66% }
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  height: 34%;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  color: #333;
+  background: black;
+  vertical-align: middle;
+}
+
+.slick-slide {
+  text-align: center;
+  color: #419be0;
+  background: white;
+  height: 100%;
+  margin: 0px 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.slick-slider img {
+  cursor: pointer;
+}
+
+#lightbox {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+
+#lightbox.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#lightbox img {
+  height: auto;
+  min-height: 300px;
+  width: 50%;
+  min-width: 450px;
+}
+
+/*.slick-center {
+  height: 95%;
+  margin: 5px 10px;
+}
+
+.slick-initialized .slick-slide {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+}*/
