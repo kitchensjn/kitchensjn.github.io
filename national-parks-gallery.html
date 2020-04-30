@@ -39,6 +39,7 @@
   		};
   }; 		  
 	  
+	  
   // initialize the map
   var selectedPark = L.geoJson();
   var map = L.map('map').setView([38.2700, -100.8603], 4);
@@ -48,14 +49,33 @@
 	  maxZoom: 19,
 	  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
-	  
+	
+  var bounds = L.latLngBounds(L.latLng(-89.98155760646617, -180), L.latLng(89.99346179538875, -30));//L.latLng(89.99346179538875, 180));
+  map.setMaxBounds(bounds);
+  map.on('drag', function() {
+  	map.panInsideBounds(bounds, { animate: false });
+  });
+	
   L.easyButton('<i class="fas fa-house-user" style="padding-top:30%"></i>', function(btn, map){
     map.removeLayer(selectedPark);
-	map.setView([38.2700, -100.8603], 4);
-	displayMarkerGallery('ALL', ['ALL', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+	  map.setView([38.2700, -100.8603], 4);
+	  displayMarkerGallery('ALL', ['ALL', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+	  selectedPark = L.geoJson();
   }).addTo(map);
-	  
-  //L.geoJSON(park_boundaries).addTo(map);
+	
+	map.on('zoomend', function() {
+    if (map.getZoom() < 7 & selectedPark != L.geoJson()) {
+      map.removeLayer(selectedPark);
+      displayMarkerGallery('ALL', ['ALL', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+      selectedPark = L.geoJson();
+    };
+	});
+	
+  //if (map.getZoom() < 7 & selectedPark!=L.geoJson()) {
+  //  map.removeLayer(selectedPark);
+  //  displayMarkerGallery('ALL', ['ALL', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+  //  selectedPark = L.geoJson();
+  //};
 
 	  
   var unhighlightedIcon = L.Icon.extend({
@@ -683,7 +703,7 @@
       	<img src="NationalParksGallery/photos/Yosemite/DSC_9389.jpg" alt="DSC_9389" height=100%>
       </a>
       <a href="NationalParksGallery/photos/Yosemite/DSC_9349.jpg">
-      	<img src=NationalParksGallery/"photos/Yosemite/DSC_9349.jpg" alt="DSC_9349" height=100%>
+      	<img src="NationalParksGallery/photos/Yosemite/DSC_9349.jpg" alt="DSC_9349" height=100%>
       </a>
       <a href="NationalParksGallery/photos/Yosemite/DSC_2386.jpg">
       	<img src="NationalParksGallery/photos/Yosemite/DSC_2386.jpg" alt="DSC_2386" height=100%>
