@@ -56,12 +56,15 @@
   	map.panInsideBounds(bounds, { animate: false });
   });
 	
-  L.easyButton('<span class="fas fa-house-user" style="font-size:15px; line-height:25px; padding-left: -5px;"></span>', function(btn, map) {//'<i class="fas fa-house-user" style="font-size: 1rem; padding-top: 30%;"</i>', function(btn, map){    // style="padding-top:30%"
+  let homeButton = L.easyButton('<span class="fas fa-house-user" style="font-size:15px; line-height:25px; align="center";"></span>', function(btn, map) {//'<i class="fas fa-house-user" style="font-size: 1rem; padding-top: 30%;"</i>', function(btn, map){    // style="padding-top:30%"
     map.removeLayer(selectedPark);
 	  map.setView([38.2700, -100.8603], 4);
 	  displayMarkerGallery('ALL', ['ALL', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
 	  selectedPark = L.geoJson();
   }).addTo(map);
+  homeButton.button.style.width = '26px';
+  homeButton.button.style.height = '26px';
+  homeButton.button.style.padding = '0px';
 	
 	map.on('zoomend', function() {
     if (map.getZoom() < 7 & selectedPark != L.geoJson()) {
