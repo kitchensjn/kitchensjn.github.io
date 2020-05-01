@@ -19,6 +19,7 @@
   <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
   <script src="NationalParksGallery/national_park_markers.js"></script>
   <script src="NationalParksGallery/park_boundaries.js"></script>
+  <script type="text/javascript" src="NationalParksGallery/library/jquery.lazy-master/jquery.lazy.min.js"></script>
   </head>
   <body>
   
@@ -812,6 +813,10 @@
 	  
   <script type="text/javascript">
 	  
+	  $(function() {
+        $('.slick-slider').lazy();
+    });
+    
     $(".slick-slider")
       .slick({
           dots: false,
