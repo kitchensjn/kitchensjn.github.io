@@ -20,6 +20,12 @@ linkedin_username: james-kitchens-668825b2
 # youtube_username: globalmtb
 # googleplus_username: +jekyll
 
+# Google Analytics and Tag Manager
+# Using more than one of these may cause issues with reporting
+# gtm: "GTM-0000000"
+gtag: "UA-165486210-1"
+# google_analytics: "UA-00000000-0"
+
 # About Section
 # about_title: About Me
 about_profile_image: images/profilePicture.jpg
