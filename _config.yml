@@ -8,6 +8,11 @@ title:
 email: kitchensjn@gmail.com
 website: www.james-kitchens.com
 
+additional_links:
+- title: National Parks Gallery
+  icon: fa-tree
+  url: http://www.james-kitchens.com/national-parks-gallery
+
 # Social links
 twitter_username: 
 github_username:  kitchensjn
@@ -19,11 +24,6 @@ linkedin_username: james-kitchens-668825b2
 # pinterest_username: jekyll
 # youtube_username: globalmtb
 # googleplus_username: +jekyll
-
-additional_links:
-- title: National Parks Gallery
-  icon: fa-globe-americas
-  url: http://www.james-kitchens.com/national-parks-gallery
 
 # About Section
 # about_title: About Me
