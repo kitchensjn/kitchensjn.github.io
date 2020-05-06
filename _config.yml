@@ -20,6 +20,11 @@ linkedin_username: james-kitchens-668825b2
 # youtube_username: globalmtb
 # googleplus_username: +jekyll
 
+additional_links:
+- title: National Parks Gallery
+  icon: fa-twitter
+  url: https://www.james-kitchens.com/national-parks-gallery
+
 # About Section
 # about_title: About Me
 about_profile_image: images/profilePicture.jpg
