@@ -846,7 +846,7 @@
 
     $(".slick-slider").each(function() {
       $(this).magnificPopup({
-        delegate: 'a:not(.slick-cloned)',
+        delegate: 'a', //:not(.slick-cloned)
 				type: 'image',
 				showCloseBtn: false,
 				tLoading: 'Loading image #%curr%...',
