@@ -58,3 +58,7 @@ body {
     font-size: 1rem;
     line-height: 1.5;
 }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
