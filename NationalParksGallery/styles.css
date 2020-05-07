@@ -42,3 +42,8 @@ body {
 .slick-slider img {
   cursor: pointer;
 }
+
+.navbar {
+    background-color: #333;
+    border: #333;
+}
