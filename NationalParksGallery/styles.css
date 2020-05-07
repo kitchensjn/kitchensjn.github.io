@@ -43,6 +43,18 @@ body {
   cursor: pointer;
 }
 
+body {
+  color: #333;
+  font-family: Roboto, sans-serif;
+  font-feature-settings: "kern", "liga", "pnum";
+  font-size: 1rem;
+  line-height: 1.5;
+
+  @media print {
+    font-size: 0.9rem;
+  }
+}
+
 ul {
   list-style-type: none;
   margin: 0;
