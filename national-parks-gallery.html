@@ -21,7 +21,7 @@
   <script type="text/javascript" src="NationalParksGallery/library/jquery.lazy-master/jquery.lazy.min.js"></script>
   </head>
   <body>
-
+  
   <div id="map"></div>
   <script>	  
 
@@ -846,7 +846,7 @@
 
     $(".slick-slider").each(function() {
       $(this).magnificPopup({
-        delegate: 'a', //:not(.slick-cloned)
+        delegate: 'a:not(.slick-cloned)',
 				type: 'image',
 				showCloseBtn: false,
 				tLoading: 'Loading image #%curr%...',
