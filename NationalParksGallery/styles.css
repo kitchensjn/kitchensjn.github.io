@@ -43,7 +43,18 @@ body {
   cursor: pointer;
 }
 
+
+
+
 .navbar {
     background-color: #333;
     border: #333;
+}
+
+body {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-feature-settings: "kern", "liga", "pnum";
+    font-size: 1rem;
+    line-height: 1.5;
 }
