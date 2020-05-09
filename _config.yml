@@ -1,6 +1,6 @@
 # Site
-repository: sproogen/resume-theme
-favicon: images/favicon.ico
+repository: kitchensjn/kitchensjn.github.io
+favicon: /assets/favicon.ico
 
 # Personal info
 name: James Kitchens
@@ -8,27 +8,42 @@ title: Digital Resume
 email: kitchensjn@gmail.com
 website: www.james-kitchens.com
 
+# Dark Mode (true/false/never)
+darkmode: never
+
 # Social links
-twitter_username: 
+#twitter_username: jekyllrb
 github_username:  kitchensjn
-# dribbble_username: jekyll
-# facebook_username: jekyll
-# flickr_username: jekyll
-#instagram_username: james.n.kitchens
+#stackoverflow_username: "00000001"
+#dribbble_username: jekyll
+#facebook_username: jekyll
+#flickr_username: jekyll
+#instagram_username: jekyll
 linkedin_username: james-kitchens-668825b2
-# pinterest_username: jekyll
-# youtube_username: globalmtb
-# googleplus_username: +jekyll
+#xing_username: jekyll
+#pinterest_username: jekyll
+#youtube_username: jekyll
+#googleplus_username: +jekyll
+#orcid_username: 0000-0000-0000-0000
+
+# Additional icon links
+#additional_links:
+#- title: National Parks Gallery
+#  icon: fas fa-tree
+#  url: http://www.james-kitchens.com/national-parks-gallery
+# - title: another link
+#   icon: font awesome brand icon name (eg. fa-twitter) (https://fontawesome.com/icons?d=gallery&s=brands&m=free)
+#   url: Link url (eg. https://google.com)
 
 # Google Analytics and Tag Manager
 # Using more than one of these may cause issues with reporting
 # gtm: "GTM-0000000"
-gtag: "UA-165486210-1"
+# gtag: "UA-00000000-0"
 # google_analytics: "UA-00000000-0"
 
 # About Section
-# about_title: About Me
-about_profile_image: images/profilePicture.jpg
+# about_title: About Me (Use this to override about section title)
+about_profile_image: assets/profilePicture.jpg
 about_content: | # this will include new lines to allow paragraphs
   Hi, my name is James. I am a recent graduate of Warren Wilson College in Asheville, North Carolina, where I graduated with Honors, earning a BS in Biology and a BS in Chemistry. Throughout college and high school, I developed interests and skills in conservation genetics, human genomics, and statistical modeling. I enjoy creative programming and data visualizations, including developing applications in <mark>Python</mark> and <mark>Shiny</mark>.
   
@@ -58,7 +73,8 @@ more_content: | # this will include new lines to allow paragraphs
 footer_show_references: false
 
 # Build settings
-remote_theme: sproogen/resume-theme
+# theme: modern-resume-theme (Use this is you are hosting your resume yourself)
+# remote_theme: sproogen/modern-resume-theme (Use this if you are hosting your resume on GitHub)
 
 sass:
   sass_dir: _sass
@@ -66,3 +82,16 @@ sass:
 
 plugins:
  - jekyll-seo-tag
+
+exclude : [
+  "Gemfile",
+  "Gemfile.lock",
+  "node_modules",
+  "vendor/bundle/",
+  "vendor/cache/",
+  "vendor/gems/",
+  "vendor/ruby/",
+  "lib/",
+  "scripts/",
+  "docker-compose.yml",
+  ]
