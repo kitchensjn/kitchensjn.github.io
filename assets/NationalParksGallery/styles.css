@@ -46,3 +46,23 @@ body {
 .slick-slider img {
   cursor: pointer;
 }
+
+.navbar {
+    background-color: #333;
+    border: #333;
+}
+
+body {
+    color: #333;
+    font-family: Roboto, sans-serif;
+    font-feature-settings: "kern", "liga", "pnum";
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+nav {
+    display: block;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
