@@ -87,23 +87,24 @@
       x.className = "topnav";
     }
     var content = document.getElementById("galleryContent");
-    if (content.style.top === "53px") {
-      content.style.top = "162px";
-    } else {
-      content.style.top = "53px";
+    if (content) {
+      if (content.style.top === "53px") {
+        content.style.top = "162px";
+      } else {
+        content.style.top = "53px";
+      }
     }
   }
   window.addEventListener('resize', function(event){
     var x = document.getElementById("myTopnav");
-    var gC = document.getElementById("galleryContent");
-    console.log(gC);
-    if (gC) {
+    var content = document.getElementById("galleryContent");
+    if (content) {
       if (window.innerWidth > 768) {
-        gC.style.top = "53px";
+        content.style.top = "53px";
       } else if (x.className === "topnav") {
-        gC.style.top = "53px";  
+        content.style.top = "53px";  
       } else {
-        gC.style.top = "162px";
+        content.style.top = "162px";
       }
     };
   });
