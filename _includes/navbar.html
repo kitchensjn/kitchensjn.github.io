@@ -95,13 +95,17 @@
   }
   window.addEventListener('resize', function(event){
     var x = document.getElementById("myTopnav");
-    if (window.innerWidth > 768) {
-      document.getElementById("galleryContent").style.top = "53px";
-    } else if (x.className === "topnav") {
-      document.getElementById("galleryContent").style.top = "53px";  
-    } else {
-      document.getElementById("galleryContent").style.top = "162px";
-    }
+    var gC = document.getElementById("galleryContent");
+    console.log(gC);
+    if (gC != null) {
+      if (window.innerWidth > 768) {
+        gC.style.top = "53px";
+      } else if (x.className === "topnav") {
+        gC.style.top = "53px";  
+      } else {
+        gC.style.top = "162px";
+      }
+    };
   });
 </script>
 
