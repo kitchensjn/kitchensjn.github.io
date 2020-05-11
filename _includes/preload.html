@@ -1,0 +1,72 @@
+<style>
+  .preload {
+    background-color: #AAD3DF;
+    position: absolute;
+    z-index: 10000;
+    top: 53px;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+    overflow: hidden;
+  }
+  
+  .tree-mountain {
+    position: absolute;
+  }
+  
+  .van {
+    position: absolute;
+    animation: van 1s linear infinite alternate;*/
+  }
+  
+  @keyframes van {
+    from {
+      transform: rotate(-10deg);
+    }
+    to {
+      transform: rotate(10deg);
+    }
+  }
+  
+  .preload-finish {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
+
+
+<div class="preload">
+  <img class="tree-mountain" src="{{ '/assets/NationalParksGalleryLoading_TreeMountain.png' | relative_url }}" alt="NPG_loading" width=50%>
+  <img class="van" src="{{ '/assets/NationalParksGalleryLoading_Van.png' | relative_url }}" alt="NPG_loading" width=50%>
+</div>
+
+<script>
+  var something = (function() {
+    var executed = false;
+    return function() {
+      if (!executed) {
+        executed = true;
+        var navbarItems = document.getElementById("myTopnav").querySelectorAll("a");
+        navbarItems.forEach(function(anchor) {
+          anchor.classList.add("inactiveLink");
+        });
+        //const navbar = document.querySelector(".icon");
+        //navbar.classList.add("inactiveLink");
+      }
+    };
+  })();
+  
+  something();
+  
+  window.addEventListener('load', () => {
+    const preload = document.querySelector(".preload");
+    preload.classList.add("preload-finish");
+    var navbarItems = document.getElementById("myTopnav").querySelectorAll("a");
+    navbarItems.forEach(function(anchor) {
+      anchor.classList.remove("inactiveLink");
+    });
+  });
+</script>
