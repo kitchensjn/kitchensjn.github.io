@@ -7,13 +7,24 @@
 <title>James Kitchens | National Parks Gallery</title>
 </head>
 
-<style>
-  
-</style>
-  
 <body class="{% if site.darkmode == true and site.darkmode != 'never' %}dark{% endif %}" style="overflow: hidden">
-  
+    
+    <!--
+    <style>
+      #NationalParksGallery {
+        color: #fff;
+      }
+    </style>
+    -->
+    
     {%- include navbar.html -%}
+    
+    <script>
+      var activePage = document.getElementById("NationalParksGallery");
+      console.log(activePage);
+      activePage.style.color = "#ffffff";
+      activePage.classList.add("inactiveLink");
+    </script>
     
     {%- include preload.html -%}
     

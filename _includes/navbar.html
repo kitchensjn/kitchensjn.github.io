@@ -65,13 +65,13 @@
 </style>
 
 <div class="topnav" id="myTopnav">
-  <a href="/" style="padding:7px 16px;">
+  <a id="Logo" href="/" style="padding:7px 16px;">
     <img src="{{ '/assets/JK_logo.png' | relative_url }}" alt="JK_logo" style="height:39px;">
   </a>
   <!--<a href="" class="inactiveLink" style="color: #fff; font-weight: bold;">James Kitchens</a>-->
-  <a href="/">About Me</a>
-  <!--<a href="#projects">Projects</a>-->
-  <a href="national-parks-gallery">National Parks Gallery</a>
+  <a id="AboutMe" href="/">About Me</a>
+  <!--<a id="Projects" href="projects">Projects</a>-->
+  <a id="NationalParksGallery" href="national-parks-gallery">National Parks Gallery</a>
   <!--<a href="#contact">Contact</a>-->
   <a href="javascript:void(0);" class="icon" onclick="hamburger()">
     <i class="fa fa-bars"></i>
@@ -83,13 +83,15 @@
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
       x.className += " responsive";
+      document.getElementById("Logo").classList.add("inactiveLink");
     } else {
       x.className = "topnav";
+      document.getElementById("Logo").classList.remove("inactiveLink");
     }
     var content = document.getElementById("galleryContent");
     if (content) {
       if (content.style.top === "53px") {
-        content.style.top = "162px";
+        content.style.top = ((document.getElementById("myTopnav").querySelectorAll("a").length - 1) * 53 + 3).toString() + "px";
       } else {
         content.style.top = "53px";
       }
@@ -101,10 +103,13 @@
     if (content) {
       if (window.innerWidth > 768) {
         content.style.top = "53px";
+        document.getElementById("Logo").classList.remove("inactiveLink");
       } else if (x.className === "topnav") {
-        content.style.top = "53px";  
+        content.style.top = "53px";
+        document.getElementById("Logo").classList.remove("inactiveLink");
       } else {
-        content.style.top = "162px";
+        content.style.top = ((document.getElementById("myTopnav").querySelectorAll("a").length - 1) * 53 + 3).toString() + "px";
+        document.getElementById("Logo").classList.add("inactiveLink");
       }
     };
   });

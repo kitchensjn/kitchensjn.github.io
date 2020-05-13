@@ -8,8 +8,15 @@
   
   
 <body class="{% if site.darkmode == true and site.darkmode != 'never' %}dark{% endif %}">
-
+  
   {%- include navbar.html -%}
+  
+  <script>
+    var activePage = document.getElementById("AboutMe");
+    console.log(activePage);
+    activePage.style.color = "#ffffff";
+    activePage.classList.add("inactiveLink");
+  </script>
   
   {%- include header.html -%}
 
