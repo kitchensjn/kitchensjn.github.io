@@ -116,11 +116,13 @@
           {{ site.phone_title | default: "Phone" }}: {{ site.phone | escape }}
         </p>
       {%- endif -%}
+      <!--
       {%- if site.website -%}
         <p>
           {{ site.website_title | default: "Web" }}: {% include a.html href=site.website %}{{ site.website | escape }}</a>
         </p>
       {%- endif -%}
+      -->
     </div>
   </div>
 </div>

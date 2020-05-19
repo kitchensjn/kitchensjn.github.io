@@ -1,0 +1,51 @@
+- layout: card
+  id: topotable
+  name: THE TOPOTABLE PROJECT
+  link: jkitchensf16.shinyapps.io/topotable
+  github: kitchensjn/TopoTable
+  thumbnail: /assets/Projects/TopoTable/logo_v2.png
+  gif: /assets/Projects/TopoTable/logo_v2.png
+  description: | # this will include new lines to allow paragraphs
+    The goal of the TopoTable Project is to create a dynamic 3D topographic relief table that is built with moveable pillars. Rather than constraining it to a single region, the motors within the TopoTable would allow it to seamlessly shift from one map to the next. I have developed the user interface for downloading and processing elevation data using <mark>Python</mark>, <mark>R</mark>, <mark>Leaflet</mark> and <mark>Shiny</mark>. This application is hosted through <mark>shinyapps.io</mark>.
+
+- layout: card
+  id: tardigrades
+  name: MARINE TARDIGRADES
+  link: paul-bartels.shinyapps.io/marine-tardigrades
+  github: kitchensjn/marine-tardigrades
+  thumbnail: /assets/Projects/Tardigrades/MarineTardigradesOfTheWorld.png
+  gif: /assets/Projects/Tardigrades/MarineTardigradesOfTheWorld.png
+  description: | # this will include new lines to allow paragraphs
+    In October 2019, Dr. Paul Bartels and I collaborated to develop a <mark>Shiny</mark> application that would display aggregated marine tardigrade findings from [Kaczmarek, L., Bartels, P.J., Roszkowska, M. & Nelson, D. (2015). The Zoogeography of Marine Tardigrada, *Zootaxa* 4037:1-189](https://www.biotaxa.org/Zootaxa/article/view/zootaxa.4037.1.1){:target="_blank"}. Using <mark>R</mark>, this application accesses data through the Google Sheets API, allowing for quick and efficient updating of findings without the need for a full redeploy. Findings are then displayed within a <mark>Leaflet</mark> map, hosted through <mark>shinyapps.io</mark>.
+    
+- layout: card
+  id: pika
+  name: PIKA GENETIC SEXING
+  poster: /assets/Projects/Pika/ASBPoster-Pika.pdf
+  thumbnail: /assets/Projects/Pika/logo.png
+  gif: /assets/Projects/Pika/logo.png
+  description: | # this will include new lines to allow paragraphs
+    Sex ratios (the ratios of female to male individuals in populations) provide valuable estimates of the health of populations. In species that are territorial and occur in small, isolated populations, biased sex ratios can lead to increased competition among individuals and decrease the genetic diversity of future generations. Having fewer mating opportunities results in the majority of offspring in the next generation coming from only a small number of parents, thus increasing the relatedness of individuals. The American pika (*Ochotona princeps*) is a small, alpine mammal that is predicted to experience habitat range contractions due to climate change. As this occurs, the range will also become more fragmented, decreasing the connectivity of populations. Because of this, understanding which populations are most vulnerable is of utmost importance. Sex ratios are key indicators of a population’s potential persistence and, therefore, a part of this understanding. Species that lack significant sexual dimorphism, such as the American pika, can be difficult to sex in the field, requiring a need for genetic based sexing techniques. Chromosomal genetic sexing techniques have been developed using non-invasive hair sampling. In this two part study, we first expanded the use of this method to include fecal samples, performing pairwise comparisons of 13 individuals who were sexed using extractions from both hair and fecal samples to ensure accuracy. Second, we sexed 84 pikas from either fecal or hair samples obtained from three metapopulations in the Colorado and Montana Rocky Mountains. Sex ratios for each population were calculated. We did not observed significant sex ratio bias in any of the metapopulations.
+
+- layout: card
+  id: lichen
+  name: BIPOLAR DATA VISUALIZATION
+  github: VSRS-UW/bd_vizualization
+  thumbnail: /assets/Projects/Bipolar/logo_v2.png
+  gif: /assets/Projects/Bipolar/logo_v2.png
+  description: |
+    In collaboration with the Visualization Studies Research Studio at the University of Washington, I am developing a lichen-inspired visualization of personal data related to mental health tracking. These data will be used to generate a unique, personalized lichen growth that both provides meaning to the individual while ensuring privacy of data and trends through abstraction.
+    
+- layout: card
+  id: S4S
+  name: GENOMIC SNP QUERY TOOLS
+  thumbnail: /assets/Projects/SpitForScience/logo.png
+  gif: /assets/Projects/SpitForScience/logo.png
+  paper: www.frontiersin.org/articles/10.3389/fgene.2017.00030/full
+  description: |
+    I developed a set of Python command-line tools to query a database of genomic information and generate polygenic risk scores based on an individuals genotype. Data was generated through the "Spit For Science" project at Virginia Commonwealth University, a longitudinal study of college students including a paired mental health questionnaire and genetic survey. Firstly, I created a SQLite database that allowed for rapid access of the 1.5TB dataset. Using this database, the second script allowed users to select one or more loci (single nucleotide polymorphisms) and returned a table of quality assurance measurements including minor allele frequency and imputation statistics. Lastly, the third script generated polygenic risk scores, or predicted likelihood of having a trait, for each individual within the database based on the number and effect of risk alleles within the individual's genome.
+    
+    
+    
+    
+    

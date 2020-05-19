@@ -49,6 +49,10 @@ about_content: | # this will include new lines to allow paragraphs
   
   In January 2020, I moved to from Virginia to Pomona, California. I am excited to explore the West Coast!
 
+# Publications Section
+publications_content: | # this will include new lines to allow paragraphs
+  Webb et al. (2017). [Molecular Genetic Influences on Normative and Problematic Alcohol Use in a Population-Based Sample of College Students](https://www.frontiersin.org/articles/10.3389/fgene.2017.00030/full){:target="_blank"}. *Frontiers in Genetics*, 8
+
 # Projects Section
 projects_title: Selected Projects
 
@@ -57,6 +61,23 @@ experience_title: Research Experience
 
 # Education Section
 # educaton_title: Education
+
+# Awards Section
+awards_content: | # this will include new lines to all paragraphs
+  **Warren Wilson College Community Engagement Honor Role** : 2020
+  
+  **Warren Wilson College Excellence in Biology Award** : 2020
+  
+  **Warren Wilson College Pfaff Cup Finalist** : 2020
+  
+  **Warren Wilson College Dean’s List** : 2016 to 2019
+  
+  **Warren Wilson College Honor Scholarship** : 2016 to 2019
+  
+  **Pugh Grant** : 2018
+  
+  **Warren Wilson College Student Government Association Grants** : 2017 & 2018
+
 
 # More Section
 more_title: Interests and Activities

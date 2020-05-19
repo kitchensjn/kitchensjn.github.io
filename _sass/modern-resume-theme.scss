@@ -42,6 +42,28 @@
   box-shadow: inset 0 0 20px #636161;
 }
 
+.thumbnail-img {
+  height: 75%;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  display: block;
+  border-radius: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat, no-repeat;
+}
+
+.gif-img {
+  height: 75%;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  display: none;
+  border-radius: 0px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat, no-repeat;
+}
+
 .into-text-1 {
   margin-top: 30px;
 }
