@@ -39,7 +39,7 @@
     map.removeLayer(selectedPark);
     map.fitBounds(L.latLngBounds(L.latLng(25, -125), L.latLng(50, -75)));
     //map.setView([38.2700, -100.8603], 4);
-    displayMarkerGallery('ALL', ['ALL', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+    displayMarkerGallery('ALL', ['ALL', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
     selectedPark = L.geoJson();
   }).addTo(map);
   //homeButton.button.style.width = '26px';
@@ -49,7 +49,7 @@
   map.on('zoomend', function() {
     if (map.getZoom() < 7 & selectedPark != L.geoJson()) {
       map.removeLayer(selectedPark);
-      displayMarkerGallery('ALL', ['ALL', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+      displayMarkerGallery('ALL', ['ALL', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
       selectedPark = L.geoJson();
     };
   });
@@ -93,7 +93,7 @@
             }
           }).addTo(map);
   	  map.fitBounds(selectedPark.getBounds());
-  	  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+  	  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
   	  //map.setView(marker.latlng, 14);
     })
     layers.on('mouseover', function(marker) {
