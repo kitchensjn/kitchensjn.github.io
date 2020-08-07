@@ -1,0 +1,62 @@
+.projects .card .pic {
+    position: relative;
+    z-index: 10;
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 75%;
+    overflow: hidden;
+    transition: width 1s;
+    /*-webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;*/
+}
+.projects .card .picLeft {
+    border-radius: 5px 0px 0px 5px;
+    float: left;
+    direction: ltr;
+}
+.projects .card .picRight {
+    border-radius: 0px 5px 5px 0px;
+    float: right;
+    direction: rtl;
+}
+.projects .card:hover .pic {
+    width: 25%;
+}
+.projects .card .desc {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width:25%;
+    height: 100%;
+    /*-webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;*/
+}
+.projects .card:hover .desc {
+    width: 75%;
+}
+.projects .card .descRight {
+    margin-left: 75%;
+}
+.projects .card:hover .descRight {
+    margin-left: 25%;
+}
+.projects .card .descLeft {
+    margin-right: 75%;
+}
+.projects .card:hover .descLeft {
+    margin-right: 25%;
+}
+.projects .card .desc .brief {
+    text-align: justify;
+    color: #BBBBBB;
+    display: none;
+}
+.projects .card:hover .desc .brief {
+    display: block;
+}
+.projects .card .desc .name {
+    color: #FFFFFF;
+}
+.projects .card:hover .desc .name {
+    margin-bottom: 10px;
+}
