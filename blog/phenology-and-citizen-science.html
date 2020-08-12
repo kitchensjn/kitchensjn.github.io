@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>James Kitchens</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <script>
+      function hamburger() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+          document.getElementById("Logo").classList.add("inactiveLink");
+        } else {
+          x.className = "topnav";
+          document.getElementById("Logo").classList.remove("inactiveLink");
+        }
+        var content = document.getElementById("galleryContent");
+        if (content) {
+          if (content.style.top === "62px") {
+            content.style.top = ((document.getElementById("myTopnav").querySelectorAll("a").length - 1) * 62 + 3).toString() + "px";
+          } else {
+            content.style.top = "62px";
+          }
+        }
+      }
+      window.addEventListener('resize', function(event){
+        var x = document.getElementById("myTopnav");
+        var content = document.getElementById("galleryContent");
+        if (content) {
+          if (window.innerWidth > 768) {
+            content.style.top = "53px";
+            document.getElementById("Logo").classList.remove("inactiveLink");
+          } else if (x.className === "topnav") {
+            content.style.top = "53px";
+            document.getElementById("Logo").classList.remove("inactiveLink");
+          } else {
+            content.style.top = ((document.getElementById("myTopnav").querySelectorAll("a").length - 1) * 53 + 3).toString() + "px";
+            document.getElementById("Logo").classList.add("inactiveLink");
+          }
+        };
+      });
+      
+    </script>
+    
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 20px;
+            text-align: justify;
+        }
+        code {
+            background-color: #BBBBBB;
+            color: #333333;
+        }
+        .contactBar {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            height: 57px;
+            background-color: #333333;
+            text-align: center;
+            color: #BBBBBB;
+            z-index: 1000;
+        }
+        .contactBar .info{
+            display: inline-block;
+            padding: 17px 20px;
+        }
+        .cat {
+            text-align: left;
+        }
+        .cat .background {
+            display: inline-block;
+            border-radius: 5px;
+            background-color: #333333;
+            margin: 2px 0px;
+        }
+        .cat .background .skill {
+            color: #FFFFFF;
+            margin: 5px;
+            font-size: 15px;
+        }
+        
+        .topnav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            overflow: hidden;
+            background-color: #333333;
+            z-index: 1000;
+            /*font-family: monaco, Consolas, "Lucida Console", monospace;*/
+        }
+        .menuBurger:link, .menuBurger:visited {
+            color: #BBBBBB;
+        }
+        .menuPage:link {
+            color: #BBBBBB;
+            text-decoration: none;
+        }
+        .menuPage:visited {
+            color: #BBBBBB;
+            text-decoration: none;
+        }
+        .activePage:link {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .menuBurger {
+            float: left;
+            display: none;
+            color: #BBBBBB;
+            text-align: center;
+            padding: 17px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .menuBurger:hover {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .menuPage {
+            float: left;
+            display: block;
+            color: #BBBBBB;
+            text-align: center;
+            padding: 17px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .menuPage:hover {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .activePage {
+            color: #FFFFFF;
+            pointer-events: none;
+            cursor: default;
+        }
+        .activePage:hover {
+            text-decoration: none;
+        }
+        .inactiveLink {
+            pointer-events: none;
+            cursor: default;
+        }
+        .inactiveLink:hover {
+            text-decoration: none;
+        }
+        .topnav .icon {
+            display: none;
+        }
+        @media screen and (max-width: 868px) {
+            .topnav .menuPage:not(:first-child) {
+                display: none;
+            }
+            .topnav .icon {
+                float: right;
+                display: block;
+            }
+            .topnav.responsive {
+                position: fixed;
+            }
+            .topnav.responsive .icon {
+                position: fixed;
+                right: 0;
+                top: 0;
+            }
+            .topnav.responsive .menuPage {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            .topnav.responsive .menuPage:hover {
+                background-color: #FFFFFF;
+                color: #333333;
+            }
+            .topnav.responsive {
+                border-bottom: 3px solid #333333;
+            }
+            .contactBar .infoHide {
+                display: none;
+            }
+        }
+        
+        .postTitle {
+          text-align: left;
+        }
+        .iconLink {
+          color: #333333;
+        }
+        .iconLink:hover {
+          color: #BBBBBB;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+      <a class="menuPage" id="Logo" href="../" style="padding:12px 16px 8px 16px;">
+        <img src="../JK_logo.png" alt="JK_logo" style="height:38px;">
+      </a>
+      <a class="menuPage" id="Home" href="../">Home</a>
+      <a class="menuPage" id="Bio" href="../#bio">Bio</a>
+      <a class="menuPage" id="Projects" href="../#projects">Projects</a>
+      <a class="menuPage" id="Blog" href="../#blog">Blog</a>
+      <a class="menuPage" id="Resume" href="KitchensJames_Resume.pdf" target="_blank">Resume</a>
+      <a href="javascript:void(0);" class="menuBurger icon" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div style="padding: 75px 10% 75px 10%; text-align: center;">
+      <h2 class="postTitle">
+        Phenology, Climate, and Citizen Science
+      </h2>
+      <p style="text-align: left;">August 10, 2020</p>
+      <div class="cat">
+        <div class="background">
+            <p class="skill">Climate</p>
+        </div>
+        <div class="background">
+            <p class="skill">Citizen Science</p>
+        </div>
+      </div>
+      <img src="animated-website-background/animated-website-background-1.gif" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <p>Phenology, in it's simplest definition, is the study of nature's calendar. It seeks to answer questions such as "what signals tell birds that it is time to migrate south for the winter?", "why spring cold snaps can ruin a year's crop yield?", and most importantly, "how accurate have Punxsutawney Phil's predictions been over the years?". Our lives are greatly affected by the timing of these phenological events, and so understanding the underlying mechanisms behind them is very important. More recently, scientists have become increasingly interested in studying how these timings are being altered by global climate change.</p>
+      <p>Triggers</p>
+      <p>Mismatches</p>
+      <p>The USA National Phenology Network has been collecting and analyzing phenological data since 2007. They have set up Nature's Notebook, a citizen science initiative, which has brought phenological research into the hands of volunteer scientists across the nation. This approach to research not only generates enormous amounts of data that may not have been possible previously, but also increases support from local communities who can now participate in impactful, meaningful research. During my summer internship at Warren Wilson College in 2017, I helped to establish the college's Phenology Trail, a half mile stretch of 44 marked trees that are being repeated observed each fall and spring semester.</p>
+      <p>If you are interested in learning more on this topic, I will be co-presenting a talk with Dr. Alisa Hove and Jenna Joyner on August 13, 2020 about the phenological research initiatives at Warren Wilson College as part of the virtual Conservation Exchange Webinar Series. Please join us <a target="_blank" href="https://zoom.us/webinar/register/WN_JtYnEsquQq2QTAlL3h7BPg?bblinkid=237392750&bbemailid=23569508&bbejrid=1599349955">HERE</a> through Zoom at 2:30PM Eastern Time!</p>
+    </div>
+    <div id="contact" class="contactBar">
+        <p class="info infoHide">Pomona, California</p>
+        <p class="info infoHide">|</p>
+        <p class="info">kitchensjn@gmail.com</p>
+        <p class="info infoHide">|</p>
+        <p class="info infoHide">(804) 572-3197</p>
+    </div>
+</body>
+
+</html>
