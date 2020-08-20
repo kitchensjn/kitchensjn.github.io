@@ -104,7 +104,7 @@
       }
       
       function projectArrow(id) {
-          var x = document.getElementById("arrow");
+          var x = document.getElementById("arrowProject");
           if (x.className == "fas fa-chevron-down arrow") {
               x.classList.add("flip");
           } else {
@@ -122,6 +122,28 @@
           }
           if (q.length > 0) {
               $('html,body').animate({scrollTop: $("#projects").offset().top},'fast'); 
+          }
+      }
+      
+      function postArrow(id) {
+          var x = document.getElementById("arrowPost");
+          if (x.className == "fas fa-chevron-down arrow") {
+              x.classList.add("flip");
+          } else {
+              x.className = "fas fa-chevron-down arrow";
+          }
+          var p = document.querySelectorAll(".hidePost");
+          var q = document.querySelectorAll(".unhidePost");
+          var j;
+          for (j = 0; j < p.length; j++) {
+              p[j].className = "col-md-6 col-lg-6 unhidePost";
+          }
+          var k;
+          for (k = 0; k < q.length; k++) {
+              q[k].className = "col-md-6 col-lg-6 hidePost";
+          }
+          if (q.length > 0) {
+              $('html,body').animate({scrollTop: $("#blog").offset().top},'fast'); 
           }
       }
       
@@ -260,6 +282,12 @@
             display: none;
         }
         .unhideProject {
+            display: block;
+        }
+        .hidePost {
+            display: none;
+        }
+        .unhidePost {
             display: block;
         }
         .arrow {
@@ -675,7 +703,7 @@
         -->
         <div style="width: 100%; text-align: center;">
             <a style="font-size: 2em;" id="ProjectArrow" href="javascript:void(0);" onclick="projectArrow()">
-                <i class="fas fa-chevron-down arrow" id="arrow"></i>
+                <i class="fas fa-chevron-down arrow" id="arrowProject"></i>
             </a>
         </div>
     </div>
@@ -734,6 +762,30 @@
       </div>
       <div class="col-md-6 col-lg-6" style="padding: 0px;">
         <div class="post">
+          <div class="postimg" style="background-image: url('blog/thumbnails/nmr-and-non-square-jigsaw-puzzles.png');">
+            <div class="info">
+              <p class="title">NMR and Non-Square Jigsaw Puzzles</p>
+              <p class="date">August 17, 2020</p>
+              <p class="desc">In organic chemistry during freshman year of undergraduate, three years ago, we were discussing nuclear magnetic resonance (NMR) spectroscopy, a technique to determine the chemical structure of compounds in solution. Isotopes with an odd number of protons and/or neutrons, such as H-1 and C-13, have a resonant frequency within a spinning magnetic field that is dependent on the atoms that are bonded to them. Below is a map of these common resonant frequencies for C-13 NMR spectroscopy and their corresponding bonds:</p>
+              <div class="cat">
+                <div class="background">
+                    <p class="skill">Python</p>
+                </div>
+                <div class="background">
+                    <p class="skill">NMR</p>
+                </div>
+              </div>
+            </div>
+            <a href="blog/nmr-and-non-square-jigsaw-puzzles" class="overlay">
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 6em; color: #FFFFFF;">
+                <i class="fas fa-book-open" title="Website"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6" style="padding: 0px;">
+        <div class="post">
           <div class="postimg" style="background-image: url('blog/thumbnails/phenology-climate-and-citizen-science.png');">
             <div class="info">
               <p class="title">Phenology, Climate, and Citizen Science</p>
@@ -756,7 +808,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-6" style="padding: 0px;">
+      <div class="col-md-6 col-lg-6 hidePost" style="padding: 0px;">
         <div class="post">
           <div class="postimg" style="background-image: url('blog/thumbnails/animated-website-background.png');">
             <div class="info">
@@ -783,16 +835,14 @@
           </div>
         </div>
       </div>
-      <!--
-      <div id="placeholderPost" class="col-md-6 col-lg-6" style="padding: 0px;">
+      <div id="placeholderPost" class="col-md-6 col-lg-6 hidePost" style="padding: 0px;">
         <div class="post">
           <div class="postimg" style="cursor: initial;"></div>
         </div>
       </div>
-      -->
       <div style="width: 100%; text-align: center;">
-          <a style="font-size: 2em;" id="ProjectArrow" href="javascript:void(0);" onclick="projectArrow()">
-              <i class="fas fa-chevron-down arrow" style="color: #FFFFFF;" id="arrow"></i>
+          <a style="font-size: 2em;" id="PostArrow" href="javascript:void(0);" onclick="postArrow()">
+              <i class="fas fa-chevron-down arrow" id="arrowPost"></i>
           </a>
       </div>
     </div>
