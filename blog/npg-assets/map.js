@@ -52,7 +52,7 @@ map.on('zoomend', function() {
   
 var unhighlightedIcon = L.Icon.extend({
   options: {
-    iconUrl: "npg-assets/assets/library/leaflet/images/marker-icon.png",
+    iconUrl: "npg-assets/library/leaflet/images/marker-icon.png",
 	  iconAnchor: [12, 41],
 	  iconSize: [25, 41]
   }
@@ -60,7 +60,7 @@ var unhighlightedIcon = L.Icon.extend({
   
 var highlightedIcon = L.Icon.extend({
   options: {
-  	iconUrl: "npg-assets/assets/library/leaflet/images/marker-icon-lightblue.png",
+  	iconUrl: "npg-assets/library/leaflet/images/marker-icon-lightblue.png",
   	iconAnchor: [12, 41],
   	iconSize: [25, 41]
   }
@@ -68,7 +68,7 @@ var highlightedIcon = L.Icon.extend({
 
 var otherIcon = L.Icon.extend({
   options: {
-  	iconUrl: "npg-assets/assets/library/leaflet/images/marker-icon-other.png",
+  	iconUrl: "npg-assets/library/leaflet/images/marker-icon-other.png",
   	iconAnchor: [12, 41],
   	iconSize: [25, 41]
   }
