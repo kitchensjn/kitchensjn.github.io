@@ -27,7 +27,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var bounds = L.latLngBounds(L.latLng(-30, -180), L.latLng(75, -30));//L.latLng(89.99346179538875, 180));
+var bounds = L.latLngBounds(L.latLng(-30, -180), L.latLng(75, -30));
 map.setMaxBounds(bounds);
 map.on('drag', function() {
 	map.panInsideBounds(bounds, { animate: false });
