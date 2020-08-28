@@ -1,18 +1,19 @@
 function displayMarkerGallery(marker, galleries) {
-  	for (cursor=0; cursor<galleries.length; cursor++) {
-			d = document.getElementById(galleries[cursor]);
-			if (marker == galleries[cursor]) {
-				d.style.display = "block";
-    		if (marker != "BISC") {
-    		  $('#'+marker).get(0).slick.setPosition();
-    		};
-			} else {
-				d.style.display = "none";
-				if (galleries[cursor] == "BISC") {
-				  $('#BISC-video').attr('src', $('#BISC-video').attr('src'));
-				};
+  // links leaflet map to photo gallery
+	for (cursor=0; cursor<galleries.length; cursor++) {
+		d = document.getElementById(galleries[cursor]);
+		if (marker == galleries[cursor]) {
+			d.style.display = "block";
+  		if (marker != "BISC") {
+  		  $('#'+marker).get(0).slick.setPosition();
+  		};
+		} else {
+			d.style.display = "none";
+			if (galleries[cursor] == "BISC") {
+			  $('#BISC-video').attr('src', $('#BISC-video').attr('src'));
 			};
 		};
+	};
 }; 		  
   
   
@@ -32,10 +33,9 @@ map.on('drag', function() {
 	map.panInsideBounds(bounds, { animate: false });
 });
 
-const homeButton = L.easyButton('<span class="fas fa-house-user" style="font-size:15px; line-height:26px;"></span>', function(btn, map) {//'<i class="fas fa-house-user" style="font-size: 1rem; padding-top: 30%;"</i>', function(btn, map){    // style="padding-top:30%"
+const homeButton = L.easyButton('<span class="fas fa-house-user" style="font-size:15px; line-height:26px;"></span>', function(btn, map) {
   map.removeLayer(selectedPark);
   map.fitBounds(L.latLngBounds(L.latLng(25, -125), L.latLng(50, -75)));
-  //map.setView([38.2700, -100.8603], 4);
   displayMarkerGallery('ALL', ['ALL', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
   selectedPark = L.geoJson();
 }).addTo(map);
@@ -99,4 +99,5 @@ function markerHighlighting (feature, layers) {
     
 L.geoJSON(visited_national_parks, {
   pointToLayer: function(feature, latlng){return L.marker(latlng, {icon: new unhighlightedIcon(), title: feature.properties.UNIT_NAME})},
-    onEachFeature: markerHighlighting}).addTo(map);
+    onEachFeature: markerHighlighting
+}).addTo(map);
