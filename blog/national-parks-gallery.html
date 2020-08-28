@@ -1003,6 +1003,13 @@
       <p style="padding: none;"></p>
       <img src="national-parks-gallery/DSC_0503.jpg" width="100%" style="max-width: 600px; border-radius: 5px; margin: 0px 0px 25px 0px;">
       <p>This trip cemented our love of the National Parks System and all of the public lands across the United States. We are hoping to visit all of the US National Parks; I have currently visited 22 of the 63 parks. Margaret, being an amazing photographer, has documented our times in the parks, and I’ve put these pictures together into an interactive gallery. The gallery was made in JavaScript using the leaflet, easy-button, slick, and magnific-popup libraries. I placed markers at the centroid of each national park boundary. Parks that I have visited are colored blue and have been made interactive, whereas others are colored grey.</p>
+      <p style="margin-top: 25px; margin-bottom: -1px; text-align: left;"><code style="border-radius: 5px 5px 0px 0px;">perlinMountains.js</code></p>
+      <pre style="margin-bottom: 25px; padding: 0px 25px; border-radius: 0px 5px 5px 5px;"><code style="display: block; white-space: pre-wrap; text-align: left;">
+function windowResized() {
+  var canvasDiv = document.getElementById('background');
+  resizeCanvas(canvasDiv.offsetWidth, canvasDiv.offsetHeight);
+}
+      </code></pre>
       <p>On click, the leaflet map displays the park boundary and zooms in to the boundary’s extent. This action also interacts with the slick carousel containing the photos from the parks, filtering to display only photos from the selected park. The slick carousel is set to autoplay through the photos. Thumbnails can be clicked to view a higher resolution version of the photos using the magnific-popup library. I’ve linked the magnific-popup controls with the slick carousel controls so that the slick carousel is always centered on the viewed photo.</p>
       <p>Lastly, I included a simple home button to return to the initial map extent and general photo set using the easy-button library. You can also return to these initial conditions if you zoom far enough out.</p>
       <p>As we visit new national parks, I will continue to update the National Parks Gallery with any new pictures from our trips!</p>
