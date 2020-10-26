@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>James Kitchens</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script>
+      function hamburger() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+          document.getElementById("Logo").classList.add("inactiveLink");
+        } else {
+          x.className = "topnav";
+          document.getElementById("Logo").classList.remove("inactiveLink");
+        }
+        var content = document.getElementById("galleryContent");
+        if (content) {
+          if (content.style.top === "62px") {
+            content.style.top = ((document.getElementById("myTopnav").querySelectorAll("a").length - 1) * 62 + 3).toString() + "px";
+          } else {
+            content.style.top = "62px";
+          }
+        }
+      }
+      window.addEventListener('resize', function(event){
+        var x = document.getElementById("myTopnav");
+        var content = document.getElementById("galleryContent");
+        if (content) {
+          if (window.innerWidth > 768) {
+            content.style.top = "53px";
+            document.getElementById("Logo").classList.remove("inactiveLink");
+          } else if (x.className === "topnav") {
+            content.style.top = "53px";
+            document.getElementById("Logo").classList.remove("inactiveLink");
+          } else {
+            content.style.top = ((document.getElementById("myTopnav").querySelectorAll("a").length - 1) * 53 + 3).toString() + "px";
+            document.getElementById("Logo").classList.add("inactiveLink");
+          }
+        };
+      });
+
+    </script>
+
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        p {
+            margin-bottom: 10px;
+            font-size: 20px;
+            text-align: justify;
+        }
+        code {
+            background-color: #BBBBBB;
+            color: #333333;
+        }
+        .contactBar {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            height: 57px;
+            background-color: #333333;
+            text-align: center;
+            color: #BBBBBB;
+            z-index: 1000;
+        }
+        .contactBar .info{
+            display: inline-block;
+            padding: 17px 20px;
+        }
+        .cat {
+            text-align: left;
+        }
+        .cat .background {
+            display: inline-block;
+            border-radius: 5px;
+            background-color: #333333;
+            margin: 2px 0px;
+        }
+        .cat .background .skill {
+            color: #FFFFFF;
+            margin: 5px;
+            font-size: 15px;
+        }
+
+        .topnav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            overflow: hidden;
+            background-color: #333333;
+            z-index: 1000;
+            /*font-family: monaco, Consolas, "Lucida Console", monospace;*/
+        }
+        .menuBurger:link, .menuBurger:visited {
+            color: #BBBBBB;
+        }
+        .menuPage:link {
+            color: #BBBBBB;
+            text-decoration: none;
+        }
+        .menuPage:visited {
+            color: #BBBBBB;
+            text-decoration: none;
+        }
+        .activePage:link {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .menuBurger {
+            float: left;
+            display: none;
+            color: #BBBBBB;
+            text-align: center;
+            padding: 17px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .menuBurger:hover {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .menuPage {
+            float: left;
+            display: block;
+            color: #BBBBBB;
+            text-align: center;
+            padding: 17px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .menuPage:hover {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .activePage {
+            color: #FFFFFF;
+            pointer-events: none;
+            cursor: default;
+        }
+        .activePage:hover {
+            text-decoration: none;
+        }
+        .inactiveLink {
+            pointer-events: none;
+            cursor: default;
+        }
+        .inactiveLink:hover {
+            text-decoration: none;
+        }
+        .topnav .icon {
+            display: none;
+        }
+        @media screen and (max-width: 868px) {
+            .topnav .menuPage:not(:first-child) {
+                display: none;
+            }
+            .topnav .icon {
+                float: right;
+                display: block;
+            }
+            .topnav.responsive {
+                position: fixed;
+            }
+            .topnav.responsive .icon {
+                position: fixed;
+                right: 0;
+                top: 0;
+            }
+            .topnav.responsive .menuPage {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            .topnav.responsive .menuPage:hover {
+                background-color: #FFFFFF;
+                color: #333333;
+            }
+            .topnav.responsive {
+                border-bottom: 3px solid #333333;
+            }
+            .contactBar .infoHide {
+                display: none;
+            }
+        }
+
+        .postTitle {
+          text-align: left;
+        }
+        .iconLink {
+          color: #333333;
+        }
+        .iconLink:hover {
+          color: #BBBBBB;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+      <a class="menuPage" id="Logo" href="../" style="padding:12px 16px 8px 16px;">
+        <img src="../JK_logo.png" alt="JK_logo" style="height:38px;">
+      </a>
+      <a class="menuPage" id="Home" href="../">Home</a>
+      <a class="menuPage" id="Bio" href="../#bio">Bio</a>
+      <a class="menuPage" id="Projects" href="../#projects">Projects</a>
+      <a class="menuPage" id="Blog" href="../#blog">Blog</a>
+      <a class="menuPage" id="CV" href="/KitchensJames_CV.pdf" target="_blank">CV</a>
+      <a href="javascript:void(0);" class="menuBurger icon" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div style="padding: 75px 10% 75px 10%; text-align: center;">
+      <h2 class="postTitle">
+        Pyinstaller and Creating Executables From Python Code
+      </h2>
+      <p style="text-align: left;">October 24, 2020</p>
+      <div class="cat">
+        <div class="background">
+            <p class="skill">Python</p>
+        </div>
+      </div>
+      <img src="pyinstaller-and-creating-executables/pyinstaller.jpg" width="100%" style="max-width: 200px; border-radius: 5px; margin: 25px 0px;">
+      <p>As part of my work at the NASA Jet Propulsion Laboratory, I am developing code that needs to be readily usable across a number of different computer environments and by users with varying levels of programming backgrounds. To go about this, I began looking into strategies for decreasing the number of dependencies needed for the code to run. I had previously developed a standalone application for MacOS and Windows relating to the TopoTable project using PyQt and Pyinstaller and felt that a similar strategy could be employed for this project as well. This post will document some of the intricacies of developing an application using Pyinstaller and hopefully serve as a helpful guide for solving many of the complications that I have come across.</p>
+      <p>Pyinstaller is a package which freezes and bundles Python code into a self-contained executable or application. It is designed to capture all of your dependencies (packages which are used by your code) so as to make it possible for users to run the program without Python or any of these packages installed themselves. This is very important when distributing to other users, who are always hoping for the shortest number of steps to run your program. I have had decent success using Pyinstaller for my own projects, but, especially as applications grow in size and become more complex, it will require some internet sleuthing to find answers to any development challenges.</p>
+      <p style="margin-bottom: 0;">Steps to Generate a Pyinstaller Application:</p>
+        <p style="padding-left: 5%; margin-bottom: 0;"><b>1)</b> Install pyinstaller for your Python version. I prefer using Anaconda (Anaconda Navigator) to maintain my Python environment, but pip works just as well.</p>
+        <p style="padding-left: 5%; margin-bottom: 0;"><b>2)</b> Create your Python script and make sure everything works on its own!</p>
+      <p style="padding-left: 5%; margin-bottom: 0;"><b>3)</b> In Terminal or Console Prompt, make sure you are in your python environment, and run <code>pyinstaller "yourcode"</code>. This will generate a “.spec” file and two output directories (build and dist). The “.spec” file contains all of the arguments that are passed to bundle the application. The “dist” directory contains your application and, ultimately, everything that you would be sending to someone else.</p>
+      <p style="padding-left: 5%;"><b>4)</b> Within <code>dist/"yourcode"</code>, there is an executable file which is used to run your program.</p>
+      <p>And that’s all that is needed to create the simplest application. It really is straightforward to set everything up. Pyinstaller builds the application specific to your computer’s operating system; so if you are on MacOS, you will be building an application specific for MacOS. Pyinstaller also gives you the ability to add additional arguments to the base command in order to better suit the application to your needs. Two such arguments that I have used often are:</p>
+      <p style="padding-left: 5%; margin-bottom: 0;"><code>--onefile</code>: Bundles everything into a single file rather than a directory. This can make distribution and running the application very simple for users. Unfortunately, it can lead to a decrease in speed performance.</p>
+      <p style="padding-left: 5%;"><code>--noconsole</code>: Running the executable does not open up a terminal or command prompt window. I have used this with programs that have a Graphical User Interface already built (using tkinter or PyQt) and makes the program look more professional. On MacOS, using this argument will generate a “.app” file rather than the standard Unix executable. During development, I avoid this argument as the console can be helpful for error checking until I am confident that the build is stable.</p>
+      <p>As with most programming, it rarely goes completely without a hitch. Below I’ve highlighted some common errors that I’ve run into:</p>
+      <p style="padding-left: 5%;"><b>Missing Packages</b>: Pyinstaller does it’s best to bundle all of your dependencies, but I have found that it does miss the mark occasionally, especially with programs that use geospatial modules like rasterio and xarray. If you are getting errors associated with missing packages, I have had the best success with manually copying these missing packages into your application. On MacOS, your application’s packages are stored in the same directory as your executable if you are using the default configuration or within “<your app>/Contents/MacOS”. This method is not possible with the --onefile argument as everything is bundled within that single executable file, so keep that in mind when you are planning out your application. I copy packages over one at a time until I no longer get missing package errors.</p>
+      <p style="padding-left: 5%;"><b>Tkinter on MacOS</b>: There are some major compatibility issues between tkinter and pyinstaller on MacOS. I am uncertain the exact cause of these issues, but I believe that it boils down to version differences between tkinter that is by default installed on MacOS and the updated version that you would install. This discussion on GitHub describes how to go about solving this particular issue.</p>
+      <p style="padding-left: 5%;"><b>Distributing Applications For MacOS</b>: I am not a certified application developer for Apple products, but I would still like to be able to send my applications to others. Apple has placed a few barriers into this process. Firstly, when you first open an application downloaded from the internet from an unidentified developer (me in this case), you cannot simply double-click the application; you need to right-click to open. After this initial opening, you can double-click as usually. With distributing your application, a much more difficult issue to diagnose is the fact that MacOS will actually change the perceived location of your application, placing it into a sort of quarantine until it determines that it is safe to use. You can convince the operating system to allow your application to be placed properly by having the user change the directory of the application. This resets the application’s path and will allow you to use relative paths within your program. You can diagnose if you are running into this issue if you have your application print the current working directory; the “quarantine” directory is generated within the AppTranslocation directory at a random address.</p>
+      <p style="padding-left: 5%;"><b>Distributing Applications for Windows</b>: If you cannot use the --onefile argument (for whatever reason), the executable file can feel buried within the directory by all of the build files. The easiest way to solve this is by having the user create a shortcut to the executable that is stored in a higher level, cleaner directory. These shortcuts use an absolute path, so it is important that the application does not move after the shortcut is created (or create a new shortcut each time the application moves.</p>
+    </div>
+    <div id="contact" class="contactBar">
+        <p class="info infoHide">Pomona, California</p>
+        <p class="info infoHide">|</p>
+        <p class="info">kitchensjn@gmail.com</p>
+        <p class="info infoHide">|</p>
+        <p class="info infoHide">(804) 572-3197</p>
+    </div>
+</body>
+
+</html>
