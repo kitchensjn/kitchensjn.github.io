@@ -290,7 +290,8 @@ basin <- dataRetrieval::findNLDI(nwis=gauge, find="basin")$basin
       <pre style="margin-bottom: 25px; padding: 0px 25px; border-radius: 0px 5px 5px 5px;"><code style="display: block; white-space: pre-wrap; text-align: left;">
 plot(basin)             
       </code></pre>
-      <img src="genetic-algorithms/fitness.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/basin.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <p>The James River flows eastward, so the rightmost section is the furthest downstream. There are a number of tributaries that combine with the main flow as the river makes its way out of the Appalachian Mountains.</p>
       <p>If you are interested in delineating watersheds for coordinates not associated with a USGS gauge, I recommend checking out USGS StreamStats tool. It can be accessed as a web application or through R using the streamstats package written by Mark Hagemann. I was originally going to use the streamstats package for this post for some added flexibility, but found that the StreamStats application requires that the gauge coordinates be snapped to the hydrological streamgrid pixels, adding an extra processing step. It’s an informative tool though so I want to be able to implement it in some way.</p>
       <p>Now that we have the basin, we can use its geometry to perform zonal statistics on raster datasets. NOAA provides numerous Gridded Climate datasets through the Physical Sciences Laboratory. <a href="https://psl.noaa.gov/data/gridded/data.unified.daily.conus.rt.html" target="_blank">CPC Unified Gauge-Based Analysis of Daily Precipitation over CONUS RT</a> dataset includes daily precipitation measurements from 2007 to present for the contiguous United States. To be able to follow from here, you will need to download these dataset files, which come in the form of yearly NetCDF files. I’ve stored the files within this directory within my project: “Data/NOAA-PSL/CPC-Unified-Gauge-Based-Analysis-Of-Daily-Precipitation-Over-CONUS-RT/”.</p>
       <p style="margin-top: 25px; margin-bottom: -1px; text-align: left;"><code style="border-radius: 5px 5px 0px 0px;">streamflow-and-precipitation.R</code></p>
@@ -306,8 +307,7 @@ precip_basin <- raster::mask(precip_basin, basin)
       <pre style="margin-bottom: 25px; padding: 0px 25px; border-radius: 0px 5px 5px 5px;"><code style="display: block; white-space: pre-wrap; text-align: left;">
 raster::plot(precip_basin$X2020.12.07)                  
       </code></pre>
-      <img src="genetic-algorithms/fitness.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
-      <p>The James River flows eastward, so the rightmost pixel is the furthest downstream and contains the gauge. There are a number of tributaries that combine with the main flow as the river makes its way out of the Appalachian Mountains.</p>
+      <img src="pictures/20201207.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>To calculate the mean precipitation per day, use the cellStats function:</p>
       <p style="margin-top: 25px; margin-bottom: -1px; text-align: left;"><code style="border-radius: 5px 5px 0px 0px;">streamflow-and-precipitation.R</code></p>
       <pre style="margin-bottom: 25px; padding: 0px 25px; border-radius: 0px 5px 5px 5px;"><code style="display: block; white-space: pre-wrap; text-align: left;">
@@ -315,7 +315,7 @@ streamflow$Precip <- cellStats(precip_basin, stat="mean")
 ggplot(streamflow) +
   geom_line(aes(Date, Precip))                         
       </code></pre>
-      <img src="genetic-algorithms/fitness.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/precipitation.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>To measure the correlation between the mean precipitation in the basin and the streamflow gauge measurement, we can calculate the Pearson correlation using the cor.test function:</p>
       <p style="margin-top: 25px; margin-bottom: -1px; text-align: left;"><code style="border-radius: 5px 5px 0px 0px;">streamflow-and-precipitation.R</code></p>
       <pre style="margin-bottom: 25px; padding: 0px 25px; border-radius: 0px 5px 5px 5px;"><code style="display: block; white-space: pre-wrap; text-align: left;">
@@ -351,7 +351,10 @@ correlation.test <- function(x, timeseries, method, value) {
 pearson <- pixelwiseCorrelation(brick=precip_basin, timeseries=streamflow$CFS, method="pearson")
 raster::plot(pearson)                                        
       </code></pre>
-      <img src="genetic-algorithms/fitness.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/correlation.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <p style="text-align: center; margin-top: -75px;">Correlation</p>
+      <img src="pictures/p.value.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <p style="text-align: center; margin-top: -75px; margin-bottom: 50px;">P-value</p>
       <p>For this example of the James River, we can see that pixels that are further downstream and therefore closer to the streamflow gauge have higher levels of correlation between precipitation and streamflow. The maximum correlation is 0.139 and minimum is 0.060. As we are comparing measurements on a given day, we aren’t accounting for the time that it takes the water to reach the gauge when raining far upstream. Because of this, rain much closer to the gauge is more directly affecting levels measured.</p>
       <p>All of the code used in this post can be found <a href="https://github.com/kitchensjn/genetic-algorithms" target="_blank">HERE</a>. If you enjoyed this tutorial and want to use this code in your own project, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!</p>
     </div>
