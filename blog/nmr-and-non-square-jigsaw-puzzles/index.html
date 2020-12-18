@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
     <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -215,14 +215,14 @@
 
 <body>
     <div class="topnav" id="myTopnav">
-      <a class="menuPage" id="Logo" href="../" style="padding:12px 16px 8px 16px;">
-        <img src="../JK_logo.png" alt="JK_logo" style="height:38px;">
+      <a class="menuPage" id="Logo" href="../../" style="padding:12px 16px 8px 16px;">
+        <img src="../../JK_logo.png" alt="JK_logo" style="height:38px;">
       </a>
-      <a class="menuPage" id="Home" href="../">Home</a>
-      <a class="menuPage" id="Bio" href="../#bio">Bio</a>
-      <a class="menuPage" id="Projects" href="../#projects">Projects</a>
-      <a class="menuPage" id="Blog" href="../#blog">Blog</a>
-      <a class="menuPage" id="CV" href="/KitchensJames_CV.pdf" target="_blank">CV</a>
+      <a class="menuPage" id="Home" href="../../">Home</a>
+      <a class="menuPage" id="Bio" href="../../#bio">Bio</a>
+      <a class="menuPage" id="Projects" href="../../#projects">Projects</a>
+      <a class="menuPage" id="Blog" href="../../#blog">Blog</a>
+      <a class="menuPage" id="CV" href="../../KitchensJames_CV.pdf" target="_blank">CV</a>
       <a href="javascript:void(0);" class="menuBurger icon" onclick="hamburger()">
         <i class="fa fa-bars"></i>
       </a>
@@ -243,11 +243,11 @@
             <p class="skill">NMR</p>
         </div>
       </div>
-      <img src="nmr-and-non-square-jigsaw-puzzles/post-photo.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/post-photo.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>In organic chemistry during freshman year of undergraduate, we were discussing nuclear magnetic resonance (NMR) spectroscopy, a technique to determine the chemical structure of compounds in solution. Isotopes with an odd number of protons and/or neutrons, such as H-1 and C-13, have a resonant frequency within a spinning magnetic field that is dependent on the atoms that are bonded to them. Below is a map of these common resonant frequencies for C-13 NMR spectroscopy and their corresponding bonds:</p>
-      <img src="nmr-and-non-square-jigsaw-puzzles/cnmr-table.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/cnmr-table.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>In the laboratory, we worked through the structure of the compound bond by bond, piece by piece, identifying the unique way that functional groups were linked to illicit the spectra. Some spectra were obviously easier to determine than others, either due to the number of atoms or the complexity of the structure. I wondered if there was a method for automatically predicting the structure computationally based on the spectra alone, without the need for an underlying database of compounds and spectra.</p>
-      <img src="nmr-and-non-square-jigsaw-puzzles/puzzle-idea.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/puzzle-idea.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>So, I began thinking about the compounds' atoms or functional groups as pieces of a jigsaw puzzle with edges identifying the bonds known from the spectra. The puzzle, which would almost certainly have an irregular, non-square shape, would then be solved purely based on shape pieces' edges. I thought about making this project my undergraduate senior thesis but instead decided to keep it as a fun creative side project. In this multipart blog post, I am going to walk you through my code and thought process behind the jigsaw puzzle creation, solving, and ultimately the future directions in which the concept could be expanded, especially with respect to the original goal of developing an NMR spectroscopy solver.</p>
       <p>All of this code is written in Python and utilizes the <i>PIL</i> and <i>random</i> libraries. <i>PIL</i> stands for Python Image Library and is used for image creation and processing. The <i>random</i> library is within Python Standard Library, but <i>PIL</i> will have to be installed prior to working with this code.</p>
       <h3>Puzzle Creation</h3>
@@ -402,7 +402,7 @@ def displayPiece(self, path):
         out.putpixel((pixel + 1, pixelLine + 1), (63, 116, 191))
   out.save(outFile)
       </code></pre>
-      <img src="nmr-and-non-square-jigsaw-puzzles/example-piece.png" width="100%" style="max-width: 300px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/example-piece.png" width="100%" style="max-width: 300px; border-radius: 5px; margin: 25px 0px;">
       <p>In order for pieces to fit together, they must have exact inverses of their edges; if Piece 1 has a "-1" at an edge pixel, then Piece 2 has to have a "1" at the corresponding opposite pixel. When building a neighboring piece to one that already exists, I added a building constraints parameter to ensure that the edge matches the neighboring piece's edge. The program starts with a random piece on the puzzle grid and creates it without any edge building constraints, unless the piece is on the edge of the puzzle. From there, it builds the neighboring pieces, using the edge constraints from the original, working its way out until the entire grid is filled with pieces. This ensures that the entire puzzle will be continuous from every point on the puzzle; this is an important aspect when solving the puzzle. The entire puzzle can also be viewed as a PNG image, now with alternating colors (blue and red) to represent the different pieces. Once the puzzle is fully made, the program scrambles the order and rotation of all of the pieces, storing all of the pieces as an unordered list.</p>
       <h3>Solving</h3>
       <p>If I were solving a real 2D jigsaw puzzle, I would identify which pieces would work as edge pieces and try to build the outside frame of the puzzle. With the end goal that this method could be used to solve irregular, non-square shaped puzzles, identifying edge pieces would not always be an effective strategy.</p>
@@ -527,7 +527,7 @@ def newSolvePuzzle(puzzle):
   return pieceByLocation, True
       </code></pre>
       <p>Similar to how the puzzle was created, I thought it would best to start with a random piece and place. This piece is placed at (0, 0) with a fixed orientation and the program determines the coordinates of all other pieces relative to the starting piece. Subsequent pieces are rotated around to match edges with those already positioned. Once all of the pieces have been added, the coordinates of the puzzle as a whole are translated so that the top leftmost piece is given the coordinate (0, 0), an attribute of puzzles within the Puzzle class. The resulting puzzle may be in a different orientation than the original puzzle, but it will have all of the correct connections. It may also have a smaller size if the original puzzle was non-square and did not stretch all of the way to the edges of the canvas.</p>
-      <img src="nmr-and-non-square-jigsaw-puzzles/solved-puzzle.png" width="100%" style="max-width: 300px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/solved-puzzle.png" width="100%" style="max-width: 300px; border-radius: 5px; margin: 25px 0px;">
       <h3>Expansions</h3>
       <p>In its current form, the program can solve non-square jigsaw puzzles composed of square shaped pieces that have at most four neighboring pieces. This is a pretty rigid restriction, which limits its application to a small subset of puzzles. For its purpose as an NMR spectroscopy solver, this may be a less impactful restriction as many times, scientists are working with carbon atoms that can make at most four bonds as well. For now, the most pressing issue is that all of the edges of the puzzle pieces must be unique and must match perfectly. This is directly counter to characteristics of NMR spectroscopy, where you may have multiple of the same atoms or functional groups and where you may not know all of the connections prior to attempting to solve.</p>
       <p>All of the code used in this post can be found <a href="https://github.com/kitchensjn/nmr-and-non-square-jigsaw-puzzles" target="_blank">HERE</a>. If you enjoyed this post and want to use this code yourself, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!</p>

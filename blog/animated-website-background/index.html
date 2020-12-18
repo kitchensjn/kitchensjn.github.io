@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico">
     <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -215,14 +215,14 @@
 
 <body>
     <div class="topnav" id="myTopnav">
-      <a class="menuPage" id="Logo" href="../" style="padding:12px 16px 8px 16px;">
-        <img src="../JK_logo.png" alt="JK_logo" style="height:38px;">
+      <a class="menuPage" id="Logo" href="../../" style="padding:12px 16px 8px 16px;">
+        <img src="../../JK_logo.png" alt="JK_logo" style="height:38px;">
       </a>
-      <a class="menuPage" id="Home" href="../">Home</a>
-      <a class="menuPage" id="Bio" href="../#bio">Bio</a>
-      <a class="menuPage" id="Projects" href="../#projects">Projects</a>
-      <a class="menuPage" id="Blog" href="../#blog">Blog</a>
-      <a class="menuPage" id="CV" href="/KitchensJames_CV.pdf" target="_blank">CV</a>
+      <a class="menuPage" id="Home" href="../../">Home</a>
+      <a class="menuPage" id="Bio" href="../../#bio">Bio</a>
+      <a class="menuPage" id="Projects" href="../../#projects">Projects</a>
+      <a class="menuPage" id="Blog" href="../../#blog">Blog</a>
+      <a class="menuPage" id="CV" href="../../KitchensJames_CV.pdf" target="_blank">CV</a>
       <a href="javascript:void(0);" class="menuBurger icon" onclick="hamburger()">
         <i class="fa fa-bars"></i>
       </a>
@@ -246,7 +246,7 @@
             <p class="skill">CSS</p>
         </div>
       </div>
-      <img src="animated-website-background/animated-website-background-1.gif" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/animated-website-background-1.gif" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>This tutorial walks you through how to use the p5.js JavaScript library to create an animated website background similar to that seen in the GIF above. For those of you who have not heard of p5.js, it is an open source JavaScript library targeted towards "artists, designers, educators, and beginners". There are a number of great tutorials on YouTube created by Daniel Shiffman of <a href="https://www.youtube.com/user/shiffman" target="_blank">The Coding Train</a> where he walks you through different visual algorithms and creative uses for the library. I recommend that you check out his channel, as well as the <a href="https://p5js.org" target="_blank">official p5.js website</a>, for more information about the library.</p>
       <p>To start off with, you will need to create a new directory which will contain two files:</p>
       <p style="text-align: left; padding-left: 50px; margin-bottom: 0px;"><code>index.html</code>: containing your webpage structure and content</p>
@@ -386,7 +386,7 @@ function draw() {
 }
       </code></pre>
       <p>Each set of hills is actually a single shape, or polygon, drawn onto the canvas. Using the stroke() functions, we can set the color of our line. In p5.js, a shape is drawn by stating its vertices in order (either clockwise or counterclockwise). The top left corner of the canvas has coordinates (0, 0) and the bottom right corner has coordinates (width, height). Then we are going to loop through values of x from 0 to the width of the canvas, and draw our line at a height of 250.</p>
-      <img src="animated-website-background/animated-website-background-2.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/animated-website-background-2.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>You can see that this creates a straight line across our canvas; in order to get hills, we need to vary the height of our line. You could go in and manually set the height value of each vertex, but this would be very time consuming. The name of this file is <code>perlinMountains.js</code> because we can use the Perlin noise algorithm to generate noise that can give the appearance of mountains when applied to the height of a line. This is much better than using a random number generator for the height because Perlin noise smoothly transitions from high to low elevations and back again, whereas a random number generator has no such transition. Below is a comparison between 2D random noise versus 2D Perlin noise.</p>
       <p>Let's modify the current draw() function to implement the Perlin noise algorithm.</p>
       <p style="margin-top: 25px; margin-bottom: -1px; text-align: left;"><code style="border-radius: 5px 5px 0px 0px;">perlinMountains.js</code></p>
@@ -405,7 +405,7 @@ function draw() {
 }
       </code></pre>
       <p>The map() function rescales the x value to a new range; I found scaling down by a factor of 100 to create nice mountains. This line can be modified to change the smoothness of your mountains. The noise() takes in a float number and returns a decimal between 0 and 1. As the seed for the noise() function does not change with each draw loop, the function will always return the same value for a given input. This will be very useful to know later on when we are implementing the animation. We then transformed this value so as to have it in oscillate about the center of the canvas with a maximum amplitude of half the canvas height to prevent it from going outside the canvas window.</p>
-      <img src="animated-website-background/animated-website-background-3.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/animated-website-background-3.png" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p style="margin-top: 25px; margin-bottom: -1px; text-align: left;"><code style="border-radius: 5px 5px 0px 0px;">perlinMountains.js</code></p>
       <pre style="margin-bottom: 25px; padding: 0px 25px; border-radius: 0px 5px 5px 5px;"><code style="display: block; white-space: pre-wrap; text-align: left;">
 function draw() {
@@ -441,7 +441,7 @@ function draw() {
 }
       </code></pre>
       <p>Lastly, because we want the color of the mountains to be filled in underneath them, we need to include coordinates along the bottom edge of the canvas. Let's set our first point to be the bottom left corner of the canvas (0, height) and our final point to be the bottom right corner of the canvas (width, height). With that, we now have a single set of mountains moving across the bottom half of our website.</p>
-      <img src="animated-website-background/animated-website-background-4.gif" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/animated-website-background-4.gif" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>But there is still major bug in our sketch - what happens when we change the size of our browser window? Currently, the canvas size is set within the setup() function, but this is only run right at the start of the sketch. If you are to change the browser window, the canvas remains the original size, leading to some unintended, ugly formatting.</p>
       <p style="margin-top: 25px; margin-bottom: -1px; text-align: left;"><code style="border-radius: 5px 5px 0px 0px;">perlinMountains.js</code></p>
       <pre style="margin-bottom: 25px; padding: 0px 25px; border-radius: 0px 5px 5px 5px;"><code style="display: block; white-space: pre-wrap; text-align: left;">
@@ -452,7 +452,7 @@ function windowResized() {
       </code></pre>
       <p>The p5.js library provides a built-in windowResized() function which "listens" for a change in the size of the browser window. Using this function, you can resize the canvas to fit within the new background div size. Optionally, you may want to include a reference to the windowResized() function within the draw() function as not all events that may change the browser window size trigger the windowResized() function on its own, such as plugging in an external USB mouse while using Safari on a Mac.</p>
       <p>To add more sets of mountains or shadows behind the mountain ranges, you can replicate the code from the fill() function to endShape() and change these values to alter the color, opacity, height, and sliding speed. I recommend slowing down the sliding speeds of the mountains in the background to create a parallax effect that mimics natural perspective changes. This tutorial just scratches the surface on how you can integrate the p5.js library into websites, so I would love to see what you come up with.</p>
-      <img src="animated-website-background/animated-website-background-1.gif" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
+      <img src="pictures/animated-website-background-1.gif" width="100%" style="max-width: 600px; border-radius: 5px; margin: 25px 0px;">
       <p>All of the code used in this post can be found <a href="https://github.com/kitchensjn/animated-website-background" target="_blank">HERE</a>. If you enjoyed this tutorial and want to use this code in your own project, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!</p>
     </div>
     <div id="contact" class="contactBar">
