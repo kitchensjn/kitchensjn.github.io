@@ -1,0 +1,23 @@
+name: "James Kitchens"
+job_title: "Environmental Data Scientist & Creative Programmer"
+
+social_links:
+  GitHub:
+    icon: "fab fa-github"
+    link: "https://github.com/kitchensjn"
+  LinkedIn:
+    icon: "fab fa-linkedin"
+    link: "https://www.linkedin.com/in/james-kitchens-668825b2/"
+  CV:
+    icon: "fas fa-file-alt"
+    link: "/assets/CV/KitchensJames_CV.pdf"
+
+location: "Pomona, California"
+email: "kitchensjn@gmail.com"
+phone: "(804) 572-3197"
+
+theme_color: "#337ab7"
+
+sass:
+  sass_dir: _sass
+  style: compressed

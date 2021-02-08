@@ -1,0 +1,46 @@
+/* projects */
+#projects .post {
+    padding: 0px;
+}
+
+#projects .post .card {
+    height: 200px;
+    border-radius: 5px;
+    margin: 10px 10px;
+}
+
+#projects .post .card .overlay .content .desc{
+    color: #FFFFFF;
+    text-align: justify;
+    display: none;
+}
+
+#projects .post .card .overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51,51,51,0.5);
+    border-radius: 5px;
+}
+
+#projects .post .card:hover .overlay {
+    background-color: rgba(51,51,51,1);
+}
+
+#projects .post .card:hover .overlay .content .desc{
+    display: block;
+    margin: 0px;
+    color: #BBBBBB;
+}
+
+#projects .post .card:hover .overlay .content .name{
+    display: none;
+}
+
+.hideProjects {
+    display: none;
+}
+
+.unhideProjects {
+    display: block;
+}

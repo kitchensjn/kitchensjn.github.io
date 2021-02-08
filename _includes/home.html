@@ -1,0 +1,19 @@
+<div id="home">
+    {% if page.homepage_background %}
+        <div class="background" style="background-image: linear-gradient( 90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url('{{ page.homepage_background | relative_url }}');"></div>
+    {% else %}
+        <script src="{{ '/assets/scripts/parallax-mountains.js' | relative_url}}"></script>
+        <div id="background"></div>
+    {% endif %}
+    <div class="textbox {{ page.title_align }}">
+        <h1 class="title">{{ site.name }}</h1>
+        <p class="desc">{{ site.job_title }}</p>
+        <div class="links">
+            {% for link in site.social_links %}
+                <a target="_blank" href="{{ link[1].link | relative_url }}">
+                    <i class="{{ link[1].icon }} link" title="{{ link[0] }}"></i>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

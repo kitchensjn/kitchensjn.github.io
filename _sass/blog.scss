@@ -1,0 +1,106 @@
+/* Blog */
+#blog .post {
+    padding: 0px;
+}
+
+#blog .post .card {
+    border-radius: 5px;
+    padding: 0px;
+    margin: 10px;
+    height: 420px;
+}
+
+#blog .post .card:hover {
+    cursor: pointer;
+}
+
+#blog .post .card .postimg .info {
+    padding: 10px 10px 15px 10px;
+    background-color: #333333;
+    border-radius: 0px 0px 5px 5px;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+}
+
+#blog .post .card .postimg .info .title {
+    font-weight: bold;
+    margin-bottom: 0px;
+    text-align: center;
+    color: #BBBBBB;
+}
+
+#blog .post .card .postimg .info .date {
+    font-size: 15px;
+    text-align: center;
+    color: #BBBBBB;
+    margin-bottom: 10px;
+}
+
+#blog .post .card .postimg .info .desc {
+    margin: 10px 0px;
+    text-align: justify;
+    font-size: 15px;
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #BBBBBB;
+}
+
+#blog .post .card .postimg .info .cat {
+    text-align: center;
+}
+
+#blog .post .card .postimg .info .cat .background {
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #BBBBBB;
+    margin: 2px 0px;
+}
+
+#blog .post .card .postimg .info .cat .background .skill {
+    color: #333333;
+    margin: 3px;
+    font-size: 10px;
+}
+
+#blog .post .card .postimg {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+}
+
+#blog .post .card .postimg .overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    display: none;
+    opacity: 50%;
+}
+
+#blog .post .card:hover .postimg .overlay {
+    display: block;
+}
+
+.hideBlog {
+    display: none;
+}
+
+.unhideBlog {
+    display: block;
+}
+
+@media screen and (max-width: 991px) {
+    .placeholder {
+        display: none;
+        padding: 0px;
+    }
+    
+    .placeholder .card {
+        cursur: initial;
+    }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>James Kitchens</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    
+
+</head><body><div id="topnav">
+    
+    
+        <a class="section-title" id="Logo" href="/#home">
+            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
+        </a>
+        <a class="section-title" id="Home" href="/#home">Home</a>
+        <a class="section-title" id="Bio" href="/#bio">Bio</a>
+        
+            <a class="section-title" id="Projects" href="/#projects">Projects</a>
+        
+            <a class="section-title" id="Blog" href="/#blog">Blog</a>
+        
+    
+    
+    
+        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
+    
+    
+    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+</div><div class="section"><h2 class="postTitle">
+    Updating Website to Jekyll<a class="github-link" target="_blank" href="https://github.com/kitchensjn/streamflow-and-precipitation">
+            <i class="fab fa-github" title="GitHub"></i>
+        </a></h2>
+<p style="text-align: left;">January 6, 2021</p>
+<div class="cat">
+    
+        <div class="background">
+            <p class="skill">Jekyll</p>
+        </div>
+    
+        <div class="background">
+            <p class="skill">HTML</p>
+        </div>
+    
+        <div class="background">
+            <p class="skill">CSS</p>
+        </div>
+    
+        <div class="background">
+            <p class="skill">JavaScript</p>
+        </div>
+    
+</div>
+
+            <p class="images"><img src="/assets/blog/updating-website-to-jekyll/thumbnail.png" alt="Pyinstaller" /></p>
+
+<p>At the start of quaratine in early 2020, I decided to develop a personal website where I could highlight my ongoing and past research projects and write short blog posts on various topics that I find interesting. This website was built with custom HTML, CSS, and JavaScript. As it has grown, I’ve run into numerous scenarios where I’ve had to repeat code and hardcode sections. Creating new blog posts was tedious, as it required specific and longwinded formatting of paragraph elements. I was happy with the design of my website, but wanted to streamline the file structure. Jekyll, originially developed by Shopify, is a static site generator that solves many of these issues by allowing users to create templates that are filled by inputs from Markdown files. In addition to this, Jekyll is supported by GitHub Pages, which allows for free hosting of these sites. There is a plethora of Jekyll templates, known as themes, found online. The first version of my website was actually built using the modern-resume-theme theme developed by James Grant, which served as my introduction to the generator; I ultimately switched to a custom site for the second version to better match my interest in blogging as well as build my skills in front end web development.</p>
+
+<p>So how do I go about converting my static website into Jekyll site? This walkthrough will describe Jekyll installation, the beginnings of theme creation, the pros and cons of how I organized my files and templates, and how I have used Jekyll for my personal website to decrease development hassle as a whole. I am still in the process of learning all of the ins and outs of the new generator, so some of the opinions and discussion points may be updated in the future. Because of this, the GitHub repository and codes linked might not match directly with what is found within this blog post, though it will hopefully remain similar.</p>
+
+<p>As a first time user of Jekyll, I would recommend that you start with a predeveloped theme. There’s thousands of them on GitHub and other sites, like <a href="http://jekyllthemes.org">jekyllthemes.org</a>. Many of these can be hosted directly through GitHub without having to install anything onto your own computer. Jekyll themes are designed to have their users manipulate information in Markdown and YML files that then are passed through an HTML template and visualized on your website. All sites start with the same structure:</p>
+
+<ul>
+  <li>_config.yml: the configuration settings of your site. Contains elements like your website title and which directories to include in your build</li>
+  <li>_layouts: overarching HTML templates, such as for a homepage or blog post</li>
+  <li>_includes: smaller HTML templates. These alter sections of the page, such as the navigation bar, call to action, etc…</li>
+  <li>_sass: the stylesheets for your site</li>
+  <li>assets: additional static files, such as images, scripts, and more</li>
+</ul>
+
+<h3 id="installing-jekyll">Installing Jekyll</h3>
+
+<p>Because I wanted to develop my own theme, I needed to install Jekyll on my computer. I use a Mac, which actually comes with Ruby preinstalled (Jekyll is built off of Ruby). Unfortunately, this almost leads to more difficulty as the computer fights to avoid changing any of these preinstalled files. I tried to follow the official documentation (<a href="https://jekyllrb.com/docs/installation/macos/">HERE</a>), but ran into a number of issues that prevented install. I ultimately was successfuly by using <a href="https://rvm.io">RVM</a> rather than Homebrew to install the latest version of Ruby, and then returning to the official instructions for installing Jekyll on top of that.</p>
+
+<h3 id="creating-a-new-theme">Creating A New Theme</h3>
+
+<p class="codeheader">console</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new-theme parallax-mountains
+</code></pre></div></div>
+
+<p>This command creates a new Jekyll theme called “parallax-mountains”, including all of the scaffolding needed to get you started.</p>
+
+
+
+        </div>
+    <div id="contact" class="contactBar">
+
+        <p class="info infoHide">Pomona, California</p>
+        <p class="info infoHide">|</p>
+        <p class="info">kitchensjn@gmail.com</p>
+        <p class="info infoHide">|</p>
+        <p class="info infoHide">(804) 572-3197</p>
+    </div></body>
+
+</html>

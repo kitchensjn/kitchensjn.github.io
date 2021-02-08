@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css" href="/assets/blog/national-parks-gallery/styles.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/blog/national-parks-gallery/library/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/blog/national-parks-gallery/library/slick/slick-theme.css"/>
+<script type="text/javascript" src="/assets/blog/national-parks-gallery/library/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/blog/national-parks-gallery/library/magnific-popup.css"/>
+<script type="text/javascript" src="/assets/blog/national-parks-gallery/library/jquery.magnific-popup.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/blog/national-parks-gallery/library/leaflet/leaflet.css"/>
+<script type="text/javascript" src="/assets/blog/national-parks-gallery/library/leaflet/leaflet.js"></script>
+<script type="text/javascript" src="/assets/blog/national-parks-gallery/library/easy-button.min.js"></script>
+<script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+<script src="/assets/scripts/national-parks-gallery/national_park_markers.js"></script>
+<script src="/assets/scripts/national-parks-gallery/park_boundaries.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+<script type="text/javascript" src="/assets/blog/national-parks-gallery/library/jquery.lazy-master/jquery.lazy.min.js"></script>
+
+
+{% capture parks %}
+    {% for image in site.static_files %}
+        {% if image.path contains 'blog/national-parks-gallery/photos' %}
+            {% unless image.path contains 'small' %}
+                {% assign paths = image.path | split:'/' %}
+                {{ paths[5] }}
+            {% endunless %}
+        {% endif %}
+    {% endfor %}
+{% endcapture %}
+{% assign uniq_parks = parks | split:' ' | uniq %}
+
+<div style="position: relative; width:100%; height: 500px; margin: 25px auto;">
+    <div id="galleryContent" class="content" style="position: absolute; top: 0px; bottom: 0; width: 100%;">
+        <div id="map" style="border-radius: 5px; z-index: 500;"></div>
+        <div class="container" style="border-radius: 0px 0px 5px 5px;">
+            <div class="slick-slider" id="ALL" style="display: block;">
+                {% assign n = site.static_files | size %}
+                {% assign images = site.static_files | sample: n %}
+                {% for image in images %}
+                    {% if image.path contains 'blog/national-parks-gallery/photos' %}
+                        {% unless image.path contains 'small' %}
+                            <a href="{{ site.baseurl }}{{ image.path }}">
+                                <img class="gallery-photo" src="{{ site.baseurl }}{{ image.path }}" alt="{{ forloop.index }}" height=100%>
+                            </a>
+                        {% endunless %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% for park in uniq_parks %}
+                <div class="slick-slider" id="{{ park }}" style="display: none;">
+                    {% assign n = site.static_files | size %}
+                    {% assign images = site.static_files | sample: n %}
+                    {% for image in images %}
+                        {% if image.path contains park %}
+                            {% unless image.path contains 'small' %}
+                                <a href="{{ site.baseurl }}{{ image.path }}">
+                                    <img class="gallery-photo" src="{{ site.baseurl }}{{ image.path }}" alt="{{ forloop.index }}" height=100%>
+                                </a>
+                            {% endunless %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="embeddedYoutube" id="BISC" style="display: none; text-align: center; height: 100%;">
+                <a href="https://www.youtube.com/embed/o1sJB5HSGeI">
+                    <iframe id="BISC-video" height="100%" src="https://www.youtube.com/embed/o1sJB5HSGeI" frameborder=0 allow="fullscreen" enablejsapi=1;></iframe>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/scripts/national-parks-gallery/map.js"></script>
+    <script type="text/javascript" src="/assets/scripts/national-parks-gallery/gallery.js"></script>
+</div>

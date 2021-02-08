@@ -1,0 +1,33 @@
+<div id="bio" class="section">
+    {% if page.headshot.size > 0 %}
+        <div style="margin: auto auto 60px auto; background-image:url('{{ page.headshot | relative_url }}'); height: 300px; width: 300px; border-radius: 50%; background-position: center; background-size: cover;"></div>
+    {% endif %}
+    {% if page.bio.size > 0 %}
+        {{ page.bio | strip | markdownify }}
+    {% endif %}
+    {% if page.skills.size > 0 %}
+        <div style="margin: 50px 0px;">
+            {% for skillset in page.skills %}
+                {% if forloop.first %}
+                    <div class="cat" style="text-align: center; margin: 0px 0px 2.5px 0px;">
+                {% elsif forloop.last %}
+                    <div class="cat" style="text-align: center; margin: 2.5px 0px 0px 0px;">
+                {% else %}
+                    <div class="cat" style="text-align: center; margin: 2.5px 0px;">
+                {% endif %}
+                        {% for skill in skillset %}
+                            <div class="background">
+                                <p class="skill">{{ skill }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if page.publications.size > 0 %}
+        <h2>Publications</h2>
+        {% for pub in page.publications %}
+            <p><b>{{forloop.rindex}}. </b>{{ pub }}</p>
+        {% endfor %}
+    {% endif %}
+</div>

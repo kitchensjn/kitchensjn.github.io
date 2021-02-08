@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {%- include head.html -%}
+
+    <body>
+
+        {%- include navbar.html -%}
+
+        <div class="section">
+            
+            {%- include post-info.html -%}
+
+            {% if page.title == "National Parks Gallery" %}
+                {%- include national-parks-gallery.html -%}
+            {% endif %}
+
+            {{ content }}
+
+        </div>
+
+        {%- include contactbar.html -%}
+
+    </body>
+
+</html>

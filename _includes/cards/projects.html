@@ -1,0 +1,17 @@
+<div class="card" style="background-image: url('{{ post.thumbnail | relative_url }}');">
+    <div class="overlay">
+        <div class="content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%;">
+            <h2 class="name" style="color: #FFFFFF; text-align: center;">{{ post.title }}</h2>
+            <div class="desc">
+                <div class="links" style="text-align: center; font-size: 2em; padding: 10px 0px;">
+                    {% for link in post.links %}
+                        <a target="_blank" href="{{ link.link | relative_url }}" style="padding: 0px 5px; text-decoration: none;">
+                            <i class="{{ link.icon }} link" title="{{ link.name }}"></i>
+                        </a>
+                    {% endfor %}
+                </div>
+                <p>{{ post.short_desc }}</p>
+            </div>
+        </div>
+    </div>
+</div>

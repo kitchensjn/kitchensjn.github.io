@@ -1,0 +1,11 @@
+{% if page.layout == 'home' %}
+    <div id="contact" class="contactBar unstick">
+{% else %}
+    <div id="contact" class="contactBar">
+{% endif %}
+        <p class="info infoHide">{{ site.location }}</p>
+        <p class="info infoHide">|</p>
+        <p class="info">{{ site.email }}</p>
+        <p class="info infoHide">|</p>
+        <p class="info infoHide">{{ site.phone }}</p>
+    </div>

@@ -1,0 +1,16 @@
+<h2 class="postTitle">
+    {{ page.title }}
+    {%- if page.github-link -%}
+        <a class="github-link" target="_blank" href="{{ page.github-link }}">
+            <i class="fab fa-github" title="GitHub"></i>
+        </a>
+    {%- endif -%}
+</h2>
+<p style="text-align: left;">{{ page.date | date: "%B %-d, %Y"}}</p>
+<div class="cat">
+    {% for skill in page.skills %}
+        <div class="background">
+            <p class="skill">{{ skill }}</p>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>James Kitchens</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    
+
+</head><body><div id="topnav">
+    
+    
+        <a class="section-title" id="Logo" href="/#home">
+            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
+        </a>
+        <a class="section-title" id="Home" href="/#home">Home</a>
+        <a class="section-title" id="Bio" href="/#bio">Bio</a>
+        
+            <a class="section-title" id="Projects" href="/#projects">Projects</a>
+        
+            <a class="section-title" id="Blog" href="/#blog">Blog</a>
+        
+    
+    
+    
+        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
+    
+    
+    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+</div><div class="section"><h2 class="postTitle">
+    NMR and Non-Square Jigsaw Puzzles<a class="github-link" target="_blank" href="https://github.com/kitchensjn/nmr-and-non-square-jigsaw-puzzles">
+            <i class="fab fa-github" title="GitHub"></i>
+        </a></h2>
+<p style="text-align: left;">August 17, 2020</p>
+<div class="cat">
+    
+        <div class="background">
+            <p class="skill">Python</p>
+        </div>
+    
+        <div class="background">
+            <p class="skill">NMR</p>
+        </div>
+    
+</div>
+
+            <p class="images"><img src="/assets/blog/nmr-and-non-square-jigsaw-puzzles/post-photo.png" alt="Post Photo" /></p>
+
+<p>In organic chemistry during freshman year of undergraduate, we were discussing nuclear magnetic resonance (NMR) spectroscopy, a technique to determine the chemical structure of compounds in solution. Isotopes with an odd number of protons and/or neutrons, such as H-1 and C-13, have a resonant frequency within a spinning magnetic field that is dependent on the atoms that are bonded to them. Below is a map of these common resonant frequencies for C-13 NMR spectroscopy and their corresponding bonds:</p>
+
+<p class="images"><img src="/assets/blog/nmr-and-non-square-jigsaw-puzzles/cnmr-table.png" alt="C-NMR Table" /></p>
+
+<p>In the laboratory, we worked through the structure of the compound bond by bond, piece by piece, identifying the unique way that functional groups were linked to illicit the spectra. Some spectra were obviously easier to determine than others, either due to the number of atoms or the complexity of the structure. I wondered if there was a method for automatically predicting the structure computationally based on the spectra alone, without the need for an underlying database of compounds and spectra.</p>
+
+<p class="images"><img src="/assets/blog/nmr-and-non-square-jigsaw-puzzles/puzzle-idea.png" alt="Puzzle Idea" /></p>
+
+<p>So, I began thinking about the compounds’ atoms or functional groups as pieces of a jigsaw puzzle with edges identifying the bonds known from the spectra. The puzzle, which would almost certainly have an irregular, non-square shape, would then be solved purely based on shape pieces’ edges. I thought about making this project my undergraduate senior thesis but instead decided to keep it as a fun creative side project. In this multipart blog post, I am going to walk you through my code and thought process behind the jigsaw puzzle creation, solving, and ultimately the future directions in which the concept could be expanded, especially with respect to the original goal of developing an NMR spectroscopy solver.</p>
+
+<p>All of this code is written in Python and utilizes the <em>PIL</em> and <em>random</em> libraries. <em>PIL</em> stands for Python Image Library and is used for image creation and processing. The <em>random</em> library is within Python Standard Library, but <em>PIL</em> will have to be installed prior to working with this code.</p>
+
+<h3 id="puzzle-creation">Puzzle Creation</h3>
+
+<p>The puzzle consists of a grid of square puzzle pieces with jagged edges. The number of pieces and size of each piece set by the user. Each pixel along the piece’s edge has three possible states: -1, 0, or 1 (cavity, flat, or protrusion). I’ve forced the pixels closest to the corners of the piece to always be flat so that the pieces always visibly look contiguous.</p>
+
+<p class="codeheader">creator.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">JigsawPiece</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">empty</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">buildingConstraints</span> <span class="o">=</span> <span class="p">{}):</span>
+    <span class="s">"""
+    Creates a square puzzle piece with jagged edges.
+    Pixels along edges have three states (-1-concave, 0-flat, 1-protrudes).
+    Corners are always flat to keep continuity
+
+    Parameters
+    size: integer, number of pixels in length/width of piece
+    empty: boolean, whether piece is empty or not
+    buildingConstraints: dictionary, any edge contraints from neighboring pieces
+    """</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">empty</span> <span class="o">=</span> <span class="n">empty</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">=</span> <span class="n">size</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">solvedOrientation</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">leftConstraints</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">topConstraints</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">rightConstraints</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">bottomConstraints</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">flatSide</span> <span class="o">=</span> <span class="p">[[],[],[],[]]</span>
+    <span class="n">bumpList</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">empty</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+          <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"-"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+          <span class="n">constrain</span> <span class="o">=</span> <span class="n">buildingConstraints</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">constrain</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">element</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">info</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">element</span> <span class="o">!=</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">info</span> <span class="o">!=</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+              <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">info</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">element</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">element</span> <span class="o">!=</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">element</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">element</span> <span class="o">!=</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+                  <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                      <span class="k">if</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                        <span class="n">number</span> <span class="o">=</span> <span class="n">bumpList</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+                      <span class="k">else</span><span class="p">:</span>
+                        <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                      <span class="k">if</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">and</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+                        <span class="n">number</span> <span class="o">=</span> <span class="n">bumpList</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+                      <span class="k">else</span><span class="p">:</span>
+                        <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                  <span class="k">else</span><span class="p">:</span>
+                    <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                  <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">flatSide</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                  <span class="k">else</span><span class="p">:</span>
+                    <span class="n">flatSide</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">topConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+                  <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">bottomConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+                <span class="k">else</span><span class="p">:</span>
+                  <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+              <span class="k">elif</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">element</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">3</span><span class="p">:</span>
+                  <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="ow">and</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                      <span class="n">number</span> <span class="o">=</span> <span class="n">bumpList</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                      <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                  <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">flatSide</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+                      <span class="n">number</span> <span class="o">=</span> <span class="n">bumpList</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                      <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                  <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                  <span class="n">flatSide</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                  <span class="n">flatSide</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                  <span class="bp">self</span><span class="p">.</span><span class="n">leftConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+                <span class="k">else</span><span class="p">:</span>
+                  <span class="bp">self</span><span class="p">.</span><span class="n">rightConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+              <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+              <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+          <span class="k">else</span><span class="p">:</span>
+            <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">constrain</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+              <span class="bp">self</span><span class="p">.</span><span class="n">topConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+            <span class="k">elif</span> <span class="n">info</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+              <span class="bp">self</span><span class="p">.</span><span class="n">bottomConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+            <span class="k">elif</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+              <span class="bp">self</span><span class="p">.</span><span class="n">leftConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+            <span class="k">else</span><span class="p">:</span>
+              <span class="bp">self</span><span class="p">.</span><span class="n">rightConstraints</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">solvedOrientation</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span>
+</code></pre></div></div>
+
+<p>In this version, I represented an edge without any connections as completely flat, similar to the edge pieces of a real 2D jigsaw puzzle. Each piece has a maximum of four connections and minimum of one connection. Lastly, I’ve given each piece the ability to rotate in 90 degree intervals. Pieces can be viewed as PNG images, with blue representing the piece shape.</p>
+
+<p class="codeheader">creator.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">rotatePiece</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="s">"""
+  Rotates piece by 90 degrees clockwise, resets edge indices
+  """</span>
+  <span class="n">rotated</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span><span class="p">):</span>
+      <span class="n">line</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">column</span><span class="p">][</span><span class="n">row</span><span class="p">])</span>
+    <span class="n">rotated</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+  <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span> <span class="o">=</span> <span class="n">rotated</span>
+  <span class="bp">self</span><span class="p">.</span><span class="n">determineEdgeIndex</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">displayPiece</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+  <span class="s">"""
+  Saves single piece of puzzle as a png
+
+  Parameters
+  path: string, path to output png
+  """</span>
+  <span class="n">outFile</span> <span class="o">=</span> <span class="n">path</span>
+  <span class="n">out</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s">"RGB"</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+  <span class="k">for</span> <span class="n">pixelLine</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+      <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span><span class="p">,</span> <span class="n">pixelLine</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+  <span class="k">for</span> <span class="n">pixelLine</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">pixelLine</span><span class="p">][</span><span class="n">pixel</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixelLine</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+      <span class="k">elif</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">pixelLine</span><span class="p">][</span><span class="n">pixel</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pixel</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span><span class="p">,</span> <span class="n">pixelLine</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">191</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">pixel</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">pixelLine</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">191</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">pixelLine</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixelLine</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">191</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">pixelLine</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixelLine</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">191</span><span class="p">))</span>
+        <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixelLine</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">191</span><span class="p">))</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">pixel</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pixelLine</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">63</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">191</span><span class="p">))</span>
+  <span class="n">out</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">outFile</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p class="images"><img src="/assets/blog/nmr-and-non-square-jigsaw-puzzles/example-piece.png" alt="Example Piece" /></p>
+
+<p>In order for pieces to fit together, they must have exact inverses of their edges; if Piece 1 has a “-1” at an edge pixel, then Piece 2 has to have a “1” at the corresponding opposite pixel. When building a neighboring piece to one that already exists, I added a building constraints parameter to ensure that the edge matches the neighboring piece’s edge. The program starts with a random piece on the puzzle grid and creates it without any edge building constraints, unless the piece is on the edge of the puzzle. From there, it builds the neighboring pieces, using the edge constraints from the original, working its way out until the entire grid is filled with pieces. This ensures that the entire puzzle will be continuous from every point on the puzzle; this is an important aspect when solving the puzzle. The entire puzzle can also be viewed as a PNG image, now with alternating colors (blue and red) to represent the different pieces. Once the puzzle is fully made, the program scrambles the order and rotation of all of the pieces, storing all of the pieces as an unordered list.</p>
+
+<h3 id="solving">Solving</h3>
+
+<p>If I were solving a real 2D jigsaw puzzle, I would identify which pieces would work as edge pieces and try to build the outside frame of the puzzle. With the end goal that this method could be used to solve irregular, non-square shaped puzzles, identifying edge pieces would not always be an effective strategy.</p>
+
+<p class="codeheader">creator.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">determineEdgeIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="s">"""
+  Calculates edge indices by summing values along each edge, stored as list of integers
+  """</span>
+  <span class="bp">self</span><span class="p">.</span><span class="n">edgeIndex</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="bp">self</span><span class="p">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]]</span>
+  <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">empty</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">pass</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">)):</span>
+      <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">])):</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">top</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span>
+          <span class="bp">self</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="n">bottom</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span>
+          <span class="bp">self</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">column</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">left</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span>
+          <span class="bp">self</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">column</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="n">right</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">]</span>
+          <span class="bp">self</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">column</span><span class="p">])</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">bottom</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Instead, I calculated an edge index for each edge of each piece; this was done by summing the values of the pixels along the edge of the piece. I included this in the creator.py file as a method of the JigsawPiece class. Using this attribute of each edge, the program can more efficiently search through all of the potentially edge connections knowing that a compatible edge must have an edge index equal to the negative of the initial edge. This limits the search pool to only a few potential edges, rather than the entire list of scrambled pieces.</p>
+
+<p class="codeheader">solver.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">newSolvePuzzle</span><span class="p">(</span><span class="n">puzzle</span><span class="p">):</span>
+  <span class="s">"""
+  Solves a scrambled puzzle that has pieces with all unique edges
+
+  Parameters
+  puzzle: puzzle, custom class (see creator.py Puzzle)
+
+  Return
+  dictionary, all pieces with unscrambled coordinates
+  """</span>
+  <span class="n">flatSide</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># creates an example of a flat side for comparison, flat sides do not have connections
+</span>  <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">puzzle</span><span class="p">.</span><span class="n">pieceSize</span><span class="p">):</span>  <span class="c1"># loop based on piece size
+</span>    <span class="n">flatSide</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">pieceByLocation</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># a dictionary containing the locations of every placed piece
+</span>  <span class="n">startingPieceNotEmpty</span> <span class="o">=</span> <span class="bp">False</span>
+  <span class="n">increment</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">while</span> <span class="n">startingPieceNotEmpty</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">puzzle</span><span class="p">.</span><span class="n">scrambledPieces</span><span class="p">[</span><span class="n">increment</span><span class="p">].</span><span class="n">empty</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+      <span class="n">startingPieceNotEmpty</span> <span class="o">=</span> <span class="bp">True</span>
+      <span class="n">pieceByLocation</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="n">puzzle</span><span class="p">.</span><span class="n">scrambledPieces</span><span class="p">[</span><span class="n">increment</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">increment</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="n">previouslyUsedPieces</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># a list of all previously placed pieces
+</span>  <span class="n">previouslyUsedPieces</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">puzzle</span><span class="p">.</span><span class="n">scrambledPieces</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+  <span class="n">previouslyUsedCoordinates</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># a list of all previously used coordinates, don't want to place two pieces on same coordinate
+</span>  <span class="n">numberOfEmpties</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">emptyCheck</span> <span class="ow">in</span> <span class="n">puzzle</span><span class="p">.</span><span class="n">scrambledPieces</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">emptyCheck</span><span class="p">.</span><span class="n">empty</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+      <span class="n">numberOfEmpties</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="n">nonUniqueCoordinates</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">unplacedCoors</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieceByLocation</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">puzzle</span><span class="p">.</span><span class="n">puzzleSize</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">numberOfEmpties</span><span class="o">-</span><span class="n">unplacedCoors</span><span class="p">:</span>
+    <span class="n">coordinateCheck</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">while</span> <span class="n">coordinateCheck</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span> <span class="c1"># this loop ensures that randomly selected coordinate is not used more than once
+</span>      <span class="n">coordinateList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pieceByLocation</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span>
+      <span class="n">coordinate</span> <span class="o">=</span> <span class="n">coordinateList</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">coordinateList</span><span class="p">))]</span>
+      <span class="k">if</span> <span class="n">coordinate</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previouslyUsedCoordinates</span><span class="p">:</span>
+        <span class="n">previouslyUsedCoordinates</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">coordinate</span><span class="p">)</span>
+        <span class="n">coordinateCheck</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">piece</span> <span class="o">=</span> <span class="n">pieceByLocation</span><span class="p">[</span><span class="n">coordinate</span><span class="p">]</span> <span class="c1"># pulls piece from dictionary based on location
+</span>    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">piece</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">)):</span>  <span class="c1"># tries to match every edge of the piece
+</span>      <span class="n">newPieceCoordinate</span> <span class="o">=</span> <span class="n">coordinateFromRelativeDirection</span><span class="p">(</span><span class="n">coord</span><span class="o">=</span><span class="n">coordinate</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">edge</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">piece</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge</span><span class="p">]</span> <span class="o">==</span> <span class="n">flatSide</span><span class="p">:</span>
+        <span class="k">pass</span>
+      <span class="k">elif</span> <span class="n">newPieceCoordinate</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">pieceByLocation</span><span class="p">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">pass</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">possibleConnectionsForEdge</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">testPiece</span> <span class="ow">in</span> <span class="n">puzzle</span><span class="p">.</span><span class="n">scrambledPieces</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">piece</span> <span class="o">==</span> <span class="n">testPiece</span><span class="p">:</span>  <span class="c1"># cannot connect piece to itself, no reason to check
+</span>            <span class="k">pass</span>
+          <span class="k">elif</span> <span class="n">testPiece</span><span class="p">.</span><span class="n">empty</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>   <span class="c1"># ignore empty pieces
+</span>            <span class="k">pass</span>
+          <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">testPiece</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">)):</span>
+              <span class="k">if</span> <span class="n">testPiece</span> <span class="ow">in</span> <span class="n">previouslyUsedPieces</span><span class="p">:</span>
+                <span class="k">pass</span>
+              <span class="k">elif</span> <span class="n">piece</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">[</span><span class="n">edge</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="n">testPiece</span><span class="p">.</span><span class="n">edgeIndex</span><span class="p">[</span><span class="n">e</span><span class="p">]:</span>  <span class="c1"># checks edge index before rotating
+</span>                <span class="n">desiredEdge</span> <span class="o">=</span> <span class="p">(</span><span class="n">edge</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span>  <span class="c1"># uses index of edge in list to determine how to rotate
+</span>                <span class="n">rotations</span> <span class="o">=</span> <span class="n">desiredEdge</span> <span class="o">-</span> <span class="n">e</span>
+                <span class="k">if</span> <span class="n">rotations</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                  <span class="n">rotations</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">rotations</span>
+                <span class="n">returnRotations</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">rotations</span>
+                <span class="k">for</span> <span class="n">rotate</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rotations</span><span class="p">):</span>
+                  <span class="n">testPiece</span><span class="p">.</span><span class="n">rotatePiece</span><span class="p">()</span>
+                <span class="n">check</span> <span class="o">=</span> <span class="n">edgeCheck</span><span class="p">(</span><span class="n">edge0</span><span class="o">=</span><span class="n">piece</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="n">edge</span><span class="p">],</span> <span class="n">edge1</span><span class="o">=</span><span class="n">testPiece</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="n">desiredEdge</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">check</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>   <span class="c1"># if it passes the edge check, add to possible connections
+</span>                  <span class="n">possibleConnectionsForEdge</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">testPiece</span><span class="p">)</span>
+                  <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                  <span class="k">for</span> <span class="n">rotate</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">returnRotations</span><span class="p">):</span>
+                    <span class="n">testPiece</span><span class="p">.</span><span class="n">rotatePiece</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">possibleConnectionsForEdge</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># setting up for possibility of non-unique edges in future
+</span>          <span class="n">pieceByLocation</span><span class="p">[</span><span class="n">newPieceCoordinate</span><span class="p">]</span> <span class="o">=</span> <span class="n">possibleConnectionsForEdge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+          <span class="n">previouslyUsedPieces</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">possibleConnectionsForEdge</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="k">return</span> <span class="p">{},</span> <span class="bp">False</span>
+      <span class="n">unplacedCoors</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">for</span> <span class="n">nUCoor</span> <span class="ow">in</span> <span class="n">nonUniqueCoordinates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nUCoor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pieceByLocation</span><span class="p">:</span>
+          <span class="n">unplacedCoors</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="k">return</span> <span class="n">pieceByLocation</span><span class="p">,</span> <span class="bp">True</span>
+</code></pre></div></div>
+
+<p>Similar to how the puzzle was created, I thought it would best to start with a random piece and place. This piece is placed at (0, 0) with a fixed orientation and the program determines the coordinates of all other pieces relative to the starting piece. Subsequent pieces are rotated around to match edges with those already positioned. Once all of the pieces have been added, the coordinates of the puzzle as a whole are translated so that the top leftmost piece is given the coordinate (0, 0), an attribute of puzzles within the Puzzle class. The resulting puzzle may be in a different orientation than the original puzzle, but it will have all of the correct connections. It may also have a smaller size if the original puzzle was non-square and did not stretch all of the way to the edges of the canvas.</p>
+
+<p class="images"><img src="/assets/blog/nmr-and-non-square-jigsaw-puzzles/solved-puzzle.png" alt="Solved Puzzle" /></p>
+
+<h3 id="expansions">Expansions</h3>
+
+<p>In its current form, the program can solve non-square jigsaw puzzles composed of square shaped pieces that have at most four neighboring pieces. This is a pretty rigid restriction, which limits its application to a small subset of puzzles. For its purpose as an NMR spectroscopy solver, this may be a less impactful restriction as many times, scientists are working with carbon atoms that can make at most four bonds as well. For now, the most pressing issue is that all of the edges of the puzzle pieces must be unique and must match perfectly. This is directly counter to characteristics of NMR spectroscopy, where you may have multiple of the same atoms or functional groups and where you may not know all of the connections prior to attempting to solve.</p>
+
+<p>All of the code used in this post can be found <a href="https://github.com/kitchensjn/nmr-and-non-square-jigsaw-puzzles" target="_blank">HERE</a>. If you enjoyed this post and want to use this code yourself, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!</p>
+
+
+        </div>
+    <div id="contact" class="contactBar">
+
+        <p class="info infoHide">Pomona, California</p>
+        <p class="info infoHide">|</p>
+        <p class="info">kitchensjn@gmail.com</p>
+        <p class="info infoHide">|</p>
+        <p class="info infoHide">(804) 572-3197</p>
+    </div></body>
+
+</html>

@@ -1,0 +1,67 @@
+---
+---
+
+@import 'explorers-portfolio-theme';
+
+a {
+    color: {{ site.theme_color }};
+}
+
+a:hover {
+    color: {{ site.theme_color }};
+}
+
+.link:hover {
+    color: {{ site.theme_color }};
+}
+
+.arrow:hover {
+    color: {{ site.theme_color }};
+}
+
+.active:link {
+    color: {{ site.theme_color }};
+}
+
+.burger:hover {
+    color: {{ site.theme_color }};
+}
+
+.section-title:hover {
+    color: {{ site.theme_color }};
+}
+
+.active {
+    color: {{ site.theme_color }};
+}
+
+.logo {
+    color: {{ site.theme_color }};
+}
+
+@media screen and (max-width: 868px) {
+    #topnav.responsive .section-title:hover {
+        background-color: {{ site.theme_color }};
+    }
+}
+
+.github-link:hover {
+    color: {{ site.theme_color }};
+}
+
+#blog .post .card .postimg .overlay {
+    background-color: {{ site.theme_color }};
+}
+
+.highlight .na {
+    font-weight: bold;
+    color: {{ site.theme_color }};
+}
+
+.highlight .nl {
+    color: {{ site.theme_color }};
+}
+
+.highlight .bp { 
+    color: {{ site.theme_color }};
+}
