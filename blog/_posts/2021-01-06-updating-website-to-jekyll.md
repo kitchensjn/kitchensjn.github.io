@@ -1,12 +1,12 @@
 ---
-layout: post
-link: /blog/updating-website-to-jekyll
-title: Updating Website to Jekyll
-github-link: https://github.com/kitchensjn/explorers-portfolio-theme
-date: January 6, 2021
+layout: "post"
+link: "/blog/updating-website-to-jekyll"
+title: "Updating Website to Jekyll"
+github-link: "https://github.com/kitchensjn/explorers-portfolio-theme"
+date: "January 6, 2021"
 skills: [Jekyll, HTML, CSS, JavaScript]
-desc: With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels.
-thumbnail: /assets/blog/updating-website-to-jekyll/thumbnail.png
+desc: "With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels."
+thumbnail: "/assets/blog/updating-website-to-jekyll/thumbnail.png"
 ---
 
 {:.images}

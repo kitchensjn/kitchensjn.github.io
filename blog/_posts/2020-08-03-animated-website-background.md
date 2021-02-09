@@ -1,12 +1,12 @@
 ---
-layout: post
-link: /blog/animated-website-background
-title: Animated Website Background
-github-link: https://github.com/kitchensjn/animated-website-background
-date: August 3, 2020
+layout: "post"
+link: "/blog/animated-website-background"
+title: "Animated Website Background"
+github-link: "https://github.com/kitchensjn/animated-website-background"
+date: "August 3, 2020"
 skills: [JavaScript, HTML, CSS]
 desc: This tutorial walks you through how to use the p5.js JavaScript library to create an animated website background similar to that seen in the GIF above. For those of you who have not heard of p5.js, it is an open source JavaScript library targeted towards "artists, designers, educators, and beginners".
-thumbnail: /assets/blog/animated-website-background/thumbnail.png
+thumbnail: "/assets/blog/animated-website-background/thumbnail.png"
 ---
 
 {:.images}

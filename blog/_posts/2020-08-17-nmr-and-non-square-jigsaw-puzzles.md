@@ -1,12 +1,12 @@
 ---
-layout: post
-link: /blog/nmr-and-non-square-jigsaw-puzzles
-title: NMR and Non-Square Jigsaw Puzzles
-github-link: https://github.com/kitchensjn/nmr-and-non-square-jigsaw-puzzles
-date: August 17, 2020
+layout: "post"
+link: "/blog/nmr-and-non-square-jigsaw-puzzles"
+title: "NMR and Non-Square Jigsaw Puzzles"
+github-link: "https://github.com/kitchensjn/nmr-and-non-square-jigsaw-puzzles"
+date: "August 17, 2020"
 skills: [Python, NMR]
-desc: In organic chemistry during freshman year of undergraduate, we were discussing nuclear magnetic resonance (NMR) spectroscopy, a technique to determine the chemical structure of compounds in solution.
-thumbnail: /assets/blog/nmr-and-non-square-jigsaw-puzzles/thumbnail.png
+desc: "In organic chemistry during freshman year of undergraduate, we were discussing nuclear magnetic resonance (NMR) spectroscopy, a technique to determine the chemical structure of compounds in solution."
+thumbnail: "/assets/blog/nmr-and-non-square-jigsaw-puzzles/thumbnail.png"
 ---
 
 {:.images}
