@@ -36,7 +36,7 @@ map.on('drag', function() {
 const homeButton = L.easyButton('<span class="fas fa-house-user" style="font-size:15px; line-height:26px;"></span>', function(btn, map) {
   map.removeLayer(selectedPark);
   map.fitBounds(L.latLngBounds(L.latLng(25, -125), L.latLng(50, -75)));
-  displayMarkerGallery('ALL', ['ALL', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+  displayMarkerGallery('ALL', ['ALL', 'GRBA', 'PINN', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
   selectedPark = L.geoJson();
 }).addTo(map);
 homeButton.button.style.padding = '0px';
@@ -44,7 +44,7 @@ homeButton.button.style.padding = '0px';
 map.on('zoomend', function() {
   if (map.getZoom() < 7 & selectedPark != L.geoJson()) {
     map.removeLayer(selectedPark);
-    displayMarkerGallery('ALL', ['ALL', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+    displayMarkerGallery('ALL', ['ALL', 'GRBA', 'PINN', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
     selectedPark = L.geoJson();
   };
 });
@@ -87,7 +87,7 @@ function markerHighlighting (feature, layers) {
       }
     }).addTo(map);
 	  map.fitBounds(selectedPark.getBounds());
-	  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
+	  displayMarkerGallery(marker.sourceTarget.feature.properties.UNIT_CODE, ['ALL', 'GRBA', 'PINN', 'HAVO', 'ACAD', 'GRSM', 'MORA', 'BISC', 'SHEN', 'ARCH', 'SEQU', 'BRCA', 'WHSA', 'GRCA', 'KICA', 'CARE', 'DEVA', 'ROMO', 'SAGU', 'CONG', 'CANY', 'ZION', 'JOTR', 'YOSE', 'EVER']);
   });
   layers.on('mouseover', function(marker) {
 	  marker.target.setIcon(new highlightedIcon);
