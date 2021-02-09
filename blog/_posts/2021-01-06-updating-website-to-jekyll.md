@@ -2,7 +2,7 @@
 layout: post
 link: /blog/updating-website-to-jekyll
 title: Updating Website to Jekyll
-github-link: https://github.com/kitchensjn/streamflow-and-precipitation
+github-link: https://github.com/kitchensjn/kitchensjn.github.io
 date: January 6, 2021
 skills: [Jekyll, HTML, CSS, JavaScript]
 desc: With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels.
@@ -45,7 +45,49 @@ This command creates a new Jekyll theme called "explorers-portfolio-theme", incl
 - blog: posts about topics that I am interested in and feel might be useful to others
 - contact bar: contact information for those that want to connect
 
-Starting at the top, the navigation bar was pulled nearly directly from my original site but with some reusability.
+These sections will have custom content specific to each site. Jekyll allows you to specify a index.md file which contains the front matter to build your site. This will differ for everyone's site. Below is an example of my index.md file:
+
+{:.codeheader}
+index.md
+{% raw %}
+```
+---
+layout: home
+
+homepage_background: assets/headshot/background.jpg
+title_align: right
+
+headshot: assets/headshot/KitchensJames_Headshot.jpg
+
+bio: |
+  Hi, my name is James Kitchens, and I am a Business Consultant with Venebio Group, LLC, aiding in the analysis of clinical and demographic studies. In December 2019, I graduated from Warren Wilson College in Asheville, North Carolina, where I earned a B.S. in Biology and B.S. in Chemistry. While in undergraduate, I worked in the Warren Wilson College Plant Physiology and Genetics Laboratory as a Research Assistant on projects focused around the conservation of human-impacted species in the United States. I am interested in population biology and the impacts of geography on movement and population structure. I enjoy using computational research as a tool for better understanding the natural world.
+  
+  In January 2020, I moved to Pomona, California and am excited to explore the West Coast (once it is safe to open back up from quarantine)!
+
+skills:
+  - [Python, R, Shiny, HTML, CSS, JavaScript, Git, SQLite]
+  - [QGIS, ArcGIS, GRASS GIS]
+  - [DNA Extraction, PCR, Fragment Analysis, NMR]
+
+publications:
+  - Whipple, A.L., C. Ray, et al. Temporal analysis of fecal glucocorticoid metabolites to explore variation within and among territories of a climate-sensitive small mammal. <i>Conservation Physiology</i> (submitted).
+  - Kim et al. An evaluation of remotely sensed and in-situ data sufficiency for SGMA-scale groundwater studies in the Central Valley, California. <i>Journal of the American Water Resources Association</i> (accepted).
+  - Webb et al. (2017) <a href="https://www.frontiersin.org/articles/10.3389/fgene.2017.00030/full" target="_blank">Molecular Genetic Influences on Normative and Problematic Alcohol Use in a Population-Based Sample of College Students</a>. <i>Frontiers in Genetics</i>, 8
+
+categories:
+  projects:
+    rows_to_show: 2
+    posts_per_row: 2
+    template: "cards/projects.html"
+  blog:
+    rows_to_show: 1
+    posts_per_row: 3
+    template: "cards/blog.html"
+---
+```
+{% endraw %}
+
+Each line corresponds to a different input into the theme; some that are included are optional inputs, other's are very necessary to the design of the site. Let's walk through the various sections and note how the site is built. Starting at the top, the navigation bar was pulled nearly directly from my original site but with some reusability.
 
 {:.codeheader}
 navbar.html
@@ -115,7 +157,7 @@ home.html
 ```
 {% endraw %}
 
-There are two options. Within the index.md file, you can select a homepage_background to use for the landing page. Depending on the composition of the picture, you can then align your title box to match. In my case, I went with my partner's picture of me from Angel's Landing in Zion National Park and aligned the title box to the right. There is a slight black gradient added to the background image to help the text stand out. In mobile view, the title box is automatically center aligned. Lastly, if a homepage_background is not defined, the background will default to the parallax mountains.
+There are two options. Within the index.md file, you can select a homepage_background to use for the landing page. Depending on the composition of the picture, you can then align your title box to match. In my case, I went with my partner's picture of me from Angel's Landing in Zion National Park and aligned the title box to the right. There is a slight black gradient added to the background image to help the text stand out (I still need to update this gradient to match the title alignment). In mobile view, the title box is automatically center aligned. Lastly, if a homepage_background is not defined, the background will default to the parallax mountains.
 
 The bio section is very straight forward with Liquid being used mostly to organize the skills section.
 
@@ -159,8 +201,110 @@ bio.html
 ```
 {% endraw %}
 
-This is the first time that I used 'forloop' attributes, including 'forloop.first' and 'forloop.last', which allow you to treat the first and last elements in the loop differently than those in the middle.
+This is the first time that I used 'forloop' attributes (for displaying the skill categories), including 'forloop.first' and 'forloop.last', which allow you to treat the first and last elements in the loop differently than those in the middle. Also, if the developer has a publications, I made it so that you can add those to the site as a list.
+
+The previous sections had each had associated HTML file within the _includes directory. As both projects and blog posts are chronologically ordered, I decided to treat these sections in a very similar way (and actually reuse large sections of code in the process). Looking within the _includes directory, you won't find a projects.html or blog.html file. Instead, these two sections are generated within the categories.html file.
+
+{:.codeheader}
+categories.html
+{% raw %}
+```html
+{% for category in site.categories %}
+
+    {% capture category_name %}{{ category[0] }}{% endcapture %}
+
+    {% capture section_color %}{% cycle '#BBBBBB', '#FFFFFF' %}{% endcapture %}
+
+    {% assign rows_to_show = page.categories.[category_name].rows_to_show %}
+    {% assign posts_per_row = page.categories.[category_name].posts_per_row %}
+    {% assign template = page.categories.[category_name].template %}
+    
+    {% assign to_show = rows_to_show | times:posts_per_row %}
+    <div id="{{ category_name }}" class="section" style="background-color: {{ section_color }};">
+        <h1 style="text-align: center;">{{ category_name | capitalize }}</h1>
+        {% for post in category[1] %}
+            {% if forloop.index > to_show %}
+                <div class="post col-md-{{ 12 | divided_by:posts_per_row }} col-lg-{{ 12 | divided_by:posts_per_row }} hide{{ category_name | capitalize }}">
+            {% else %}
+                <div class="post col-md-{{ 12 | divided_by:posts_per_row }} col-lg-{{ 12 | divided_by:posts_per_row }}">
+            {% endif %}
+                    {%- include {{ template }} -%}
+                </div>
+        {% endfor %}
+        {% assign need_placeholder = category[1].size | modulo:posts_per_row %}
+        {% if need_placeholder != 0 %}
+            {% assign number_of_placeholders = posts_per_row | minus:need_placeholder %}
+            {% for placeholder in (1..number_of_placeholders) %}
+                {% if category[1].size > to_show %}
+                    <div class="post placeholder col-md-{{ 12 | divided_by:posts_per_row }} col-lg-{{ 12 | divided_by:posts_per_row }} hide{{ category_name | capitalize }}">
+                {% else %}
+                    <div class="post placeholder col-md-{{ 12 | divided_by:posts_per_row }} col-lg-{{ 12 | divided_by:posts_per_row }}">
+                {% endif %}
+                        <div class="card"></div>
+                    </div>
+            {% endfor %}
+        {% endif %}
+        
+        <div style="width: 100%; text-align: center;">
+            {% if category[1].size > to_show %}
+                <a style="font-size: 2em;" id="{{ category_name | capitalize }}Arrow" href="javascript:void(0);" onclick="{{ category_name }}Arrow()">
+                    <i class="fas fa-chevron-down arrow" id="arrow{{ category_name | capitalize }}"></i>
+                </a>
+            {% else %}
+                <a style="font-size: 2em;">
+                    <i class="fas fa-chevron-down arrow" style="color: {{ section_color }};"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endfor %}
+```
+{% endraw %}
+
+Jekyll allows users to identify categories for their blogs to better organize posts around topics. Each post, whether a project or blog post, generates an associated card on the homepage within its respective category; the format of these cards is found within the _includes/cards directory. Posts are stored within the _posts directory of their category as markdown files, named in the following format: YYYY-MM-DD-"title".md. Projects and blog posts require slightly different front matter within the markdown files that used to build the card.
+
+{:.codeheader}
+cards/projects.html
+{% raw %}
+```html
+<div class="card" style="background-image: url('{{ post.thumbnail | relative_url }}');">
+    <div class="overlay">
+        <div class="content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%;">
+            <h2 class="name" style="color: #FFFFFF; text-align: center;">{{ post.title }}</h2>
+            <div class="desc">
+                <div class="links" style="text-align: center; font-size: 2em; padding: 10px 0px;">
+                    {% for link in post.links %}
+                        <a target="_blank" href="{{ link.link | relative_url }}" style="padding: 0px 5px; text-decoration: none;">
+                            <i class="{{ link.icon }} link" title="{{ link.name }}"></i>
+                        </a>
+                    {% endfor %}
+                </div>
+                <p>{{ post.short_desc }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+```
+{% endraw %}
+
+{:.codeheader}
+example project
+{% raw %}
+```
+---
+layout: post
+link: /blog/streamflow-and-precipitation
+title: Streamflow and Precipitation
+github-link: https://github.com/kitchensjn/streamflow-and-precipitation
+date: December 17, 2020
+skills: [R, Hydrology, USGS, NOAA]
+desc: With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels.
+thumbnail: /assets/blog/streamflow-and-precipitation/thumbnail.png
+---
+```
+{% endraw %}
 
 
-Each of these sections has an associated HTML file within the _includes directory. As both projects and blog posts are chronologically ordered, I decided to treat these sections in a very similar way (and actually reuse large sections of code in the process). Looking within the _includes directory, you won't find a projects.html or blog.html file. Instead, these two sections are generated within the categories.html file. Jekyll allows users to identify categories for their blogs to better organize posts around topics. Using this method, I created a projects directory containing another directory named _posts. This tells Jekyll that I am going to put posts in this directory with the category of "projects". Project posts are then markdown files, named in this format: YYYY-MM-DD-"title".md. Each project posts has front matter with information about it's title, post date, a description of the project, and any links to supplemental materials.
+With this method, you can add as many post categories as you would like, and they will be displayed on the homepage within their respective section. Links to the sections are also automatically added to the navigation bar at the top of the site.
 

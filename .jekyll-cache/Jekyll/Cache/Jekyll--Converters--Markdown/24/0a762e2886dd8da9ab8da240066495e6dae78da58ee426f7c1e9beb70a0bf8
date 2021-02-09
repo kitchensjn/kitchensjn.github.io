@@ -1,69 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    Updating Website to Jekyll<a class="github-link" target="_blank" href="https://github.com/kitchensjn/kitchensjn.github.io">
-            <i class="fab fa-github" title="GitHub"></i>
-        </a></h2>
-<p style="text-align: left;">January 6, 2021</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Jekyll</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">HTML</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">CSS</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">JavaScript</p>
-        </div>
-    
-</div>
-
-            <p class="images"><img src="/assets/blog/updating-website-to-jekyll/thumbnail.png" alt="Pyinstaller" /></p>
+I"oZ<p class="images"><img src="/assets/blog/updating-website-to-jekyll/thumbnail.png" alt="Pyinstaller" /></p>
 
 <p>At the start of quarantine in early 2020, I decided to develop a personal website where I could highlight my ongoing and past research projects and write short blog posts on various topics that I find interesting. This website was built with custom HTML, CSS, and JavaScript. As it has grown, I’ve run into numerous scenarios where I’ve had to repeat code and hardcode sections. Creating new blog posts was tedious, as it required specific and long-winded formatting of paragraph elements. I was happy with the design of my website, but wanted to streamline the file structure. Jekyll, originally developed by Shopify, is a static site generator that solves many of these issues by allowing users to create templates that are filled by inputs from Markdown files. In addition to this, Jekyll is supported by GitHub Pages, which allows for free hosting of these sites. There is a plethora of Jekyll templates, known as themes, found online. The first version of my website was actually built using the modern-resume-theme theme developed by James Grant, which served as my introduction to the generator; I ultimately switched to a custom site for the second version to better match my interest in blogging as well as build my skills in front end web development.</p>
 
@@ -100,46 +35,7 @@
   <li>contact bar: contact information for those that want to connect</li>
 </ul>
 
-<p>These sections will have custom content specific to each site. Jekyll allows you to specify a index.md file which contains the front matter to build your site. This will differ for everyone’s site. Below is an example of my index.md file:</p>
-
-<p class="codeheader">index.md</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-layout: home
-
-homepage_background: assets/headshot/background.jpg
-title_align: right
-
-headshot: assets/headshot/KitchensJames_Headshot.jpg
-
-bio: |
-  Hi, my name is James Kitchens, and I am a Business Consultant with Venebio Group, LLC, aiding in the analysis of clinical and demographic studies. In December 2019, I graduated from Warren Wilson College in Asheville, North Carolina, where I earned a B.S. in Biology and B.S. in Chemistry. While in undergraduate, I worked in the Warren Wilson College Plant Physiology and Genetics Laboratory as a Research Assistant on projects focused around the conservation of human-impacted species in the United States. I am interested in population biology and the impacts of geography on movement and population structure. I enjoy using computational research as a tool for better understanding the natural world.
-  
-  In January 2020, I moved to Pomona, California and am excited to explore the West Coast (once it is safe to open back up from quarantine)!
-
-skills:
-  - [Python, R, Shiny, HTML, CSS, JavaScript, Git, SQLite]
-  - [QGIS, ArcGIS, GRASS GIS]
-  - [DNA Extraction, PCR, Fragment Analysis, NMR]
-
-publications:
-  - Whipple, A.L., C. Ray, et al. Temporal analysis of fecal glucocorticoid metabolites to explore variation within and among territories of a climate-sensitive small mammal. &lt;i&gt;Conservation Physiology&lt;/i&gt; (submitted).
-  - Kim et al. An evaluation of remotely sensed and in-situ data sufficiency for SGMA-scale groundwater studies in the Central Valley, California. &lt;i&gt;Journal of the American Water Resources Association&lt;/i&gt; (accepted).
-  - Webb et al. (2017) &lt;a href="https://www.frontiersin.org/articles/10.3389/fgene.2017.00030/full" target="_blank"&gt;Molecular Genetic Influences on Normative and Problematic Alcohol Use in a Population-Based Sample of College Students&lt;/a&gt;. &lt;i&gt;Frontiers in Genetics&lt;/i&gt;, 8
-
-categories:
-  projects:
-    rows_to_show: 2
-    posts_per_row: 2
-    template: "cards/projects.html"
-  blog:
-    rows_to_show: 1
-    posts_per_row: 3
-    template: "cards/blog.html"
----
-</code></pre></div></div>
-
-<p>Each line corresponds to a different input into the theme; some that are included are optional inputs, other’s are very necessary to the design of the site. Let’s walk through the various sections and note how the site is built. Starting at the top, the navigation bar was pulled nearly directly from my original site but with some reusability.</p>
+<p>Starting at the top, the navigation bar was pulled nearly directly from my original site but with some reusability.</p>
 
 <p class="codeheader">navbar.html</p>
 
@@ -302,55 +198,6 @@ categories:
 {% endfor %}
 </code></pre></div></div>
 
-<p>Jekyll allows users to identify categories for their blogs to better organize posts around topics. Each post, whether a project or blog post, generates an associated card on the homepage within its respective category; the format of these cards is found within the _includes/cards directory. Posts are stored within the _posts directory of their category as markdown files, named in the following format: YYYY-MM-DD-“title”.md. Projects and blog posts require slightly different front matter within the markdown files that used to build the card.</p>
+<p>Jekyll allows users to identify categories for their blogs to better organize posts around topics. Each post, whether a project or blog post, generates an associated card on the homepage within its respective category; the format of these cards is found within the _includes/cards directory. Posts are stored within the _posts directory of their category as markdown files, named in the following format: YYYY-MM-DD-“title”.md. Projects and blog posts require slightly different front matter within the markdown files that used to build the card. With this method, you can add as many post categories as you would like, and they will be displayed on the homepage within their respective section. Links to the sections are also automatically added to the navigation bar at the top of the site.</p>
 
-<p class="codeheader">cards/projects.html</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span> <span class="na">style=</span><span class="s">"background-image: url('{{ post.thumbnail | relative_url }}');"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"overlay"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content"</span> <span class="na">style=</span><span class="s">"position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%;"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">"name"</span> <span class="na">style=</span><span class="s">"color: #FFFFFF; text-align: center;"</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/h2&gt;</span>
-            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"desc"</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"links"</span> <span class="na">style=</span><span class="s">"text-align: center; font-size: 2em; padding: 10px 0px;"</span><span class="nt">&gt;</span>
-                    {% for link in post.links %}
-                        <span class="nt">&lt;a</span> <span class="na">target=</span><span class="s">"_blank"</span> <span class="na">href=</span><span class="s">"{{ link.link | relative_url }}"</span> <span class="na">style=</span><span class="s">"padding: 0px 5px; text-decoration: none;"</span><span class="nt">&gt;</span>
-                            <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"{{ link.icon }} link"</span> <span class="na">title=</span><span class="s">"{{ link.name }}"</span><span class="nt">&gt;&lt;/i&gt;</span>
-                        <span class="nt">&lt;/a&gt;</span>
-                    {% endfor %}
-                <span class="nt">&lt;/div&gt;</span>
-                <span class="nt">&lt;p&gt;</span>{{ post.short_desc }}<span class="nt">&lt;/p&gt;</span>
-            <span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<p class="codeheader">example project</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-layout: post
-link: /blog/streamflow-and-precipitation
-title: Streamflow and Precipitation
-github-link: https://github.com/kitchensjn/streamflow-and-precipitation
-date: December 17, 2020
-skills: [R, Hydrology, USGS, NOAA]
-desc: With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels.
-thumbnail: /assets/blog/streamflow-and-precipitation/thumbnail.png
----
-</code></pre></div></div>
-
-<p>With this method, you can add as many post categories as you would like, and they will be displayed on the homepage within their respective section. Links to the sections are also automatically added to the navigation bar at the top of the site.</p>
-
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info infoHide">Pomona, California</p>
-        <p class="info infoHide">|</p>
-        <p class="info">kitchensjn@gmail.com</p>
-        <p class="info infoHide">|</p>
-        <p class="info infoHide">(804) 572-3197</p>
-    </div></body>
-
-</html>
+:ET
