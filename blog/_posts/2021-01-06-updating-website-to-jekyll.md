@@ -49,7 +49,7 @@ Starting at the top, the navigation bar was pulled nearly directly from my origi
 
 {:.codeheader}
 navbar.html
-```
+```html
 <div id="topnav">
     
     {% if page.layout == 'home' %}
@@ -89,7 +89,7 @@ Next, we have the landing section of the homepage. This use to be the animated p
 
 {:.codeheader}
 home.html
-```
+```html
 <div id="home">
     {% if page.homepage_background %}
         <div class="background" style="background-image: linear-gradient( 90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url('{{ page.homepage_background | relative_url }}');"></div>
@@ -117,7 +117,7 @@ The bio section is very straight forward with Liquid being used mostly to organi
 
 {:.codeheader}
 bio.html
-```
+```html
 <div id="bio" class="section">
     {% if page.headshot.size > 0 %}
         <div style="margin: auto auto 60px auto; background-image:url('{{ page.headshot | relative_url }}'); height: 300px; width: 300px; border-radius: 50%; background-position: center; background-size: cover;"></div>
