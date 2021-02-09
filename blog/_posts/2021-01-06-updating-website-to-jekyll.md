@@ -49,6 +49,7 @@ Starting at the top, the navigation bar was pulled nearly directly from my origi
 
 {:.codeheader}
 navbar.html
+{% raw %}
 ```html
 <div id="topnav">
     
@@ -82,6 +83,7 @@ navbar.html
     
 </div>
 ```
+{% endraw %}
 
 The major difference now is that the navigation bar template needs to work slightly differently when users are on the homepage versus on a blog post. On the homepage, navigation links refer to sections that are found somewhere on the homepage, either above or below the users current position, causing the screen to scroll to those sections. This scrolling behavior would not work for when you are on a blog posts as the sections don't exist on that page, so when 'page.layout' is not home, navigation links teleport the user to the respective section on the homepage. Lastly, the Home, Bio, and CV sections are hardcoded within the site, whereas Projects and Blog are not. This will be explained in more depth later on in this post.
 
@@ -89,6 +91,7 @@ Next, we have the landing section of the homepage. This use to be the animated p
 
 {:.codeheader}
 home.html
+{% raw %}
 ```html
 <div id="home">
     {% if page.homepage_background %}
@@ -110,6 +113,7 @@ home.html
     </div>
 </div>
 ```
+{% endraw %}
 
 There are two options. Within the index.md file, you can select a homepage_background to use for the landing page. Depending on the composition of the picture, you can then align your title box to match. In my case, I went with my partner's picture of me from Angel's Landing in Zion National Park and aligned the title box to the right. There is a slight black gradient added to the background image to help the text stand out. In mobile view, the title box is automatically center aligned. Lastly, if a homepage_background is not defined, the background will default to the parallax mountains.
 
@@ -117,6 +121,7 @@ The bio section is very straight forward with Liquid being used mostly to organi
 
 {:.codeheader}
 bio.html
+{% raw %}
 ```html
 <div id="bio" class="section">
     {% if page.headshot.size > 0 %}
@@ -152,6 +157,7 @@ bio.html
     {% endif %}
 </div>
 ```
+{% endraw %}
 
 This is the first time that I used 'forloop' attributes, including 'forloop.first' and 'forloop.last', which allow you to treat the first and last elements in the loop differently than those in the middle.
 
