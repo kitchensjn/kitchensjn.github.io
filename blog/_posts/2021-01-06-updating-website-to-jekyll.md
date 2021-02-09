@@ -2,7 +2,7 @@
 layout: post
 link: /blog/updating-website-to-jekyll
 title: Updating Website to Jekyll
-github-link: https://github.com/kitchensjn/kitchensjn.github.io
+github-link: https://github.com/kitchensjn/explorers-portfolio-theme
 date: January 6, 2021
 skills: [Jekyll, HTML, CSS, JavaScript]
 desc: With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels.
@@ -293,6 +293,26 @@ example project
 {% raw %}
 ```
 ---
+title: "Central Valley Water Resources"
+date: "November 15, 2020"
+thumbnail: "/assets/projects/central-valley-water-resources/thumbnail.jpg"
+links:
+    - {name: "Website", icon: "fas fa-link", link: "https://develop.larc.nasa.gov/2020/spring/CentralValleyWater.html"}
+short_desc: "Using remote sensing (satellite) data to monitor groundwater conditions in California's Central Valley."
+---
+```
+{% endraw %}
+
+
+With this method, you can add as many post categories as you would like, and they will be displayed on the homepage within their respective section. Links to the sections are also automatically added to the navigation bar at the top of the site.
+
+Blog posts have more content associated with them as they have their own post pages. Below the front matter of the file, blogs contain all of the content and pictures for the post. Here is an shortened example of blog post:
+
+{:.codeheader}
+example blog
+{% raw %}
+```
+---
 layout: post
 link: /blog/streamflow-and-precipitation
 title: Streamflow and Precipitation
@@ -302,9 +322,47 @@ skills: [R, Hydrology, USGS, NOAA]
 desc: With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels.
 thumbnail: /assets/blog/streamflow-and-precipitation/thumbnail.png
 ---
+
+{:.images}
+![US Streams and Precipitation](/assets/blog/streamflow-and-precipitation/thumbnail.png)
+
+With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels. USGS has established streamflow gauges on many of the major rivers across the country; they have also developed an R package (dataRetrieval) that gives simple access to these gauge measurements and more. In this blog post, I’m going to talk about using functions from the dataRetrieval package to access streamflow gauges, delineate river watersheds, and then compare these datasets with other publicly available raster datasets, such as gridded climate datasets from NOAA’s Physical Sciences Laboratory.
+
+This post requires the following packages to be installed and loaded:
+
+- devtools
+- dataRetrieval
+- tidyr
+- ggplot2
+- raster
+- ncdf4
+
+USGS provides public datasets with numerous applications; the Central Valley Water Resources project during the NASA DEVELOP program greatly utilized these datasets, particularly groundwater field stations measurements from the National Water Inventory System. USGS researchers continue to develop and maintain the dataRetrieval package to aid in accessing these datasets and other tools. The dataRetrieval package can be installed either through CRAN or GitHub. NOTE: There may be version differences depending on the installation method. For the rest of this post, we will be using the GitHub version, which, at the writing of this post, had most recently been updated with functions necessary for my analysis.
 ```
 {% endraw %}
 
+I now can write all of my blog posts as markdown files, rather than hardcoded HTML, which is much easier.
 
-With this method, you can add as many post categories as you would like, and they will be displayed on the homepage within their respective section. Links to the sections are also automatically added to the navigation bar at the top of the site.
+The last section is the contact bar that is displayed at the bottom of the site. This is built using site information found in the _config.yml file. If you are on the homepage, the contact bar pops up as you scroll down, whereas when you are on another page, it is permanently stuck to the bottom of the site. Other than that change, the contact bar is a direct copy from my original site.
 
+{:.codeheader}
+contactbar.html
+{% raw %}
+```html
+{% if page.layout == 'home' %}
+    <div id="contact" class="contactBar unstick">
+{% else %}
+    <div id="contact" class="contactBar">
+{% endif %}
+        <p class="info infoHide">{{ site.location }}</p>
+        <p class="info infoHide">|</p>
+        <p class="info">{{ site.email }}</p>
+        <p class="info infoHide">|</p>
+        <p class="info infoHide">{{ site.phone }}</p>
+    </div>
+```
+{% endraw %}
+
+Those are the main changes to the site now that it is built with Jekyll. I have found that Jekyll greatly speeds up my development time due through its use of Liquid and its ability to convert markdown files into stylized posts. It's easy integration into GitHub Pages is also a huge plus!
+
+All of the code used in this post can be found in the [explorers-portfolio-theme](https://github.com/kitchensjn/explorers-portfolio-theme) or on my personal site's GitHub repository ([HERE](https://github.com/kitchensjn/kitchensjn.github.io)). If you enjoyed this tutorial and want to use this code in your own project, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!

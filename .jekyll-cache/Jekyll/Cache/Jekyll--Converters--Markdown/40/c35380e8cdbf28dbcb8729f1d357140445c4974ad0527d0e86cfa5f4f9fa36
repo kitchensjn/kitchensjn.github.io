@@ -1,69 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    Updating Website to Jekyll<a class="github-link" target="_blank" href="https://github.com/kitchensjn/explorers-portfolio-theme">
-            <i class="fab fa-github" title="GitHub"></i>
-        </a></h2>
-<p style="text-align: left;">January 6, 2021</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Jekyll</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">HTML</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">CSS</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">JavaScript</p>
-        </div>
-    
-</div>
-
-            <p class="images"><img src="/assets/blog/updating-website-to-jekyll/thumbnail.png" alt="Pyinstaller" /></p>
+I"��<p class="images"><img src="/assets/blog/updating-website-to-jekyll/thumbnail.png" alt="Pyinstaller" /></p>
 
 <p>At the start of quarantine in early 2020, I decided to develop a personal website where I could highlight my ongoing and past research projects and write short blog posts on various topics that I find interesting. This website was built with custom HTML, CSS, and JavaScript. As it has grown, I’ve run into numerous scenarios where I’ve had to repeat code and hardcode sections. Creating new blog posts was tedious, as it required specific and long-winded formatting of paragraph elements. I was happy with the design of my website, but wanted to streamline the file structure. Jekyll, originally developed by Shopify, is a static site generator that solves many of these issues by allowing users to create templates that are filled by inputs from Markdown files. In addition to this, Jekyll is supported by GitHub Pages, which allows for free hosting of these sites. There is a plethora of Jekyll templates, known as themes, found online. The first version of my website was actually built using the modern-resume-theme theme developed by James Grant, which served as my introduction to the generator; I ultimately switched to a custom site for the second version to better match my interest in blogging as well as build my skills in front end web development.</p>
 
@@ -390,19 +325,5 @@ USGS provides public datasets with numerous applications; the Central Valley Wat
     <span class="nt">&lt;/div&gt;</span>
 </code></pre></div></div>
 
-<p>Those are the main changes to the site now that it is built with Jekyll. I have found that Jekyll greatly speeds up my development time due through its use of Liquid and its ability to convert markdown files into stylized posts. It’s easy integration into GitHub Pages is also a huge plus!</p>
-
-<p>All of the code used in this post can be found in the <a href="https://github.com/kitchensjn/explorers-portfolio-theme">explorers-portfolio-theme</a> or on my personal site’s GitHub repository (<a href="https://github.com/kitchensjn/kitchensjn.github.io">HERE</a>). If you enjoyed this tutorial and want to use this code in your own project, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!</p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info infoHide">Pomona, California</p>
-        <p class="info infoHide">|</p>
-        <p class="info">kitchensjn@gmail.com</p>
-        <p class="info infoHide">|</p>
-        <p class="info infoHide">(804) 572-3197</p>
-    </div></body>
-
-</html>
+<p>Those are the main changes to the site now that it is built with Jekyll.</p>
+:ET

@@ -1,69 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    Updating Website to Jekyll<a class="github-link" target="_blank" href="https://github.com/kitchensjn/explorers-portfolio-theme">
-            <i class="fab fa-github" title="GitHub"></i>
-        </a></h2>
-<p style="text-align: left;">January 6, 2021</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Jekyll</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">HTML</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">CSS</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">JavaScript</p>
-        </div>
-    
-</div>
-
-            <p class="images"><img src="/assets/blog/updating-website-to-jekyll/thumbnail.png" alt="Pyinstaller" /></p>
+I"3r<p class="images"><img src="/assets/blog/updating-website-to-jekyll/thumbnail.png" alt="Pyinstaller" /></p>
 
 <p>At the start of quarantine in early 2020, I decided to develop a personal website where I could highlight my ongoing and past research projects and write short blog posts on various topics that I find interesting. This website was built with custom HTML, CSS, and JavaScript. As it has grown, I’ve run into numerous scenarios where I’ve had to repeat code and hardcode sections. Creating new blog posts was tedious, as it required specific and long-winded formatting of paragraph elements. I was happy with the design of my website, but wanted to streamline the file structure. Jekyll, originally developed by Shopify, is a static site generator that solves many of these issues by allowing users to create templates that are filled by inputs from Markdown files. In addition to this, Jekyll is supported by GitHub Pages, which allows for free hosting of these sites. There is a plethora of Jekyll templates, known as themes, found online. The first version of my website was actually built using the modern-resume-theme theme developed by James Grant, which served as my introduction to the generator; I ultimately switched to a custom site for the second version to better match my interest in blogging as well as build my skills in front end web development.</p>
 
@@ -328,22 +263,6 @@ categories:
 <p class="codeheader">example project</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-title: "Central Valley Water Resources"
-date: "November 15, 2020"
-thumbnail: "/assets/projects/central-valley-water-resources/thumbnail.jpg"
-links:
-    - {name: "Website", icon: "fas fa-link", link: "https://develop.larc.nasa.gov/2020/spring/CentralValleyWater.html"}
-short_desc: "Using remote sensing (satellite) data to monitor groundwater conditions in California's Central Valley."
----
-</code></pre></div></div>
-
-<p>With this method, you can add as many post categories as you would like, and they will be displayed on the homepage within their respective section. Links to the sections are also automatically added to the navigation bar at the top of the site.</p>
-
-<p>Blog posts have more content associated with them as they have their own post pages. Below the front matter of the file, blogs contain all of the content and pictures for the post. Here is an shortened example of blog post:</p>
-
-<p class="codeheader">example blog</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 layout: post
 link: /blog/streamflow-and-precipitation
 title: Streamflow and Precipitation
@@ -353,56 +272,10 @@ skills: [R, Hydrology, USGS, NOAA]
 desc: With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels.
 thumbnail: /assets/blog/streamflow-and-precipitation/thumbnail.png
 ---
-
-{:.images}
-![US Streams and Precipitation](/assets/blog/streamflow-and-precipitation/thumbnail.png)
-
-With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels. USGS has established streamflow gauges on many of the major rivers across the country; they have also developed an R package (dataRetrieval) that gives simple access to these gauge measurements and more. In this blog post, I’m going to talk about using functions from the dataRetrieval package to access streamflow gauges, delineate river watersheds, and then compare these datasets with other publicly available raster datasets, such as gridded climate datasets from NOAA’s Physical Sciences Laboratory.
-
-This post requires the following packages to be installed and loaded:
-
-- devtools
-- dataRetrieval
-- tidyr
-- ggplot2
-- raster
-- ncdf4
-
-USGS provides public datasets with numerous applications; the Central Valley Water Resources project during the NASA DEVELOP program greatly utilized these datasets, particularly groundwater field stations measurements from the National Water Inventory System. USGS researchers continue to develop and maintain the dataRetrieval package to aid in accessing these datasets and other tools. The dataRetrieval package can be installed either through CRAN or GitHub. NOTE: There may be version differences depending on the installation method. For the rest of this post, we will be using the GitHub version, which, at the writing of this post, had most recently been updated with functions necessary for my analysis.
 </code></pre></div></div>
 
-<p>I now can write all of my blog posts as markdown files, rather than hardcoded HTML, which is much easier.</p>
+<p>With this method, you can add as many post categories as you would like, and they will be displayed on the homepage within their respective section. Links to the sections are also automatically added to the navigation bar at the top of the site.</p>
 
-<p>The last section is the contact bar that is displayed at the bottom of the site. This is built using site information found in the _config.yml file. If you are on the homepage, the contact bar pops up as you scroll down, whereas when you are on another page, it is permanently stuck to the bottom of the site. Other than that change, the contact bar is a direct copy from my original site.</p>
+<p>Blog posts have more content associated with them as they have their own post pages. Below the front matter of the file, blogs contain all of the content and pictures for the post. Here is an example of the top:</p>
 
-<p class="codeheader">contactbar.html</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% if page.layout == 'home' %}
-    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"contact"</span> <span class="na">class=</span><span class="s">"contactBar unstick"</span><span class="nt">&gt;</span>
-{% else %}
-    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"contact"</span> <span class="na">class=</span><span class="s">"contactBar"</span><span class="nt">&gt;</span>
-{% endif %}
-        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"info infoHide"</span><span class="nt">&gt;</span>{{ site.location }}<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"info infoHide"</span><span class="nt">&gt;</span>|<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"info"</span><span class="nt">&gt;</span>{{ site.email }}<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"info infoHide"</span><span class="nt">&gt;</span>|<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"info infoHide"</span><span class="nt">&gt;</span>{{ site.phone }}<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<p>Those are the main changes to the site now that it is built with Jekyll. I have found that Jekyll greatly speeds up my development time due through its use of Liquid and its ability to convert markdown files into stylized posts. It’s easy integration into GitHub Pages is also a huge plus!</p>
-
-<p>All of the code used in this post can be found in the <a href="https://github.com/kitchensjn/explorers-portfolio-theme">explorers-portfolio-theme</a> or on my personal site’s GitHub repository (<a href="https://github.com/kitchensjn/kitchensjn.github.io">HERE</a>). If you enjoyed this tutorial and want to use this code in your own project, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!</p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info infoHide">Pomona, California</p>
-        <p class="info infoHide">|</p>
-        <p class="info">kitchensjn@gmail.com</p>
-        <p class="info infoHide">|</p>
-        <p class="info infoHide">(804) 572-3197</p>
-    </div></body>
-
-</html>
+:ET
