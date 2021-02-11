@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="postimg" style="background-image: url('{{ post.thumbnail  | relative_url }}');">
+    <div class="postimg" style="background-image: url('{{ post.thumbnail  | relative_url }}'); background-position: center; background-repeat: no-repeat; background-size: cover;">
         <div class="info">
             <p class="title">{{ post.title }}</p>
             <p class="date">{{ post.date | date: "%B %-d, %Y"}}</p>
