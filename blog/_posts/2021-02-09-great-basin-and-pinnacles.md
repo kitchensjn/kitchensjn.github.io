@@ -54,5 +54,5 @@ There are many trails that cross the park and lead to the top of these spires. W
 
 On the eastern side of the park, there is Bear Gulch Reservoir which is backed up by a small dam and would be a great place to have a midday picnic. At the base of the dam, there is a trail which descends into a cave system created by rock falls. Bear Gulch Trail and Moses Spring Trail also host most of the accessible rock climbing in the park, containing both traditional, sport, and top rop walls.
 
-Pinnacles National Park has very little shade when the sun is at its peak. Because of this, the park is best enjoyed outside of the summer months.
+Pinnacles National Park has very little shade when the sun is at its peak. Because of this, the park is best enjoyed outside of the summer months. The closest cities to the park on the western side is Soledad and King City, which both have shops where you can pick up snack or meal supplies.
 
