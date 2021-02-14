@@ -46,10 +46,10 @@ Pinnacles National Park is a smaller park about two hours south of San Francisco
 
 There are many trails that cross the park and lead to the top of these spires. We started on the west side of the park and hiked up the Juniper Canyon Trail to Tunnel Trail and then over the High Peaks section. The latter section winds its way through the highest formations in the park, with the most likely chance for seeing condors. The top of the trail is relatively exposed and requires some scrambling, but the park has added a handrail and cut steps to make the area more accessible.
 
-{:.images}
+{:.vertical_images}
 ![Pinnacles - High Peaks](/assets/blog/national-parks-gallery/photos/PINN/20210206_meg_0035.jpg)
 
-{:.images}
+{:.vertical_images}
 ![Pinnacles - High Peaks](/assets/blog/national-parks-gallery/photos/PINN/20210206_meg_0039.jpg)
 
 On the eastern side of the park, there is Bear Gulch Reservoir which is backed up by a small dam and would be a great place to have a midday picnic. At the base of the dam, there is a trail which descends into a cave system created by rock falls. Bear Gulch Trail and Moses Spring Trail also host most of the accessible rock climbing in the park, containing both traditional, sport, and top rop walls.
