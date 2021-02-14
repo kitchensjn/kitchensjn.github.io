@@ -11,7 +11,7 @@ thumbnail: "/assets/blog/national-parks-gallery/photos/GRBA/20200906_meg_0146.jp
 {:.images}
 ![Great Basin - Stella Lake](/assets/blog/national-parks-gallery/photos/GRBA/20200906_meg_0146.jpg)
 
-Over the last few months, Margaret and I have visited two new US national parks, Great Basin in Nevada and Pinnacles in California. These two parks are smaller and less visited than some others that are nearby, but are full of really nice hiking trails and photogenic terrain.
+Over the last few months, Margaret and I have visited two new US national parks, Great Basin in Nevada and Pinnacles in California. These two parks are smaller and less visited than some others that are nearby, but are full of really nice hiking trails and photogenic terrain. I've included a selection a Margaret's photos in this post; a more complete collection can be found within our [National Parks Gallery](/blog/2020/08/24/national-parks-gallery).
 
 ### Great Basin
 
