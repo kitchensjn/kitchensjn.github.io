@@ -15,7 +15,8 @@ $(".slick-slider")
       pauseOnFocus: false,
       draggable: false,
       initialSlide: 0,
-      lazyLoad: 'ondemand'
+      lazyLoad: 'ondemand',
+      useTransform: false,
   });
 
 $(".slick-slider").each(function() {
