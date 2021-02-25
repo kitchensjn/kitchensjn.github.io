@@ -124,12 +124,12 @@
                 transform: rotateX(-90deg) translateZ(calc(var(--DIM) / 8));
             }
 
-            /*.footprint {
-                opacity: 0;
+            .footprint {
+                visibility: hidden;
                 animation: step 0s linear forwards;
             }
             .footprint.fp1 {
-                opacity: 1;
+                visibility: visible;
             }
             .footprint.fp2 {
                 animation-delay: 0.5s;
@@ -139,7 +139,7 @@
             }
             .footprint.fp4 {
                 animation-delay: 1.5s;
-            }*/
+            }
 
 
             .footprints.red .fp1 .cube {
@@ -199,8 +199,8 @@
             }
 
             @keyframes step {
-                0% {opacity: 1}
-                100% {opacity: 1}
+                0% {visibility: visible}
+                100% {visibility: visible}
             }
 
             @keyframes tilt {
