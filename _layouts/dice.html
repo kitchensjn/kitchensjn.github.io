@@ -3,6 +3,10 @@
     <head>
         <style>
             
+            :root {
+                --DIM: 200px;
+            }
+
             html {
                 height: 100vh;
                 width: 100vw;
@@ -19,20 +23,26 @@
                 animation-delay: 2s;
             }
 
+            .class {
+                height: 100%;
+                width: 100%;
+                transform-style: preserve-3d;
+            }
+
             .wrap {
                 transform-style: preserve-3d;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                width: 400px;
-                height: 400px;
+                width: var(--DIM);
+                height: var(--DIM);
                 transform: translate(-50%, -50%);
             }
             
             .cube {
                 transform-style: preserve-3d;
-                width: 100px;
-                height: 100px;
+                width: 25%;
+                height: 25%;
                 margin: auto;
                 position: relative;
             }
@@ -46,8 +56,8 @@
 
             .cube div {
                 position: absolute;
-                width: 100px;
-                height: 100px;
+                width: 100%;
+                height: 100%;
             }
             
             .cube.red div {
@@ -61,26 +71,26 @@
             }
 
             .cube.black {
-                transform: translateZ(-50px);
+                transform: translateZ(calc(var(--DIM) / -8));
             }
 
             .cube div:nth-child(1) {
-                transform: rotateY(0deg) translateZ(50px);
+                transform: rotateY(0deg) translateZ(calc(var(--DIM) / 8));
             }
             .cube div:nth-child(2) {
-                transform: rotateY(90deg) translateZ(50px);
+                transform: rotateY(90deg) translateZ(calc(var(--DIM) / 8));
             }
             .cube div:nth-child(3) {
-                transform: rotateY(180deg) translateZ(50px);
+                transform: rotateY(180deg) translateZ(calc(var(--DIM) / 8));
             }
             .cube div:nth-child(4) {
-                transform: rotateY(-90deg) translateZ(50px);
+                transform: rotateY(-90deg) translateZ(calc(var(--DIM) / 8));
             }
             .cube div:nth-child(5) {
-                transform: rotateX(90deg) translateZ(50px);
+                transform: rotateX(90deg) translateZ(calc(var(--DIM) / 8));
             }
             .cube div:nth-child(6) {
-                transform: rotateX(-90deg) translateZ(50px);
+                transform: rotateX(-90deg) translateZ(calc(var(--DIM) / 8));
             }
 
             .footprint {
@@ -91,36 +101,66 @@
             .footprint.fp1 {
                 opacity: 1;
             }
+            .footprints.red .fp1 .cube {
+                top: calc(var(--DIM) * 3 / 4);
+                left: calc(var(--DIM) * 3 / 8);
+            }
+            .footprints.blue .fp1 .cube {
+                top: 0px;
+                left: calc(var(--DIM) * 3 / -8);
+            }
 
             .footprint.fp2 {
                 animation-delay: 0.5s;
             }
+            .footprints.red .fp2 .cube {
+                top: calc(var(--DIM) / 2);
+                left: calc(var(--DIM) * 3 / 8);
+            }
+            .footprints.blue .fp2 .cube {
+                top: 0px;
+                left: calc(var(--DIM) / -8);
+            }
+
             .footprint.fp3 {
                 animation-delay: 1s;
             }
+            .footprints.red .fp3 .cube {
+                top: calc(var(--DIM) / 2);
+                left: calc(var(--DIM) / 8);
+            }
+            .footprints.blue .fp3 .cube {
+                top: calc(var(--DIM) / 4);
+                left: calc(var(--DIM) / -8);
+            }
+
             .footprint.fp4 {
                 animation-delay: 1.5s;
             }
-
-            .footprint.fp5 {
-                animation-delay: 2s;
+            .footprints.red .fp4 .cube {
+                top: calc(var(--DIM) / 4);
+                left: calc(var(--DIM) / 8);
+            }
+            .footprints.blue .fp4 .cube {
+                top: calc(var(--DIM) / 2);
+                left: calc(var(--DIM) / -8);
             }
 
 
             @keyframes red {
-                0% {transform: translate3d(150px, 300px, 50px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
-                25% {transform: translate3d(150px, 200px, 50px) rotateX(90deg) rotateY(0deg) rotateZ(0deg);}
-                50% {transform: translate3d(50px, 200px, 50px) rotateX(90deg) rotateY(0deg) rotateZ(90deg);}
-                75% {transform: translate3d(50px, 100px, 50px) rotateX(180deg) rotateY(0deg) rotateZ(90deg);}
-                100% {transform: translate3d(150px, 0px, -50px) rotateX(270deg) rotateY(-90deg) rotateZ(90deg);}
+                0% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 8)) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
+                25% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) / 2), calc(var(--DIM) / 8)) rotateX(90deg) rotateY(0deg) rotateZ(0deg);}
+                50% {transform: translate3d(calc(var(--DIM) / 8), calc(var(--DIM) / 2), calc(var(--DIM) / 8)) rotateX(90deg) rotateY(0deg) rotateZ(90deg);}
+                75% {transform: translate3d(calc(var(--DIM) / 8), calc(var(--DIM) / 4), calc(var(--DIM) / 8)) rotateX(180deg) rotateY(0deg) rotateZ(90deg);}
+                100% {transform: translate3d(calc(var(--DIM) * 3 / 8), 0px, calc(var(--DIM) / -8)) rotateX(270deg) rotateY(-90deg) rotateZ(90deg);}
             }
 
             @keyframes blue {
-                0% {transform: translate3d(-150px, 0px, 50px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
-                25% {transform: translate3d(-50px, 0px, 50px) rotateX(0deg) rotateY(90deg) rotateZ(0deg);}
-                50% {transform: translate3d(-50px, 100px, 50px) rotateX(-90deg) rotateY(90deg) rotateZ(0deg);}
-                75% {transform: translate3d(-50px, 200px, 50px) rotateX(-180deg) rotateY(90deg) rotateZ(0deg);}
-                100% {transform: translate3d(-150px, 300px, -50px) rotateY(-180deg) rotateX(-90deg) rotateZ(0deg);}
+                0% {transform: translate3d(calc(var(--DIM) * 3 / -8), 0px, calc(var(--DIM) / 8)) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
+                25% {transform: translate3d(calc(var(--DIM) / -8), 0px, calc(var(--DIM) / 8)) rotateX(0deg) rotateY(90deg) rotateZ(0deg);}
+                50% {transform: translate3d(calc(var(--DIM) / -8), calc(var(--DIM) / 4), calc(var(--DIM) / 8)) rotateX(-90deg) rotateY(90deg) rotateZ(0deg);}
+                75% {transform: translate3d(calc(var(--DIM) / -8), calc(var(--DIM) / 2), calc(var(--DIM) / 8)) rotateX(-180deg) rotateY(90deg) rotateZ(0deg);}
+                100% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / -8)) rotateY(-180deg) rotateX(-90deg) rotateZ(0deg);}
             }
 
             @keyframes footprint {
@@ -136,128 +176,110 @@
         </style>
     </head>
     <body>
-        <div class="wrap footprint fp1">
-            <div class="cube black" style="top: 300px; left: 150px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+        <div class="cubes">
+            <div class="footprints red">
+                <div class="wrap footprint fp1">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="wrap footprint fp2">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="wrap footprint fp3">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="wrap footprint fp4">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="wrap footprint fp2">
-            <div class="cube black" style="top: 200px; left: 150px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="footprints blue">
+                <div class="wrap footprint fp1">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="wrap footprint fp2">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="wrap footprint fp3">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="wrap footprint fp4">
+                    <div class="cube black">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="wrap footprint fp3">
-            <div class="cube black" style="top: 200px; left: 50px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="wrap">
+                <div class="cube red">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
-        </div>
-        <div class="wrap footprint fp4">
-            <div class="cube black" style="top: 100px; left: 50px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <!--
-        <div class="wrap footprint fp5">
-            <div class="cube black" style="top: 0px; left: 150px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        -->
-        <div class="wrap footprint fp1">
-            <div class="cube black" style="top: 0px; left: -150px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div class="wrap footprint fp2">
-            <div class="cube black" style="top: 0px; left: -50px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div class="wrap footprint fp3">
-            <div class="cube black" style="top: 100px; left: -50px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div class="wrap footprint fp4">
-            <div class="cube black" style="top: 200px; left: -50px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <!--
-        <div class="wrap footprint fp5">
-            <div class="cube black" style="top: 300px; left: -150px;">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        -->
-        <div class="wrap">
-            <div class="cube red">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div class="wrap">
-            <div class="cube blue">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="wrap">
+                <div class="cube blue">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
     </body>
