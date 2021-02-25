@@ -102,7 +102,7 @@
             }
 
             .cube.black {
-                transform: translateZ(calc(var(--DIM) / -8));
+                transform: translate3d(0px, 0px, calc(var(--DIM) / -8));
             }
 
             .cube div:nth-child(1) {
@@ -124,14 +124,24 @@
                 transform: rotateX(-90deg) translateZ(calc(var(--DIM) / 8));
             }
 
-            .footprint {
+            /*.footprint {
                 opacity: 0;
-                animation: footprint 0s linear forwards;  
+                animation: step 0s linear forwards;
             }
-
             .footprint.fp1 {
                 opacity: 1;
             }
+            .footprint.fp2 {
+                animation-delay: 0.5s;
+            }
+            .footprint.fp3 {
+                animation-delay: 1s;
+            }
+            .footprint.fp4 {
+                animation-delay: 1.5s;
+            }*/
+
+
             .footprints.red .fp1 .cube {
                 top: calc(var(--DIM) * 3 / 4);
                 left: calc(var(--DIM) * 3 / 8);
@@ -141,9 +151,7 @@
                 left: calc(var(--DIM) * 3 / -8);
             }
 
-            .footprint.fp2 {
-                animation-delay: 0.5s;
-            }
+            
             .footprints.red .fp2 .cube {
                 top: calc(var(--DIM) / 2);
                 left: calc(var(--DIM) * 3 / 8);
@@ -153,9 +161,7 @@
                 left: calc(var(--DIM) / -8);
             }
 
-            .footprint.fp3 {
-                animation-delay: 1s;
-            }
+            
             .footprints.red .fp3 .cube {
                 top: calc(var(--DIM) / 2);
                 left: calc(var(--DIM) / 8);
@@ -165,9 +171,7 @@
                 left: calc(var(--DIM) / -8);
             }
 
-            .footprint.fp4 {
-                animation-delay: 1.5s;
-            }
+            
             .footprints.red .fp4 .cube {
                 top: calc(var(--DIM) / 4);
                 left: calc(var(--DIM) / 8);
@@ -194,7 +198,7 @@
                 100% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / -8)) rotateY(-180deg) rotateX(-90deg) rotateZ(0deg);}
             }
 
-            @keyframes footprint {
+            @keyframes step {
                 0% {opacity: 1}
                 100% {opacity: 1}
             }
