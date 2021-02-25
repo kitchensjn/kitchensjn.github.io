@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap');
+            /*@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');*/
 
             :root {
                 --DIM: 380px;
@@ -32,21 +33,18 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                /*
-                top: 50%; calc(50% + calc(var(--DIM) / 3) + 25px);
-                left: 50%;
-                transform: translate(-50%, -50%);
-                */
                 text-align: center;
-                opacity: 1;
-                /*animation: appear 1s ease-in-out forwards;
-                animation-delay: var(--SPEED);*/
+                visibility: hidden;
             }
             
+            #name.logo-anim {
+                visibility: visible;
+            }
+
             #name h1 {
                 color: white;
                 margin: 0px;
-                font-family: 'Akaya Kanadaka', cursive !important;
+                font-family: 'IBM Plex Sans', sans-serif !important;
             }
 
             #james {
@@ -57,7 +55,7 @@
                 line-height: calc(var(--DIM) / 4);
                 width: calc(var(--DIM) / 2);
                 height: calc(var(--DIM) / 4);
-                font-size: 55px;
+                font-size: 50px;
             }
 
             #kitchens {
@@ -68,7 +66,7 @@
                 line-height: calc(var(--DIM) / 4);
                 width: calc(var(--DIM) * 3 / 4);
                 height: calc(var(--DIM) / 4);
-                font-size: 61px;
+                font-size: 50px;
             }
 
             #design {
@@ -78,6 +76,11 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+                display: none;
+            }
+
+            #design.logo-anim {
+                display: block;
             }
 
             #cubes {
@@ -85,6 +88,9 @@
                 height: 100%;
                 width: 100%;
                 transform-style: preserve-3d;
+            }
+
+            #cubes.logo-anim {
                 animation: tilt 1s ease-in-out forwards;
                 animation-delay: var(--SPEED);
             }
@@ -104,10 +110,10 @@
                 position: relative;
             }
             
-            .cube.red {
+            .cube.red.logo-anim {
                 animation: red var(--SPEED) ease-in-out forwards;
             }
-            .cube.blue {
+            .cube.blue.logo-anim {
                 animation: blue var(--SPEED) ease-in-out forwards;
             }
 
@@ -153,10 +159,12 @@
 
             .footprint {
                 visibility: hidden;
+            }
+            .footprint.logo-anim {
                 animation: step 0s linear forwards;
             }
             .footprint.fp1 {
-                visibility: visible;
+                animation-delay: 0s;
             }
             .footprint.fp2 {
                 animation-delay: calc(var(--SPEED) / 4);
@@ -242,9 +250,45 @@
                 100% {opacity: 1;}
             }
 
+            #enter {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%, -50%, 0px);
+            }
         </style>
     </head>
     <body>
+        <input id="enter" type="button" value="ENTER" onclick="enter()">
+        <audio id="audio" src="{{ 'zapsplat_leisure_puzzle_rubiks_cube_single_rotate_003_49475.mp3' | relative_url }}" type="audio/mpeg"></audio>
+        <script>
+            function enter() {
+                document.getElementById("design").classList.add("logo-anim");
+                document.getElementById("cubes").classList.add("logo-anim");
+                var footprints = document.getElementsByClassName("footprint");
+                for (var i = 0; i < footprints.length; i++) {
+                    footprints[i].classList.add("logo-anim");
+                }
+                document.getElementById("red").classList.add("logo-anim");
+                document.getElementById("blue").classList.add("logo-anim");
+                document.getElementById("name").classList.add("logo-anim");
+                
+                var popupAudioPlayer = document.getElementById("audio")
+                let counter = 4;
+                const customPlay = function() {      
+                    popupAudioPlayer.play();
+                    counter--;
+                    
+                    if (counter === 0) {
+                        popupAudioPlayer.removeEventListener('ended', customPlay);
+                    }
+                };
+                popupAudioPlayer.addEventListener('ended', customPlay);
+                popupAudioPlayer.currentTime = 0;
+                popupAudioPlayer.loop = false;    
+                customPlay();
+            }
+        </script>
         <div id="logo">
             <div id="design">
                 <div id="cubes">
@@ -333,7 +377,7 @@
                         </div>
                     </div>
                     <div class="wrap">
-                        <div class="cube red">
+                        <div id="red" class="cube red">
                             <div></div>
                             <div></div>
                             <div></div>
@@ -343,7 +387,7 @@
                         </div>
                     </div>
                     <div class="wrap">
-                        <div class="cube blue">
+                        <div id="blue" class="cube blue">
                             <div></div>
                             <div></div>
                             <div></div>
