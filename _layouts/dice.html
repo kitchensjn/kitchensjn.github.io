@@ -24,6 +24,12 @@
                 margin: 0px;
             }
 
+            h1 {
+                margin: 0px;
+                font-family: 'IBM Plex Sans', sans-serif !important;
+                font-size: 50px;
+            }
+
             #logo {
                 width: 100%;
                 height: 100%;
@@ -43,10 +49,23 @@
 
             #name h1 {
                 color: white;
-                margin: 0px;
-                font-family: 'IBM Plex Sans', sans-serif !important;
             }
 
+            #enter-button {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate3d(-50%, -50%, 0px);
+                cursor: pointer;
+                transition: opacity 0.5s;
+                text-align: center;
+                width: calc(var(--DIM) / 2);
+            }
+            #enter-button:hover {
+                color: blue;
+            }
+
+            
             #james {
                 position: absolute;
                 top: 50%;
@@ -55,7 +74,6 @@
                 line-height: calc(var(--DIM) / 4);
                 width: calc(var(--DIM) / 2);
                 height: calc(var(--DIM) / 4);
-                font-size: 50px;
             }
 
             #kitchens {
@@ -66,7 +84,6 @@
                 line-height: calc(var(--DIM) / 4);
                 width: calc(var(--DIM) * 3 / 4);
                 height: calc(var(--DIM) / 4);
-                font-size: 50px;
             }
 
             #design {
@@ -76,11 +93,6 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                display: none;
-            }
-
-            #design.logo-anim {
-                display: block;
             }
 
             #cubes {
@@ -110,11 +122,17 @@
                 position: relative;
             }
             
+            .cube.red.enter-anim {
+                animation: enter-red 10s ease-in-out infinite;
+            }
             .cube.red.logo-anim {
-                animation: red var(--SPEED) ease-in-out forwards;
+                animation: logo-red var(--SPEED) ease-in-out forwards;
+            }
+            .cube.blue.enter-anim {
+                animation: enter-blue 10s ease-in-out infinite;
             }
             .cube.blue.logo-anim {
-                animation: blue var(--SPEED) ease-in-out forwards;
+                animation: logo-blue var(--SPEED) ease-in-out forwards;
             }
 
             .cube div {
@@ -217,7 +235,22 @@
             }
 
 
-            @keyframes red {
+            @keyframes enter-red {
+                0% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
+                8.3% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) / 2), calc(var(--DIM) / 4)) rotateX(90deg) rotateY(0deg) rotateZ(0deg);}
+                16.7% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) / 4), calc(var(--DIM) / 4)) rotateX(180deg) rotateY(0deg) rotateZ(0deg);}
+                25% {transform: translate3d(calc(var(--DIM) * 3 / 8), 0px, calc(var(--DIM) / 4)) rotateX(270deg) rotateY(0deg) rotateZ(0deg);}
+                33.3% {transform: translate3d(calc(var(--DIM) / 8), 0px, calc(var(--DIM) / 4)) rotateX(270deg) rotateY(0deg) rotateZ(-90deg);}
+                41.7% {transform: translate3d(calc(var(--DIM) / -8), 0px, calc(var(--DIM) / 4)) rotateX(270deg) rotateY(0deg) rotateZ(-180deg);}
+                50% {transform: translate3d(calc(var(--DIM) * 3 / -8), 0px, calc(var(--DIM) / 4)) rotateX(270deg) rotateY(0deg) rotateZ(-270deg);}
+                58.3% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) / 4), calc(var(--DIM) / 4)) rotateX(180deg) rotateY(0deg) rotateZ(-270deg);}
+                66.7% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) / 2), calc(var(--DIM) / 4)) rotateX(90deg) rotateY(0deg) rotateZ(-270deg);}
+                75% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(0deg) rotateY(0deg) rotateZ(-270deg);}
+                83.3% {transform: translate3d(calc(var(--DIM) / -8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(0deg) rotateY(90deg) rotateZ(-270deg);}
+                91.7% {transform: translate3d(calc(var(--DIM) / 8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(0deg) rotateY(180deg) rotateZ(-270deg);}
+                100% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(0deg) rotateY(270deg) rotateZ(-270deg);}
+            }
+            @keyframes logo-red {
                 0% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
                 25% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) / 2), calc(var(--DIM) / 4)) rotateX(90deg) rotateY(0deg) rotateZ(0deg);}
                 50% {transform: translate3d(calc(var(--DIM) / 8), calc(var(--DIM) / 2), calc(var(--DIM) / 4)) rotateX(90deg) rotateY(0deg) rotateZ(90deg);}
@@ -226,7 +259,22 @@
                 100% {transform: translate3d(calc(var(--DIM) * 3 / 8), 0px, 0px) rotateX(270deg) rotateY(-90deg) rotateZ(90deg);}
             }
 
-            @keyframes blue {
+            @keyframes enter-blue {
+                0% {transform: translate3d(calc(var(--DIM) * 3 / -8), 0px, calc(var(--DIM) / 4)) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
+                8.3% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) / 4), calc(var(--DIM) / 4)) rotateX(-90deg) rotateY(0deg) rotateZ(0deg);}
+                16.7% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) / 2), calc(var(--DIM) / 4)) rotateX(-180deg) rotateY(0deg) rotateZ(0deg);}
+                25% {transform: translate3d(calc(var(--DIM) * 3 / -8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(-270deg) rotateY(0deg) rotateZ(0deg);}
+                33.3% {transform: translate3d(calc(var(--DIM) / -8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(-270deg) rotateY(0deg) rotateZ(-90deg);}
+                41.7% {transform: translate3d(calc(var(--DIM) / 8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(-270deg) rotateY(0deg) rotateZ(-180deg);}
+                50% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) * 3 / 4), calc(var(--DIM) / 4)) rotateX(-270deg) rotateY(0deg) rotateZ(-270deg);}
+                58.3% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) / 2), calc(var(--DIM) / 4)) rotateX(-180deg) rotateY(0deg) rotateZ(-270deg);}
+                66.7% {transform: translate3d(calc(var(--DIM) * 3 / 8), calc(var(--DIM) / 4), calc(var(--DIM) / 4)) rotateX(-90deg) rotateY(0deg) rotateZ(-270deg);} 
+                75% {transform: translate3d(calc(var(--DIM) * 3 / 8), 0px, calc(var(--DIM) / 4)) rotateX(0deg) rotateY(0deg) rotateZ(-270deg);}
+                83.3% {transform: translate3d(calc(var(--DIM) / 8), 0px, calc(var(--DIM) / 4)) rotateX(0deg) rotateY(-90deg) rotateZ(-270deg);}
+                91.7% {transform: translate3d(calc(var(--DIM) / -8), 0px, calc(var(--DIM) / 4)) rotateX(0deg) rotateY(-180deg) rotateZ(-270deg);}
+                100% {transform: translate3d(calc(var(--DIM) * 3 / -8), 0px, calc(var(--DIM) / 4)) rotateX(0deg) rotateY(-270deg) rotateZ(-270deg);}
+            }
+            @keyframes logo-blue {
                 0% {transform: translate3d(calc(var(--DIM) * 3 / -8), 0px, calc(var(--DIM) / 4)) rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
                 25% {transform: translate3d(calc(var(--DIM) / -8), 0px, calc(var(--DIM) / 4)) rotateX(0deg) rotateY(90deg) rotateZ(0deg);}
                 50% {transform: translate3d(calc(var(--DIM) / -8), calc(var(--DIM) / 4), calc(var(--DIM) / 4)) rotateX(-90deg) rotateY(90deg) rotateZ(0deg);}
@@ -249,21 +297,14 @@
                 0% {opacity: 0;}
                 100% {opacity: 1;}
             }
-
-            #enter {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate3d(-50%, -50%, 0px);
-            }
         </style>
     </head>
     <body>
-        <input id="enter" type="button" value="ENTER" onclick="enter()">
         <audio id="audio" src="{{ 'zapsplat_leisure_puzzle_rubiks_cube_single_rotate_003_49475.mp3' | relative_url }}" type="audio/mpeg"></audio>
         <script>
             function enter() {
-                document.getElementById("design").classList.add("logo-anim");
+                document.getElementById("enter-button").style.opacity = 0;
+                
                 document.getElementById("cubes").classList.add("logo-anim");
                 var footprints = document.getElementsByClassName("footprint");
                 for (var i = 0; i < footprints.length; i++) {
@@ -273,6 +314,7 @@
                 document.getElementById("blue").classList.add("logo-anim");
                 document.getElementById("name").classList.add("logo-anim");
                 
+                /*
                 var popupAudioPlayer = document.getElementById("audio")
                 let counter = 4;
                 const customPlay = function() {      
@@ -287,6 +329,7 @@
                 popupAudioPlayer.currentTime = 0;
                 popupAudioPlayer.loop = false;    
                 customPlay();
+                */
             }
         </script>
         <div id="logo">
@@ -377,7 +420,7 @@
                         </div>
                     </div>
                     <div class="wrap">
-                        <div id="red" class="cube red">
+                        <div id="red" class="cube red enter-anim">
                             <div></div>
                             <div></div>
                             <div></div>
@@ -387,7 +430,7 @@
                         </div>
                     </div>
                     <div class="wrap">
-                        <div id="blue" class="cube blue">
+                        <div id="blue" class="cube blue enter-anim">
                             <div></div>
                             <div></div>
                             <div></div>
@@ -403,5 +446,8 @@
                 </div>
             </div>
         </div>
+        <a id="enter-button" onclick="enter()">
+            <h1>ENTER SITE</h1>
+        </a>
     </body>
 </html>

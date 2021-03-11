@@ -1,3 +1,3 @@
 ---
-layout: dice
+layout: trail2
 ---
