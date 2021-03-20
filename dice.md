@@ -1,3 +1,3 @@
 ---
-layout: trail2
+layout: trail
 ---

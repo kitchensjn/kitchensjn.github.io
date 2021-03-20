@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ site.name }}</title>
+        <title>Trail Data Viz</title>
         <!-- Load d3.js -->
         <script src="https://d3js.org/d3.v4.js"></script>
     
@@ -14,7 +14,7 @@
 
     <body>
         <!-- Create a div where the graph will take place -->
-        <div id="my_dataviz"></div>
+        <div id="daily-mileage"></div>
 
         <script>
 
@@ -25,7 +25,7 @@
                 height = 900 - margin.top - margin.bottom;
             
             // append the svg object to the body of the page
-            var svg = d3.select("#my_dataviz")
+            var svg = d3.select("#daily-mileage")
               .append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
@@ -34,7 +34,7 @@
                       "translate(" + margin.left + "," + margin.top + ")");
             
             // Parse the Data
-            d3.csv("AppalachianTrail_JamesKitchens.csv", function(data) {
+            d3.csv("data/AppalachianTrail_JamesKitchens.csv", function(data) {
             
               // Add X axis
               var x = d3.scaleLinear()
@@ -62,43 +62,57 @@
                 .call(d3.axisLeft(y))
                 .select(".domain").remove()
                 .call(d3.axisLeft(y).tickSize(0))
-                
-                
-                
-                
-                var myColor = d3.scaleOrdinal().domain([
-                    "Georgia",
-                    "North Carolina",
-                    "North Carolina / Tennessee",
-                    "Tennessee",
-                    "Virginia",
-                    "West Virginia",
-                    "Maryland",
-                    "Pennsylvania",
-                    "New Jersey",
-                    "New York",
-                    "Connecticut",
-                    "Massachusetts",
-                    "Vermont",
-                    "New Hampshire",
-                    "Maine"
-                ]).range([
-                    "#2D8C0A",
-                    "#40493B",
-                    "#A4AE9E",
-                    "#0093CD",
-                    "#005E96",
-                    "#2D8C0A",
-                    "#40493B",
-                    "#A4AE9E",
-                    "#0093CD",
-                    "#005E96",
-                    "#2D8C0A",
-                    "#40493B",
-                    "#A4AE9E",
-                    "#0093CD",
-                    "#005E96"
-                ]);
+                   
+              var myColor = d3.scaleOrdinal().domain([
+                  "Georgia",
+                  "North Carolina",
+                  "North Carolina / Tennessee",
+                  "Tennessee",
+                  "Virginia",
+                  "West Virginia",
+                  "Maryland",
+                  "Pennsylvania",
+                  "New Jersey",
+                  "New York",
+                  "Connecticut",
+                  "Massachusetts",
+                  "Vermont",
+                  "New Hampshire",
+                  "Maine"
+              ]).range([
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#0093CD",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  "#40493B",
+                  /*
+                  "#2D8C0A",
+                  "#40493B",
+                  "#A4AE9E",
+                  "#0093CD",
+                  "#005E96",
+                  "#2D8C0A",
+                  "#40493B",
+                  "#A4AE9E",
+                  "#0093CD",
+                  "#005E96",
+                  "#2D8C0A",
+                  "#40493B",
+                  "#A4AE9E",
+                  "#0093CD",
+                  "#005E96"
+                  */
+              ]);
                 
             
               //Bars
@@ -111,14 +125,7 @@
                 .attr("width", function(d) { return x(d.MileageForDay); })
                 .attr("height", y.bandwidth() )
                 .attr("fill", function (d){ return myColor(d.State); });
-            
-            
-                // .attr("x", function(d) { return x(d.Country); })
-                // .attr("y", function(d) { return y(d.Value); })
-                // .attr("width", x.bandwidth())
-                // .attr("height", function(d) { return height - y(d.Value); })
-                // .attr("fill", "#69b3a2")
-            
+          
             })
             
         </script>

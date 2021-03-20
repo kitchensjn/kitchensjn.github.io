@@ -1,0 +1,149 @@
+DaySinceStart,DateMonth,DateDay,DateYear,Mile,MileageForDay,Location,ElevationFeet,HostelHotel,NearbyTown,State,CampingStyle
+1,2,17,16,8.1,8.1,Hawk Mountain Shelter,3200,,,Georgia,Shelter
+2,2,18,16,17.3,9.2,"USFS 42, Gooch Gap",2821,,,Georgia,Tent
+3,2,19,16,31.7,14.4,"U.S. 19 & 129, Neel Gap",3125,Mountain Crossings,,Georgia,Hostel
+4,2,20,16,38.6,6.9,"Ga. 348, Hogpen Gap",3250,,,Georgia,Tent
+5,2,21,16,50.5,11.9,Blue Mountain Shelter,3900,,,Georgia,Shelter
+6,2,22,16,63.3,12.8,Sassafras Gap,3500,,,Georgia,Tent
+7,2,23,16,69.6,6.3,"U.S. 76, Dicks Creek Gap",2675,Top of Georgia Hostel and Hiking Center,"Hiawassee, GA 30546",Georgia,Hostel
+8,2,24,16,74.1,4.5,Plumorchard Gap Shelter,3050,,,Georgia,Shelter
+9,2,25,16,86.3,12.2,Standing Indian Shelter,4760,,,North Carolina,Tent
+10,2,26,16,102.5,16.2,Long Branch Shelter,4503,,,North Carolina,Shelter
+11,2,27,16,114,11.5,Siler Bald Shelter,4600,,,North Carolina,Shelter
+12,2,28,16,131.4,17.4,"Wesser Creek Trail, Wesser Bald Shelter",4115,,,North Carolina,Shelter
+13,2,29,16,137.1,5.7,"U.S. 19, U.S. 74, Wesser, N.C.",1723,Nantahala Outdoor Center,,North Carolina,Hostel
+14,3,1,16,144,6.9,Sassafras Gap Shelter,4330,,,North Carolina,Shelter
+15,3,2,16,159.2,15.2,Cable Gap Shelter,2880,,,North Carolina,Shelter
+16,3,3,16,170.8,11.6,Shuckstack Fire Tower,3800,,,North Carolina,Tent
+17,3,4,16,183.2,12.4,Eagle Creek Trail to Spence Field Shelter,4915,,,North Carolina,Shelter
+18,3,5,16,195,11.8,Silers Bald Shelter,5460,,,North Carolina,Shelter
+19,3,6,16,207.1,12.1,"U.S. 441, Newfound Gap",5045,Grand Prix Motel,"Gatlinburg, TN 37738",North Carolina,Hotel
+20,3,7,16,222.2,15.1,Tri-Corner Knob Shelter,5920,,,North Carolina,Shelter
+21,3,8,16,239.2,17,State Line Branch,1600,,,North Carolina / Tennessee,Tent
+22,3,9,16,247.5,8.3,"Deep Gap, Groundhog Creek Shelter",2900,,,North Carolina / Tennessee,Shelter
+23,3,10,16,264.6,17.1,Big Rock Spring,3730,,,North Carolina / Tennessee,Tent
+24,3,11,16,273.7,9.1,"U.S. 25 & 70, N.C. 209",1326,The Hostel at Laughing Heart Lodge,"Hot Springs, NC 28743",North Carolina / Tennessee,Hostel
+25,3,12,16,284.7,11,Spring Mountain Shelter,3300,,,North Carolina / Tennessee,Shelter
+26,3,13,16,293.3,8.6,Little Laurel Shelter,3300,,,North Carolina / Tennessee,Shelter
+27,3,14,16,309.6,16.3,Rector Laurel Road,2960,,,North Carolina / Tennessee,Hostel
+28,3,15,16,309.6,0,Rector Laurel Road,2960,,,North Carolina / Tennessee,Hostel
+29,3,16,16,328.7,19.1,Whistling Gap,3650,,,North Carolina / Tennessee,Tent
+30,3,17,16,342.2,13.5,River Road,1700,Nolichucky Hostel and Outfitters (Uncle Johnny's),"Erwin, TN 37650",North Carolina / Tennessee,Hostel
+31,3,18,16,355.9,13.7,Unaka Mountain,5180,,,North Carolina / Tennessee,Tent
+32,3,19,16,368.3,12.4,Clyde Smith Shelter,4400,,,North Carolina / Tennessee,Shelter
+33,3,20,16,383.9,15.6,"Yellow Mountain Gap, Overmountain Gap",4682,,,North Carolina / Tennessee,Shelter
+34,3,21,16,393.1,9.2,U.S. 19E,2895,Mountain Harbour B&B and Hiker Hostel,"Roan Mountain, TN 37687",Tennessee,Hostel
+35,3,22,16,411.5,18.4,Moreland Gap Shelter,3815,,,Tennessee,Shelter
+36,3,23,16,428.7,17.2,Watauga Lake Shelter,2130,,,Tennessee,Shelter
+37,3,24,16,442.7,14,Iron Mountain Shelter,4125,,,Tennessee,Shelter
+38,3,25,16,462.4,19.7,Unknown,Unknown,,,Tennessee,Shelter
+39,3,26,16,468.8,6.4,U.S. 58,1928,The Place,"Damascus, VA 24236",Virginia,Hostel
+40,3,27,16,484.8,16,Lost Mountain Shelter,3360,,,Virginia,Shelter
+41,3,28,16,502.7,17.9,Scales Trail Junction,4650,,,Virginia,Tent
+42,3,29,16,522.4,19.7,Trimpi Shelter,2900,,,Virginia,Shelter
+43,3,30,16,545.5,23.1,Spring,2610,,,Virginia,Tent
+44,3,31,16,558.5,13,Knot Maul Branch Shelter,2880,,,Virginia,Shelter
+45,4,1,16,574.1,15.6,"Va. 623, Burkes Garden Road, Garden Mountain",3880,,,Virginia,Family
+46,4,2,16,574.1,0,"Va. 623, Burkes Garden Road, Garden Mountain",3880,,,Virginia,Family
+47,4,3,16,598.1,24,Va. 611,2820,,,Virginia,Tent
+48,4,4,16,601.8,3.7,Jenny Knob Shelter,2800,,,Virginia,Shelter
+49,4,5,16,625.8,24,Doc's Knob Shelter,3555,,,Virginia,Shelter
+50,4,6,16,634.6,8.8,Lane Street to Bus. U.S. 460,1650,Holiday Motor Lodge,"Pearisburg, VA 24134",Virginia,Hostel
+51,4,7,16,645.8,11.2,Unknown,Unknown,,,Virginia,Tent
+52,4,8,16,658,12.2,Bailey Gap Shelter,3525,,,Virginia,Shelter
+53,4,9,16,679,21,Sarver Hollow Shelter,3000,,,Virginia,Shelter
+54,4,10,16,695.1,16.1,Pickle Branch Shelter,1845,,,Virginia,Shelter
+55,4,11,16,712.1,17,Campbell Shelter,2580,,,Virginia,Shelter
+56,4,12,16,727.5,15.4,U.S. 220,1350,Howard Johnson Express Inn,"Daleville, VA 24083",Virginia,Hotel
+57,4,13,16,727.5,0,U.S. 220,1350,Howard Johnson Express Inn,"Daleville, VA 24083",Virginia,Hotel
+58,4,14,16,746,18.5,Bobblets Gap Shelter,1920,,,Virginia,Shelter
+59,4,15,16,764.4,18.4,Cornelius Creek Shelter,3145,,,Virginia,Shelter
+60,4,16,16,782.1,17.7,Matts Creek Shelter,835,,,Virginia,Shelter
+61,4,17,16,804.3,22.2,Brown Mountain Creek Shelter,1395,,,Virginia,Shelter
+62,4,18,16,809.9,5.6,"Old Hotel Trail, Cow Camp Gap Shelter",3428,,,Virginia,Shelter
+63,4,19,16,826.7,16.8,The Priest Shelter,3840,,,Virginia,Shelter
+64,4,20,16,840.5,13.8,Maupin Field Shelter,2720,,,Virginia,Shelter
+65,4,21,16,861.3,20.8,"U.S. 250, I-64, Rockfish Gap",1902,Quality Inn,"Waynesboro, VA 22980",Virginia,Hotel
+66,4,22,16,915.8,6,Bearfence Mountain Hut,3110,,,Virginia,Shelter
+67,4,23,16,938.2,22.4,Byrds Nest #3 Hut,3290,,,Virginia,Tent
+68,4,24,16,954.1,15.9,Little Hogback Mountain,3050,,,Virginia,Tent
+69,4,25,16,969.1,15,U.S. 522,950,Mountain Home B&B,"Front Royal, VA 22630",Virginia,Hostel
+70,4,26,16,984.3,15.2,Dick's Dome Shelter / Whiskey Hollow Shelter,1230,,,Virginia,Shelter
+71,4,27,16,1002.6,18.3,Bears Den Rocks,1350,Bears Den Hostel,,Virginia,Hostel
+72,4,28,16,1022.4,19.8,Appalachian Trail Conservancy Side Trail,394,Teahorse Hostel,"Harpers Ferry, WV 25425",West Virginia,Hostel
+73,4,29,16,1033.5,11.1,Crampton Gap Shelter,1000,,,Maryland,Shelter
+74,4,30,16,1054.2,20.7,Ensign Cowall Shelter,1430,,,Maryland,Shelter
+75,5,1,16,1072.3,18.1,Tumbling Run Shelters,1120,,,Pennsylvania,Shelter
+76,5,2,16,1091.9,19.6,Birch Run Shelter,1795,,,Pennsylvania,Shelter
+77,5,3,16,1109,17.1,"Tagg Run, James Fry (Tagg Run) Shelter",805,,,Pennsylvania,Shelter
+78,5,4,16,1126.2,17.2,Ridge Drive,460,,,Pennsylvania,Tent
+79,5,5,16,1146.7,20.5,Market St.,385,Doyle Hotel,"Duncannon, PA 17020",Pennsylvania,Hotel
+80,5,6,16,1154.8,8.1,Pa. 225,1250,,,Pennsylvania,Family
+81,5,7,16,1157.6,2.8,Peters Mountain Shelter,970,,,Pennsylvania,Shelter
+82,5,8,16,1182.1,24.5,I-81,450,,,Pennsylvania,Tent
+83,5,9,16,1198.7,16.6,Hertlein Campsite,1200,,,Pennsylvania,Tent
+84,5,10,16,1216.8,18.1,"Port Clinton, PA 19549",400,Port Clinton Hotel,"Port Clinton, PA 19549",Pennsylvania,Hotel
+85,5,11,16,1234.8,18,Dans Pulpit,1600,,,Pennsylvania,Tent
+86,5,12,16,1251.8,17,"Ashfield Road, Lehigh Furnace Gap",1320,,,Pennsylvania,Tent
+87,5,13,16,1272.9,21.1,Leroy A. Smith Shelter,1410,,,Pennsylvania,Shelter
+88,5,14,16,1293,20.1,Pa. 611,400,The Presbyterian Church of the Mountain Hiker Center,"Delaware Water Gap, PA 18327",Pennsylvania,Hostel
+89,5,15,16,1306.9,13.9,Millbrook-Blairstown Road/County Road 602,1260,,,New Jersey,Tent
+90,5,16,16,1324.4,17.5,Gren Anderson Shelter,1320,,,New Jersey,Shelter
+91,5,17,16,1342.7,18.3,Road to Jim Murray property,660,,,New Jersey,Tent
+92,5,18,16,1361.3,18.6,Wawayanda Shelter,1200,,,New Jersey,Shelter
+93,5,19,16,1379.3,18,Buchanan Mountain,1142,,,New York,Tent
+94,5,20,16,1388.8,9.5,Arden Velley Road,1196,,,New York,Family
+95,5,21,16,1405.4,16.6,Hemlock Springs Campsite,550,,,New York,Tent
+96,5,22,16,1427.1,21.7,Shenandoah Tenting area,900,,,New York,Tent
+97,5,23,16,1445.2,18.1,Telephone Pioneers Shelter,910,,,New York,Shelter
+98,5,24,16,1465.4,20.2,Thayer Brook,900,,,Connecticut,Tent
+99,5,25,16,1483.7,18.3,Pine Swamp Brook Shelter,1075,,,Connecticut,Shelter
+100,5,26,16,1498.5,14.8,U.S. 44,700,Maria McCabe,"Salisbury, CT 06088",Connecticut,Hostel
+101,5,27,16,1512.6,14.1,The Hemlocks Shelter,1880,,,Massachusetts,Shelter
+102,5,28,16,1527,14.4,"Ice Gulch, Tom Leonard Shelter",1540,,,Massachusetts,Shelter
+103,5,29,16,1548.1,21.1,Upper Goose Pond Cabin,1480,,,Massachusetts,Shelter
+104,5,30,16,1568.7,20.6,"Mass. 8, Mass. 9",1200,Thomas Levardi,"Dalton, MA 01226",Massachusetts,Hostel
+105,5,31,16,1589.2,20.5,Wilbur Clearing Shelter,2300,,,Massachusetts,Shelter
+106,6,1,16,1599.1,9.9,Seth Warner Shelter,2180,,,Vermont,Tent
+107,6,2,16,1620.7,21.6,Goddard Shelter,3540,,,Vermont,Shelter
+108,6,3,16,1640,19.3,Stratton Pond Trail to Stratton Pond Shelter,2565,,,Vermont,Tent
+109,6,4,16,1650.7,10.7,Vt. 11 & 30,1840,Green Mountain Hostel,"Manchester Center, VT 05255",Vermont,Hostel
+110,6,5,16,1665.5,14.8,Lost Pond Shelter,2150,,,Vermont,Shelter
+111,6,6,16,1684.1,18.6,Clarendon Shelter,1190,,,Vermont,Shelter
+112,6,7,16,1706.7,22.6,Unknown,Unknown,,,Vermont,Tent
+113,6,8,16,1720.7,14,Winturri Shelter,1910,,,Vermont,Shelter
+114,6,9,16,1730,9.3,Cloudland Road,1480,Cloudland Farm Country Market & Restaurant,,Vermont,Hostel
+115,6,10,16,1746.9,16.9,"Nh. 10, Dartmouth College",520,"Sweet Pea (Trail Angel, mother of ""The Brain"")","Hanover, NH 03755",New Hampshire,Hostel
+116,6,11,16,1763.6,16.7,Trapper John Shelter,1345,,,New Hampshire,Shelter
+117,6,12,16,1778.7,15.1,Brackett Brook,1400,,,New Hampshire,Tent
+118,6,13,16,1791.3,12.6,Jeffers Brook Shelter,1350,,,New Hampshire,Shelter
+119,6,14,16,1807.2,15.9,Eliz Brook Shelter and Campsite,2400,,,New Hampshire,Tent
+120,6,15,16,1816,8.8,"I-93, U.S. 3, Franconia Notch",1450,The Notch Hostel,"North Woodstock, NH 03262",New Hampshire,Hostel
+121,6,16,16,1826.3,10.3,AMC Garfield Ridge Shelter and Campsite,3900,,,New Hampshire,Shelter
+122,6,17,16,1840.8,14.5,AMC Ethan Pond Shelter and Campsite,2860,,,New Hampshire,Tent
+123,6,18,16,1854.8,14,AMC Lakes of the Clouds Hut,5125,,,New Hampshire,Shelter
+124,6,19,16,1869.7,14.9,"Nh. 16, Pinkham Notch, Pinkham Notch Visitors Center",2050,AMC Joe Dodge Lodge,,New Hampshire,Hotel
+125,6,20,16,1869.7,0,"Nh. 16, Pinkham Notch, Pinkham Notch Visitors Center",2050,AMC Joe Dodge Lodge,,New Hampshire,Hotel
+126,6,21,16,1888.9,19.2,Rattle River Shelter and Campsite,1260,,,New Hampshire,Shelter
+127,6,22,16,1898.7,9.8,"Trident Pass, Page Pond",2240,,,New Hampshire,Tent
+128,6,23,16,1907.8,9.1,Carlo Col Trail Jct. to Carlo Col Shelter and Campsite,2945,,,Maine,Shelter
+129,6,24,16,1917.3,9.5,"Speck Pond Trail, AMC Speck Pond Shelter and Campsite",3500,,,Maine,Shelter
+130,6,25,16,1934,16.7,Burroughs Brook,2050,,,Maine,Tent
+131,6,26,16,1951,17,Bemis Mountain Lean-to,2790,,,Maine,Shelter
+132,6,27,16,1968.7,17.7,Maine 4,1700,Farmhouse Hostel,"Rangeley, ME 04970",Maine,Hostel
+133,6,28,16,1987.4,18.7,Spaulding Mountain Lean-to,3140,,,Maine,Shelter
+134,6,29,16,2000.9,13.5,Maine 27,1450,Stratton Motel & Hostel Box,"Stratton, ME 04982",Maine,Hostel
+135,6,30,16,2011.3,10.4,Safford Notch and Campsite,2230,,,Maine,Tent
+136,7,1,16,2011.3,0,Safford Notch and Campsite,2230,,,Maine,Tent
+137,7,2,16,2033.9,22.6,Pierce Pond Lean-to,1150,,,Maine,Shelter
+138,7,3,16,2037.9,4,U.S. 201,520,The Sterling Inn,"Caratunk, ME 04925",Maine,Hostel
+139,7,4,16,2052.6,14.7,Bald Mountain Brook Lean-to,1280,,,Maine,Shelter
+140,7,5,16,2065.6,13,Horseshoe Canyon Lean-to,880,,,Maine,Shelter
+141,7,6,16,2074.6,9,Maine 15,1215,Shaw's Lodging,"Monson, ME 04464",Maine,Hostel
+142,7,7,16,2093.7,19.1,Cloud Pond Lean-to,2420,,,Maine,Tent
+143,7,8,16,2112.3,18.6,Sidney Tappan Campsite,2425,,,Maine,Tent
+144,7,9,16,2129.4,17.1,Cooper Brook Falls Lean-to,880,,,Maine,Shelter
+145,7,10,16,2155.2,25.8,Crescent Pond (west end),980,,,Maine,Tent
+146,7,11,16,2174,18.8,"Abol Bridge over West Branch of Penobscot River, junction with International A.T., Abol Bridge Campground and Store",588,,,Maine,Tent
+147,7,12,16,2183.9,9.9,"Katahdin Stream Campground, Ranger Station, The Birches Campsite",1070,,,Maine,Shelter
+148,7,13,16,2189.1,5.2,"Katahdin, Baxter Peak",5268,,,Maine,End
