@@ -337,7 +337,7 @@ Here is the plots of the trail elevation profile made in D3.js:
     svg.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
-                           (height + margin.top-30) + ")")
+                           (height + margin.top) + ")")
       .style("text-anchor", "middle")
       .text("Mile");
     svg.append("text")
@@ -461,7 +461,7 @@ elevation-D3.html
     svg.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
-                           (height + margin.top - 30) + ")")
+                           (height + margin.top) + ")")
       .style("text-anchor", "middle")
       .text("Mile");
 
@@ -644,7 +644,7 @@ This code extracts the GPX data into a pandas.DataFrame, then calculates the thr
     svg2.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
-                           (height + margin.top - 30) + ")")
+                           (height + margin.top) + ")")
       .style("text-anchor", "middle")
       .text("Mile");
     svg2.append("text")
