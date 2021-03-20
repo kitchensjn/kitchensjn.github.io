@@ -1,6 +1,7 @@
 ---
 layout: "post"
 link: "/blog/thru-hiking-data-viz"
+github-link: "https://github.com/kitchensjn/trail-data-viz"
 title: "Thru-Hiking Data Visualization"
 date: "March 17, 2021"
 skills: [Hiking, D3, JavaScript, Python]
@@ -855,3 +856,4 @@ Because the starting trail length and rescaled trail length were pretty signific
 
 The southernmost/leftmost peak is Mount Moosilauke at 4802 feet. the GPX track has this peak at with its highest point at 1773.3 miles (original, dotted line) or 1815.1 miles (rescaled, solid line), whereas according to the guidebook, this peak is at mile-marker 1795.9 (dashed line). Disappointingly, it was pretty clear that this method of rescaling the length of the trail would not properly align points between the two datasets, overestimating the peak's distance from the southern terminus in Georgia by approximately 20 miles.
 
+In a future post, I will discuss other methods for rescaling and bringing these datasets together. All of the code used in this post can be found [HERE](https://github.com/kitchensjn/trail-data-viz){:target="_blank"} If you enjoyed this tutorial and want to use this code in your own project, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!
