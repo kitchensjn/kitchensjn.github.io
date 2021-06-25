@@ -1,0 +1,233 @@
+I"إ<p class="images"><img src="/assets/blog/animated-website-background/animated-website-background-1.gif" alt="Animated Website Background - 1" /></p>
+
+<p>The Leaflet JavaScript package creates interactive maps that can display geographic information, such as points, lines, and polygons. Many of my websites implement these maps in some capacity or another. By default, all maps that are generated are rectangular in shape, and for most circumstances, this provides this clearest view of all of your information. At the same time, this is a rather rigid restriction that potentially limits some of the creative ways to include a map within your website. This week, I’ve found a way of implementing irregularly shaped Leaflet maps that can be changed dynamically according to the polygons in a GeoJSON file.</p>
+
+<h3 id="geojson-polygon">GeoJSON Polygon</h3>
+
+<p>A GeoJSON file is a special type of JSON file which stores geographic information. It is one of the most common ways to store this information and is standard across the field (non-proprietary). For this example, I am going to use a GeoJSON file that contains the administrative boundaries of Sequoia National Park. The park boundaries are stored as the variable “park_boundary”, seen later in this blog post.</p>
+
+<p class="codeheader">sequoia.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">park_boundary</span> <span class="o">=</span> <span class="p">{</span>
+<span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">FeatureCollection</span><span class="dl">"</span><span class="p">,</span>
+<span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">national_parks</span><span class="dl">"</span><span class="p">,</span>
+<span class="dl">"</span><span class="s2">crs</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">properties</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">urn:ogc:def:crs:OGC:1.3:CRS84</span><span class="dl">"</span> <span class="p">}</span> <span class="p">},</span>
+<span class="dl">"</span><span class="s2">features</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+<span class="p">{</span> <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Feature</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">properties</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">OBJECTID</span><span class="dl">"</span><span class="p">:</span> <span class="mi">57</span><span class="p">,</span> <span class="dl">"</span><span class="s2">UNIT_CODE</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SEQU</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">GIS_Notes</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lands - http:</span><span class="se">\</span><span class="s2">/</span><span class="se">\</span><span class="s2">/landsnet.nps.gov</span><span class="se">\</span><span class="s2">/tractsnet</span><span class="se">\</span><span class="s2">/documents</span><span class="se">\</span><span class="s2">/SEQU</span><span class="se">\</span><span class="s2">/Metadata</span><span class="se">\</span><span class="s2">/sequ_metadata.xml</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">UNIT_NAME</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sequoia National Park</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">DATE_EDIT</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2008-11-26T00:00:00.000Z</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">STATE</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CA</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">REGION</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">PW</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">GNIS_ID</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">266000</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">UNIT_TYPE</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">National Park</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">CREATED_BY</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Lands</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">METADATA</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https:</span><span class="se">\</span><span class="s2">/</span><span class="se">\</span><span class="s2">/irma.nps.gov</span><span class="se">\</span><span class="s2">/App</span><span class="se">\</span><span class="s2">/Reference</span><span class="se">\</span><span class="s2">/Profile</span><span class="se">\</span><span class="s2">/1048045</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">PARKNAME</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Sequoia</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">CreationDa</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2020-01-09T22:16:03.201Z</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Creator</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SCarlton@nps.gov_nps</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">EditDate</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2020-01-09T22:16:03.201Z</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Editor</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SCarlton@nps.gov_nps</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Shape__Are</span><span class="dl">"</span><span class="p">:</span> <span class="mf">2553244941.7382798</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Shape__Len</span><span class="dl">"</span><span class="p">:</span> <span class="mf">320822.95034296502</span><span class="p">,</span> <span class="dl">"</span><span class="s2">GlobalID</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">c07cc3e8-2f37-44fa-9c20-32b66972a030</span><span class="dl">"</span> <span class="p">},</span> <span class="dl">"</span><span class="s2">geometry</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">MultiPolygon</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">coordinates</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.914647943730998</span><span class="p">,</span> <span class="mf">36.608600206354502</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.914348244688</span><span class="p">,</span> <span class="mf">36.608659375380498</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.913986268634005</span><span class="p">,</span> <span class="mf">36.608726906411498</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.913570534567995</span><span class="p">,</span> <span class="mf">36.608749006441599</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.913229898506998</span><span class="p">,</span> <span class="mf">36.608712036460702</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.913046812472004</span><span class="p">,</span> <span class="mf">36.608660965467898</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.912764831413</span><span class="p">,</span> <span class="mf">36.608543640474998</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.912398833346003</span><span class="p">,</span> <span class="mf">36.608481697493403</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.911960706277995</span><span class="p">,</span> <span class="mf">36.608526394527203</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.911571146225</span><span class="p">,</span> <span class="mf">36.608645654565301</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.911414569209001</span><span class="p">,</span> <span class="mf">36.608738577585001</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mf">118.91141651321</span><span class="p">,</span> <span class="mf">36.6087473655857</span> <span class="p">]...</span>
+</code></pre></div></div>
+
+<h3 id="leaflet-implementation">Leaflet Implementation</h3>
+
+<p>First, generate a Leaflet map that displays your polygon as usual. This code below will fit the bounds of the polygon to the map so that it is completely visible. Not all of this code will be used in the final product, but it will be useful in the process.</p>
+
+<p class="codeheader">index.html</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+    
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;title&gt;</span>National Parks Explorer<span class="nt">&lt;/title&gt;</span>
+
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"</span> <span class="na">integrity=</span><span class="s">"sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="</span> <span class="na">crossorigin=</span><span class="s">""</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"</span> <span class="na">integrity=</span><span class="s">"sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="</span> <span class="na">crossorigin=</span><span class="s">""</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"sequoia.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+    <span class="nt">&lt;/head&gt;</span>
+
+    <span class="nt">&lt;body&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"position: absolute; height: 100%; width: 100%; top: 0px; left: 0px; z-index: 1;"</span> <span class="na">id=</span><span class="s">"map"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    
+        <span class="nt">&lt;script&gt;</span>
+            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="dl">'</span><span class="s1">map</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">zoomDelta</span><span class="p">:</span> <span class="mf">0.1</span>
+            <span class="p">});</span>
+
+            <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">attribution</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tiles &amp;copy; Esri &amp;mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community</span><span class="dl">'</span>
+            <span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+
+            <span class="kd">var</span> <span class="nx">sequoia</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">park_boundary</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+
+            <span class="nx">map</span><span class="p">.</span><span class="nx">fitBounds</span><span class="p">(</span><span class="nx">sequoia</span><span class="p">.</span><span class="nx">getBounds</span><span class="p">());</span>
+        <span class="nt">&lt;/script&gt;</span>
+
+    <span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>Next, the most critical section of the implementation is, rather than generating a regular polygon, generating a mask that overlays the map, hiding any region that is outside the selected polygon. I found some code that extends the original Leaflet Polygon, allowing for this masking functionality (<a href="https://embed.plnkr.co/plunk/1I7dIw">here</a>). I made it so that the fill color of the mask matched that of my websites background.</p>
+
+<p class="codeheader">index.html</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+    
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;title&gt;</span>National Parks Explorer<span class="nt">&lt;/title&gt;</span>
+
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"</span> <span class="na">integrity=</span><span class="s">"sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="</span> <span class="na">crossorigin=</span><span class="s">""</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"</span> <span class="na">integrity=</span><span class="s">"sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="</span> <span class="na">crossorigin=</span><span class="s">""</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"Sequoia.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+    <span class="nt">&lt;/head&gt;</span>
+
+    <span class="nt">&lt;body&gt;</span>
+
+        <span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"position: absolute; height: 100%; width: 100%; top: 0px; left: 0px; z-index: 1;"</span> <span class="na">id=</span><span class="s">"map"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    
+        <span class="nt">&lt;script&gt;</span>
+
+            <span class="c1">// credits: https://github.com/turban/Leaflet.Mask</span>
+            <span class="nx">L</span><span class="p">.</span><span class="nx">Mask</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+                <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">stroke</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                    <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">white</span><span class="dl">'</span><span class="p">,</span>
+                    <span class="na">fillOpacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="na">clickable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+
+                    <span class="na">outerBounds</span><span class="p">:</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">LatLngBounds</span><span class="p">([</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">360</span><span class="p">],</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">360</span><span class="p">])</span>
+                <span class="p">},</span>
+
+                <span class="na">initialize</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">latLngs</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+                    
+                    <span class="kd">var</span> <span class="nx">outerBoundsLatLngs</span> <span class="o">=</span> <span class="p">[</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">outerBounds</span><span class="p">.</span><span class="nx">getSouthWest</span><span class="p">(),</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">outerBounds</span><span class="p">.</span><span class="nx">getNorthWest</span><span class="p">(),</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">outerBounds</span><span class="p">.</span><span class="nx">getNorthEast</span><span class="p">(),</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">outerBounds</span><span class="p">.</span><span class="nx">getSouthEast</span><span class="p">()</span>
+                    <span class="p">];</span>
+                    <span class="nx">L</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">initialize</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">outerBoundsLatLngs</span><span class="p">,</span> <span class="nx">latLngs</span><span class="p">],</span> <span class="nx">options</span><span class="p">);</span>	
+                <span class="p">},</span>
+
+            <span class="p">});</span>
+            <span class="nx">L</span><span class="p">.</span><span class="nx">mask</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">latLngs</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Mask</span><span class="p">(</span><span class="nx">latLngs</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+            <span class="p">};</span>
+
+            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="dl">'</span><span class="s1">map</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">zoomDelta</span><span class="p">:</span> <span class="mf">0.1</span>
+            <span class="p">});</span>
+
+            <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+                <span class="na">attribution</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Tiles &amp;copy; Esri &amp;mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community</span><span class="dl">'</span>
+            <span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+
+            <span class="kd">var</span> <span class="nx">coordinates</span> <span class="o">=</span> <span class="nx">park_boundary</span><span class="p">.</span><span class="nx">features</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">geometry</span><span class="p">.</span><span class="nx">coordinates</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">latLngs</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">coordinates</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&lt;</span><span class="nx">coordinates</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">k</span><span class="o">&lt;</span><span class="nx">coordinates</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">latLngs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">LatLng</span><span class="p">(</span><span class="nx">coordinates</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">][</span><span class="nx">k</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="nx">coordinates</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">][</span><span class="nx">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]));</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="kd">var</span> <span class="nx">mask</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">mask</span><span class="p">(</span><span class="nx">latLngs</span><span class="p">,</span> <span class="p">{</span><span class="na">interactive</span><span class="p">:</span> <span class="kc">false</span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+
+            <span class="kd">var</span> <span class="nx">sequoia</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">park_boundary</span><span class="p">,</span> <span class="p">{</span><span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">black</span><span class="dl">"</span><span class="p">,</span> <span class="na">fillOpacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+
+            <span class="nx">map</span><span class="p">.</span><span class="nx">fitBounds</span><span class="p">(</span><span class="nx">sequoia</span><span class="p">.</span><span class="nx">getBounds</span><span class="p">());</span>
+        <span class="nt">&lt;/script&gt;</span>
+
+    <span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>You now have an irregularly shaped Leaflet map that gives a bit more character to your website. One bug with this method is that dragging/panning leads to a delay where you can see the basemap before the polygon is redrawn. As much of this interactivity doesn’t necessarily make sense in this particular implementation, I think that it’s best to simply disable it with the following code.</p>
+
+<p class="codeheader">index.html</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="dl">'</span><span class="s1">map</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="na">zoomControl</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> 
+    <span class="na">attributionControl</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> 
+    <span class="na">dragging</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> 
+    <span class="na">scrollWheelZoom</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">doubleClickZoom</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">boxZoom</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">zoomDelta</span><span class="p">:</span> <span class="mf">0.1</span>
+<span class="p">});</span>
+
+<span class="nx">map</span><span class="p">.</span><span class="nx">removeControl</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">zoomControl</span><span class="p">);</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">removeControl</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">attributionControl</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Because this method removes the basemap attribution to achieve the desired look, it is important to add this back somewhere else on your website.</p>
+
+<h3 id="a-bit-more">A Bit More</h3>
+
+<p>I wanted to give users the ability to view the map in more detail, returning to the original rectangular shape. I made it so that the irregularly shaped map could be clicked and expanded to the full screen. This action also returns many of the interactive features to the map that were previously removed. With this method, I provided two scopes for viewing the map: a less detailed version that is initially displayed and a more detailed version for those interested in exploring more deeply.</p>
+
+<p class="codeheader">index.html</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">L</span><span class="p">.</span><span class="nx">geoJSON</span><span class="p">(</span><span class="nx">park_boundary</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">black</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">fillColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">url(#stripes)</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">fillOpacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">onEachFeature</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">layer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">mouseover</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">({</span>
+                <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span>
+            <span class="p">});</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">;</span>
+            <span class="c1">// document.getElementById("title").style.opacity = 0;</span>
+            <span class="c1">// document.getElementById("floaters").style.animationPlayState = "paused";</span>
+            <span class="c1">// document.getElementById("shadow").style.animationPlayState = "paused";</span>
+        <span class="p">});</span>
+        <span class="nx">layer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">mouseout</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">({</span>
+                <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">black</span><span class="dl">"</span>
+            <span class="p">});</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">black</span><span class="dl">"</span><span class="p">;</span>
+            <span class="c1">// document.getElementById("title").style.opacity = 1;</span>
+            <span class="c1">// document.getElementById("floaters").style.animationPlayState = "running";</span>
+            <span class="c1">// document.getElementById("shadow").style.animationPlayState = "running";</span>
+        <span class="p">});</span>
+        <span class="nx">layer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// Let's say you've got a property called url in your geojsonfeature:</span>
+            
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">shadow</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">animationPlayState</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">paused</span><span class="dl">"</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">shadow</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">floaters</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">animation</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">;</span>
+            
+            <span class="kd">var</span> <span class="nx">polygon_gradient</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">mask</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">({</span><span class="na">fillOpacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">});</span>
+                <span class="nx">polygon_gradient</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">({</span><span class="na">fillOpacity</span><span class="p">:</span> <span class="mi">0</span><span class="p">});</span>
+            <span class="p">},</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">polygon_gradient</span><span class="p">);</span>
+            <span class="c1">//this.setStyle({fillOpacity: 0});</span>
+            <span class="c1">// document.getElementById("floaters").style.animationPlayState = "paused";</span>
+            <span class="c1">// document.getElementById("map").style.transform = "none";</span>
+
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+                <span class="nx">map</span><span class="p">.</span><span class="nx">addControl</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">zoomControl</span><span class="p">);</span>
+                <span class="nx">map</span><span class="p">.</span><span class="nx">addControl</span><span class="p">(</span><span class="nx">map</span><span class="p">.</span><span class="nx">attributionControl</span><span class="p">);</span>
+                <span class="nx">map</span><span class="p">.</span><span class="nx">dragging</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+                <span class="nx">map</span><span class="p">.</span><span class="nx">scrollWheelZoom</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+                <span class="nx">map</span><span class="p">.</span><span class="nx">doubleClickZoom</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+                <span class="nx">map</span><span class="p">.</span><span class="nx">boxZoom</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+            <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span> 
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+
+
+<span class="kd">let</span> <span class="nx">fillPalette</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">transparent</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">rgba(0,0,0,0.65)</span><span class="dl">'</span><span class="p">];</span>
+
+<span class="kd">let</span> <span class="nx">gradientString</span> <span class="o">=</span> <span class="s2">`&lt;linearGradient id="stripes" x1="100%" y1="0%" x2="100%" y2="100%"&gt;
+&lt;stop offset=0 stop-color=</span><span class="p">${</span><span class="nx">fillPalette</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span><span class="s2"> /&gt;
+&lt;stop offset=100% stop-color=</span><span class="p">${</span><span class="nx">fillPalette</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span><span class="s2"> /&gt;
+&lt;/linearGradient&gt;`</span>
+
+<span class="kd">let</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">svg</span><span class="dl">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">svgDefs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElementNS</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://www.w3.org/2000/svg</span><span class="dl">"</span><span class="p">,</span> <span class="dl">'</span><span class="s1">defs</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">svgDefs</span><span class="p">.</span><span class="nx">insertAdjacentHTML</span><span class="p">(</span><span class="dl">'</span><span class="s1">afterbegin</span><span class="dl">'</span><span class="p">,</span> <span class="nx">gradientString</span><span class="p">);</span>
+<span class="nx">svg</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">svgDefs</span><span class="p">);</span>
+</code></pre></div></div>
+:ET
