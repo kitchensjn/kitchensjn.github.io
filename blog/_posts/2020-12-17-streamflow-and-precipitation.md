@@ -54,7 +54,8 @@ ggplot2::ggplot(data=streamflow) +
 ```
 
 {:.images}
-![Precipitation Time Series](/assets/blog/streamflow-and-precipitation/precipitation.png)
+![Streamflow Time Series](/assets/blog/streamflow-and-precipitation/streamflow.png)
+
 
 After plotting the streamflow levels, you can see that the James River recently spiked up to 100,000 cfs, a level that has only been reach once in the previous 13 years. Obviously, there has been a lot of rain within the James River watershed, so let’s figure out exactly how much. To delineate exactly what sections of the land flow towards the gauge coordinates, I’ve returned to the dataRetrieval package.
 
@@ -113,7 +114,7 @@ ggplot(streamflow) +
 ```
 
 {:.images}
-![Streamflow Time Series](/assets/blog/streamflow-and-precipitation/streamflow.png)
+![Precipitation Time Series](/assets/blog/streamflow-and-precipitation/precipitation.png)
 
 To measure the correlation between the mean precipitation in the basin and the streamflow gauge measurement, we can calculate the Pearson correlation using the cor.test function:
 
