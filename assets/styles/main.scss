@@ -35,9 +35,9 @@ a:hover {
     color: {{ site.theme_color }};
 }
 
-.logo {
-    color: {{ site.theme_color }};
-}
+//.logo {
+//    color: {{ site.theme_color }};
+//}
 
 @media screen and (max-width: 868px) {
     #topnav.responsive .section-title:hover {
