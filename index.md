@@ -7,9 +7,7 @@ title_align: right
 headshot: assets/headshot/KitchensJames_Headshot.jpg
 
 bio: |
-  Hi, my name is James Kitchens, and I am a Business Consultant with Venebio Group, LLC, aiding in the analysis of clinical and demographic studies. In December 2019, I graduated from Warren Wilson College in Asheville, North Carolina, where I earned a B.S. in Biology and B.S. in Chemistry. While in undergraduate, I worked in the Warren Wilson College Plant Physiology and Genetics Laboratory as a Research Assistant on projects focused around the conservation of human-impacted species in the United States. I am interested in population biology and the impacts of geography on movement and population structure. I enjoy using computational research as a tool for better understanding the natural world.
-  
-  In January 2020, I moved to Pomona, California and am excited to explore the West Coast (once it is safe to open back up from quarantine)!
+  Hi, my name is James Kitchens, and I am a first year graduate student studying population genetics in the <a href="https://gcbias.org">Coop Lab</a> through the UC Davis Population Graduate Group. Before graduate school, I interned at NASA's Jet Propulsion Lab in Pasadena, California, researching the application of remote sensing for groundwater observation and management. In December 2019, I graduated from Warren Wilson College in Asheville, North Carolina, where I earned a B.S. in Biology and B.S. in Chemistry. While in undergraduate, I worked in the Warren Wilson College Plant Physiology and Genetics Laboratory as a Research Assistant on projects focused around the conservation of human-impacted species in the United States.
 
 skills:
   - [Python, R, Shiny, HTML, CSS, JavaScript, Git, SQLite]
@@ -17,9 +15,9 @@ skills:
   - [DNA Extraction, PCR, Fragment Analysis, NMR]
 
 publications:
-  - Whipple, A.L., C. Ray, et al. Temporal analysis of fecal glucocorticoid metabolites to explore variation within and among territories of a climate-sensitive small mammal. <i>Conservation Physiology</i> (submitted).
-  - Kim et al. An evaluation of remotely sensed and in-situ data sufficiency for SGMA-scale groundwater studies in the Central Valley, California. <i>Journal of the American Water Resources Association</i> (accepted).
-  - Webb et al. (2017) <a href="https://www.frontiersin.org/articles/10.3389/fgene.2017.00030/full" target="_blank">Molecular Genetic Influences on Normative and Problematic Alcohol Use in a Population-Based Sample of College Students</a>. <i>Frontiers in Genetics</i>, 8
+  - Whipple, A.L., C. Ray, et al. (2021) <a href="https://academic.oup.com/conphys/article/9/1/coab024/6262596?login=true">Temporal vs. spatial variation in stress-associated metabolites within a population of climate-sensitive small mammals</a>. <i>Conservation Physiology</i>, Volume 9, Issue 1
+  - Kim et al. (2021) <a href="https://onlinelibrary.wiley.com/doi/10.1111/1752-1688.12898">An evaluation of remotely sensed and in-situ data sufficiency for SGMA-scale groundwater studies in the Central Valley, California</a>. <i>Journal of the American Water Resources Association</i>, Volume 57, Issue 5
+  - Webb et al. (2017) <a href="https://www.frontiersin.org/articles/10.3389/fgene.2017.00030/full" target="_blank">Molecular Genetic Influences on Normative and Problematic Alcohol Use in a Population-Based Sample of College Students</a>. <i>Frontiers in Genetics</i>, Volume 8, Article 30
 
 categories:
   projects:

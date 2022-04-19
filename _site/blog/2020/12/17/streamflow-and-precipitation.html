@@ -102,7 +102,7 @@ devtools::install_github(“USGS-R/dataRetrieval”)
   </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">Date</span><span class="p">,</span><span class="w"> </span><span class="n">CFS</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
 
-<p class="images"><img src="/assets/blog/streamflow-and-precipitation/precipitation.png" alt="Precipitation Time Series" /></p>
+<p class="images"><img src="/assets/blog/streamflow-and-precipitation/streamflow.png" alt="Streamflow Time Series" /></p>
 
 <p>After plotting the streamflow levels, you can see that the James River recently spiked up to 100,000 cfs, a level that has only been reach once in the previous 13 years. Obviously, there has been a lot of rain within the James River watershed, so let’s figure out exactly how much. To delineate exactly what sections of the land flow towards the gauge coordinates, I’ve returned to the dataRetrieval package.</p>
 
@@ -148,7 +148,7 @@ devtools::install_github(“USGS-R/dataRetrieval”)
   </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">Date</span><span class="p">,</span><span class="w"> </span><span class="n">Precip</span><span class="p">))</span><span class="w">
 </span></code></pre></div></div>
 
-<p class="images"><img src="/assets/blog/streamflow-and-precipitation/streamflow.png" alt="Streamflow Time Series" /></p>
+<p class="images"><img src="/assets/blog/streamflow-and-precipitation/precipitation.png" alt="Precipitation Time Series" /></p>
 
 <p>To measure the correlation between the mean precipitation in the basin and the streamflow gauge measurement, we can calculate the Pearson correlation using the cor.test function:</p>
 
