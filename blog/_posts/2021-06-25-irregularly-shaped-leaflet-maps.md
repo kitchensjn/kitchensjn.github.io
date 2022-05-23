@@ -8,6 +8,7 @@ desc: The Leaflet JavaScript package creates interactive maps that can display g
 thumbnail: "/assets/blog/irregularly-shaped-leaflet-maps/Screen Shot 2021-06-25 at 10.00.32 AM 2.png"
 ---
 
+
 {:.images}
 ![Irregular Leaflet #1](/assets/blog/irregularly-shaped-leaflet-maps/Screen Shot 2021-06-25 at 10.00.32 AM 2.png)
 
