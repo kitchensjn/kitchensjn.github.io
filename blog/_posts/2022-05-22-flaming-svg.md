@@ -5,11 +5,11 @@ title: "Flaming SVG"
 date: "May 22, 2022"
 skills: [HTML, CSS]
 desc: I was looking for website design inspiration and came across this [website](https://crustac.fr/en/home/) with a really interesting landing page. This site has clearly had a lot of thought put into its design, and I wanted to dissect their methods for masking the video within the company logo. I bounced between parsing through the websites source code and various YouTube videos to develop my own take on the method; the above animation is a gif of the resulting design.
-thumbnail: "/assets/blog/flaming-svg/fire_letters_thumb.jpg"
+thumbnail: "/assets/blog/flaming-svg/flaming_svg_thumb.jpg"
 ---
 
 {:.images}
-![Flaming SVG](/assets/blog/flaming-svg/fire_letters_final.gif)
+![Flaming SVG](/assets/blog/flaming-svg/flaming_svg_small.gif)
 
 I was looking for website design inspiration and came across this [website](https://crustac.fr/en/home/) with a really interesting landing page. This site has clearly had a lot of thought put into its design, and I wanted to dissect their methods for masking the video within the company logo. I bounced between parsing through the websites source code and various YouTube videos to develop my own take on the method; the above animation is a gif of the resulting design.
 
