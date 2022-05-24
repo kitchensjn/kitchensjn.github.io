@@ -49,7 +49,7 @@ a:hover {
     color: {{ site.theme_color }};
 }
 
-#blog .post .card .postimg .overlay {
+.flex-card .overlay {
     background-color: {{ site.theme_color }};
 }
 

@@ -4,41 +4,55 @@
 }
 
 #blog .post .card {
-    border-radius: 5px;
-    padding: 0px;
     margin: 10px;
     height: 420px;
 }
 
-#blog .post .card:hover {
-    cursor: pointer;
+#blog .post .card .flexing {
+    position: relative;
+    border-radius: 5px;
+    border: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-#blog .post .card .postimg .info {
+#blog .thumbnail {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-grow: 2;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+#blog .info {
     padding: 10px 10px 15px 10px;
     background-color: #333333;
     border-radius: 0px 0px 5px 5px;
-    position: absolute;
-    bottom: 0%;
-    left: 0%;
     width: 100%;
 }
 
-#blog .post .card .postimg .info .title {
+#blog .title {
     font-weight: bold;
     margin-bottom: 0px;
     text-align: center;
     color: #BBBBBB;
 }
-
-#blog .post .card .postimg .info .date {
+#blog .date {
     font-size: 15px;
     text-align: center;
     color: #BBBBBB;
     margin-bottom: 10px;
 }
 
-#blog .post .card .postimg .info .desc {
+#blog .desc {
     margin: 10px 0px;
     text-align: justify;
     font-size: 15px;
@@ -49,32 +63,27 @@
     color: #BBBBBB;
 }
 
-#blog .post .card .postimg .info .cat {
+#blog .info .cat {
     text-align: center;
 }
 
-#blog .post .card .postimg .info .cat .background {
+#blog .info .cat .background {
     display: inline-block;
     border-radius: 5px;
     background-color: #BBBBBB;
     margin: 2px 0px;
 }
 
-#blog .post .card .postimg .info .cat .background .skill {
+#blog .info .cat .background .skill {
     color: #333333;
     margin: 3px;
     font-size: 10px;
 }
 
-#blog .post .card .postimg {
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    position: relative;
-}
-
-#blog .post .card .postimg .overlay {
-    position: relative;
+#blog .card .overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
     width: 100%;
     height: 100%;
     border-radius: 5px;
@@ -82,7 +91,7 @@
     opacity: 50%;
 }
 
-#blog .post .card:hover .postimg .overlay {
+#blog .card:hover .overlay {
     display: block;
 }
 
