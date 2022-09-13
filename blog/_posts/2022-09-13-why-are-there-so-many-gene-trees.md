@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/why-are-there-so-many-gene-trees"
+permalink: "/blog/why-are-there-so-many-gene-trees"
 title: "Why Are There So Many Gene Trees?"
 date: "September 13, 2022"
 skills: [Genetics, R]

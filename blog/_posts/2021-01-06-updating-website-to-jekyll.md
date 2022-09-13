@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/updating-website-to-jekyll"
+permalink: "/blog/updating-website-to-jekyll"
 title: "Updating Website to Jekyll"
 github-link: "https://github.com/kitchensjn/explorers-portfolio-theme"
 date: "January 6, 2021"

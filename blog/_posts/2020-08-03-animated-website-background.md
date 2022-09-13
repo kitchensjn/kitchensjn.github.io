@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/animated-website-background"
+permalink: "/blog/animated-website-background"
 title: "Animated Website Background"
 github-link: "https://github.com/kitchensjn/animated-website-background"
 date: "August 3, 2020"

@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/thru-hiking-data-viz"
+permalink: "/blog/thru-hiking-data-viz"
 github-link: "https://github.com/kitchensjn/trail-data-viz"
 title: "Thru-Hiking Data Visualization"
 date: "March 17, 2021"

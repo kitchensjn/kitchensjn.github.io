@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/flexbox-solves-all"
+permalink: "/blog/flexbox-solves-all"
 title: "Flexbox Solves All"
 date: "May 24, 2022"
 skills: [HTML, CSS]

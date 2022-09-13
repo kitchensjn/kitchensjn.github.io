@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/nmr-and-non-square-jigsaw-puzzles"
+permalink: "/blog/nmr-and-non-square-jigsaw-puzzles"
 title: "NMR and Non-Square Jigsaw Puzzles"
 github-link: "https://github.com/kitchensjn/nmr-and-non-square-jigsaw-puzzles"
 date: "August 17, 2020"

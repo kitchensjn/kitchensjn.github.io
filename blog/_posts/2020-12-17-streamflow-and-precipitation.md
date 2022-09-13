@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/streamflow-and-precipitation"
+permalink: "/blog/streamflow-and-precipitation"
 title: "Streamflow and Precipitation"
 github-link: "https://github.com/kitchensjn/streamflow-and-precipitation"
 date: "December 17, 2020"

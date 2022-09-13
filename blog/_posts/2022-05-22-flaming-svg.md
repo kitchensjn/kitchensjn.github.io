@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/flaming-svg"
+permalink: "/blog/flaming-svg"
 title: "Flaming SVG"
 date: "May 22, 2022"
 skills: [HTML, CSS]

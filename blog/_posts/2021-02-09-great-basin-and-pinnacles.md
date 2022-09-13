@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/great-basin-and-pinnacles"
+permalink: "/blog/great-basin-and-pinnacles"
 title: "Great Basin and Pinnacles"
 date: "February 09, 2021"
 skills: [Hiking, Photography]

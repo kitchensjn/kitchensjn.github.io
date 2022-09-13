@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/genetic-algorithms"
+permalink: "/blog/genetic-algorithms"
 title: "Genetic Algorithms"
 github-link: "https://github.com/kitchensjn/genetic-algorithms"
 date: "September 3, 2020"

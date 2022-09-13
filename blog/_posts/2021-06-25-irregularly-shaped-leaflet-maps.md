@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/irregularly-shaped-leaflet-maps"
+permalink: "/blog/irregularly-shaped-leaflet-maps"
 title: "Irregularly Shaped Leaflet Maps"
 date: "June 25, 2021"
 skills: [JavaScript, Leaflet, GIS]

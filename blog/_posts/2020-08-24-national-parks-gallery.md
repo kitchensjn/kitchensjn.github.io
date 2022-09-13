@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/national-parks-gallery"
+permalink: "/blog/national-parks-gallery"
 title: "National Parks Gallery"
 github-link: "https://github.com/kitchensjn/national-parks-gallery"
 date: "August 24, 2020"

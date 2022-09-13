@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/phenology-climate-and-citizen-science"
+permalink: "/blog/phenology-climate-and-citizen-science"
 title: "Phenology, Climate, and Citizen Science"
 date: "August 10, 2020"
 skills: [Climate, Citizen Science]

@@ -1,6 +1,6 @@
 ---
 layout: "post"
-link: "/blog/pyinstaller-and-creating-executables"
+permalink: "/blog/pyinstaller-and-creating-executables"
 title: "Pyinstaller and Creating Executables"
 date: "October 24, 2020"
 skills: [Python]
