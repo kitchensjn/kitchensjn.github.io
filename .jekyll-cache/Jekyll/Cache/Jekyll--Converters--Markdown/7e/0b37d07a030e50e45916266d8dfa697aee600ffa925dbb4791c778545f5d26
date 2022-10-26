@@ -1,4 +1,4 @@
-I"�G<p><br /></p>
+I"�H<p><br /></p>
 
 <p>In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life. As we compare groups with greater relatedness, such as looking at a random sample of humans across the globe, the genetic relationships are no longer clear-cut. In this post, I take a step back and highlight the origins and consequences of Mendelian segregation in the context of modern population genetic models.</p>
 
@@ -97,7 +97,19 @@
 
 <p><br /><br /></p>
 
-<iframe id="final-shiny" height="1100px" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
+<style>
+    #final-shiny {
+        height: 1100px;
+    }
+
+    @media screen and (max-width: 788px) {
+        #final-shiny {
+            height: 1500px;
+        }
+    }
+</style>
+
+<iframe id="final-shiny" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
 
 <p><br /></p>
 
@@ -106,6 +118,6 @@
 <hr />
 
 <p><small>
-<sup>1</sup>Multiple trees from a fixed pedigree figure was partially inspired by a nice figure in Baum and Smith’s <a href="https://www.amazon.com/Tree-Thinking-Introduction-Phylogenetic-Biology/dp/1936221160">Tree Thinking: An Introduction to Phylogenetic Biology</a>.— David A. Baum and Stacey D. Smith. 2012. Roberts and Co., Greenwood Village, CO. xx+476 pp. ISBN 9978-1-936221-16-5 $US75 (hardback).
+<sup>1</sup>Multiple trees from a fixed pedigree figure was partially inspired by a nice figure in Baum and Smith’s <a href="https://www.amazon.com/Tree-Thinking-Introduction-Phylogenetic-Biology/dp/1936221160">Tree Thinking: An Introduction to Phylogenetic Biology</a>. (Tree Thinking: An Introduction to Phylogenetic Biology.— David A. Baum and Stacey D. Smith. 2012. Roberts and Co., Greenwood Village, CO. xx+476 pp. ISBN 9978-1-936221-16-5 $US75 (hardback).)
 </small></p>
 :ET

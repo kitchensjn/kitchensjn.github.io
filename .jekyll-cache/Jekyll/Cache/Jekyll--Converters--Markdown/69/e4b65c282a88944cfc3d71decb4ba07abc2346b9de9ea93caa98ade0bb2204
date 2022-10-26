@@ -1,15 +1,4 @@
-I"�H<style>
-    #final-shiny {
-        height: 1100px;
-    }
-    @media only screen and (max-width: 768px) {
-        #final-shiny {
-            height: 1500px;
-        }
-    }
-</style>
-
-<p><br /></p>
+I"�H<p><br /></p>
 
 <p>In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life. As we compare groups with greater relatedness, such as looking at a random sample of humans across the globe, the genetic relationships are no longer clear-cut. In this post, I take a step back and highlight the origins and consequences of Mendelian segregation in the context of modern population genetic models.</p>
 
@@ -71,7 +60,7 @@
 
 <p><br /></p>
 
-<p>Whether you and your (biological) sibling share 0, 1, or 2 alleles at a given locus of your genome is purely chance, reflecting the randomness of Mendelian segregation. Full siblings are expected to share 50% of their autosomal DNA. At any given locus the transmission is random; there is a 25% chance that they share both copies (right diagram), 50% chance that they share one copy (middle two diagrams), and 25% chance that they do not share any copies (left diagram). While in the context of the simulation the randomness of which allele is transmitted by one parent seems trivial it has cascading effects when played out across generations. If we hold the pedigree constant by rerun the randomness of transmission, we generate drastically different gene trees, all of which share the same underlying pedigree. Here is an interactive tool that lets you rerun simulations over a given pedigree to see the changes in possible gene trees:</p>
+<p>Whether you and your (biological) sibling share 0, 1, or 2 alleles at a given locus of your genome is purely chance, reflecting the randomness of Mendelian segregation. Full siblings are expected to share 50% of their autosomal DNA. At any given locus the transmission is random; there is a 25% chance that they share both copies (right diagram), 50% chance that they share one copy (middle two diagrams), and 25% chance that they do not share any copies (left diagram). While in the context of the simulation the randomness of which allele is transmitted by one parent seems trivial it has cascading effects when played out across generations. If we hold the pedigree constant by rerun the randomness of transmission, we generate drastically different gene trees, all of which share the same underlying pedigree. Here is an interactive tool that lets you rerun simulations over a given pedigree to see the changes in possible gene trees<sup>1</sup>:</p>
 
 <p><br /></p>
 
@@ -108,7 +97,19 @@
 
 <p><br /><br /></p>
 
-<iframe id="final-shiny" height="1100px" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
+<style>
+    #final-shiny {
+        height: 1100px;
+    }
+
+    @media screen and (max-width: 959px) {
+        #final-shiny {
+            height: 1500px;
+        }
+    }
+</style>
+
+<iframe id="final-shiny" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
 
 <p><br /></p>
 
@@ -116,9 +117,7 @@
 
 <hr />
 
-<p><small></small></p>
-<ol>
-  <li>Multiple trees from a fixed pedigree figure was partially inspired by a nice figure in Baum and Smith’s <a href="https://www.amazon.com/Tree-Thinking-Introduction-Phylogenetic-Biology/dp/1936221160">Tree Thinking: An Introduction to Phylogenetic Biology</a>.— David A. Baum and Stacey D. Smith. 2012. Roberts and Co., Greenwood Village, CO. xx+476 pp. ISBN 9978-1-936221-16-5 $US75 (hardback).
-&lt;/small&gt;</li>
-</ol>
+<p><small>
+<sup>1</sup>Multiple trees from a fixed pedigree figure was partially inspired by a nice figure in Baum and Smith’s <a href="https://www.amazon.com/Tree-Thinking-Introduction-Phylogenetic-Biology/dp/1936221160">Tree Thinking: An Introduction to Phylogenetic Biology</a>. (Tree Thinking: An Introduction to Phylogenetic Biology.— David A. Baum and Stacey D. Smith. 2012. Roberts and Co., Greenwood Village, CO. xx+476 pp. ISBN 9978-1-936221-16-5 $US75 (hardback).)
+</small></p>
 :ET

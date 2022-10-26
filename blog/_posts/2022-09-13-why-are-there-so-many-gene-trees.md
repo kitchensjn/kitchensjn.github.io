@@ -112,7 +112,19 @@ To wrap up this post, I've created an interactive tool that gives you control ov
 
 <br><br>
 
-<iframe id="final-shiny" height="1100px" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
+<style>
+    #final-shiny {
+        height: 1100px;
+    }
+
+    @media screen and (max-width: 959px) {
+        #final-shiny {
+            height: 1500px;
+        }
+    }
+</style>
+
+<iframe id="final-shiny" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
 
 <br>
 
