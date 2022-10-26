@@ -8,17 +8,6 @@ desc: In evolutionary biology, we often think about the phylogeny of a group, th
 thumbnail: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
 ---
 
-<style>
-    #final-shiny {
-        height: 1500px;
-    }
-    @media screen and (min-width: 769px) {
-        #final-shiny {
-            height: 1100px;
-        }   
-    }
-</style>
-
 <br>
 
 In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life. As we compare groups with greater relatedness, such as looking at a random sample of humans across the globe, the genetic relationships are no longer clear-cut. In this post, I take a step back and highlight the origins and consequences of Mendelian segregation in the context of modern population genetic models.
@@ -86,7 +75,7 @@ Historically when looking at a family tree, we would not have known which copies
 
 <br>
 
-Whether you and your (biological) sibling share 0, 1, or 2 alleles at a given locus of your genome is purely chance, reflecting the randomness of Mendelian segregation. Full siblings are expected to share 50% of their autosomal DNA. At any given locus the transmission is random; there is a 25% chance that they share both copies (right diagram), 50% chance that they share one copy (middle two diagrams), and 25% chance that they do not share any copies (left diagram). While in the context of the simulation the randomness of which allele is transmitted by one parent seems trivial it has cascading effects when played out across generations. If we hold the pedigree constant by rerun the randomness of transmission, we generate drastically different gene trees, all of which share the same underlying pedigree. Here is an interactive tool that lets you rerun simulations over a given pedigree to see the changes in possible gene trees:
+Whether you and your (biological) sibling share 0, 1, or 2 alleles at a given locus of your genome is purely chance, reflecting the randomness of Mendelian segregation. Full siblings are expected to share 50% of their autosomal DNA. At any given locus the transmission is random; there is a 25% chance that they share both copies (right diagram), 50% chance that they share one copy (middle two diagrams), and 25% chance that they do not share any copies (left diagram). While in the context of the simulation the randomness of which allele is transmitted by one parent seems trivial it has cascading effects when played out across generations. If we hold the pedigree constant by rerun the randomness of transmission, we generate drastically different gene trees, all of which share the same underlying pedigree. Here is an interactive tool that lets you rerun simulations over a given pedigree to see the changes in possible gene trees<sup>1</sup>:
 
 <br>
 
@@ -123,8 +112,14 @@ To wrap up this post, I've created an interactive tool that gives you control ov
 
 <br><br>
 
-<iframe id="final-shiny" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
+<iframe id="final-shiny" height="1100px" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
 
 <br>
 
 All of this work was done in collaboration with my advisor, Dr. Graham Coop, during my first year in the Population Biology Graduate Group at the University of California, Davis. This writing follows up on a series of posts relating to genetic genealogy that can be found on his website, [gcbias.org](https://gcbias.org/category/genetic-genealogy/). For a deeper dive into this topic and more, Graham has written an open textbook, [*Population And Quantitative Genetics*](https://github.com/cooplab/popgen-notes), that is freely available for download through the Coop Lab GitHub page.
+
+---
+
+<small>
+<sup>1</sup>Multiple trees from a fixed pedigree figure was partially inspired by a nice figure in Baum and Smith's [Tree Thinking: An Introduction to Phylogenetic Biology](https://www.amazon.com/Tree-Thinking-Introduction-Phylogenetic-Biology/dp/1936221160). (Tree Thinking: An Introduction to Phylogenetic Biology.— David A. Baum and Stacey D. Smith. 2012. Roberts and Co., Greenwood Village, CO. xx+476 pp. ISBN 9978-1-936221-16-5 $US75 (hardback).)
+</small>

@@ -1,59 +1,15 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
+I"�G<style>
+    #final-shiny {
+        height: 1100px;
+    }
+    @media only screen and (max-width: 768px) {
+        #final-shiny {
+            height: 1500px;
+        }
+    }
+</style>
 
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    Why Are There So Many Gene Trees?</h2>
-<p style="text-align: left;">September 13, 2022</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <p><br /></p>
+<p><br /></p>
 
 <p>In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life. As we compare groups with greater relatedness, such as looking at a random sample of humans across the globe, the genetic relationships are no longer clear-cut. In this post, I take a step back and highlight the origins and consequences of Mendelian segregation in the context of modern population genetic models.</p>
 
@@ -115,7 +71,7 @@
 
 <p><br /></p>
 
-<p>Whether you and your (biological) sibling share 0, 1, or 2 alleles at a given locus of your genome is purely chance, reflecting the randomness of Mendelian segregation. Full siblings are expected to share 50% of their autosomal DNA. At any given locus the transmission is random; there is a 25% chance that they share both copies (right diagram), 50% chance that they share one copy (middle two diagrams), and 25% chance that they do not share any copies (left diagram). While in the context of the simulation the randomness of which allele is transmitted by one parent seems trivial it has cascading effects when played out across generations. If we hold the pedigree constant by rerun the randomness of transmission, we generate drastically different gene trees, all of which share the same underlying pedigree. Here is an interactive tool that lets you rerun simulations over a given pedigree to see the changes in possible gene trees<sup>1</sup>:</p>
+<p>Whether you and your (biological) sibling share 0, 1, or 2 alleles at a given locus of your genome is purely chance, reflecting the randomness of Mendelian segregation. Full siblings are expected to share 50% of their autosomal DNA. At any given locus the transmission is random; there is a 25% chance that they share both copies (right diagram), 50% chance that they share one copy (middle two diagrams), and 25% chance that they do not share any copies (left diagram). While in the context of the simulation the randomness of which allele is transmitted by one parent seems trivial it has cascading effects when played out across generations. If we hold the pedigree constant by rerun the randomness of transmission, we generate drastically different gene trees, all of which share the same underlying pedigree. Here is an interactive tool that lets you rerun simulations over a given pedigree to see the changes in possible gene trees:</p>
 
 <p><br /></p>
 
@@ -152,23 +108,14 @@
 
 <p><br /><br /></p>
 
-<iframe id="final-shiny" height="1100px" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
+<iframe id="final-shiny" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
 
 <p><br /></p>
 
 <p>All of this work was done in collaboration with my advisor, Dr. Graham Coop, during my first year in the Population Biology Graduate Group at the University of California, Davis. This writing follows up on a series of posts relating to genetic genealogy that can be found on his website, <a href="https://gcbias.org/category/genetic-genealogy/">gcbias.org</a>. For a deeper dive into this topic and more, Graham has written an open textbook, <a href="https://github.com/cooplab/popgen-notes"><em>Population And Quantitative Genetics</em></a>, that is freely available for download through the Coop Lab GitHub page.</p>
 
 <hr />
-
-<p><small>
-<sup>1</sup>Multiple trees from a fixed pedigree figure was partially inspired by a nice figure in Baum and Smith’s <a href="https://www.amazon.com/Tree-Thinking-Introduction-Phylogenetic-Biology/dp/1936221160">Tree Thinking: An Introduction to Phylogenetic Biology</a>. (Tree Thinking: An Introduction to Phylogenetic Biology.— David A. Baum and Stacey D. Smith. 2012. Roberts and Co., Greenwood Village, CO. xx+476 pp. ISBN 9978-1-936221-16-5 $US75 (hardback).)
-</small></p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
-
-</html>
+<p style="font-size: smaller;">
+    Multiple trees from a fixed pedigree figure was partially inspired by a nice figure in Baum and Smith's Tree Thinking: An Introduction to Phylogenetic Biology.— David A. Baum and Stacey D. Smith. 2012. Roberts and Co., Greenwood Village, CO. xx+476 pp. ISBN 9978-1-936221-16-5 $US75 (hardback).
+</p>
+:ET
