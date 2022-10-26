@@ -1,66 +1,6 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    Why Are There So Many Gene Trees?</h2>
-<p style="text-align: left;">September 13, 2022</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <style>
+I"F<style>
     #final-shiny {
-        height: 1500px;
-    }
-    @media screen and (min-width: 769px) {
-        #final-shiny {
-            height: 1100px;
-        }   
+
     }
 </style>
 
@@ -165,15 +105,5 @@
 
 <iframe id="final-shiny" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
 
-<p><br /></p>
-
 <p>All of this work was done in collaboration with my advisor, Dr. Graham Coop, during my first year in the Population Biology Graduate Group at the University of California, Davis. This writing follows up on a series of posts relating to genetic genealogy that can be found on his website, <a href="https://gcbias.org/category/genetic-genealogy/">gcbias.org</a>. For a deeper dive into this topic and more, Graham has written an open textbook, <a href="https://github.com/cooplab/popgen-notes"><em>Population And Quantitative Genetics</em></a>, that is freely available for download through the Coop Lab GitHub page.</p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
-
-</html>
+:ET

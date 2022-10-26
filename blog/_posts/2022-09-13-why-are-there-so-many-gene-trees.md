@@ -8,6 +8,17 @@ desc: In evolutionary biology, we often think about the phylogeny of a group, th
 thumbnail: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
 ---
 
+<style>
+    #final-shiny {
+        height: 1500px;
+    }
+    @media screen and (min-width: 769px) {
+        #final-shiny {
+            height: 1100px;
+        }   
+    }
+</style>
+
 <br>
 
 In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life. As we compare groups with greater relatedness, such as looking at a random sample of humans across the globe, the genetic relationships are no longer clear-cut. In this post, I take a step back and highlight the origins and consequences of Mendelian segregation in the context of modern population genetic models.
@@ -108,8 +119,12 @@ Each allele is given a unique color; there are four gene variants represented in
 
 Given the same pedigree, different loci can have very different patterns of transmission, and so very different coalescent trees and very different mutational patterns in their sequences. This is one of the central insights of population genetics. There’s no one tree; a genome is a whole forest.
 
-To wrap up this post, I've created an interactive tool that gives you control over many parameters which affect the simulation. Test it out for yourself! All of the code for this post can be found altogether as an R Markdown file [here]({{ '/assets/blog/why-are-there-so-many-gene-trees/why_are_there_so_many_gene_trees.Rmd' | relative_url }}). All of this work was done in collaboration with my advisor, Dr. Graham Coop, during my first year in the Population Biology Graduate Group at the University of California, Davis. This writing follows up on a series of posts relating to genetic genealogy that can be found on his website, [gcbias.org](https://gcbias.org/category/genetic-genealogy/). For a deeper dive into this topic and more, Graham has written an open textbook, [*Population And Quantitative Genetics*](https://github.com/cooplab/popgen-notes), that is freely available for download through the Coop Lab GitHub page.
+To wrap up this post, I've created an interactive tool that gives you control over many parameters which affect the simulation. Test it out for yourself! All of the code for this post can be found altogether as an R Markdown file [here]({{ '/assets/blog/why-are-there-so-many-gene-trees/why_are_there_so_many_gene_trees.Rmd' | relative_url }}).
 
 <br><br>
 
-<iframe height="1500" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
+<iframe id="final-shiny" width="100%" frameborder="no" src="https://jkitchens.shinyapps.io/coalescent_simulation/"></iframe>
+
+<br>
+
+All of this work was done in collaboration with my advisor, Dr. Graham Coop, during my first year in the Population Biology Graduate Group at the University of California, Davis. This writing follows up on a series of posts relating to genetic genealogy that can be found on his website, [gcbias.org](https://gcbias.org/category/genetic-genealogy/). For a deeper dive into this topic and more, Graham has written an open textbook, [*Population And Quantitative Genetics*](https://github.com/cooplab/popgen-notes), that is freely available for download through the Coop Lab GitHub page.
