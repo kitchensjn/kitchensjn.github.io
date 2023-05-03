@@ -1,66 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    DRAFT - Visualizing Human Genetic Diversity</h2><p style="text-align: left;">James Kitchens and Graham Coop</p><p style="text-align: left;">May 2, 2023</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">D3</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">Python</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <p><br /></p>
+I"[H<p><br /></p>
 
 <script src="https://d3js.org/d3.v4.js"></script>
 
@@ -83,13 +21,6 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-evenly;
-    }
-    .upset {
-        text-align: center;
-    }
-    .upset img {
-        width: 100%;
-        max-width: 1000px;
     }
 </style>
 
@@ -271,9 +202,9 @@
     }    
 </script>
 
-<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at ~99.9% of sites in their genomes. You have the same DNA letter as another randomly chosen human at 999/1000 bases, and at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.  Within this variation, the majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (Lewontin, 1972). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the <a href="https://popgen.uchicago.edu/ggv/?data=%221000genomes%22&amp;chr=1&amp;pos=222087833">Geography of Genetic Variants Browser</a> from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
+<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at ~99.9% of sites in their genomes. You have the same DNA letter as another randomly chosen human at 999/1000 bases, and at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.  Within this variation, the majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (Lewontin, 1972). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the Geography of Genetic Variants Browser from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
 
-<p>We wanted to share some resources we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by <a href="https://onlinelibrary.wiley.com/doi/10.1002/sce.21506">Donovan et al. (2019)</a> and <a href="https://elifesciences.org/articles/60107">Biddanda et al. (2020)</a>. These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
+<p>We wanted to share some resources we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by Donovan et al. (2019) and Biddanda et al. (2020). These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al. 2020, we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
 
 <p><br /></p>
 <div id="figure1" style="display: flex; justify-content: center;"></div>
@@ -794,7 +725,7 @@
 </center>
 <p><br /></p>
 
-<p>Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.</p>
+<p>Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al. 2020.</p>
 
 <p><br /></p>
 <div id="figure6" style="display: flex; justify-content: center;"></div>
@@ -931,7 +862,7 @@
 </center>
 <p><br /></p>
 
-<p>It’s easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. <a href="https://popgen.uchicago.edu/ggv/?data=%221000genomes%22&amp;chr=15&amp;pos=48426484">SLC24A5</a>), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation.</p>
+<p>It’s easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. SLC24A5), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation.</p>
 
 <h3 id="technical-details">Technical details</h3>
 
@@ -1054,11 +985,10 @@
 
 <p>The following figures offer alternative methods of visualization to those within this post. Details about these figures are provided in the captions.</p>
 
-<p><br /></p>
-<div id="figureS1" style="display: flex; justify-content: center;"></div>
+<p>Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of private common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.</p>
 
 <script>
-    d3.select("#figureS1")
+    d3.select("body")
         .append("div")
             .attr("id", "coffee_stains")
             .style("display", "flex")
@@ -1197,39 +1127,15 @@
         interactive = false
     );
     add_coffee_stain_interactivity("americas_pur_coffee");
+
+
 </script>
 
-<center style="font-style: italic;">
-    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of private common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
-    </p>
-</center>
-<p><br /></p>
+<p>Figure S2 - An UpSet Plot</p>
 
-<p><br /></p>
-
-<p class="upset"><img src="/assets/blog/visualizing-human-genetic-diversity/global_upset_plot.png" alt="UpSet Plot of Five Global Samples" /></p>
-
-<center style="font-style: italic;">
-    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S2 - UpSet Plot
-    </p>
-</center>
-<p><br /></p>
-
-<h3 id="citations">Citations</h3>
-
-<p>TODO</p>
+<p>Citations</p>
 
 <p>A Biddanda, D P. Rice, J. Novembre, Geographic patterns of human allele frequency variation: a variant-centric perspective (eLife) (2020).</p>
 
 <p>Lewontin 1972</p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
-
-</html>
+:ET

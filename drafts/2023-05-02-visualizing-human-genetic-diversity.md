@@ -13,9 +13,6 @@ thumbnail: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
 
 <script src="https://d3js.org/d3.v4.js"></script>
 <style>
-    body {
-        height: 1000px;
-    }
     .euler_tooltip {
         position: absolute;
         max-width: 500px;
@@ -34,6 +31,13 @@ thumbnail: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
         display: flex;
         flex-flow: row wrap;
         justify-content: space-evenly;
+    }
+    .upset {
+        text-align: center;
+    }
+    .upset img {
+        width: 100%;
+        max-width: 1000px;
     }
 </style>
 <script>
@@ -215,14 +219,15 @@ thumbnail: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
 </script>
 
 
-A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at ~99.9% of sites in their genomes. You have the same DNA letter as another randomly chosen human at 999/1000 bases, and at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.  Within this variation, the majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (Lewontin, 1972). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the Geography of Genetic Variants Browser from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.
+A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at ~99.9% of sites in their genomes. You have the same DNA letter as another randomly chosen human at 999/1000 bases, and at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.  Within this variation, the majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (Lewontin, 1972). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the [Geography of Genetic Variants Browser](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22&chr=1&pos=222087833) from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.
 
-We wanted to share some resources we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by Donovan et al. (2019) and Biddanda et al. (2020). These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al. 2020, we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria. 
+We wanted to share some resources we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by [Donovan et al. (2019)](https://onlinelibrary.wiley.com/doi/10.1002/sce.21506) and [Biddanda et al. (2020)](https://elifesciences.org/articles/60107). These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria. 
 
+<br>
 <div id="figure1" style="display: flex; justify-content: center;"></div>
 
 <script>
-    var dim = 800;
+    var dim = 600;
 
     var svg_container = d3.select("#figure1")
         .append("svg")
@@ -237,7 +242,7 @@ We wanted to share some resources we’ve been putting together for teaching gen
         {"h":10754.3423,"k":362.1589,"a":1783.4049,"b":1783.4049,"phi":5.0914,"color":"none","fill":"#56B4E9","stroke_dasharray":"none","_row":"Common"}
     ] 
 
-    var downscale = 100;
+    var downscale = 130;
     var shift = dim/2;
 
     svg_container
@@ -327,6 +332,7 @@ We wanted to share some resources we’ve been putting together for teaching gen
 
 The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, and we counted the number of common variants found in each sample.
 
+<br>
 <div id="figure2" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -440,6 +446,7 @@ The small blue circle in the above figure captures just how little variation ris
 
 The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples. This style of visualization is similar to a Venn diagram with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.
 
+<br>
 <div id="figure3" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -471,6 +478,7 @@ The levels of genetic diversity vary between samples, shown as differences in th
 
 It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (>5%) in a given sample and then identified which other samples share that same common variation.
 
+<br>
 <div id="figure4" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -621,10 +629,11 @@ This method of filtering results in a Euler diagram where the ellipse of the fil
 
 Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.
 
+<br>
 <div id="figure5" style="display: flex; justify-content: center;"></div>
 
 <script>
-    var dim = 1000;
+    var dim = 600;
 
     var svg_container = d3.select("#figure5")
         .append("svg")
@@ -645,7 +654,7 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
         {"h":4895.4203,"k":647.1042,"a":1415.7074,"b":1301.8497,"phi":5.137,"color":"#000000","fill":"none","stroke_dasharray":"none","_row":"PUR"}
     ] 
 
-    var downscale = 100;
+    var downscale = 130;
     var shift = dim/2;
 
     svg_container
@@ -733,8 +742,9 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
 </center>
 <br>
 
-Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al. 2020.
+Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.
 
+<br>
 <div id="figure6" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -766,6 +776,7 @@ Overall, this diagram has a very similar structure to the diagram created with t
 
 Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this dataset’s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. There’s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa. 
 
+<br>
 <div id="figure7" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -868,7 +879,7 @@ Lastly, given this global view, we can zoom in and look at how variation is part
 </center>
 <br>
 
-It's easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. SLC24A5), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation. 
+It's easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. [SLC24A5](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22&chr=15&pos=48426484)), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation. 
 
 
 ### Technical details
@@ -926,20 +937,173 @@ The package also breaks down error by set overlap to better understand exactly w
 
 The following figures offer alternative methods of visualization to those within this post. Details about these figures are provided in the captions.
 
+<br>
+<div id="figureS1" style="display: flex; justify-content: center;"></div>
 
+<script>
+    d3.select("#figureS1")
+        .append("div")
+            .attr("id", "coffee_stains")
+            .style("display", "flex")
+            .style("flex-flow", "row wrap")
+            .style("justify-content", "space-evenly");
 
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-65.228,"k":-66.9563,"a":1514.9706,"b":1655.0866,"phi":-0.9991,"common_variants":8018649,"private_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#D55E00","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-33.6008,"k":-66.9563,"a":1628.118,"b":1350.1618,"phi":-2.5773,"common_variants":7020928,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":68.6404,"k":95.4167,"a":1053.3382,"b":1381.2585,"phi":-2.9205,"common_variants":4666113,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":34.2802,"k":9.8817,"a":1448.5815,"b":1060.8529,"phi":-1.4555,"common_variants":4896250,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":16.8686,"k":59.5652,"a":1401.8114,"b":1044.7415,"phi":1.5109,"common_variants":4672565,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":-68.7641,"k":66.9836,"a":988.4922,"b":1348.208,"phi":-3.1739,"common_variants":4261270,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":81.6678,"k":28.1504,"a":1428.3514,"b":1128.7544,"phi":-1.3564,"common_variants":5112528,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        ],
+        id = "americas_acb_coffee",
+        dim = common_dim,
+        title = "ACB",
+        title_color = "#D55E00",
+        loc = "#coffee_stains",
+        interactive = false
+    );
+    add_coffee_stain_interactivity("americas_acb_coffee");
 
-Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of private common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
+    d3_euler(
+        data = [
+            {"abbreviation":"ASW","h":-43.4144,"k":-16.3857,"a":1572.7413,"b":1504.6041,"phi":-5.7499,"common_variants":7631052,"private_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#0072B2","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-127.9212,"k":-16.3857,"a":1434.9282,"b":1516.3261,"phi":-3.5615,"common_variants":7020928,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":222.857,"k":-52.2642,"a":1161.4243,"b":1292.3007,"phi":-4.4373,"common_variants":4810015,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":202.7879,"k":32.4151,"a":1292.3632,"b":1225.6845,"phi":-3.1563,"common_variants":5043889,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":231.3601,"k":45.6133,"a":1272.4161,"b":1173.1753,"phi":-3.0802,"common_variants":4819661,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":271.5502,"k":108.1057,"a":1118.7258,"b":1215.4851,"phi":-1.7843,"common_variants":4398728,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":144.5883,"k":9.885,"a":1369.9257,"b":1193.8532,"phi":-3.0874,"common_variants":5253401,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        ],
+        id = "americas_asw_coffee",
+        dim = common_dim,
+        title = "ASW",
+        title_color = "#0072B2",
+        loc = "#coffee_stains",
+        interactive = false
+    );
+    add_coffee_stain_interactivity("americas_asw_coffee");
 
+    d3_euler(
+        data = [
+            {"abbreviation":"CEU","h":-11.6367,"k":77.6556,"a":1308.9382,"b":1358.2787,"phi":2.7786,"common_variants":5726377,"private_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#F0E442","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-117.9052,"k":0,"a":1246.4673,"b":1167.6055,"phi":7.6663,"common_variants":4666113,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-58.0648,"k":0,"a":1263.5511,"b":1186.0482,"phi":3.7958,"common_variants":4810015,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":0,"k":92.4295,"a":1233.0207,"b":1334.5812,"phi":6.0989,"common_variants":5259585,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":-25.588,"k":136.0689,"a":1266.7121,"b":1241.1807,"phi":4.0215,"common_variants":4999087,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":42.8027,"k":156.219,"a":1110.1403,"b":1246.2762,"phi":6.3725,"common_variants":4440037,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-13.8694,"k":58.9816,"a":1270.9347,"b":1316.9558,"phi":6.1031,"common_variants":5329963,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        ],
+        id = "americas_ceu_coffee",
+        dim = common_dim,
+        title = "CEU",
+        title_color = "#F0E442",
+        loc = "#coffee_stains",
+        interactive = false
+    );
+    add_coffee_stain_interactivity("americas_ceu_coffee");
 
+    d3_euler(
+        data = [
+            {"abbreviation":"CLM","h":0,"k":3.1296,"a":1322.6022,"b":1364.0593,"phi":-0.249,"common_variants":5895649,"private_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#009E73","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-126.6347,"k":0,"a":1254.8892,"b":1196.7138,"phi":1.3928,"common_variants":4896250,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-79.4666,"k":0,"a":1266.0896,"b":1242.7369,"phi":1.5104,"common_variants":5043889,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":50.8403,"k":-84.4662,"a":1234.7334,"b":1307.0194,"phi":2.4081,"common_variants":5259585,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":53.2131,"k":49.9096,"a":1262.1653,"b":1312.3774,"phi":0.4765,"common_variants":5327378,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":78.6214,"k":145.9914,"a":1182.0006,"b":1254.7688,"phi":3.9076,"common_variants":4817623,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":5.8608,"k":-25.6225,"a":1338.6864,"b":1279.3522,"phi":0.7696,"common_variants":5521792,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        ],
+        id = "americas_clm_coffee",
+        dim = common_dim,
+        title = "CLM",
+        title_color = "#009E73",
+        loc = "#coffee_stains",
+        interactive = false
+    );
+    add_coffee_stain_interactivity("americas_clm_coffee");
 
+    d3_euler(
+        data = [
+            {"abbreviation":"MXL","h":0,"k":-54.4502,"a":1334.1963,"b":1304.4956,"phi":3.294,"common_variants":5663208,"private_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#56B4E9","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-169.4859,"k":-71.7374,"a":1245.6267,"b":1157.257,"phi":1.6699,"common_variants":4672565,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-121.0587,"k":-71.7374,"a":1248.688,"b":1210.0453,"phi":1.8526,"common_variants":4819661,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0.43,"k":-136.8283,"a":1272.186,"b":1216.143,"phi":6.1252,"common_variants":4999087,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-5.3669,"k":-60.049,"a":1259.3057,"b":1314.575,"phi":4.5561,"common_variants":5327378,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":16.8562,"k":65.9723,"a":1169.7654,"b":1296.0166,"phi":4.6401,"common_variants":4912197,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-28.2954,"k":-89.06,"a":1284.9118,"b":1266.5903,"phi":2.8881,"common_variants":5254464,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        ],
+        id = "americas_mxl_coffee",
+        dim = common_dim,
+        title = "MXL",
+        title_color = "#56B4E9",
+        loc = "#coffee_stains",
+        interactive = false
+    );
+    add_coffee_stain_interactivity("americas_mxl_coffee");
 
+    d3_euler(
+        data = [
+            {"abbreviation":"PEL","h":-31.3731,"k":33.3752,"a":1252.0678,"b":1275.4104,"phi":-2.1762,"common_variants":5140058,"private_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#E69F00","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-136.4806,"k":-11.2297,"a":1165.5168,"b":1132.8495,"phi":2.3493,"common_variants":4261270,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-97.8328,"k":-11.2297,"a":1154.5489,"b":1198.3637,"phi":0.9624,"common_variants":4398728,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0,"k":-49.1769,"a":1222.8294,"b":1134.1021,"phi":-2.6449,"common_variants":4440037,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-22.0052,"k":28.7626,"a":1250.9645,"b":1203.7707,"phi":0.7879,"common_variants":4817623,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":-10.2769,"k":32.8326,"a":1217.7502,"b":1255.6227,"phi":0.7452,"common_variants":4912197,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-22.9208,"k":0,"a":1170.9151,"b":1253.9321,"phi":1.873,"common_variants":4700471,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        ],
+        id = "americas_pel_coffee",
+        dim = common_dim,
+        title = "PEL",
+        title_color = "#E69F00",
+        loc = "#coffee_stains",
+        interactive = false
+    );
+    add_coffee_stain_interactivity("americas_pel_coffee");
 
-Figure S2 - An UpSet Plot
+    d3_euler(
+        data = [
+        {"abbreviation":"PUR","h":0,"k":-60.372,"a":1376.2273,"b":1338.3484,"phi":0.467,"common_variants":6053543,"private_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#000000","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-132.2327,"k":-44.0001,"a":1272.6429,"b":1225.1824,"phi":4.289,"common_variants":5112528,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-85.0325,"k":-44.0001,"a":1288.4448,"b":1267.3528,"phi":0.6853,"common_variants":5253401,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":78.2031,"k":-126.0023,"a":1231.5328,"b":1325.4885,"phi":2.384,"common_variants":5329963,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":56.6395,"k":-40.0285,"a":1310.9291,"b":1305.6904,"phi":-0.8658,"common_variants":5521792,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":87.7264,"k":0,"a":1268.0344,"b":1273.7931,"phi":4.7499,"common_variants":5254464,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":109.9055,"k":90.6142,"a":1224.4499,"b":1182.8382,"phi":-0.4921,"common_variants":4700471,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        ],
+        id = "americas_pur_coffee",
+        dim = common_dim,
+        title = "PUR",
+        title_color = "#000000",
+        loc = "#coffee_stains",
+        interactive = false
+    );
+    add_coffee_stain_interactivity("americas_pur_coffee");
+</script>
 
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of private common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
+    </p>
+</center>
+<br>
 
+<br>
 
-Citations
+{:.upset}
+![UpSet Plot of Five Global Samples](/assets/blog/visualizing-human-genetic-diversity/global_upset_plot.png)
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure S2 - UpSet Plot
+    </p>
+</center>
+<br>
+
+### Citations
+
+TODO
 
 A Biddanda, D P. Rice, J. Novembre, Geographic patterns of human allele frequency variation: a variant-centric perspective (eLife) (2020).
 
