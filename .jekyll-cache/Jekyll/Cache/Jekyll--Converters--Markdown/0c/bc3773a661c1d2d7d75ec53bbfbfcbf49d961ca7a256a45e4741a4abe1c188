@@ -1,0 +1,744 @@
+I"��<p><br /></p>
+
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<style>
+    body {
+        height: 1000px;
+    }
+    .tooltip {
+        position: absolute;
+        max-width: 500px;
+        padding: 10px;
+        background-color: white;
+        color: black;
+    }
+    path {
+        transition: opacity 0.25s, stroke-width 0.25s;
+    }
+    svg {
+        display: block;
+    }
+    #all_euler_diagrams {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+    }
+</style>
+
+<script>
+
+    function wrap(
+        text,
+        width,
+        dyAdjust,
+        lineHeightEms,
+        lineHeightSquishFactor,
+        splitOnHyphen,
+        centreVertically
+        ) {
+        // Use default values for the last three parameters if values are not provided.
+        if (!lineHeightEms) lineHeightEms = 1.05;
+        if (!lineHeightSquishFactor) lineHeightSquishFactor = 1;
+        if (splitOnHyphen == null) splitOnHyphen = true;
+        if (centreVertically == null) centreVertically = true;
+
+        text.each(function () {
+            var text = d3.select(this),
+            x = text.attr("x"),
+            y = text.attr("y");
+
+            var words = [];
+            text
+            .text()
+            .split(/\s+/)
+            .forEach(function (w) {
+                if (splitOnHyphen) {
+                var subWords = w.split("-");
+                for (var i = 0; i < subWords.length - 1; i++)
+                    words.push(subWords[i] + "-");
+                words.push(subWords[subWords.length - 1] + " ");
+                } else {
+                words.push(w + " ");
+                }
+            });
+
+            text.text(null); // Empty the text element
+
+            // `tspan` is the tspan element that is currently being added to
+            var tspan = text.append("tspan");
+
+            var line = ""; // The current value of the line
+            var prevLine = ""; // The value of the line before the last word (or sub-word) was added
+            var nWordsInLine = 0; // Number of words in the line
+            for (var i = 0; i < words.length; i++) {
+            var word = words[i];
+            prevLine = line;
+            line = line + word;
+            ++nWordsInLine;
+            tspan.text(line.trim());
+            if (tspan.node().getComputedTextLength() > width && nWordsInLine > 1) {
+                // The tspan is too long, and it contains more than one word.
+                // Remove the last word and add it to a new tspan.
+                tspan.text(prevLine.trim());
+                prevLine = "";
+                line = word;
+                nWordsInLine = 1;
+                tspan = text.append("tspan").text(word.trim());
+            }
+            }
+
+            var tspans = text.selectAll("tspan");
+
+            var h = lineHeightEms;
+            // Reduce the line height a bit if there are more than 2 lines.
+            if (tspans.size() > 2)
+            for (var i = 0; i < tspans.size(); i++) h *= lineHeightSquishFactor;
+
+            tspans.each(function (d, i) {
+            // Calculate the y offset (dy) for each tspan so that the vertical centre
+            // of the tspans roughly aligns with the text element's y position.
+            var dy = i * h + dyAdjust;
+            if (centreVertically) dy -= ((tspans.size() - 1) * h) / 2;
+            d3.select(this)
+                .attr("y", y)
+                .attr("x", x)
+                .attr("dy", dy + "em");
+            });
+        });
+        }
+
+    function d3_euler(data, id, dim, title, title_color, loc, interactive) {
+
+        var svg_container = d3.select(loc)
+            .append("svg")
+            .attr("id", id)
+            .attr("width", dim)
+            .attr("viewBox", "0 0 " + dim + " " + dim);
+
+        var ellipses = data;
+
+        var downscale = 12;
+        var shift = dim/2;
+
+        svg_container
+            .selectAll("ellipses")
+            .data(ellipses)
+            .enter()
+            .append("path")
+            .attr("id", function(d) { return d._row; })
+            .attr("stroke", function(d) { return d.color; })
+            .attr("stroke-width", 3)
+            .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+            .attr("fill", function(d) { return d.fill; })
+            .attr("d", function(d) {
+                return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+            })
+            .attr("transform", function(d) {
+                return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+            });
+        
+        if (interactive) {
+            svg_container
+                .selectAll("path")
+                    .on("mouseover", function(d) {
+                        d3.select("#"+id)
+                            .selectAll("path")
+                                .style("opacity", 0.25);
+                        d3.select(this)
+                            .style("cursor", "pointer")
+                            .style("stroke-width", 7)
+                            .style("opacity", 1);
+                        tip
+                            .style("display", "block")
+                            .html("<h3 style='margin: 0px;'>" + d.description + "</h3></br>1KGP Abbreviation: " + d.abbreviation + "</br>Number of Sampled Individuals: " + d.sampled_individuals.toLocaleString() + "</br>Number of Common Variants: " + d.common_variants.toLocaleString() + "</br>Number of Private Common Variants: "+d.private_common_variants.toLocaleString())
+                            .style("border", d.color + " solid 7px")
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY+25) + "px");
+                    })
+                    .on("mouseout", function(d) {
+                        tip.style("display", "none");
+                        d3.select("#"+id)
+                            .selectAll("path")
+                                .style("opacity", 1)
+                                .style("stroke-width", 3);
+                    });
+        }
+        
+        if (title != "") {
+            svg_container
+                .append("text")
+                .text(title)
+                .attr("x", dim/2)
+                .attr("y", dim/2)
+                .attr("text-anchor", "middle")
+                .style("font-family", "Arial")
+                .style("font-size", 25)
+                .style("fill", title_color)
+                .call(wrap, 300, 0, 1)
+        }
+    }
+
+    function add_coffee_stain_interactivity(id) {
+        d3.select("#"+id)
+            .selectAll("path")
+                .on("mouseover", function(d) {
+                    d3.select("#"+id)
+                        .selectAll("path")
+                            .style("cursor", "pointer")
+                            .style("opacity", 0.25);
+                    d3.select("#"+id)
+                        .select("path")
+                            .style("opacity", 1);
+                })
+                .on("mouseout", function(d) {
+                    tip.style("display", "none");
+                    d3.select("#"+id)
+                        .selectAll("path")
+                            .style("opacity", 1);
+                });
+    }
+
+</script>
+
+<script>
+    // Define the div for the tooltip
+    var tip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("display", "none");
+</script>
+
+<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at ~99.9% of sites in their genomes. You have the same DNA letter as another randomly chosen human at 999/1000 bases, and at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.  Within this variation, the majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (Lewontin, 1972). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the Geography of Genetic Variants Browser from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
+
+<p>We wanted to share some resources we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by Donovan et al. (2019) and Biddanda et al. (2020). These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al. 2020, we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
+
+<div id="figure1" style="display: flex; justify-content: center;"></div>
+
+<script>
+    var dim = 800;
+
+    var svg_container = d3.select("#figure1")
+        .append("svg")
+        .attr("id", "americas_genome")
+        .attr("width", dim)
+        .attr("viewBox", "0 0 " + dim + " " + dim);
+
+    
+    var ellipses = [
+        {"h":-173.4314,"k":0,"a":30382.5389,"b":30382.5389,"phi":5.0914,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Measurable"},
+        {"h":9660.3273,"k":0,"a":3527.7784,"b":3527.7784,"phi":5.0914,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Variants"},
+        {"h":10754.3423,"k":362.1589,"a":1783.4049,"b":1783.4049,"phi":5.0914,"color":"none","fill":"#56B4E9","stroke_dasharray":"none","_row":"Common"}
+    ] 
+
+    var downscale = 100;
+    var shift = dim/2;
+
+    svg_container
+        .selectAll("ellipses")
+        .data(ellipses)
+        .enter()
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
+
+    svg_container
+        .selectAll("text")
+        .data(ellipses)
+        .enter()
+        .filter(function(d) { return (d._row == "Measurable"); })
+        .append("text")
+        .text("Measurable locations in the human genome (~2.9 billion sites)")
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-25; })
+        .style("text-anchor", "middle")
+        .style("fill", "#696969")
+        .style("font-family", "Arial")
+        .style("font-size", 18);
+
+    svg_container
+        .selectAll("text")
+        .data(ellipses)
+        .enter()
+        .filter(function(d) { return (d._row == "Variants"); })
+        .append("text")
+        .text("Observed variants within 609 individuals from the Americas (~39 millions sites)")
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-60; })
+        .style("text-anchor", "middle")
+        .style("fill", "#696969")
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .call(wrap, 250, 1, 1);
+
+    common_text = svg_container
+        .selectAll("text")
+        .data(ellipses)
+        .enter()
+        .filter(function(d) { return (d._row == "Common"); })
+        .append("g");
+    
+    common_text
+        .append("text")
+        .text("Common variants within 609 individuals from the Americas (~10 million sites)")
+        .attr("x", function(d) {return d.h/downscale+shift-150;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-30; })
+        .style("stroke", "white")
+        .style("stroke-width", 20)
+        .style("text-anchor", "middle")
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .call(wrap, 250, 1, 1);
+    
+    common_text
+        .append("text")
+        .text("Common variants within 609 individuals from the Americas (~10 million sites)")
+        .attr("x", function(d) {return d.h/downscale+shift-150;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-30; })
+        .style("text-anchor", "middle")
+        .style("fill", "#696969")
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .call(wrap, 250, 1, 1);
+
+</script>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 1 - The relative scale of common variants in the Americas compared to the size of the human genome. The area of each circle is scaled proportionally by the number of sites in that category. The small blue circle corresponds with the number of common variants; “common” is defined as having a minor allele frequency of greater than 5% in at least one of the samples.
+    </p>
+</center>
+<p><br /></p>
+
+<p>The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, and we counted the number of common variants found in each sample.</p>
+
+<div id="figure2" style="display: flex; justify-content: center;"></div>
+
+<script>
+    var dim = 1000;
+
+    var svg_container = d3.select("#figure2")
+        .append("svg")
+        .attr("id", "americas_overview")
+        .attr("width", dim)
+        .attr("viewBox", "0 0 " + dim + " " + dim);
+
+
+    var ellipses = [
+        {"abbreviation":"PEL","h":2493.9592,"k":-3127.3259,"a":1279.1135,"b":1279.1135,"phi":0,"common_variants":5140058,"private_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"MXL","h":-890.0837,"k":-3899.7116,"a":1342.6299,"b":1342.6299,"phi":0,"common_variants":5663208,"private_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"CEU","h":-3603.8755,"k":-1735.535,"a":1350.0972,"b":1350.0972,"phi":0,"common_variants":5726377,"private_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"CLM","h":-3603.8755,"k":1735.535,"a":1369.9063,"b":1369.9063,"phi":0,"common_variants":5895649,"private_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"PUR","h":-890.0837,"k":3899.7116,"a":1388.1292,"b":1388.1292,"phi":0,"common_variants":6053543,"private_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"ASW","h":2493.9592,"k":3127.3259,"a":1558.5375,"b":1558.5375,"phi":0,"common_variants":7631052,"private_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"ACB","h":4000,"k":0,"a":1597.628,"b":1597.628,"phi":0,"common_variants":8018649,"private_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"}
+    ];
+
+    var downscale = 12;
+    var shift = dim/2;
+
+    svg_container
+        .append("text")
+        .text("Common genetic variants within samples from the Americas")
+        .attr("x", dim/2)
+        .attr("y", dim/2)
+        .attr("text-anchor", "middle")
+        .style("font-family", "Arial")
+        .style("font-size", 25)
+        .style("fill", "#696969")
+        .call(wrap, 300, -1, 1)
+    
+    svg_container
+        .append("text")
+        .text('"Common" is defined as having a minor allele frequency >5%.')
+        .attr("x", dim/2)
+        .attr("y", dim/2)
+        .attr("text-anchor", "middle")
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .style("fill", "#696969")
+        .call(wrap, 300, 4, 1)
+
+    var ellipse_container = svg_container
+        .selectAll("ellipses")
+        .data(ellipses)
+        .enter()
+        .append("g")
+        .attr("id", function(d) { return d.abbreviation; });
+
+    ellipse_container
+        .append("path")
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
+
+    ellipse_container
+        .append("text")
+        .text(function(d) { return d.description; })
+        .attr("x", function(d) { return d.h/downscale+shift; })
+        .attr("y", function(d) { return d.k/downscale+shift; })
+        .attr("text-anchor", "middle")
+        .style("fill", function(d) { return d.color; })
+        .style("font-family", "Arial")
+        .style("font-weight", "bold")
+        .style("font-size", 18)
+        .call(wrap, 200, -0.75, 1);
+    
+    ellipse_container
+        .append("text")
+        .text(function(d) { return d.sampled_individuals.toLocaleString() + " individuals"; })
+        .attr("x", function(d) { return d.h/downscale+shift; })
+        .attr("y", function(d) { return d.k/downscale+shift; })
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "middle")
+        .style("fill", function(d) { return d.color; })
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .call(wrap, 200, 2, 1);
+        
+    ellipse_container
+        .append("text")
+        .text(function(d) { return d.common_variants.toLocaleString() + " variants"; })
+        .attr("x", function(d) { return d.h/downscale+shift; })
+        .attr("y", function(d) { return d.k/downscale+shift; })
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "middle")
+        .style("fill", function(d) { return d.color; })
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .call(wrap, 200, 3.5, 1);
+</script>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 2 - Seven circles, one for each sample located in the Americas. The area of each circle is proportional to the number of common variants within that sample from the 1000 Genomes Project. A “common” variant is defined as having a minor allele frequency of greater than 5%, where the minor allele identity is determined by its global allele frequency. The number of individuals within each sample has also been included to ensure that this quantity is relatively consistent between samples.
+    </p>
+</center>
+<p><br /></p>
+
+<p>The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples. This style of visualization is similar to a Venn diagram with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.</p>
+
+<div id="figure3" style="display: flex; justify-content: center;"></div>
+
+<script>
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-351.0253,"k":-117.9368,"a":1661.9991,"b":1482.8142,"phi":-2.3891,"common_variants":8018649,"private_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-186.6873,"k":-117.9368,"a":1753.6272,"b":1346.1266,"phi":-1.7434,"common_variants":7631052,"private_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":83.4634,"k":437.6332,"a":1518.3666,"b":1150.6006,"phi":1.187,"common_variants":5726377,"private_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":163.3362,"k":321.562,"a":1247.0832,"b":1433.2207,"phi":-0.2126,"common_variants":5895649,"private_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":188.7347,"k":343.7469,"a":1298.0515,"b":1327.9438,"phi":-1.3532,"common_variants":5663208,"private_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":245.9637,"k":354.8639,"a":1139.4186,"b":1374.1214,"phi":1.0056,"common_variants":5140058,"private_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":48.8014,"k":359.7592,"a":1435.6344,"b":1296.4881,"phi":-1.5072,"common_variants":6053543,"private_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_example_euler",
+        dim = 1000,
+        title = "",
+        title_color = "",
+        loc = "#figure3",
+        interactive = true
+    )
+</script>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 3 - An interactive Euler diagram of the common variants in samples located in the Americas. The area of the ellipses is equal to the area of the circles from the previous figure. It is not mathematically possible to generate ellipses with a given overlap without distortions to the areas. See the Technical details section (below) for statistics quantifying the slight errors in this and following Euler diagrams.
+    </p>
+</center>
+<p><br /></p>
+
+<p>It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (&gt;5%) in a given sample and then identified which other samples share that same common variation.</p>
+
+<div id="figure4" style="display: flex; justify-content: center;"></div>
+
+<script>
+    d3.select("body")
+        .append("div")
+            .attr("id", "common_pops")
+            .style("display", "flex")
+            .style("flex-flow", "row wrap")
+            .style("justify-content", "space-evenly");
+
+    var common_dim = 350;
+
+    d3_euler(
+        data = [
+            {"abbreviation":"ASW","h":-33.6008,"k":-66.9563,"a":1628.118,"b":1350.1618,"phi":-2.5773,"common_variants":7020928,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":68.6404,"k":95.4167,"a":1053.3382,"b":1381.2585,"phi":-2.9205,"common_variants":4666113,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":34.2802,"k":9.8817,"a":1448.5815,"b":1060.8529,"phi":-1.4555,"common_variants":4896250,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":16.8686,"k":59.5652,"a":1401.8114,"b":1044.7415,"phi":1.5109,"common_variants":4672565,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":-68.7641,"k":66.9836,"a":988.4922,"b":1348.208,"phi":-3.1739,"common_variants":4261270,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":81.6678,"k":28.1504,"a":1428.3514,"b":1128.7544,"phi":-1.3564,"common_variants":5112528,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-65.228,"k":-66.9563,"a":1514.9706,"b":1655.0866,"phi":-0.9991,"common_variants":8018649,"private_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_acb",
+        dim = common_dim,
+        title = "ACB",
+        title_color = "#D55E00",
+        loc = "#common_pops",
+        interactive = true
+    );
+    
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-127.9212,"k":-16.3857,"a":1434.9282,"b":1516.3261,"phi":-3.5615,"common_variants":7020928,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":222.857,"k":-52.2642,"a":1161.4243,"b":1292.3007,"phi":-4.4373,"common_variants":4810015,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":202.7879,"k":32.4151,"a":1292.3632,"b":1225.6845,"phi":-3.1563,"common_variants":5043889,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":231.3601,"k":45.6133,"a":1272.4161,"b":1173.1753,"phi":-3.0802,"common_variants":4819661,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":271.5502,"k":108.1057,"a":1118.7258,"b":1215.4851,"phi":-1.7843,"common_variants":4398728,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":144.5883,"k":9.885,"a":1369.9257,"b":1193.8532,"phi":-3.0874,"common_variants":5253401,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-43.4144,"k":-16.3857,"a":1572.7413,"b":1504.6041,"phi":-5.7499,"common_variants":7631052,"private_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_asw",
+        dim = common_dim,
+        title = "ASW",
+        title_color = "#0072B2",
+        loc = "#common_pops",
+        interactive = true
+    );
+
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-94.4748,"k":-70.8605,"a":1180.1411,"b":1233.1487,"phi":-0.0171,"common_variants":4666113,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-34.3686,"k":-70.8605,"a":1255.8523,"b":1193.2149,"phi":3.5755,"common_variants":4810015,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":21.3991,"k":14.8651,"a":1252.8401,"b":1313.3533,"phi":0.1056,"common_variants":5259585,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":7.914,"k":57.7595,"a":1228.54,"b":1279.6367,"phi":4.8983,"common_variants":4999087,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":58.5053,"k":91.4926,"a":1206.1001,"b":1147.0535,"phi":4.8701,"common_variants":4440037,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":13.3255,"k":-21.4317,"a":1305.575,"b":1281.8573,"phi":2.1193,"common_variants":5329963,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":13.7257,"k":0,"a":1337.84,"b":1328.7352,"phi":4.81,"common_variants":5726377,"private_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_ceu",
+        dim = common_dim,
+        title = "CEU",
+        title_color = "#F0E442",
+        loc = "#common_pops",
+        interactive = true
+    );
+
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-126.6347,"k":0,"a":1254.8892,"b":1196.7138,"phi":1.3928,"common_variants":4896250,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-79.4666,"k":0,"a":1266.0896,"b":1242.7369,"phi":1.5104,"common_variants":5043889,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":50.8403,"k":-84.4662,"a":1234.7334,"b":1307.0194,"phi":2.4081,"common_variants":5259585,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":53.2131,"k":49.9096,"a":1262.1653,"b":1312.3774,"phi":0.4765,"common_variants":5327378,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":78.6214,"k":145.9914,"a":1182.0006,"b":1254.7688,"phi":3.9076,"common_variants":4817623,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":5.8608,"k":-25.6225,"a":1338.6864,"b":1279.3522,"phi":0.7696,"common_variants":5521792,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":0,"k":3.1296,"a":1322.6022,"b":1364.0593,"phi":-0.249,"common_variants":5895649,"private_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_clm",
+        dim = common_dim,
+        title = "CLM",
+        title_color = "#009E73",
+        loc = "#common_pops",
+        interactive = true
+    );
+
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-169.4859,"k":-71.7374,"a":1245.6267,"b":1157.257,"phi":1.6699,"common_variants":4672565,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-121.0587,"k":-71.7374,"a":1248.688,"b":1210.0453,"phi":1.8526,"common_variants":4819661,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0.43,"k":-136.8283,"a":1272.186,"b":1216.143,"phi":6.1252,"common_variants":4999087,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-5.3669,"k":-60.049,"a":1259.3057,"b":1314.575,"phi":4.5561,"common_variants":5327378,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":16.8562,"k":65.9723,"a":1169.7654,"b":1296.0166,"phi":4.6401,"common_variants":4912197,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-28.2954,"k":-89.06,"a":1284.9118,"b":1266.5903,"phi":2.8881,"common_variants":5254464,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":0,"k":-54.4502,"a":1334.1963,"b":1304.4956,"phi":3.294,"common_variants":5663208,"private_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_mxl",
+        dim = common_dim,
+        title = "MXL",
+        title_color = "#56B4E9",
+        loc = "#common_pops",
+        interactive = true
+    );
+
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-136.4806,"k":-11.2297,"a":1165.5168,"b":1132.8495,"phi":2.3493,"common_variants":4261270,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-97.8328,"k":-11.2297,"a":1154.5489,"b":1198.3637,"phi":0.9624,"common_variants":4398728,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0,"k":-49.1769,"a":1222.8294,"b":1134.1021,"phi":-2.6449,"common_variants":4440037,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-22.0052,"k":28.7626,"a":1250.9645,"b":1203.7707,"phi":0.7879,"common_variants":4817623,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":-10.2769,"k":32.8326,"a":1217.7502,"b":1255.6227,"phi":0.7452,"common_variants":4912197,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-22.9208,"k":0,"a":1170.9151,"b":1253.9321,"phi":1.873,"common_variants":4700471,"private_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":-31.3731,"k":33.3752,"a":1252.0678,"b":1275.4104,"phi":-2.1762,"common_variants":5140058,"private_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_pel",
+        dim = common_dim,
+        title = "PEL",
+        title_color = "#E69F00",
+        loc = "#common_pops",
+        interactive = true
+    );
+
+    d3_euler(
+        data = [
+            {"abbreviation":"ACB","h":-132.2327,"k":-44.0001,"a":1272.6429,"b":1225.1824,"phi":4.289,"common_variants":5112528,"private_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-85.0325,"k":-44.0001,"a":1288.4448,"b":1267.3528,"phi":0.6853,"common_variants":5253401,"private_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":78.2031,"k":-126.0023,"a":1231.5328,"b":1325.4885,"phi":2.384,"common_variants":5329963,"private_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#F0E442","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":56.6395,"k":-40.0285,"a":1310.9291,"b":1305.6904,"phi":-0.8658,"common_variants":5521792,"private_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":87.7264,"k":0,"a":1268.0344,"b":1273.7931,"phi":4.7499,"common_variants":5254464,"private_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":109.9055,"k":90.6142,"a":1224.4499,"b":1182.8382,"phi":-0.4921,"common_variants":4700471,"private_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":0,"k":-60.372,"a":1376.2273,"b":1338.3484,"phi":0.467,"common_variants":6053543,"private_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
+        ],
+        id = "americas_pur",
+        dim = common_dim,
+        title = "PUR",
+        title_color = "#000000",
+        loc = "#common_pops",
+        interactive = true
+    );
+</script>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 4 - Seven interactive Euler diagrams of the common variants in samples located in the Americas. Each diagram highlights a different sample, identified in the title, that was used to filter the variants down to only those that were common in the sample. The sizes of each plot are proportional to the number of variants included in the analysis (sizes are not proportional to previous figures). See Figure S1 near the bottom of this post for an alternative visualization of this figure.
+    </p>
+</center>
+<p><br /></p>
+
+<p>This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of private variants, variants that are unique to that sample, will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little unique common variation shown in the diagrams of the other samples.</p>
+
+<p>Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.</p>
+
+<div id="figure5" style="display: flex; justify-content: center;"></div>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 5 - An Euler diagram of the common variants in samples located in the Americas relative to the scale of the human genome. As a small note, the positions and orientations of ellipses within the Euler diagram differ slightly from Figure 3. This is because the eulerr package gives varied results with each run due to random starting conditions within the algorithm.
+    </p>
+</center>
+<p><br /></p>
+
+<p>Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al. 2020.</p>
+
+<div id="figure6" style="display: flex; justify-content: center;"></div>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 6 - An interactive Euler diagram of the common variants in five geographically distant samples: Bengali in Bangladesh (BEB), Han Chinese in Beijing, China (CHB), British in England and Scotland (GBR), Mexican Ancestry in Los Angeles, California (MXL), and Yoruba in Ibadan, Nigeria (YRI).
+    </p>
+</center>
+<p><br /></p>
+
+<p>Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when taking quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation.</p>
+
+<p>Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this dataset’s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. There’s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa.</p>
+
+<div id="figure7" style="display: flex; justify-content: center;"></div>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 7 - Five interactive Euler diagrams of the 26 global samples using the broad geographic groupings from Biddanda et al. 2020.
+    </p>
+</center>
+<p><br /></p>
+
+<p>It’s easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. SLC24A5), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation.</p>
+
+<p>Technical details</p>
+
+<p>We used the <code class="language-plaintext highlighter-rouge">geovar</code> package in Python to group the ~92 million variants included in the 1000 Genomes Project based on minor allele frequency (MAF). Variants were separated into five bins based (MAF=0%, 0%&lt;MAF&lt;1%, 1%&lt;MAF&lt;5%, 5%&lt;MAF&lt;10%, and MAF&gt;10%), though two bins would have sufficed for this analysis (MAF&lt;5% and MAF&gt;5%).</p>
+
+<p>We used the <code class="language-plaintext highlighter-rouge">eulerr</code> in R to calculate the position and orientation of ellipses in the Euler diagrams. Unfortunately, exactly proportionally scaling the area of every region of this diagram becomes difficult to impossible as you increase the number of sets, or samples. Because of this, I have included two goodness-of-fit measurements provided by the <code class="language-plaintext highlighter-rouge">eulerr</code> package and described in further details in the package’s <a href="https://cran.r-project.org/web/packages/eulerr/vignettes/introduction.html">tutorial</a>. For both measurements, values closer to zero have less error. Below is a table with these measurements for all of the Euler diagrams presented in this post:</p>
+
+<p>figure
+stress
+diagError
+3
+4.53E-04
+0.019573681
+4.1
+1.09E-04
+0.008677686
+4.2
+1.52E-04
+0.0133913503
+4.3
+1.04E-04
+0.016955049
+4.4
+3.08E-04
+0.0260526896
+4.5
+2.53E-04
+0.0236936357
+4.6
+1.89E-04
+0.0181390286
+4.7
+3.58E-04
+0.0288044056
+5
+1.09E-09
+0.0001789465
+6
+2.30E-03
+0.0198055721
+7.1
+1.19E-03
+0.027619266
+7.2
+4.53E-04
+0.019573681
+7.3
+5.77E-04
+0.0410841878
+7.4
+6.39E-07
+0.0004395497
+7.5
+6.41E-04
+0.0458260097</p>
+
+<p>The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships.</p>
+
+<p>We converted the output of <code class="language-plaintext highlighter-rouge">eulerr</code> into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures.</p>
+
+<p>All of the code used to generate these figures can be found here.</p>
+
+<p>Additional figures</p>
+
+<p>The following figures offer alternative methods of visualization to those within this post. Details about these figures are provided in the captions.</p>
+
+<p>Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of private common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.</p>
+
+<p>Figure S2 - An UpSet Plot</p>
+
+<p>Citations</p>
+
+<p>A Biddanda, D P. Rice, J. Novembre, Geographic patterns of human allele frequency variation: a variant-centric perspective (eLife) (2020).</p>
+
+<p>Lewontin 1972</p>
+
+<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at 99.9% of sites in their genomes and much of the genetic variation there is shared among human groups. These subtle differences between individuals and groups highlight a history of shared ancient history and migration that human geneticists are interested in unraveling, but understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the <a href="https://popgen.uchicago.edu/ggv/?data=%221000genomes%22&amp;chr=1&amp;pos=222087833">Geography of Genetic Variants Browser</a> from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
+
+<p>We wanted to share some resources we’ve been putting together for teaching genetics (inspired by <a href="https://onlinelibrary.wiley.com/doi/10.1002/sce.21506">Donovan et al. 2019</a> and <a href="https://elifesciences.org/articles/60107">Biddanda et al. 2020</a>). These visualizations first center on the variation in a set of diverse samples from the Americas that were sequenced as part of the 1000 Genomes Project before expanding to include more globally distributed examples.</p>
+
+<p>The number of genomic sites that individuals vary at is a small fraction of their entire sequenced genomes. Within this variation, the vast majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Most of this variation is rare; for example, a single person might carry an A at a particular location in the genome where everyone else has a C. These rare variants are interesting for other applications but are the properties of particular people and their immediate families, not the human group that they come from. Following Biddanda et al. 2020, we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        Figure 1 - The relative scale of common variants in the Americas compared to the size of the human genome. The area of each circle is scaled proportionally by the number of sites in that category. The small blue circle corresponds with the number of common variants; “common” is defined as having a minor allele frequency of greater than 5% in at least one of the samples.
+    </p>
+</center>
+
+<p><br /></p>
+
+<p>The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome.</p>
+
+<p>There are seven samples located in the Americas. To understand how this variation is shared among samples in the Americas, we counted the number of common variants found in each sample.</p>
+:ET
