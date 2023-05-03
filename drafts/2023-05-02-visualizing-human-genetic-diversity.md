@@ -1,69 +1,17 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
+---
+layout: "post"
+permalink: "/blog/visualizing-human-genetic-diversity"
+title: "DRAFT - Visualizing Human Genetic Diversity"
+date: "May 02, 2023"
+authors: "James Kitchens and Graham Coop"
+skills: [Genetics, D3, Python, R]
+desc: In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life.
+thumbnail: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
+---
 
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    DRAFT - Visualizing Human Genetic Diversity</h2><p style="text-align: left;">James Kitchens and Graham Coop</p><p style="text-align: left;">May 2, 2023</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">D3</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">Python</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <p><br /></p>
+<br>
 
 <script src="https://d3js.org/d3.v4.js"></script>
-
 <style>
     body {
         height: 1000px;
@@ -88,7 +36,6 @@
         justify-content: space-evenly;
     }
 </style>
-
 <script>
     // Define the div for the tooltip
     var tip = d3.select(".section").append("div")
@@ -267,9 +214,10 @@
     }    
 </script>
 
-<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at ~99.9% of sites in their genomes. You have the same DNA letter as another randomly chosen human at 999/1000 bases, and at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.  Within this variation, the majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (Lewontin, 1972). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the Geography of Genetic Variants Browser from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
 
-<p>We wanted to share some resources we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by Donovan et al. (2019) and Biddanda et al. (2020). These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al. 2020, we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
+A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Two humans picked at random are identical at ~99.9% of sites in their genomes. You have the same DNA letter as another randomly chosen human at 999/1000 bases, and at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.  Within this variation, the majority of variable sites have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (Lewontin, 1972). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome (check out the Geography of Genetic Variants Browser from the Novembre Lab for a nice interactive tool) to see how variation is shared. However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.
+
+We wanted to share some resources we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by Donovan et al. (2019) and Biddanda et al. (2020). These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al. 2020, we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria. 
 
 <div id="figure1" style="display: flex; justify-content: center;"></div>
 
@@ -375,9 +323,9 @@
         Figure 1 - The relative scale of common variants in the Americas compared to the size of the human genome. The area of each circle is scaled proportionally by the number of sites in that category. The small blue circle corresponds with the number of common variants; “common” is defined as having a minor allele frequency of greater than 5% in at least one of the samples.
     </p>
 </center>
-<p><br /></p>
+<br>
 
-<p>The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, and we counted the number of common variants found in each sample.</p>
+The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, and we counted the number of common variants found in each sample.
 
 <div id="figure2" style="display: flex; justify-content: center;"></div>
 
@@ -488,9 +436,9 @@
         Figure 2 - Seven circles, one for each sample located in the Americas. The area of each circle is proportional to the number of common variants within that sample from the 1000 Genomes Project. A “common” variant is defined as having a minor allele frequency of greater than 5%, where the minor allele identity is determined by its global allele frequency. The number of individuals within each sample has also been included to ensure that this quantity is relatively consistent between samples.
     </p>
 </center>
-<p><br /></p>
+<br>
 
-<p>The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples. This style of visualization is similar to a Venn diagram with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.</p>
+The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples. This style of visualization is similar to a Venn diagram with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.
 
 <div id="figure3" style="display: flex; justify-content: center;"></div>
 
@@ -519,9 +467,9 @@
         Figure 3 - An interactive Euler diagram of the common variants in samples located in the Americas. The area of the ellipses is equal to the area of the circles from the previous figure. It is not mathematically possible to generate ellipses with a given overlap without distortions to the areas. See the Technical details section (below) for statistics quantifying the slight errors in this and following Euler diagrams.
     </p>
 </center>
-<p><br /></p>
+<br>
 
-<p>It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (&gt;5%) in a given sample and then identified which other samples share that same common variation.</p>
+It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (>5%) in a given sample and then identified which other samples share that same common variation.
 
 <div id="figure4" style="display: flex; justify-content: center;"></div>
 
@@ -667,11 +615,11 @@
         Figure 4 - Seven interactive Euler diagrams of the common variants in samples located in the Americas. Each diagram highlights a different sample, identified in the title, that was used to filter the variants down to only those that were common in the sample. The sizes of each plot are proportional to the number of variants included in the analysis (sizes are not proportional to previous figures). See Figure S1 near the bottom of this post for an alternative visualization of this figure.
     </p>
 </center>
-<p><br /></p>
+<br>
 
-<p>This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of private variants, variants that are unique to that sample, will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little unique common variation shown in the diagrams of the other samples.</p>
+This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of private variants, variants that are unique to that sample, will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little unique common variation shown in the diagrams of the other samples.
 
-<p>Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.</p>
+Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.
 
 <div id="figure5" style="display: flex; justify-content: center;"></div>
 
@@ -783,9 +731,9 @@
         Figure 5 - An Euler diagram of the common variants in samples located in the Americas relative to the scale of the human genome. As a small note, the positions and orientations of ellipses within the Euler diagram differ slightly from Figure 3. This is because the eulerr package gives varied results with each run due to random starting conditions within the algorithm.
     </p>
 </center>
-<p><br /></p>
+<br>
 
-<p>Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al. 2020.</p>
+Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al. 2020.
 
 <div id="figure6" style="display: flex; justify-content: center;"></div>
 
@@ -812,11 +760,11 @@
         Figure 6 - An interactive Euler diagram of the common variants in five geographically distant samples: Bengali in Bangladesh (BEB), Han Chinese in Beijing, China (CHB), British in England and Scotland (GBR), Mexican Ancestry in Los Angeles, California (MXL), and Yoruba in Ibadan, Nigeria (YRI).
     </p>
 </center>
-<p><br /></p>
+<br>
 
-<p>Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when taking quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation.</p>
+Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when taking quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation. 
 
-<p>Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this dataset’s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. There’s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa.</p>
+Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this dataset’s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. There’s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa. 
 
 <div id="figure7" style="display: flex; justify-content: center;"></div>
 
@@ -918,15 +866,16 @@
         Figure 7 - Five interactive Euler diagrams of the 26 global samples using the broad geographic groupings from Biddanda et al. 2020.
     </p>
 </center>
-<p><br /></p>
+<br>
 
-<p>It’s easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. SLC24A5), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation.</p>
+It's easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. SLC24A5), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation. 
 
-<h3 id="technical-details">Technical details</h3>
 
-<p>We used the <code class="language-plaintext highlighter-rouge">geovar</code> package in Python to group the ~92 million variants included in the 1000 Genomes Project based on minor allele frequency (MAF). Variants were separated into five bins based (MAF=0%, 0%&lt;MAF&lt;1%, 1%&lt;MAF&lt;5%, 5%&lt;MAF&lt;10%, and MAF&gt;10%), though two bins would have sufficed for this analysis (MAF&lt;5% and MAF&gt;5%). We used the <code class="language-plaintext highlighter-rouge">eulerr</code> in R to calculate the position and orientation of ellipses in the Euler diagrams. Unfortunately, exactly proportionally scaling the area of every region of this diagram becomes difficult to impossible as you increase the number of sets, or samples. Because of this, I have included two goodness-of-fit measurements provided by the <code class="language-plaintext highlighter-rouge">eulerr</code> package and described in further details in the package’s <a href="https://cran.r-project.org/web/packages/eulerr/vignettes/introduction.html">tutorial</a>. For both measurements, values closer to zero have less error. Below is a table with these measurements for all of the Euler diagrams presented in this post:</p>
+### Technical details
 
-<p><br /></p>
+We used the `geovar` package in Python to group the ~92 million variants included in the 1000 Genomes Project based on minor allele frequency (MAF). Variants were separated into five bins based (MAF=0%, 0%<MAF<1%, 1%<MAF<5%, 5%<MAF<10%, and MAF>10%), though two bins would have sufficed for this analysis (MAF<5% and MAF>5%). We used the `eulerr` in R to calculate the position and orientation of ellipses in the Euler diagrams. Unfortunately, exactly proportionally scaling the area of every region of this diagram becomes difficult to impossible as you increase the number of sets, or samples. Because of this, I have included two goodness-of-fit measurements provided by the `eulerr` package and described in further details in the package's [tutorial](https://cran.r-project.org/web/packages/eulerr/vignettes/introduction.html). For both measurements, values closer to zero have less error. Below is a table with these measurements for all of the Euler diagrams presented in this post:
+
+<br>
 
 <style>
     table {
@@ -948,116 +897,50 @@
     }
 </style>
 
-<table>
-  <thead>
-    <tr>
-      <th>figure</th>
-      <th>stress</th>
-      <th>diagError</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>3</td>
-      <td>4.53E-04</td>
-      <td>0.019573681</td>
-    </tr>
-    <tr>
-      <td>4.1</td>
-      <td>1.09E-04</td>
-      <td>0.008677686</td>
-    </tr>
-    <tr>
-      <td>4.2</td>
-      <td>1.52E-04</td>
-      <td>0.0133913503</td>
-    </tr>
-    <tr>
-      <td>4.3</td>
-      <td>1.04E-04</td>
-      <td>0.016955049</td>
-    </tr>
-    <tr>
-      <td>4.4</td>
-      <td>3.08E-04</td>
-      <td>0.0260526896</td>
-    </tr>
-    <tr>
-      <td>4.5</td>
-      <td>2.53E-04</td>
-      <td>0.0236936357</td>
-    </tr>
-    <tr>
-      <td>4.6</td>
-      <td>1.89E-04</td>
-      <td>0.0181390286</td>
-    </tr>
-    <tr>
-      <td>4.7</td>
-      <td>3.58E-04</td>
-      <td>0.0288044056</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>1.09E-09</td>
-      <td>0.0001789465</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>2.30E-03</td>
-      <td>0.0198055721</td>
-    </tr>
-    <tr>
-      <td>7.1</td>
-      <td>1.19E-03</td>
-      <td>0.027619266</td>
-    </tr>
-    <tr>
-      <td>7.2</td>
-      <td>4.53E-04</td>
-      <td>0.019573681</td>
-    </tr>
-    <tr>
-      <td>7.3</td>
-      <td>5.77E-04</td>
-      <td>0.0410841878</td>
-    </tr>
-    <tr>
-      <td>7.4</td>
-      <td>6.39E-07</td>
-      <td>0.0004395497</td>
-    </tr>
-    <tr>
-      <td>7.5</td>
-      <td>6.41E-04</td>
-      <td>0.0458260097</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><br /></p>
-
-<p>The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of <code class="language-plaintext highlighter-rouge">eulerr</code> into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the code used to generate these figures can be found here.</p>
-
-<h3 id="additional-figures">Additional figures</h3>
-
-<p>The following figures offer alternative methods of visualization to those within this post. Details about these figures are provided in the captions.</p>
-
-<p>Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of private common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.</p>
-
-<p>Figure S2 - An UpSet Plot</p>
-
-<p>Citations</p>
-
-<p>A Biddanda, D P. Rice, J. Novembre, Geographic patterns of human allele frequency variation: a variant-centric perspective (eLife) (2020).</p>
-
-<p>Lewontin 1972</p>
 
 
-        </div>
-    <div id="contact" class="contactBar">
+| figure | stress   | diagError    |
+| ------ | -------- | ------------ |
+| 3      | 4.53E-04 | 0.019573681  |
+| 4.1    | 1.09E-04 | 0.008677686  |
+| 4.2    | 1.52E-04 | 0.0133913503 |
+| 4.3    | 1.04E-04 | 0.016955049  |
+| 4.4    | 3.08E-04 | 0.0260526896 |
+| 4.5    | 2.53E-04 | 0.0236936357 |
+| 4.6    | 1.89E-04 | 0.0181390286 |
+| 4.7    | 3.58E-04 | 0.0288044056 |
+| 5      | 1.09E-09 | 0.0001789465 |
+| 6      | 2.30E-03 | 0.0198055721 |
+| 7.1    | 1.19E-03 | 0.027619266  |
+| 7.2    | 4.53E-04 | 0.019573681  |
+| 7.3    | 5.77E-04 | 0.0410841878 |
+| 7.4    | 6.39E-07 | 0.0004395497 |
+| 7.5    | 6.41E-04 | 0.0458260097 |
 
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
+<br>
 
-</html>
+The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of `eulerr` into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the code used to generate these figures can be found here.
+
+
+### Additional figures
+
+The following figures offer alternative methods of visualization to those within this post. Details about these figures are provided in the captions.
+
+
+
+
+Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of private common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
+
+
+
+
+
+Figure S2 - An UpSet Plot
+
+
+
+Citations
+
+A Biddanda, D P. Rice, J. Novembre, Geographic patterns of human allele frequency variation: a variant-centric perspective (eLife) (2020).
+
+Lewontin 1972

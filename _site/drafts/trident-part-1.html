@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>James Kitchens</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    
+
+</head><body><div id="topnav">
+    
+    
+        <a class="section-title" id="Logo" href="/#home">
+            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
+        </a>
+        <a class="section-title" id="Home" href="/#home">Home</a>
+        <a class="section-title" id="Bio" href="/#bio">Bio</a>
+        
+            <a class="section-title" id="Projects" href="/#projects">Projects</a>
+        
+            <a class="section-title" id="Blog" href="/#blog">Blog</a>
+        
+    
+    
+    
+        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
+    
+    
+    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+</div><div class="section"><h2 class="postTitle">
+    Trident (Part 1)</h2><p style="text-align: left;">James Kitchens</p><p style="text-align: left;">August 5, 2021</p>
+<div class="cat">
+    
+        <div class="background">
+            <p class="skill">Django</p>
+        </div>
+    
+        <div class="background">
+            <p class="skill">JavaScript</p>
+        </div>
+    
+        <div class="background">
+            <p class="skill">Leaflet</p>
+        </div>
+    
+</div>
+
+            <p class="images"><img src="/assets/blog/irregularly-shaped-leaflet-maps/Screen Shot 2021-06-25 at 10.00.32 AM 2.png" alt="Irregular Leaflet #1" /></p>
+
+<p>A few years ago, Andrew Graham asked me to help him develop a digital dashboard for his motorcycles (check out his company, <a href="https://tridentcycles.blog">Trident Cycles</a>) that would record his laps around the track during races. I spent a summer toiling over various Arduino components trying to build out a prototype but was not particularly successful. After building relevant skills during the development of other recent projects, I decided to try my hand again at working on a functional prototype. This post documents my thought process and findings while working through Trident, a web-based motorcycle trip recorder.</p>
+
+<h3 id="concept">Concept</h3>
+
+<p>I wanted to design Trident similarly to a preexisting and popular workout application, <a href="https://www.strava.com">Strava</a>. Users will be able to record trips, view recordings that display post-processed visualizations generated from the data, and share those recordings with others. I’m hoping to keep the scope of the project much smaller than a true clone of Strava, which includes user interactions (follows, likes, and comments). Instead, I have decided to focus on the data processing in order to pull the most interesting information from the combination of phone sensors. At the moment, these sensors include:</p>
+
+<ul>
+  <li>GPS</li>
+  <li>Inertial Measurement Unit (IMU) - accelerometer and gyroscope</li>
+</ul>
+
+<p>Individually, the sensors have their strengths and weaknesses. The GPS provides absolute positioning and speed but is limited to a slow refresh rate of 1Hz. This greatly limits its effectiveness when tracking a motorcycle through a turn during a race. In contrast, the IMU has a very quick refresh rate but only provides relative measurements. By combining these sensors, I hope to generate an expected position that fills in the gaps between the observed positions.</p>
+
+<p>But before I can get to working through the processing steps, I needed to build a stable method for creating, storing, and viewing trip recordings.</p>
+
+<h3 id="mock-ups">Mock Ups</h3>
+
+<p class="images"><img src="/assets/blog/trident-part-1/Screen Shot 2021-08-07 at 7.10.00 AM.png" alt="Trident - Mock Ups" /></p>
+
+<p class="images"><img src="/assets/blog/trident-part-1/Screen Shot 2021-08-07 at 7.59.14 AM.png" alt="Trident - Mock Ups" /></p>
+
+<p>For the mockups, I created a loading screen with the Trident Cycles logo, a recordings screen where you can view your previous trips, and a detail view for each recording which will display your specific stats and visualizations for the trip. I went with a bold color palette that I feel fits the motorcycle racing theme. I wanted each view to contain some unifying features, such as the header and footer menu, that are common with many mobile applications. These mockups were created in Adobe XD, which I felt really helped to quickly prototype the look of the different views without the need for diving into the code. These gave a good starting point for the look that I wanted.</p>
+
+<h3 id="database-thoughts">Database Thoughts</h3>
+
+<p>Sticking with my strengths, I developed this web application using Django. As we get into more in-depth data analysis, I think that the Python backend will be very beneficial. I stuck with the default SQLite database; this may have been a mistake, but I’ll talk about that later in this post. I first determined what a recording would look like within the database. Each recording has some general information (name, user, date, and description), summary statistics that are generated by the backend (maximum speed, average speed, duration, coordinate path, etc…), and the raw time series data. Storing the time series data within the database seemed very wasteful, as I didn’t think that there would be a need to query this data across multiple recordings at the same time. I instead decided to store it as CSV file, which was linked to the recording model as a FileField. This means that there will be a CSV per recording, stored within a directory alongside one another. I had originally envisioned a way to mark recordings as public or private, but this method of storing the CSV does seemingly complicate that feature because, by default, these files are visible to every user if you know the associated URL. This will be something that I revisit once the build is a bit more stable.</p>
+
+<h3 id="wheres-the-code">Where’s The Code?</h3>
+
+<h4 id="dashboard">Dashboard</h4>
+
+<p>The dashboard section is where all of the recording actually occurs. I am not a strong JavaScript programmer, but I had worked through much of this code on a previous version of the project. It utilizes the Geolocation and DeviceMotion/DeviceOrientation APIs to monitor the mobile device sensors. Each one of these has to be manually enable with a button click, which calls the enableSensors() function. The screen waits for the sensors to be fully functioning before removing the overlay and passing the user to the dashboard.</p>
+
+<p class="codeheader">main.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">enableSensors</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">connectedGPS</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">connectedGyro</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">connectedAccel</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">enableSensorsOverlay</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="nx">enableLocation</span><span class="p">();</span>
+    <span class="nx">enableOrientation</span><span class="p">();</span>
+    <span class="nx">enableMotion</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p class="codeheader">main.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">timeseries</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="dl">"</span><span class="s2">time</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">duration</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">speed</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">lat</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">lon</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">llaccuracy</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">alt</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">altaccuracy</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">alpha</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">beta</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">gamma</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">accelX</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">accelY</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">accelZ</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">currentStats</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">time</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">duration</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">speed</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">lat</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">lon</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">llaccuracy</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">alt</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">altaccuracy</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">alpha</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">beta</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">gamma</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">accelX</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">accelY</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="na">accelZ</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>‘timeseries’ is a an array of arrays, which is appended as the recording runs. With each time step, a new array is appended to ‘timeseries’ consisting of that time step’s observed measurements. More measurements and sensors could be added by including more columns in ‘timeseries’. ‘currentStats’ is a variable that you will see frequently throughout the code; it is a dictionary which stores the current measurement values. This is necessary as the sensors are updating at different rates, so the values must be stored between updates.</p>
+
+<p class="codeheader">main.js (Geolocation)</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">enableLocation</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">enableHighAccuracy</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">timeout</span><span class="p">:</span> <span class="mi">5000</span><span class="p">,</span>
+            <span class="na">maximumAge</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">};</span>
+        <span class="nb">navigator</span><span class="p">.</span><span class="nx">geolocation</span><span class="p">.</span><span class="nx">watchPosition</span><span class="p">(</span><span class="nx">geolocation_success</span><span class="p">,</span> <span class="nx">geolocation_error</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">geolocation_success</span> <span class="p">(</span><span class="nx">position</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">sensors</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Connecting...</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">sensors</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">red</span><span class="dl">"</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">sensors</span><span class="dl">"</span><span class="p">).</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">speed</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">speed</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">connectedGPS</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">mph</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">speed</span> <span class="o">*</span> <span class="mf">2.23694</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">speed</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mph</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="nx">currentStats</span><span class="p">.</span><span class="nx">time</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">timestamp</span><span class="p">;</span>
+        <span class="nx">currentStats</span><span class="p">.</span><span class="nx">speed</span> <span class="o">=</span> <span class="nx">mph</span><span class="p">;</span>
+        <span class="nx">currentStats</span><span class="p">.</span><span class="nx">lat</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">latitude</span><span class="p">;</span>
+        <span class="nx">currentStats</span><span class="p">.</span><span class="nx">lon</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">longitude</span><span class="p">;</span>
+        <span class="nx">currentStats</span><span class="p">.</span><span class="nx">llaccuracy</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">accuracy</span><span class="p">;</span>
+        <span class="nx">currentStats</span><span class="p">.</span><span class="nx">alt</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">altitude</span><span class="p">;</span>
+        <span class="nx">currentStats</span><span class="p">.</span><span class="nx">altaccuracy</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">coords</span><span class="p">.</span><span class="nx">altitudeAccuracy</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">geolocation_error</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Geolocation Unavailable!</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The Geolocation API measures your position, altitude, and speed. This occurs once per second. The code from the documentation worked right out of the box, with an added conversion from meters per second to miles per hour.</p>
+
+<p class="codeheader">main.js (Orientation)</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">enableOrientation</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">DeviceOrientationEvent</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">undefined</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">DeviceOrientationEvent</span><span class="p">.</span><span class="nx">requestPermission</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">undefined</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">DeviceOrientationEvent</span><span class="p">.</span><span class="nx">requestPermission</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">response</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">granted</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">connectedGyro</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span><span class="p">;</span>
+                <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">deviceorientation</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="nx">currentStats</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">alpha</span><span class="p">;</span>
+                    <span class="nx">currentStats</span><span class="p">.</span><span class="nx">beta</span> <span class="o">=</span> <span class="o">-</span><span class="nx">event</span><span class="p">.</span><span class="nx">beta</span><span class="p">;</span>
+                    <span class="nx">currentStats</span><span class="p">.</span><span class="nx">gamma</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">gamma</span><span class="p">;</span>
+                <span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Orientation Unavailable!</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Orientation refers to the tilt of the mobile device. This is measured across the three axes. I flipped the sign of the beta axis (top to the bottom of the screen) because this felt more intuitive for when you are on the bike.</p>
+
+<p class="codeheader">main.js (Acceleration)</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">enableMotion</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">DeviceMotionEvent</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">undefined</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">DeviceMotionEvent</span><span class="p">.</span><span class="nx">requestPermission</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">undefined</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">DeviceMotionEvent</span><span class="p">.</span><span class="nx">requestPermission</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">response</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">granted</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">connectedAccel</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span><span class="p">;</span>
+                <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">devicemotion</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="nx">currentStats</span><span class="p">.</span><span class="nx">accelX</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">acceleration</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+                    <span class="nx">currentStats</span><span class="p">.</span><span class="nx">accelY</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">acceleration</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+                    <span class="nx">currentStats</span><span class="p">.</span><span class="nx">accelZ</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">acceleration</span><span class="p">.</span><span class="nx">z</span><span class="p">;</span>
+                <span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">Motion Unavailable!</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Lastly, the motion events measure the accelerations in the three axes. This combined with th orientation will be used to smooth the GPS signal. All of these functions are called in a loop as part of the makeRecording() function.</p>
+
+<p class="codeheader">main.js</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">makeRecording</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">record</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">record</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nx">timeseries</span> <span class="o">=</span> <span class="p">[[</span><span class="dl">"</span><span class="s2">time</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">duration</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">speed</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">lat</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">lon</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">llaccuracy</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">alt</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">altaccuracy</span><span class="dl">"</span><span class="p">,</span>  <span class="dl">"</span><span class="s2">alpha</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">beta</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">gamma</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">accelX</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">accelY</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">accelZ</span><span class="dl">"</span><span class="p">]];</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">record</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Stop Recording</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">record</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">red</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nx">startRecordingTime</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+        <span class="nx">durationLoop</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">currentStats</span><span class="p">.</span><span class="nx">duration</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">startRecordingTime</span><span class="p">;</span>
+            <span class="nx">stopRecordingTime</span> <span class="o">=</span> <span class="nx">calculateDuration</span><span class="p">(</span><span class="nx">duration</span><span class="o">=</span><span class="nx">currentStats</span><span class="p">.</span><span class="nx">duration</span><span class="p">);</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">recordingTimer</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">stopRecordingTime</span><span class="p">;</span>
+            <span class="nx">timeseries</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">time</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">duration</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">speed</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">lat</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">lon</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">llaccuracy</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">alt</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">altaccuracy</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">alpha</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">beta</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">gamma</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">accelX</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">accelY</span><span class="p">,</span>
+                <span class="nx">currentStats</span><span class="p">.</span><span class="nx">accelZ</span><span class="p">,</span>
+            <span class="p">]);</span>
+        <span class="p">},</span> <span class="mi">50</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">record</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">record</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">durationLoop</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">record</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Record</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">record</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">grey</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">saveRecordingOverlay</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">flex</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">overlayTimer</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">stopRecordingTime</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">recordingArray</span><span class="dl">"</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">timeseries</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>When the user starts the recording, the sensors will be read at a regular interval, adding measurements to the timeseries array. When the recording is finished, the ‘saveRecordingOverlay” is displayed, allowing users to add details to the recording such as name, description, etc. When saved, a new row is added to the Recording model, but what exactly is stored for each recording?</p>
+
+<h4 id="models">Models</h4>
+
+<p>A database in Django consists of tables, or models, which store related data. For instance, you may have a model called ‘animals’ an object per species broken out into fields, such as scientific name, common name, and number of legs.</p>
+
+
+        </div>
+    <div id="contact" class="contactBar">
+
+        <p class="info">kitchensjn@gmail.com</p>
+    </div></body>
+
+</html>

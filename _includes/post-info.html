@@ -6,6 +6,11 @@
         </a>
     {%- endif -%}
 </h2>
+{%- if page.authors -%}
+    <p style="text-align: left;">{{ page.authors }}</p>
+{%- else -%}
+    <p style="text-align: left;">James Kitchens</p>
+{%- endif -%}
 <p style="text-align: left;">{{ page.date | date: "%B %-d, %Y"}}</p>
 <div class="cat">
     {% for skill in page.skills %}
