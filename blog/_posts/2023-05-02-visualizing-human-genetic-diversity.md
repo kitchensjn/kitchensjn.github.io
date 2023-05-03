@@ -877,6 +877,19 @@ We used the `eulerr` in R to calculate the position and orientation of ellipses 
 
 <br>
 
+<style>
+    th {
+        background-color: lightgray;
+        padding: 10px;
+        border: solid 1px gray;
+    }
+
+    td {
+        padding: 5px 10px;
+        border: solid 1px gray;
+    }
+</style>
+
 | figure | stress   | diagError    |
 | ------ | -------- | ------------ |
 | 3      | 4.53E-04 | 0.019573681  |
