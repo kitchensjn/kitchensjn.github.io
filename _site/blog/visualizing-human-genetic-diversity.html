@@ -189,7 +189,7 @@
 
         var ellipses = data;
 
-        var downscale = 12;
+        var downscale = 15;
         var shift = dim/2;
 
         svg_container
@@ -388,7 +388,7 @@
 <div id="figure2" style="display: flex; justify-content: center;"></div>
 
 <script>
-    var dim = 1000;
+    var dim = 750;
 
     var svg_container = d3.select("#figure2")
         .append("svg")
@@ -407,12 +407,12 @@
         {"abbreviation":"ACB","h":4000,"k":0,"a":1597.628,"b":1597.628,"phi":0,"common_variants":8018649,"private_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"}
     ];
 
-    var downscale = 12;
+    var downscale = 15;
     var shift = dim/2;
 
     svg_container
         .append("text")
-        .text("Common genetic variants within samples from the Americas")
+        .text("Common genetic variants found within samples from the Americas")
         .attr("x", dim/2)
         .attr("y", dim/2)
         .attr("text-anchor", "middle")
@@ -428,7 +428,7 @@
         .attr("y", dim/2)
         .attr("text-anchor", "middle")
         .style("font-family", "Arial")
-        .style("font-size", 18)
+        .style("font-size", 14)
         .style("fill", "#696969")
         .call(wrap, 300, 4, 1)
 
@@ -461,8 +461,8 @@
         .style("fill", function(d) { return d.color; })
         .style("font-family", "Arial")
         .style("font-weight", "bold")
-        .style("font-size", 18)
-        .call(wrap, 200, -0.75, 1);
+        .style("font-size", 14)
+        .call(wrap, 150, -0.75, 1);
     
     ellipse_container
         .append("text")
@@ -473,8 +473,8 @@
         .attr("dominant-baseline", "middle")
         .style("fill", function(d) { return d.color; })
         .style("font-family", "Arial")
-        .style("font-size", 18)
-        .call(wrap, 200, 2, 1);
+        .style("font-size", 14)
+        .call(wrap, 150, 2, 1);
         
     ellipse_container
         .append("text")
@@ -485,8 +485,8 @@
         .attr("dominant-baseline", "middle")
         .style("fill", function(d) { return d.color; })
         .style("font-family", "Arial")
-        .style("font-size", 18)
-        .call(wrap, 200, 3.5, 1);
+        .style("font-size", 14)
+        .call(wrap, 150, 3.5, 1);
 </script>
 
 <center style="font-style: italic;">
@@ -496,7 +496,7 @@
 </center>
 <p><br /></p>
 
-<p>The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples. This style of visualization is similar to a Venn diagram with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.</p>
+<p>The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples (Figure 3). This style of visualization is similar to a Venn diagram, with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.</p>
 
 <p><br /></p>
 <div id="figure3" style="display: flex; justify-content: center;"></div>
@@ -513,9 +513,9 @@
             {"abbreviation":"PUR","h":48.8014,"k":359.7592,"a":1435.6344,"b":1296.4881,"phi":-1.5072,"common_variants":6053543,"private_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_example_euler",
-        dim = 1000,
-        title = "",
-        title_color = "",
+        dim = 350,
+        title = "Americas",
+        title_color = "#696969",
         loc = "#figure3",
         interactive = true
     )
@@ -523,7 +523,7 @@
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 3 - An interactive Euler diagram of the common variants in samples located in the Americas. The area of the ellipses is equal to the area of the circles from the previous figure. It is not mathematically possible to generate ellipses with a given overlap without distortions to the areas. See the Technical details section (below) for statistics quantifying the slight errors in this and following Euler diagrams.
+        Figure 3 - An interactive Euler diagram of the common variants in samples located in the Americas. Hovering over the ellipses displays a popup with information about the samples. It is not mathematically possible to generate ellipses with a given overlap without distortions to the areas. See the Technical details section (below) for statistics quantifying the slight errors in this and following Euler diagrams.
     </p>
 </center>
 <p><br /></p>
@@ -541,7 +541,7 @@
             .style("flex-flow", "row wrap")
             .style("justify-content", "space-evenly");
 
-    var common_dim = 350;
+    var common_dim = 300;
 
     d3_euler(
         data = [
@@ -809,9 +809,9 @@
             {"abbreviation":"YRI","h":208.4168,"k":578.8131,"a":1470.648,"b":1705.8368,"phi":8.7792,"common_variants":8138465,"private_common_variants":3120507,"description":"Yoruba in Ibadan, Nigeria","sampled_individuals":108,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
         ] ,
         id = "global_samples",
-        dim = 1000,
-        title = "",
-        title_color = "",
+        dim = 350,
+        title = "Global",
+        title_color = "#696969",
         loc = "#figure6",
         interactive = true
     )
@@ -824,7 +824,7 @@
 </center>
 <p><br /></p>
 
-<p>Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when taking quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation.</p>
+<p>Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when considering quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation.</p>
 
 <p>Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this dataset’s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. There’s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa.</p>
 
@@ -832,7 +832,7 @@
 <div id="figure7" style="display: flex; justify-content: center;"></div>
 
 <script>
-    var global_dim = 350;
+    var global_dim = 300;
 
     d3.select("#figure7")
         .append("div")
