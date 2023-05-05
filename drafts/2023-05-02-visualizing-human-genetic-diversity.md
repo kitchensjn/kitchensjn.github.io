@@ -1099,7 +1099,7 @@ The following figures offer alternative methods of visualization to those within
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of uniquely common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area corresponding to non-unique variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
+        Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of uniquely common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area and leaving only the uniquely common variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
     </p>
 </center>
 <br>
