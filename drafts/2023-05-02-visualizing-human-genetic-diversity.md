@@ -170,7 +170,7 @@ thumbnail: "/assets/blog/visualizing-human-genetic-diversity/thumbnail.png"
                             .style("opacity", 1);
                         tip
                             .style("display", "block")
-                            .html("<h3 style='margin: 0px;'>" + d.description + "</h3></br>1KGP Abbreviation: " + d.abbreviation + "</br>Number of Sampled Individuals: " + d.sampled_individuals.toLocaleString() + "</br>Number of Common Variants: " + d.common_variants.toLocaleString() + "</br>Number of Uniquely Common Variants: "+d.uniquely_common_variants.toLocaleString())
+                            .html("<h3 style='margin: 0px;'>" + d.description + "</h3></br>1KGP Abbreviation: " + d.abbreviation + "</br>Number of Sampled Individuals: " + d.sampled_individuals.toLocaleString() + "</br>Number of Common Variants: " + d.common_variants.toLocaleString() + "</br>Number of Unshared Common Variants: "+d.unshared_common_variants.toLocaleString())
                             .style("border", d.color + " solid 7px")
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY+25) + "px");
@@ -387,13 +387,13 @@ The small blue circle in the above figure captures just how little variation ris
 
 
     var ellipses = [
-        {"abbreviation":"PEL","h":2493.9592,"k":-3127.3259,"a":1279.1135,"b":1279.1135,"phi":0,"common_variants":5140058,"uniquely_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-        {"abbreviation":"MXL","h":-890.0837,"k":-3899.7116,"a":1342.6299,"b":1342.6299,"phi":0,"common_variants":5663208,"uniquely_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-        {"abbreviation":"CEU","h":-3603.8755,"k":-1735.535,"a":1350.0972,"b":1350.0972,"phi":0,"common_variants":5726377,"uniquely_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-        {"abbreviation":"CLM","h":-3603.8755,"k":1735.535,"a":1369.9063,"b":1369.9063,"phi":0,"common_variants":5895649,"uniquely_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-        {"abbreviation":"PUR","h":-890.0837,"k":3899.7116,"a":1388.1292,"b":1388.1292,"phi":0,"common_variants":6053543,"uniquely_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
-        {"abbreviation":"ASW","h":2493.9592,"k":3127.3259,"a":1558.5375,"b":1558.5375,"phi":0,"common_variants":7631052,"uniquely_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-        {"abbreviation":"ACB","h":4000,"k":0,"a":1597.628,"b":1597.628,"phi":0,"common_variants":8018649,"uniquely_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"}
+        {"abbreviation":"PEL","h":2493.9592,"k":-3127.3259,"a":1279.1135,"b":1279.1135,"phi":0,"common_variants":5140058,"unshared_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"MXL","h":-890.0837,"k":-3899.7116,"a":1342.6299,"b":1342.6299,"phi":0,"common_variants":5663208,"unshared_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"CEU","h":-3603.8755,"k":-1735.535,"a":1350.0972,"b":1350.0972,"phi":0,"common_variants":5726377,"unshared_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"CLM","h":-3603.8755,"k":1735.535,"a":1369.9063,"b":1369.9063,"phi":0,"common_variants":5895649,"unshared_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"PUR","h":-890.0837,"k":3899.7116,"a":1388.1292,"b":1388.1292,"phi":0,"common_variants":6053543,"unshared_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"ASW","h":2493.9592,"k":3127.3259,"a":1558.5375,"b":1558.5375,"phi":0,"common_variants":7631052,"unshared_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+        {"abbreviation":"ACB","h":4000,"k":0,"a":1597.628,"b":1597.628,"phi":0,"common_variants":8018649,"unshared_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"}
     ];
 
     var downscale = 15;
@@ -493,13 +493,13 @@ The levels of genetic diversity vary between samples, shown as differences in th
 <script>
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-351.0253,"k":-117.9368,"a":1661.9991,"b":1482.8142,"phi":-2.3891,"common_variants":8018649,"uniquely_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-186.6873,"k":-117.9368,"a":1753.6272,"b":1346.1266,"phi":-1.7434,"common_variants":7631052,"uniquely_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":83.4634,"k":437.6332,"a":1518.3666,"b":1150.6006,"phi":1.187,"common_variants":5726377,"uniquely_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":163.3362,"k":321.562,"a":1247.0832,"b":1433.2207,"phi":-0.2126,"common_variants":5895649,"uniquely_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":188.7347,"k":343.7469,"a":1298.0515,"b":1327.9438,"phi":-1.3532,"common_variants":5663208,"uniquely_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":245.9637,"k":354.8639,"a":1139.4186,"b":1374.1214,"phi":1.0056,"common_variants":5140058,"uniquely_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":48.8014,"k":359.7592,"a":1435.6344,"b":1296.4881,"phi":-1.5072,"common_variants":6053543,"uniquely_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-351.0253,"k":-117.9368,"a":1661.9991,"b":1482.8142,"phi":-2.3891,"common_variants":8018649,"unshared_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-186.6873,"k":-117.9368,"a":1753.6272,"b":1346.1266,"phi":-1.7434,"common_variants":7631052,"unshared_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":83.4634,"k":437.6332,"a":1518.3666,"b":1150.6006,"phi":1.187,"common_variants":5726377,"unshared_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":163.3362,"k":321.562,"a":1247.0832,"b":1433.2207,"phi":-0.2126,"common_variants":5895649,"unshared_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":188.7347,"k":343.7469,"a":1298.0515,"b":1327.9438,"phi":-1.3532,"common_variants":5663208,"unshared_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":245.9637,"k":354.8639,"a":1139.4186,"b":1374.1214,"phi":1.0056,"common_variants":5140058,"unshared_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":48.8014,"k":359.7592,"a":1435.6344,"b":1296.4881,"phi":-1.5072,"common_variants":6053543,"unshared_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_example_euler",
         dim = 350,
@@ -534,13 +534,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
 
     d3_euler(
         data = [
-            {"abbreviation":"ASW","h":-33.6008,"k":-66.9563,"a":1628.118,"b":1350.1618,"phi":-2.5773,"common_variants":7020928,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":68.6404,"k":95.4167,"a":1053.3382,"b":1381.2585,"phi":-2.9205,"common_variants":4666113,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":34.2802,"k":9.8817,"a":1448.5815,"b":1060.8529,"phi":-1.4555,"common_variants":4896250,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":16.8686,"k":59.5652,"a":1401.8114,"b":1044.7415,"phi":1.5109,"common_variants":4672565,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":-68.7641,"k":66.9836,"a":988.4922,"b":1348.208,"phi":-3.1739,"common_variants":4261270,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":81.6678,"k":28.1504,"a":1428.3514,"b":1128.7544,"phi":-1.3564,"common_variants":5112528,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ACB","h":-65.228,"k":-66.9563,"a":1514.9706,"b":1655.0866,"phi":-0.9991,"common_variants":8018649,"uniquely_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ASW","h":-33.6008,"k":-66.9563,"a":1628.118,"b":1350.1618,"phi":-2.5773,"common_variants":7020928,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":68.6404,"k":95.4167,"a":1053.3382,"b":1381.2585,"phi":-2.9205,"common_variants":4666113,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":34.2802,"k":9.8817,"a":1448.5815,"b":1060.8529,"phi":-1.4555,"common_variants":4896250,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":16.8686,"k":59.5652,"a":1401.8114,"b":1044.7415,"phi":1.5109,"common_variants":4672565,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":-68.7641,"k":66.9836,"a":988.4922,"b":1348.208,"phi":-3.1739,"common_variants":4261270,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":81.6678,"k":28.1504,"a":1428.3514,"b":1128.7544,"phi":-1.3564,"common_variants":5112528,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-65.228,"k":-66.9563,"a":1514.9706,"b":1655.0866,"phi":-0.9991,"common_variants":8018649,"unshared_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_acb",
         dim = common_dim,
@@ -552,13 +552,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
     
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-127.9212,"k":-16.3857,"a":1434.9282,"b":1516.3261,"phi":-3.5615,"common_variants":7020928,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":222.857,"k":-52.2642,"a":1161.4243,"b":1292.3007,"phi":-4.4373,"common_variants":4810015,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":202.7879,"k":32.4151,"a":1292.3632,"b":1225.6845,"phi":-3.1563,"common_variants":5043889,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":231.3601,"k":45.6133,"a":1272.4161,"b":1173.1753,"phi":-3.0802,"common_variants":4819661,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":271.5502,"k":108.1057,"a":1118.7258,"b":1215.4851,"phi":-1.7843,"common_variants":4398728,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":144.5883,"k":9.885,"a":1369.9257,"b":1193.8532,"phi":-3.0874,"common_variants":5253401,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-43.4144,"k":-16.3857,"a":1572.7413,"b":1504.6041,"phi":-5.7499,"common_variants":7631052,"uniquely_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-127.9212,"k":-16.3857,"a":1434.9282,"b":1516.3261,"phi":-3.5615,"common_variants":7020928,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":222.857,"k":-52.2642,"a":1161.4243,"b":1292.3007,"phi":-4.4373,"common_variants":4810015,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":202.7879,"k":32.4151,"a":1292.3632,"b":1225.6845,"phi":-3.1563,"common_variants":5043889,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":231.3601,"k":45.6133,"a":1272.4161,"b":1173.1753,"phi":-3.0802,"common_variants":4819661,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":271.5502,"k":108.1057,"a":1118.7258,"b":1215.4851,"phi":-1.7843,"common_variants":4398728,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":144.5883,"k":9.885,"a":1369.9257,"b":1193.8532,"phi":-3.0874,"common_variants":5253401,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-43.4144,"k":-16.3857,"a":1572.7413,"b":1504.6041,"phi":-5.7499,"common_variants":7631052,"unshared_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_asw",
         dim = common_dim,
@@ -570,13 +570,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
 
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-94.4748,"k":-70.8605,"a":1180.1411,"b":1233.1487,"phi":-0.0171,"common_variants":4666113,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-34.3686,"k":-70.8605,"a":1255.8523,"b":1193.2149,"phi":3.5755,"common_variants":4810015,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":21.3991,"k":14.8651,"a":1252.8401,"b":1313.3533,"phi":0.1056,"common_variants":5259585,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":7.914,"k":57.7595,"a":1228.54,"b":1279.6367,"phi":4.8983,"common_variants":4999087,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":58.5053,"k":91.4926,"a":1206.1001,"b":1147.0535,"phi":4.8701,"common_variants":4440037,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":13.3255,"k":-21.4317,"a":1305.575,"b":1281.8573,"phi":2.1193,"common_variants":5329963,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":13.7257,"k":0,"a":1337.84,"b":1328.7352,"phi":4.81,"common_variants":5726377,"uniquely_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-94.4748,"k":-70.8605,"a":1180.1411,"b":1233.1487,"phi":-0.0171,"common_variants":4666113,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-34.3686,"k":-70.8605,"a":1255.8523,"b":1193.2149,"phi":3.5755,"common_variants":4810015,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":21.3991,"k":14.8651,"a":1252.8401,"b":1313.3533,"phi":0.1056,"common_variants":5259585,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":7.914,"k":57.7595,"a":1228.54,"b":1279.6367,"phi":4.8983,"common_variants":4999087,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":58.5053,"k":91.4926,"a":1206.1001,"b":1147.0535,"phi":4.8701,"common_variants":4440037,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":13.3255,"k":-21.4317,"a":1305.575,"b":1281.8573,"phi":2.1193,"common_variants":5329963,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":13.7257,"k":0,"a":1337.84,"b":1328.7352,"phi":4.81,"common_variants":5726377,"unshared_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_ceu",
         dim = common_dim,
@@ -588,13 +588,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
 
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-126.6347,"k":0,"a":1254.8892,"b":1196.7138,"phi":1.3928,"common_variants":4896250,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-79.4666,"k":0,"a":1266.0896,"b":1242.7369,"phi":1.5104,"common_variants":5043889,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":50.8403,"k":-84.4662,"a":1234.7334,"b":1307.0194,"phi":2.4081,"common_variants":5259585,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":53.2131,"k":49.9096,"a":1262.1653,"b":1312.3774,"phi":0.4765,"common_variants":5327378,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":78.6214,"k":145.9914,"a":1182.0006,"b":1254.7688,"phi":3.9076,"common_variants":4817623,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":5.8608,"k":-25.6225,"a":1338.6864,"b":1279.3522,"phi":0.7696,"common_variants":5521792,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":0,"k":3.1296,"a":1322.6022,"b":1364.0593,"phi":-0.249,"common_variants":5895649,"uniquely_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-126.6347,"k":0,"a":1254.8892,"b":1196.7138,"phi":1.3928,"common_variants":4896250,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-79.4666,"k":0,"a":1266.0896,"b":1242.7369,"phi":1.5104,"common_variants":5043889,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":50.8403,"k":-84.4662,"a":1234.7334,"b":1307.0194,"phi":2.4081,"common_variants":5259585,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":53.2131,"k":49.9096,"a":1262.1653,"b":1312.3774,"phi":0.4765,"common_variants":5327378,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":78.6214,"k":145.9914,"a":1182.0006,"b":1254.7688,"phi":3.9076,"common_variants":4817623,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":5.8608,"k":-25.6225,"a":1338.6864,"b":1279.3522,"phi":0.7696,"common_variants":5521792,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":0,"k":3.1296,"a":1322.6022,"b":1364.0593,"phi":-0.249,"common_variants":5895649,"unshared_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_clm",
         dim = common_dim,
@@ -606,13 +606,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
 
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-169.4859,"k":-71.7374,"a":1245.6267,"b":1157.257,"phi":1.6699,"common_variants":4672565,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-121.0587,"k":-71.7374,"a":1248.688,"b":1210.0453,"phi":1.8526,"common_variants":4819661,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":0.43,"k":-136.8283,"a":1272.186,"b":1216.143,"phi":6.1252,"common_variants":4999087,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":-5.3669,"k":-60.049,"a":1259.3057,"b":1314.575,"phi":4.5561,"common_variants":5327378,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":16.8562,"k":65.9723,"a":1169.7654,"b":1296.0166,"phi":4.6401,"common_variants":4912197,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":-28.2954,"k":-89.06,"a":1284.9118,"b":1266.5903,"phi":2.8881,"common_variants":5254464,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":0,"k":-54.4502,"a":1334.1963,"b":1304.4956,"phi":3.294,"common_variants":5663208,"uniquely_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-169.4859,"k":-71.7374,"a":1245.6267,"b":1157.257,"phi":1.6699,"common_variants":4672565,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-121.0587,"k":-71.7374,"a":1248.688,"b":1210.0453,"phi":1.8526,"common_variants":4819661,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0.43,"k":-136.8283,"a":1272.186,"b":1216.143,"phi":6.1252,"common_variants":4999087,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-5.3669,"k":-60.049,"a":1259.3057,"b":1314.575,"phi":4.5561,"common_variants":5327378,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":16.8562,"k":65.9723,"a":1169.7654,"b":1296.0166,"phi":4.6401,"common_variants":4912197,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-28.2954,"k":-89.06,"a":1284.9118,"b":1266.5903,"phi":2.8881,"common_variants":5254464,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":0,"k":-54.4502,"a":1334.1963,"b":1304.4956,"phi":3.294,"common_variants":5663208,"unshared_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_mxl",
         dim = common_dim,
@@ -624,13 +624,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
 
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-136.4806,"k":-11.2297,"a":1165.5168,"b":1132.8495,"phi":2.3493,"common_variants":4261270,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-97.8328,"k":-11.2297,"a":1154.5489,"b":1198.3637,"phi":0.9624,"common_variants":4398728,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":0,"k":-49.1769,"a":1222.8294,"b":1134.1021,"phi":-2.6449,"common_variants":4440037,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":-22.0052,"k":28.7626,"a":1250.9645,"b":1203.7707,"phi":0.7879,"common_variants":4817623,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":-10.2769,"k":32.8326,"a":1217.7502,"b":1255.6227,"phi":0.7452,"common_variants":4912197,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":-22.9208,"k":0,"a":1170.9151,"b":1253.9321,"phi":1.873,"common_variants":4700471,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":-31.3731,"k":33.3752,"a":1252.0678,"b":1275.4104,"phi":-2.1762,"common_variants":5140058,"uniquely_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-136.4806,"k":-11.2297,"a":1165.5168,"b":1132.8495,"phi":2.3493,"common_variants":4261270,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-97.8328,"k":-11.2297,"a":1154.5489,"b":1198.3637,"phi":0.9624,"common_variants":4398728,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0,"k":-49.1769,"a":1222.8294,"b":1134.1021,"phi":-2.6449,"common_variants":4440037,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-22.0052,"k":28.7626,"a":1250.9645,"b":1203.7707,"phi":0.7879,"common_variants":4817623,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":-10.2769,"k":32.8326,"a":1217.7502,"b":1255.6227,"phi":0.7452,"common_variants":4912197,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-22.9208,"k":0,"a":1170.9151,"b":1253.9321,"phi":1.873,"common_variants":4700471,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":-31.3731,"k":33.3752,"a":1252.0678,"b":1275.4104,"phi":-2.1762,"common_variants":5140058,"unshared_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_pel",
         dim = common_dim,
@@ -642,13 +642,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
 
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-132.2327,"k":-44.0001,"a":1272.6429,"b":1225.1824,"phi":4.289,"common_variants":5112528,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-85.0325,"k":-44.0001,"a":1288.4448,"b":1267.3528,"phi":0.6853,"common_variants":5253401,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":78.2031,"k":-126.0023,"a":1231.5328,"b":1325.4885,"phi":2.384,"common_variants":5329963,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":56.6395,"k":-40.0285,"a":1310.9291,"b":1305.6904,"phi":-0.8658,"common_variants":5521792,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":87.7264,"k":0,"a":1268.0344,"b":1273.7931,"phi":4.7499,"common_variants":5254464,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":109.9055,"k":90.6142,"a":1224.4499,"b":1182.8382,"phi":-0.4921,"common_variants":4700471,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":0,"k":-60.372,"a":1376.2273,"b":1338.3484,"phi":0.467,"common_variants":6053543,"uniquely_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-132.2327,"k":-44.0001,"a":1272.6429,"b":1225.1824,"phi":4.289,"common_variants":5112528,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-85.0325,"k":-44.0001,"a":1288.4448,"b":1267.3528,"phi":0.6853,"common_variants":5253401,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":78.2031,"k":-126.0023,"a":1231.5328,"b":1325.4885,"phi":2.384,"common_variants":5329963,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":56.6395,"k":-40.0285,"a":1310.9291,"b":1305.6904,"phi":-0.8658,"common_variants":5521792,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":87.7264,"k":0,"a":1268.0344,"b":1273.7931,"phi":4.7499,"common_variants":5254464,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":109.9055,"k":90.6142,"a":1224.4499,"b":1182.8382,"phi":-0.4921,"common_variants":4700471,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":0,"k":-60.372,"a":1376.2273,"b":1338.3484,"phi":0.467,"common_variants":6053543,"unshared_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas_pur",
         dim = common_dim,
@@ -838,11 +838,11 @@ Genetic diversity in the Americas reflects the history of colonialism and transa
 <script>
     d3_euler(
         data = [
-            {"abbreviation":"BEB","h":-146.4612,"k":-157.1359,"a":1275.6961,"b":1409.5007,"phi":6.0493,"common_variants":5817047,"uniquely_common_variants":184032,"description":"Bengali in Bangladesh","sampled_individuals":86,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CHB","h":-264.8249,"k":-157.1359,"a":1458.5458,"b":1072.357,"phi":5.822,"common_variants":5214970,"uniquely_common_variants":251564,"description":"Han Chinese in Beijing, China","sampled_individuals":103,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"GBR","h":102.6356,"k":-237.4416,"a":1387.917,"b":1243.9952,"phi":8.025,"common_variants":5592182,"uniquely_common_variants":249975,"description":"British in England and Scotland","sampled_individuals":91,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":-15.8317,"k":-188.1657,"a":1323.2218,"b":1260.246,"phi":8.806,"common_variants":5663208,"uniquely_common_variants":167945,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"YRI","h":208.4168,"k":578.8131,"a":1470.648,"b":1705.8368,"phi":8.7792,"common_variants":8138465,"uniquely_common_variants":3120507,"description":"Yoruba in Ibadan, Nigeria","sampled_individuals":108,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"BEB","h":-146.4612,"k":-157.1359,"a":1275.6961,"b":1409.5007,"phi":6.0493,"common_variants":5817047,"unshared_common_variants":184032,"description":"Bengali in Bangladesh","sampled_individuals":86,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CHB","h":-264.8249,"k":-157.1359,"a":1458.5458,"b":1072.357,"phi":5.822,"common_variants":5214970,"unshared_common_variants":251564,"description":"Han Chinese in Beijing, China","sampled_individuals":103,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"GBR","h":102.6356,"k":-237.4416,"a":1387.917,"b":1243.9952,"phi":8.025,"common_variants":5592182,"unshared_common_variants":249975,"description":"British in England and Scotland","sampled_individuals":91,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":-15.8317,"k":-188.1657,"a":1323.2218,"b":1260.246,"phi":8.806,"common_variants":5663208,"unshared_common_variants":167945,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"YRI","h":208.4168,"k":578.8131,"a":1470.648,"b":1705.8368,"phi":8.7792,"common_variants":8138465,"unshared_common_variants":3120507,"description":"Yoruba in Ibadan, Nigeria","sampled_individuals":108,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
         ] ,
         id = "global_samples",
         dim = 350,
@@ -879,11 +879,11 @@ Lastly, given this global view, we can zoom in and look at how variation is part
 
     d3_euler(
         data = [
-            {"abbreviation":"ESN","h":0,"k":0,"a":1676.94,"b":1524.893,"phi":0.0129,"common_variants":8203941,"uniquely_common_variants":246520,"description":"Esan in Nigeria","sampled_individuals":99,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"GWD","h":258.3767,"k":0,"a":1451.0148,"b":1652.9013,"phi":1.4865,"common_variants":7943922,"uniquely_common_variants":250670,"description":"Gambian in Western Division, The Gambia - Mandinka","sampled_individuals":113,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"LWK","h":70.8708,"k":236.3707,"a":1521.5312,"b":1659.0083,"phi":2.3397,"common_variants":8130247,"uniquely_common_variants":477047,"description":"Luhya in Webuye, Kenya","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MSL","h":170.9409,"k":-48.9127,"a":1772.8305,"b":1415.2643,"phi":2.1668,"common_variants":8158792,"uniquely_common_variants":302274,"description":"Mende in Sierra Leone","sampled_individuals":85,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"YRI","h":40.5704,"k":-34.279,"a":1497.0224,"b":1673.7895,"phi":2.8898,"common_variants":8138465,"uniquely_common_variants":168925,"description":"Yoruba in Ibadan, Nigeria","sampled_individuals":108,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ESN","h":0,"k":0,"a":1676.94,"b":1524.893,"phi":0.0129,"common_variants":8203941,"unshared_common_variants":246520,"description":"Esan in Nigeria","sampled_individuals":99,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"GWD","h":258.3767,"k":0,"a":1451.0148,"b":1652.9013,"phi":1.4865,"common_variants":7943922,"unshared_common_variants":250670,"description":"Gambian in Western Division, The Gambia - Mandinka","sampled_individuals":113,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"LWK","h":70.8708,"k":236.3707,"a":1521.5312,"b":1659.0083,"phi":2.3397,"common_variants":8130247,"unshared_common_variants":477047,"description":"Luhya in Webuye, Kenya","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MSL","h":170.9409,"k":-48.9127,"a":1772.8305,"b":1415.2643,"phi":2.1668,"common_variants":8158792,"unshared_common_variants":302274,"description":"Mende in Sierra Leone","sampled_individuals":85,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"YRI","h":40.5704,"k":-34.279,"a":1497.0224,"b":1673.7895,"phi":2.8898,"common_variants":8138465,"unshared_common_variants":168925,"description":"Yoruba in Ibadan, Nigeria","sampled_individuals":108,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
         ],
         id = "africa",
         dim = global_dim,
@@ -895,13 +895,13 @@ Lastly, given this global view, we can zoom in and look at how variation is part
 
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-351.0253,"k":-117.9368,"a":1661.9991,"b":1482.8142,"phi":-2.3891,"common_variants":8018649,"uniquely_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-186.6873,"k":-117.9368,"a":1753.6272,"b":1346.1266,"phi":-1.7434,"common_variants":7631052,"uniquely_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":83.4634,"k":437.6332,"a":1518.3666,"b":1150.6006,"phi":1.187,"common_variants":5726377,"uniquely_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":163.3362,"k":321.562,"a":1247.0832,"b":1433.2207,"phi":-0.2126,"common_variants":5895649,"uniquely_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":188.7347,"k":343.7469,"a":1298.0515,"b":1327.9438,"phi":-1.3532,"common_variants":5663208,"uniquely_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":245.9637,"k":354.8639,"a":1139.4186,"b":1374.1214,"phi":1.0056,"common_variants":5140058,"uniquely_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":48.8014,"k":359.7592,"a":1435.6344,"b":1296.4881,"phi":-1.5072,"common_variants":6053543,"uniquely_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-351.0253,"k":-117.9368,"a":1661.9991,"b":1482.8142,"phi":-2.3891,"common_variants":8018649,"unshared_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-186.6873,"k":-117.9368,"a":1753.6272,"b":1346.1266,"phi":-1.7434,"common_variants":7631052,"unshared_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":83.4634,"k":437.6332,"a":1518.3666,"b":1150.6006,"phi":1.187,"common_variants":5726377,"unshared_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":163.3362,"k":321.562,"a":1247.0832,"b":1433.2207,"phi":-0.2126,"common_variants":5895649,"unshared_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":188.7347,"k":343.7469,"a":1298.0515,"b":1327.9438,"phi":-1.3532,"common_variants":5663208,"unshared_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":245.9637,"k":354.8639,"a":1139.4186,"b":1374.1214,"phi":1.0056,"common_variants":5140058,"unshared_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"#E69F00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":48.8014,"k":359.7592,"a":1435.6344,"b":1296.4881,"phi":-1.5072,"common_variants":6053543,"unshared_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"#000000","fill":"none","stroke_dasharray":"none"}
         ],
         id = "americas",
         dim = global_dim,
@@ -913,11 +913,11 @@ Lastly, given this global view, we can zoom in and look at how variation is part
 
     d3_euler(
         data = [
-            {"abbreviation":"CDX","h":-106.5464,"k":9.246,"a":1251.3989,"b":1252.4096,"phi":8.0461,"common_variants":5186192,"uniquely_common_variants":80552,"description":"Chinese Dai in Xishuangbanna, China","sampled_individuals":93,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CHB","h":0,"k":9.246,"a":1292.5497,"b":1239.6108,"phi":3.0526,"common_variants":5214970,"uniquely_common_variants":63247,"description":"Han Chinese in Beijing, China","sampled_individuals":103,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"CHS","h":-39.4333,"k":0,"a":1304.299,"b":1253.6959,"phi":7.9788,"common_variants":5220632,"uniquely_common_variants":44981,"description":"Han Chinese South","sampled_individuals":105,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"JPT","h":-19.9002,"k":117.948,"a":1293.7822,"b":1251.9766,"phi":8.3721,"common_variants":5223809,"uniquely_common_variants":180251,"description":"Japanese in Tokyo, Japan","sampled_individuals":104,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"KHV","h":-107.7766,"k":6.7343,"a":1271.2812,"b":1301.8932,"phi":4.46,"common_variants":5299958,"uniquely_common_variants":91705,"description":"Kinh in Ho Chi Minh City, Vietnam","sampled_individuals":99,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"CDX","h":-106.5464,"k":9.246,"a":1251.3989,"b":1252.4096,"phi":8.0461,"common_variants":5186192,"unshared_common_variants":80552,"description":"Chinese Dai in Xishuangbanna, China","sampled_individuals":93,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CHB","h":0,"k":9.246,"a":1292.5497,"b":1239.6108,"phi":3.0526,"common_variants":5214970,"unshared_common_variants":63247,"description":"Han Chinese in Beijing, China","sampled_individuals":103,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"CHS","h":-39.4333,"k":0,"a":1304.299,"b":1253.6959,"phi":7.9788,"common_variants":5220632,"unshared_common_variants":44981,"description":"Han Chinese South","sampled_individuals":105,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"JPT","h":-19.9002,"k":117.948,"a":1293.7822,"b":1251.9766,"phi":8.3721,"common_variants":5223809,"unshared_common_variants":180251,"description":"Japanese in Tokyo, Japan","sampled_individuals":104,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"KHV","h":-107.7766,"k":6.7343,"a":1271.2812,"b":1301.8932,"phi":4.46,"common_variants":5299958,"unshared_common_variants":91705,"description":"Kinh in Ho Chi Minh City, Vietnam","sampled_individuals":99,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
         ],
         id = "east_asia",
         dim = global_dim,
@@ -929,10 +929,10 @@ Lastly, given this global view, we can zoom in and look at how variation is part
 
     d3_euler(
         data = [
-            {"abbreviation":"FIN","h":-155.7146,"k":-108.2774,"a":1337.9647,"b":1363.3799,"phi":3.6501,"common_variants":5732641,"uniquely_common_variants":281951,"description":"Finnish in Finland","sampled_individuals":99,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"GBR","h":3.7505,"k":-108.2774,"a":1316.9096,"b":1351.2426,"phi":3.2532,"common_variants":5592182,"uniquely_common_variants":78046,"description":"British in England and Scotland","sampled_individuals":91,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"IBS","h":-22.1454,"k":0,"a":1389.7241,"b":1311.9542,"phi":0.737,"common_variants":5729736,"uniquely_common_variants":113070,"description":"Iberian populations in Spain","sampled_individuals":107,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"TSI","h":-34.1761,"k":16.549,"a":1275.2029,"b":1429.5177,"phi":6.6987,"common_variants":5728264,"uniquely_common_variants":135201,"description":"Toscani in Italy","sampled_individuals":107,"color":"#009E73","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"FIN","h":-155.7146,"k":-108.2774,"a":1337.9647,"b":1363.3799,"phi":3.6501,"common_variants":5732641,"unshared_common_variants":281951,"description":"Finnish in Finland","sampled_individuals":99,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"GBR","h":3.7505,"k":-108.2774,"a":1316.9096,"b":1351.2426,"phi":3.2532,"common_variants":5592182,"unshared_common_variants":78046,"description":"British in England and Scotland","sampled_individuals":91,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"IBS","h":-22.1454,"k":0,"a":1389.7241,"b":1311.9542,"phi":0.737,"common_variants":5729736,"unshared_common_variants":113070,"description":"Iberian populations in Spain","sampled_individuals":107,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"TSI","h":-34.1761,"k":16.549,"a":1275.2029,"b":1429.5177,"phi":6.6987,"common_variants":5728264,"unshared_common_variants":135201,"description":"Toscani in Italy","sampled_individuals":107,"color":"#009E73","fill":"none","stroke_dasharray":"none"}
         ],
         id = "europe",
         dim = global_dim,
@@ -944,11 +944,11 @@ Lastly, given this global view, we can zoom in and look at how variation is part
 
     d3_euler(
         data = [
-            {"abbreviation":"BEB","h":0,"k":24.8724,"a":1378.1414,"b":1295.6314,"phi":3.0176,"common_variants":5817047,"uniquely_common_variants":102477,"description":"Bengali in Bangladesh","sampled_individuals":86,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"GIH","h":127.3121,"k":24.8724,"a":1310.2736,"b":1363.1123,"phi":1.7942,"common_variants":5788635,"uniquely_common_variants":114785,"description":"Gujarati Indians in Houston, TX","sampled_individuals":103,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"ITU","h":75.4515,"k":80.9334,"a":1360.1288,"b":1290.1062,"phi":-0.5511,"common_variants":5768108,"uniquely_common_variants":72231,"description":"Indian Telugu in the UK","sampled_individuals":102,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"PJL","h":57.7924,"k":0,"a":1374.8951,"b":1328.0929,"phi":1.65,"common_variants":5850455,"uniquely_common_variants":120243,"description":"Punjabi in Lahore, Pakistan","sampled_individuals":96,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
-            {"abbreviation":"STU","h":35.3873,"k":102.35,"a":1326.2806,"b":1348.3686,"phi":-0.9169,"common_variants":5771145,"uniquely_common_variants":73815,"description":"Sri Lankan Tamil in the UK","sampled_individuals":102,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
+            {"abbreviation":"BEB","h":0,"k":24.8724,"a":1378.1414,"b":1295.6314,"phi":3.0176,"common_variants":5817047,"unshared_common_variants":102477,"description":"Bengali in Bangladesh","sampled_individuals":86,"color":"#D55E00","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"GIH","h":127.3121,"k":24.8724,"a":1310.2736,"b":1363.1123,"phi":1.7942,"common_variants":5788635,"unshared_common_variants":114785,"description":"Gujarati Indians in Houston, TX","sampled_individuals":103,"color":"#0072B2","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"ITU","h":75.4515,"k":80.9334,"a":1360.1288,"b":1290.1062,"phi":-0.5511,"common_variants":5768108,"unshared_common_variants":72231,"description":"Indian Telugu in the UK","sampled_individuals":102,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"PJL","h":57.7924,"k":0,"a":1374.8951,"b":1328.0929,"phi":1.65,"common_variants":5850455,"unshared_common_variants":120243,"description":"Punjabi in Lahore, Pakistan","sampled_individuals":96,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
+            {"abbreviation":"STU","h":35.3873,"k":102.35,"a":1326.2806,"b":1348.3686,"phi":-0.9169,"common_variants":5771145,"unshared_common_variants":73815,"description":"Sri Lankan Tamil in the UK","sampled_individuals":102,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
         ],
         id = "south_asia",
         dim = global_dim,
@@ -1038,13 +1038,13 @@ The following figures offer alternative methods of visualization to those within
 
     d3_euler(
         data = [
-            {"abbreviation":"ACB","h":-65.228,"k":-66.9563,"a":1514.9706,"b":1655.0866,"phi":-0.9991,"common_variants":8018649,"uniquely_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#D55E00","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-33.6008,"k":-66.9563,"a":1628.118,"b":1350.1618,"phi":-2.5773,"common_variants":7020928,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":68.6404,"k":95.4167,"a":1053.3382,"b":1381.2585,"phi":-2.9205,"common_variants":4666113,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":34.2802,"k":9.8817,"a":1448.5815,"b":1060.8529,"phi":-1.4555,"common_variants":4896250,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":16.8686,"k":59.5652,"a":1401.8114,"b":1044.7415,"phi":1.5109,"common_variants":4672565,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":-68.7641,"k":66.9836,"a":988.4922,"b":1348.208,"phi":-3.1739,"common_variants":4261270,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":81.6678,"k":28.1504,"a":1428.3514,"b":1128.7544,"phi":-1.3564,"common_variants":5112528,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+            {"abbreviation":"ACB","h":-65.228,"k":-66.9563,"a":1514.9706,"b":1655.0866,"phi":-0.9991,"common_variants":8018649,"unshared_common_variants":840969,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#D55E00","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-33.6008,"k":-66.9563,"a":1628.118,"b":1350.1618,"phi":-2.5773,"common_variants":7020928,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":68.6404,"k":95.4167,"a":1053.3382,"b":1381.2585,"phi":-2.9205,"common_variants":4666113,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":34.2802,"k":9.8817,"a":1448.5815,"b":1060.8529,"phi":-1.4555,"common_variants":4896250,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":16.8686,"k":59.5652,"a":1401.8114,"b":1044.7415,"phi":1.5109,"common_variants":4672565,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":-68.7641,"k":66.9836,"a":988.4922,"b":1348.208,"phi":-3.1739,"common_variants":4261270,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":81.6678,"k":28.1504,"a":1428.3514,"b":1128.7544,"phi":-1.3564,"common_variants":5112528,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
         ],
         id = "americas_acb_coffee",
         dim = common_dim,
@@ -1057,13 +1057,13 @@ The following figures offer alternative methods of visualization to those within
 
     d3_euler(
         data = [
-            {"abbreviation":"ASW","h":-43.4144,"k":-16.3857,"a":1572.7413,"b":1504.6041,"phi":-5.7499,"common_variants":7631052,"uniquely_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#0072B2","stroke_dasharray":"none"},
-            {"abbreviation":"ACB","h":-127.9212,"k":-16.3857,"a":1434.9282,"b":1516.3261,"phi":-3.5615,"common_variants":7020928,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":222.857,"k":-52.2642,"a":1161.4243,"b":1292.3007,"phi":-4.4373,"common_variants":4810015,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":202.7879,"k":32.4151,"a":1292.3632,"b":1225.6845,"phi":-3.1563,"common_variants":5043889,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":231.3601,"k":45.6133,"a":1272.4161,"b":1173.1753,"phi":-3.0802,"common_variants":4819661,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":271.5502,"k":108.1057,"a":1118.7258,"b":1215.4851,"phi":-1.7843,"common_variants":4398728,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":144.5883,"k":9.885,"a":1369.9257,"b":1193.8532,"phi":-3.0874,"common_variants":5253401,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+            {"abbreviation":"ASW","h":-43.4144,"k":-16.3857,"a":1572.7413,"b":1504.6041,"phi":-5.7499,"common_variants":7631052,"unshared_common_variants":321566,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#0072B2","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-127.9212,"k":-16.3857,"a":1434.9282,"b":1516.3261,"phi":-3.5615,"common_variants":7020928,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":222.857,"k":-52.2642,"a":1161.4243,"b":1292.3007,"phi":-4.4373,"common_variants":4810015,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":202.7879,"k":32.4151,"a":1292.3632,"b":1225.6845,"phi":-3.1563,"common_variants":5043889,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":231.3601,"k":45.6133,"a":1272.4161,"b":1173.1753,"phi":-3.0802,"common_variants":4819661,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":271.5502,"k":108.1057,"a":1118.7258,"b":1215.4851,"phi":-1.7843,"common_variants":4398728,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":144.5883,"k":9.885,"a":1369.9257,"b":1193.8532,"phi":-3.0874,"common_variants":5253401,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
         ],
         id = "americas_asw_coffee",
         dim = common_dim,
@@ -1076,13 +1076,13 @@ The following figures offer alternative methods of visualization to those within
 
     d3_euler(
         data = [
-            {"abbreviation":"CEU","h":-11.6367,"k":77.6556,"a":1308.9382,"b":1358.2787,"phi":2.7786,"common_variants":5726377,"uniquely_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#CC79A7","stroke_dasharray":"none"},
-            {"abbreviation":"ACB","h":-117.9052,"k":0,"a":1246.4673,"b":1167.6055,"phi":7.6663,"common_variants":4666113,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-58.0648,"k":0,"a":1263.5511,"b":1186.0482,"phi":3.7958,"common_variants":4810015,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":0,"k":92.4295,"a":1233.0207,"b":1334.5812,"phi":6.0989,"common_variants":5259585,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":-25.588,"k":136.0689,"a":1266.7121,"b":1241.1807,"phi":4.0215,"common_variants":4999087,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":42.8027,"k":156.219,"a":1110.1403,"b":1246.2762,"phi":6.3725,"common_variants":4440037,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":-13.8694,"k":58.9816,"a":1270.9347,"b":1316.9558,"phi":6.1031,"common_variants":5329963,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+            {"abbreviation":"CEU","h":-11.6367,"k":77.6556,"a":1308.9382,"b":1358.2787,"phi":2.7786,"common_variants":5726377,"unshared_common_variants":184313,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#CC79A7","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-117.9052,"k":0,"a":1246.4673,"b":1167.6055,"phi":7.6663,"common_variants":4666113,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-58.0648,"k":0,"a":1263.5511,"b":1186.0482,"phi":3.7958,"common_variants":4810015,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":0,"k":92.4295,"a":1233.0207,"b":1334.5812,"phi":6.0989,"common_variants":5259585,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":-25.588,"k":136.0689,"a":1266.7121,"b":1241.1807,"phi":4.0215,"common_variants":4999087,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":42.8027,"k":156.219,"a":1110.1403,"b":1246.2762,"phi":6.3725,"common_variants":4440037,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-13.8694,"k":58.9816,"a":1270.9347,"b":1316.9558,"phi":6.1031,"common_variants":5329963,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
         ],
         id = "americas_ceu_coffee",
         dim = common_dim,
@@ -1095,13 +1095,13 @@ The following figures offer alternative methods of visualization to those within
 
     d3_euler(
         data = [
-            {"abbreviation":"CLM","h":0,"k":3.1296,"a":1322.6022,"b":1364.0593,"phi":-0.249,"common_variants":5895649,"uniquely_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#009E73","stroke_dasharray":"none"},
-            {"abbreviation":"ACB","h":-126.6347,"k":0,"a":1254.8892,"b":1196.7138,"phi":1.3928,"common_variants":4896250,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-79.4666,"k":0,"a":1266.0896,"b":1242.7369,"phi":1.5104,"common_variants":5043889,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":50.8403,"k":-84.4662,"a":1234.7334,"b":1307.0194,"phi":2.4081,"common_variants":5259585,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":53.2131,"k":49.9096,"a":1262.1653,"b":1312.3774,"phi":0.4765,"common_variants":5327378,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":78.6214,"k":145.9914,"a":1182.0006,"b":1254.7688,"phi":3.9076,"common_variants":4817623,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":5.8608,"k":-25.6225,"a":1338.6864,"b":1279.3522,"phi":0.7696,"common_variants":5521792,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+            {"abbreviation":"CLM","h":0,"k":3.1296,"a":1322.6022,"b":1364.0593,"phi":-0.249,"common_variants":5895649,"unshared_common_variants":37361,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#009E73","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-126.6347,"k":0,"a":1254.8892,"b":1196.7138,"phi":1.3928,"common_variants":4896250,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-79.4666,"k":0,"a":1266.0896,"b":1242.7369,"phi":1.5104,"common_variants":5043889,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":50.8403,"k":-84.4662,"a":1234.7334,"b":1307.0194,"phi":2.4081,"common_variants":5259585,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":53.2131,"k":49.9096,"a":1262.1653,"b":1312.3774,"phi":0.4765,"common_variants":5327378,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":78.6214,"k":145.9914,"a":1182.0006,"b":1254.7688,"phi":3.9076,"common_variants":4817623,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":5.8608,"k":-25.6225,"a":1338.6864,"b":1279.3522,"phi":0.7696,"common_variants":5521792,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
         ],
         id = "americas_clm_coffee",
         dim = common_dim,
@@ -1114,13 +1114,13 @@ The following figures offer alternative methods of visualization to those within
 
     d3_euler(
         data = [
-            {"abbreviation":"MXL","h":0,"k":-54.4502,"a":1334.1963,"b":1304.4956,"phi":3.294,"common_variants":5663208,"uniquely_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#56B4E9","stroke_dasharray":"none"},
-            {"abbreviation":"ACB","h":-169.4859,"k":-71.7374,"a":1245.6267,"b":1157.257,"phi":1.6699,"common_variants":4672565,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-121.0587,"k":-71.7374,"a":1248.688,"b":1210.0453,"phi":1.8526,"common_variants":4819661,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":0.43,"k":-136.8283,"a":1272.186,"b":1216.143,"phi":6.1252,"common_variants":4999087,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":-5.3669,"k":-60.049,"a":1259.3057,"b":1314.575,"phi":4.5561,"common_variants":5327378,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":16.8562,"k":65.9723,"a":1169.7654,"b":1296.0166,"phi":4.6401,"common_variants":4912197,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":-28.2954,"k":-89.06,"a":1284.9118,"b":1266.5903,"phi":2.8881,"common_variants":5254464,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+            {"abbreviation":"MXL","h":0,"k":-54.4502,"a":1334.1963,"b":1304.4956,"phi":3.294,"common_variants":5663208,"unshared_common_variants":43322,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#56B4E9","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-169.4859,"k":-71.7374,"a":1245.6267,"b":1157.257,"phi":1.6699,"common_variants":4672565,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-121.0587,"k":-71.7374,"a":1248.688,"b":1210.0453,"phi":1.8526,"common_variants":4819661,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0.43,"k":-136.8283,"a":1272.186,"b":1216.143,"phi":6.1252,"common_variants":4999087,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-5.3669,"k":-60.049,"a":1259.3057,"b":1314.575,"phi":4.5561,"common_variants":5327378,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":16.8562,"k":65.9723,"a":1169.7654,"b":1296.0166,"phi":4.6401,"common_variants":4912197,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-28.2954,"k":-89.06,"a":1284.9118,"b":1266.5903,"phi":2.8881,"common_variants":5254464,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
         ],
         id = "americas_mxl_coffee",
         dim = common_dim,
@@ -1133,13 +1133,13 @@ The following figures offer alternative methods of visualization to those within
 
     d3_euler(
         data = [
-            {"abbreviation":"PEL","h":-31.3731,"k":33.3752,"a":1252.0678,"b":1275.4104,"phi":-2.1762,"common_variants":5140058,"uniquely_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#E69F00","stroke_dasharray":"none"},
-            {"abbreviation":"ACB","h":-136.4806,"k":-11.2297,"a":1165.5168,"b":1132.8495,"phi":2.3493,"common_variants":4261270,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-97.8328,"k":-11.2297,"a":1154.5489,"b":1198.3637,"phi":0.9624,"common_variants":4398728,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":0,"k":-49.1769,"a":1222.8294,"b":1134.1021,"phi":-2.6449,"common_variants":4440037,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":-22.0052,"k":28.7626,"a":1250.9645,"b":1203.7707,"phi":0.7879,"common_variants":4817623,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":-10.2769,"k":32.8326,"a":1217.7502,"b":1255.6227,"phi":0.7452,"common_variants":4912197,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PUR","h":-22.9208,"k":0,"a":1170.9151,"b":1253.9321,"phi":1.873,"common_variants":4700471,"uniquely_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+            {"abbreviation":"PEL","h":-31.3731,"k":33.3752,"a":1252.0678,"b":1275.4104,"phi":-2.1762,"common_variants":5140058,"unshared_common_variants":99338,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#E69F00","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-136.4806,"k":-11.2297,"a":1165.5168,"b":1132.8495,"phi":2.3493,"common_variants":4261270,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-97.8328,"k":-11.2297,"a":1154.5489,"b":1198.3637,"phi":0.9624,"common_variants":4398728,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":0,"k":-49.1769,"a":1222.8294,"b":1134.1021,"phi":-2.6449,"common_variants":4440037,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":-22.0052,"k":28.7626,"a":1250.9645,"b":1203.7707,"phi":0.7879,"common_variants":4817623,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":-10.2769,"k":32.8326,"a":1217.7502,"b":1255.6227,"phi":0.7452,"common_variants":4912197,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PUR","h":-22.9208,"k":0,"a":1170.9151,"b":1253.9321,"phi":1.873,"common_variants":4700471,"unshared_common_variants":0,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
         ],
         id = "americas_pel_coffee",
         dim = common_dim,
@@ -1152,13 +1152,13 @@ The following figures offer alternative methods of visualization to those within
 
     d3_euler(
         data = [
-        {"abbreviation":"PUR","h":0,"k":-60.372,"a":1376.2273,"b":1338.3484,"phi":0.467,"common_variants":6053543,"uniquely_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#000000","stroke_dasharray":"none"},
-            {"abbreviation":"ACB","h":-132.2327,"k":-44.0001,"a":1272.6429,"b":1225.1824,"phi":4.289,"common_variants":5112528,"uniquely_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"ASW","h":-85.0325,"k":-44.0001,"a":1288.4448,"b":1267.3528,"phi":0.6853,"common_variants":5253401,"uniquely_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CEU","h":78.2031,"k":-126.0023,"a":1231.5328,"b":1325.4885,"phi":2.384,"common_variants":5329963,"uniquely_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"CLM","h":56.6395,"k":-40.0285,"a":1310.9291,"b":1305.6904,"phi":-0.8658,"common_variants":5521792,"uniquely_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"MXL","h":87.7264,"k":0,"a":1268.0344,"b":1273.7931,"phi":4.7499,"common_variants":5254464,"uniquely_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
-            {"abbreviation":"PEL","h":109.9055,"k":90.6142,"a":1224.4499,"b":1182.8382,"phi":-0.4921,"common_variants":4700471,"uniquely_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
+        {"abbreviation":"PUR","h":0,"k":-60.372,"a":1376.2273,"b":1338.3484,"phi":0.467,"common_variants":6053543,"unshared_common_variants":51810,"description":"Puerto Rican in Puerto Rico","sampled_individuals":104,"color":"none","fill":"#000000","stroke_dasharray":"none"},
+            {"abbreviation":"ACB","h":-132.2327,"k":-44.0001,"a":1272.6429,"b":1225.1824,"phi":4.289,"common_variants":5112528,"unshared_common_variants":0,"description":"African Caribbean in Barbados","sampled_individuals":96,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"ASW","h":-85.0325,"k":-44.0001,"a":1288.4448,"b":1267.3528,"phi":0.6853,"common_variants":5253401,"unshared_common_variants":0,"description":"African Ancestry in Southwest US","sampled_individuals":61,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CEU","h":78.2031,"k":-126.0023,"a":1231.5328,"b":1325.4885,"phi":2.384,"common_variants":5329963,"unshared_common_variants":0,"description":"Utah residents (CEPH) with Northern and Western European ancestry","sampled_individuals":99,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"CLM","h":56.6395,"k":-40.0285,"a":1310.9291,"b":1305.6904,"phi":-0.8658,"common_variants":5521792,"unshared_common_variants":0,"description":"Colombian in Medellin, Colombia","sampled_individuals":94,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"MXL","h":87.7264,"k":0,"a":1268.0344,"b":1273.7931,"phi":4.7499,"common_variants":5254464,"unshared_common_variants":0,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"},
+            {"abbreviation":"PEL","h":109.9055,"k":90.6142,"a":1224.4499,"b":1182.8382,"phi":-0.4921,"common_variants":4700471,"unshared_common_variants":0,"description":"Peruvian in Lima, Peru","sampled_individuals":85,"color":"none","fill":"#FFFFFF","stroke_dasharray":"none"}
         ],
         id = "americas_pur_coffee",
         dim = common_dim,
@@ -1172,7 +1172,7 @@ The following figures offer alternative methods of visualization to those within
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of uniquely common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area and leaving only the uniquely common variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
+        Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of unshared common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area and leaving only the unshared common variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
     </p>
 </center>
 <br>
