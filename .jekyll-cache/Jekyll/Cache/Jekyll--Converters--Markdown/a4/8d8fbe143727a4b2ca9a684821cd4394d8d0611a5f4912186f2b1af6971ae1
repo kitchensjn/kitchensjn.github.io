@@ -1,66 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    DRAFT - Visualizing Human Genetic Diversity</h2><p style="text-align: left;">James Kitchens and Graham Coop</p><p style="text-align: left;">May 2, 2023</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">D3</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">Python</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <p><br /></p>
+I"êe<p><br /></p>
 
 <script src="https://d3js.org/d3.v4.js"></script>
 
@@ -1300,7 +1238,7 @@
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S2 - An UpSet Plot as an alternative visualization of Figure 6. UpSet Plots, created by <a href="https://doi.org/10.1109/TVCG.2014.2346248">Lex et al. (2014)</a>, are useful for handling large numbers of sets. They can communicate the exact overlap between sets, unlike Euler diagrams (as discussed in the Technical details section), but are also a bit more challenging to read as there are multiple subfigures. To draw comparisons with the Euler diagrams, the horizontal bar graph on the bottom left depicts the areas of the ellipses and the vertical bar graph shows the areas of the overlaps between ellipses referenced usings dots in the bottom subfigure.
+        Figure S2 - An UpSet Plot as an alternative visualization of Figure 6. UpSet Plots, created by <a href="https://doi.org/10.1109/TVCG.2014.2346248">Lex et al. (2014)</a>, are useful for handling large numbers of sets. They can communicate the exact overlap between sets, unlike Euler diagrams (as discussed in the Technical details section), but are also a bit more challenging to read as there are multiple subfigures. To draw comparisons with the Euler diagrams, the horizontal bar graph on the bottom left depicts the areas of the ellipses and the vertical bar graph shows the areas of the overlap between ellipses referenced usings dots in the bottom subfigure.
     </p>
 </center>
 <p><br /></p>
@@ -1316,12 +1254,4 @@
 <p>Arjun Biddanda, Daniel P Rice, John Novembre (2020) <a href="https://doi.org/10.7554/eLife.60107">A variant-centric perspective on geographic patterns of human allele frequency variation</a>. <em>eLife</em>, 9:e60107</p>
 
 <p>Lex et al. (2014) <a href="https://doi.org/10.1109/TVCG.2014.2346248">UpSet: Visualization of Intersecting Sets</a>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, Volume 20, Issue 12</p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
-
-</html>
+:ET

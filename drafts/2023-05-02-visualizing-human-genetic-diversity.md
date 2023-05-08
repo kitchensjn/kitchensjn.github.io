@@ -1184,7 +1184,7 @@ The following figures offer alternative methods of visualization to those within
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S2 - An UpSet Plot as an alternative visualization of Figure 6. UpSet Plots, created by <a href="https://doi.org/10.1109/TVCG.2014.2346248">Lex et al. (2014)</a>, are useful for handling large numbers of sets. They can communicate the exact overlap between sets, unlike Euler diagrams (as discussed in the Technical details section), but are also a bit more challenging to read as there are multiple subfigures. To draw comparisons with the Euler diagrams, the horizontal bar graph on the bottom left depicts the area of each ellipses and the vertical bar graph shows the area of overlap between ellipses referenced usings dots in the bottom subfigure.
+        Figure S2 - An UpSet Plot as an alternative visualization of Figure 6. UpSet Plots, created by <a href="https://doi.org/10.1109/TVCG.2014.2346248">Lex et al. (2014)</a>, are useful for handling large numbers of sets. They can communicate the exact overlap between sets, unlike Euler diagrams (as discussed in the Technical details section), but are also a bit more challenging to read as there are multiple subfigures. To draw comparisons with the Euler diagrams, the horizontal bar graph on the bottom left depicts the areas of the ellipses and the vertical bar graph shows the areas of the overlaps between ellipses referenced usings dots in the bottom subfigure.
     </p>
 </center>
 <br>
