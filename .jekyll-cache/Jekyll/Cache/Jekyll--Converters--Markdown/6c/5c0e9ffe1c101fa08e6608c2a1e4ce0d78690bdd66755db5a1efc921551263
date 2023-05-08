@@ -1,17 +1,7 @@
----
-layout: "post"
-permalink: "/blog/visualizing-human-genetic-diversity"
-title: "DRAFT - Visualizing Human Genetic Diversity"
-date: "May 02, 2023"
-authors: "James Kitchens and Graham Coop"
-skills: [Genetics, D3, Python, R]
-desc: A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes; at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.
-thumbnail: "/assets/blog/visualizing-human-genetic-diversity/thumbnail.png"
----
-
-<br>
+I"lZ<p><br /></p>
 
 <script src="https://d3js.org/d3.v4.js"></script>
+
 <style>
     .euler_tooltip {
         position: absolute;
@@ -40,6 +30,7 @@ thumbnail: "/assets/blog/visualizing-human-genetic-diversity/thumbnail.png"
         max-width: 1000px;
     }
 </style>
+
 <script>
     var stepBefore = d3.line().curve(d3.curveStepBefore);
     // Define the div for the tooltip
@@ -219,12 +210,11 @@ thumbnail: "/assets/blog/visualizing-human-genetic-diversity/thumbnail.png"
     }    
 </script>
 
+<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes; in that small fraction that doesn’t match (~1/1000 sites), your chromosome might carry an A while the other person’s chromosome carries a T. The majority of sites with variation have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (<a href="https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf">Lewontin, 1972</a>). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome to see how variation is shared - check out the <a href="https://popgen.uchicago.edu/ggv/">Geography of Genetic Variants Browser</a> from the Novembre Lab for a nice interactive tool (<a href="https://doi.org/10.1093/bioinformatics/btw643">Marcus &amp; Novembre, 2016</a>). However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
 
-A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes; in that small fraction that doesn't match (~1/1000 sites), your chromosome might carry an A while the other person’s chromosome carries a T. The majority of sites with variation have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups ([Lewontin, 1972](https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf)). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome to see how variation is shared - check out the [Geography of Genetic Variants Browser](https://popgen.uchicago.edu/ggv/) from the Novembre Lab for a nice interactive tool ([Marcus & Novembre, 2016](https://doi.org/10.1093/bioinformatics/btw643)). However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.
+<p>We wanted to share some resources that we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by <a href="https://doi.org/10.1002/sce.21506">Donovan et al. (2019)</a> and <a href="https://doi.org/10.7554/eLife.60107">Biddanda et al. (2020)</a>. These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
 
-We wanted to share some resources that we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by [Donovan et al. (2019)](https://doi.org/10.1002/sce.21506) and [Biddanda et al. (2020)](https://doi.org/10.7554/eLife.60107). These visualizations first center on the variation in a set of diverse samples from the Americas before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria. 
-
-<br>
+<p><br /></p>
 <div id="figure1" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -246,19 +236,12 @@ We wanted to share some resources that we’ve been putting together for teachin
     var downscale = 130;
     var shift = dim/2;
 
-    var measurable = svg_container
+    measurable = svg_container
         .selectAll("ellipses")
         .data(ellipses)
         .enter()
         .filter(function(d) { return (d._row == "Measurable"); })
         .append("g");
-
-    measurable
-        .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-200, d.k/downscale+d.b/downscale+shift-480], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-400]]) ;})
-        .attr("stroke-width", 2)
-        .attr("stroke", "#A9A9A9")
-        .attr("fill", "none");
 
     measurable
         .append("text")
@@ -270,7 +253,10 @@ We wanted to share some resources that we’ve been putting together for teachin
         .style("font-family", "Arial")
         .style("font-size", 18);
 
-    measurable
+    svg_container
+        .selectAll("ellipses")
+        .data(ellipses)
+        .enter()
         .append("path")
         .attr("id", function(d) { return d._row; })
         .attr("stroke", function(d) { return d.color; })
@@ -284,60 +270,62 @@ We wanted to share some resources that we’ve been putting together for teachin
             return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
         });
 
-   var variants = svg_container
-        .selectAll("ellipses")
+    svg_container
+        .selectAll("text")
+        .data(ellipses)
+        .enter()
+        .filter(function(d) { return (d._row == "Measurable"); })
+        .append("text")
+        .text("Measurable locations in the human genome (~2.9 billion sites)")
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-25; })
+        .style("text-anchor", "middle")
+        .style("fill", "#696969")
+        .style("font-family", "Arial")
+        .style("font-size", 18);
+
+    svg_container
+        .selectAll("text")
         .data(ellipses)
         .enter()
         .filter(function(d) { return (d._row == "Variants"); })
-        .append("g");
-
-    variants
-        .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-100, d.k/downscale+d.b/downscale+shift-65], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-25]]) ;})
-        .attr("stroke-width", 2)
-        .attr("stroke", "#A9A9A9")
-        .attr("fill", "none");
-
-    variants
         .append("text")
         .text("Observed variants within 609 individuals from the Americas (~39 millions sites)")
-        .attr("x", function(d) {return d.h/downscale+shift-100;})
-        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-110; })
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-60; })
         .style("text-anchor", "middle")
         .style("fill", "#696969")
         .style("font-family", "Arial")
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
 
-    variants
-        .append("path")
-        .attr("id", function(d) { return d._row; })
-        .attr("stroke", function(d) { return d.color; })
-        .attr("stroke-width", 3)
-        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
-        .attr("fill", function(d) { return d.fill; })
-        .attr("d", function(d) {
-            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
-        })
-        .attr("transform", function(d) {
-            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
-        });
-
-    var common = svg_container
+    common_text = svg_container
         .selectAll("text")
         .data(ellipses)
         .enter()
         .filter(function(d) { return (d._row == "Common"); })
         .append("g");
 
-    common
+    common_text
         .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-10], [d.h/downscale+shift-20, d.k/downscale+d.b/downscale+shift+60]]) ;})
-        .attr("stroke-width", 2)
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-10], [d.h/downscale+shift-50, d.k/downscale+d.b/downscale+shift+60]]) ;})
+        .attr("stroke-width", 3)
         .attr("stroke", "#56B4E9")
         .attr("fill", "none");
 
-    common
+    common_text
+        .append("text")
+        .text("Common variants within 609 individuals from the Americas (~10 million sites)")
+        .attr("x", function(d) {return d.h/downscale+shift-150;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift+50; })
+        .style("stroke", "white")
+        .style("stroke-width", 20)
+        .style("text-anchor", "middle")
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .call(wrap, 250, 1, 1);
+    
+    common_text
         .append("text")
         .text("Common variants within 609 individuals from the Americas (~10 million sites)")
         .attr("x", function(d) {return d.h/downscale+shift-150;})
@@ -348,19 +336,6 @@ We wanted to share some resources that we’ve been putting together for teachin
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
 
-    common
-        .append("path")
-        .attr("id", function(d) { return d._row; })
-        .attr("stroke", function(d) { return d.color; })
-        .attr("stroke-width", 3)
-        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
-        .attr("fill", function(d) { return d.fill; })
-        .attr("d", function(d) {
-            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
-        })
-        .attr("transform", function(d) {
-            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
-        });
 
 </script>
 
@@ -369,11 +344,11 @@ We wanted to share some resources that we’ve been putting together for teachin
         Figure 1 - The relative scale of common variants in the Americas compared to the size of the human genome. The area of each circle is scaled proportionally by the number of sites in that category. The small blue circle corresponds with the number of common variants; “common” is defined as having a minor allele frequency of greater than 5% in at least one of the samples.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, and we counted the number of common variants found in each sample.
+<p>The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, and we counted the number of common variants found in each sample.</p>
 
-<br>
+<p><br /></p>
 <div id="figure2" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -483,11 +458,11 @@ The small blue circle in the above figure captures just how little variation ris
         Figure 2 - Seven circles, one for each sample located in the Americas. The area of each circle is proportional to the number of common variants within that sample from the 1000 Genomes Project. A “common” variant is defined as having a minor allele frequency of greater than 5%, where the minor allele identity is determined by its global allele frequency (its frequency across all samples in the 1000 Genomes Project). The number of individuals within each sample has also been included to ensure that this quantity is relatively consistent between samples.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples (Figure 3). This style of visualization is similar to a Venn diagram, with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.
+<p>The levels of genetic diversity vary between samples, shown as differences in the number of common variants; African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) display the highest levels of variation. Similar to Figure 1 from Donovan et al. (2019), we implement an Euler diagram to visualize the amount of overlap in common genetic variation between samples (Figure 3). This style of visualization is similar to a Venn diagram, with the added property that the areas and overlaps of the shapes are proportional to the number of common variants in the corresponding samples.</p>
 
-<br>
+<p><br /></p>
 <div id="figure3" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -515,11 +490,11 @@ The levels of genetic diversity vary between samples, shown as differences in th
         Figure 3 - An interactive Euler diagram of the common variants in samples located in the Americas. Hovering over the ellipses displays a popup with information about the samples. It is not mathematically possible to generate ellipses with a given overlap without distortions to the areas. See the Technical details section (below) for statistics quantifying the slight errors in this and following Euler diagrams.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. From here forward, we use the term "uniquely common" to describe variants that are common in only one of the samples included in that figure. This does not mean that these variants are completely absent from the other samples, but instead refers specifically to these variants being rare or undetected in the other samples included in the figure. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (>5%) in a given sample and then identified which other samples share that same common variation.
+<p>It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. From here forward, we use the term “uniquely common” to describe variants that are common in only one of the samples included in that figure. This does not mean that these variants are completely absent from the other samples, but instead refers specifically to these variants being rare or undetected in the other samples included in the figure. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (&gt;5%) in a given sample and then identified which other samples share that same common variation.</p>
 
-<br>
+<p><br /></p>
 <div id="figure4" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -664,13 +639,13 @@ It’s clear from this figure that the majority of common variants are not uniqu
         Figure 4 - Seven interactive Euler diagrams of the common variants in samples located in the Americas. Each diagram highlights a different sample, identified in the title, that was used to filter the variants down to only those that were common in the sample. The sizes of each plot are proportional to the number of variants included in the analysis (sizes are not proportional to previous figures). See Figure S1 near the bottom of this post for an alternative visualization of this figure.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of uniquely common variants will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little uniquely common variation shown in the diagrams of the other samples.
+<p>This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of uniquely common variants will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little uniquely common variation shown in the diagrams of the other samples.</p>
 
-Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.
+<p>Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.</p>
 
-<br>
+<p><br /></p>
 <div id="figure5" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -684,8 +659,8 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
 
     
     var ellipses = [
-        {"h":-3473.3056,"k":0,"a":30379.7837,"b":30379.7837,"phi":4.6048,"color":"#A9A9A9","fill":"white","stroke_dasharray":"5","_row":"Measurable"},
-        {"h":4680.7141,"k":0,"a":3503.9703,"b":3503.9703,"phi":4.6048,"color":"#A9A9A9","fill":"white","stroke_dasharray":"5","_row":"Variants"},
+        {"h":-3473.3056,"k":0,"a":30379.7837,"b":30379.7837,"phi":4.6048,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Measurable"},
+        {"h":4680.7141,"k":0,"a":3503.9703,"b":3503.9703,"phi":4.6048,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Variants"},
         {"h":5169.0583,"k":1234.5167,"a":1418.2626,"b":1728.5732,"phi":2.7036,"color":"#D55E00","fill":"none","stroke_dasharray":"none","_row":"ACB"},
         {"h":5011.8328,"k":1184.8433,"a":1803.0682,"b":1302.0182,"phi":4.7352,"color":"#0072B2","fill":"none","stroke_dasharray":"none","_row":"ASW"},
         {"h":4870.3866,"k":528.203,"a":1420.4929,"b":1219.6246,"phi":4.6236,"color":"#CC79A7","fill":"none","stroke_dasharray":"none","_row":"CEU"},
@@ -698,32 +673,10 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
     var downscale = 130;
     var shift = dim/2;
 
-
-    var measurable = svg_container
+    svg_container
         .selectAll("ellipses")
         .data(ellipses)
         .enter()
-        .filter(function(d) { return (d._row == "Measurable"); })
-        .append("g");
-
-    measurable
-        .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-200, d.k/downscale+d.b/downscale+shift-480], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-400]]) ;})
-        .attr("stroke-width", 2)
-        .attr("stroke", "#A9A9A9")
-        .attr("fill", "none");
-
-    measurable
-        .append("text")
-        .text("Measurable locations in the human genome (~2.9 billion sites)")
-        .attr("x", function(d) {return d.h/downscale+shift;})
-        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-490; })
-        .style("text-anchor", "middle")
-        .style("fill", "#696969")
-        .style("font-family", "Arial")
-        .style("font-size", 18);
-
-    measurable
         .append("path")
         .attr("id", function(d) { return d._row; })
         .attr("stroke", function(d) { return d.color; })
@@ -737,79 +690,60 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
             return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
         });
 
-   var variants = svg_container
-        .selectAll("ellipses")
+    svg_container
+        .selectAll("text")
+        .data(ellipses)
+        .enter()
+        .filter(function(d) { return (d._row == "Measurable"); })
+        .append("text")
+        .text("Measurable locations in the human genome (~2.9 billion sites)")
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-25; })
+        .style("text-anchor", "middle")
+        .style("fill", "#696969")
+        .style("font-family", "Arial")
+        .style("font-size", 18);
+
+    svg_container
+        .selectAll("text")
         .data(ellipses)
         .enter()
         .filter(function(d) { return (d._row == "Variants"); })
-        .append("g");
-
-    variants
-        .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-100, d.k/downscale+d.b/downscale+shift-65], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-25]]) ;})
-        .attr("stroke-width", 2)
-        .attr("stroke", "#A9A9A9")
-        .attr("fill", "none");
-
-    variants
         .append("text")
-        .text("Observed variants within 609 individuals from the Americas (~39 millions sites)")
-        .attr("x", function(d) {return d.h/downscale+shift-100;})
-        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-110; })
+        .text("Observed variants within 609 individuals from the Americas (~39 million sites)")
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-60; })
         .style("text-anchor", "middle")
         .style("fill", "#696969")
         .style("font-family", "Arial")
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
 
-    variants
-        .append("path")
-        .attr("id", function(d) { return d._row; })
-        .attr("stroke", function(d) { return d.color; })
-        .attr("stroke-width", 3)
-        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
-        .attr("fill", function(d) { return d.fill; })
-        .attr("d", function(d) {
-            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
-        })
-        .attr("transform", function(d) {
-            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
-        });
-
-    var common = svg_container
+    common_text = svg_container
         .selectAll("text")
         .data(ellipses)
         .enter()
-        .filter(function(d) { return (d._row != "Measurable" & d._row != "Variants"); })
+        .filter(function(d) { return (d._row == "CEU"); })
         .append("g");
 
-    common
-        .append("path")
-        .attr("id", function(d) { return d._row; })
-        .attr("stroke", function(d) { return d.color; })
-        .attr("stroke-width", 3)
-        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
-        .attr("fill", function(d) { return d.fill; })
-        .attr("d", function(d) {
-            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
-        })
-        .attr("transform", function(d) {
-            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
-        });
-
-    var common_text = svg_container
-        .selectAll("text")
-        .data(ellipses)
-        .enter()
-        .filter(function(d) { return (d._row == "ACB"); })
-        .append("g");
-    
     common_text
         .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift], [d.h/downscale+shift-20, d.k/downscale+d.b/downscale+shift+60]]) ;})
-        .attr("stroke-width", 2)
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift+10], [d.h/downscale+shift-50, d.k/downscale+d.b/downscale+shift+60]]) ;})
+        .attr("stroke-width", 3)
         .attr("stroke", "#A9A9A9")
         .attr("fill", "none");
+
+    common_text
+        .append("text")
+        .text("Common variants within 609 individuals from the Americas (~10 million sites)")
+        .attr("x", function(d) {return d.h/downscale+shift-150;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift+50; })
+        .style("stroke", "white")
+        .style("stroke-width", 20)
+        .style("text-anchor", "middle")
+        .style("font-family", "Arial")
+        .style("font-size", 18)
+        .call(wrap, 250, 1, 1);
 
     common_text
         .append("text")
@@ -828,11 +762,11 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
         Figure 5 - An Euler diagram of the common variants in samples located in the Americas relative to the scale of the human genome. As a small note, the positions and orientations of ellipses within the Euler diagram differ slightly from Figure 3. This is because the eulerr package gives varied results with each run due to random starting conditions within the algorithm.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.
+<p>Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.</p>
 
-<br>
+<p><br /></p>
 <div id="figure6" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -858,13 +792,13 @@ Genetic diversity in the Americas reflects the history of colonialism and transa
         Figure 6 - An interactive Euler diagram of the common variants in five geographically distant samples: Bengali in Bangladesh (BEB), Han Chinese in Beijing, China (CHB), British in England and Scotland (GBR), Mexican Ancestry in Los Angeles, California (MXL), and Yoruba in Ibadan, Nigeria (YRI).
     </p>
 </center>
-<br>
+<p><br /></p>
 
-Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when considering quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation. 
+<p>Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when considering quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation.</p>
 
-Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this dataset’s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. There’s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa. 
+<p>Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this dataset’s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. There’s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa.</p>
 
-<br>
+<p><br /></p>
 <div id="figure7" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -965,16 +899,15 @@ Lastly, given this global view, we can zoom in and look at how variation is part
         Figure 7 - Five interactive Euler diagrams of the 26 global samples using the broad geographic groupings from Biddanda et al. 2020.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-It's easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. [SLC24A5](https://popgen.uchicago.edu/ggv/?data=%221000genomes%22&chr=15&pos=48426484)), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation. 
+<p>It’s easy for us to fall into the trap of thinking that humans are very genetically different. Historically, our ideas about the structure of human biological variation have been shaped by prominent physical traits, notably skin color, that appear to follow a geographic structure. But the genetic variants contributing to skin pigmentation are unrepresentative of the more general patterns of genetic sharing present between global human samples. The genetic changes involved in skin pigmentation differences can show striking geographic patterns (e.g. <a href="https://popgen.uchicago.edu/ggv/?data=%221000genomes%22&amp;chr=15&amp;pos=48426484">SLC24A5</a>), but that is because they have been shaped by strong local adaptation to the climatic conditions that people encountered as they moved around the world. These loci are fascinating examples of adaptation but are also incredibly rare in comparison to the high degree of sharing that we see in much of human genetic variation.</p>
 
+<h3 id="technical-details">Technical details</h3>
 
-### Technical details
+<p>We used the <code class="language-plaintext highlighter-rouge">geovar</code> package in Python to group the ~92 million variants included in the 1000 Genomes Project based on minor allele frequency (MAF). Variants were separated into five bins based (MAF=0%, 0%&lt;MAF&lt;1%, 1%&lt;MAF&lt;5%, 5%&lt;MAF&lt;10%, and MAF&gt;10%), though two bins would have sufficed for this analysis (MAF&lt;5% and MAF&gt;5%). We used the <code class="language-plaintext highlighter-rouge">eulerr</code> in R to calculate the position and orientation of ellipses in the Euler diagrams. Unfortunately, exactly proportionally scaling the area of every region of this diagram becomes difficult to impossible as you increase the number of sets, or samples. Because of this, I have included two goodness-of-fit measurements provided by the <code class="language-plaintext highlighter-rouge">eulerr</code> package and described in further details in the package’s <a href="https://cran.r-project.org/web/packages/eulerr/vignettes/introduction.html">tutorial</a>. For both measurements, values closer to zero have less error. Below is a table with these measurements for all of the Euler diagrams presented in this post:</p>
 
-We used the `geovar` package in Python to group the ~92 million variants included in the 1000 Genomes Project based on minor allele frequency (MAF). Variants were separated into five bins based (MAF=0%, 0%<MAF<1%, 1%<MAF<5%, 5%<MAF<10%, and MAF>10%), though two bins would have sufficed for this analysis (MAF<5% and MAF>5%). We used the `eulerr` in R to calculate the position and orientation of ellipses in the Euler diagrams. Unfortunately, exactly proportionally scaling the area of every region of this diagram becomes difficult to impossible as you increase the number of sets, or samples. Because of this, I have included two goodness-of-fit measurements provided by the `eulerr` package and described in further details in the package's [tutorial](https://cran.r-project.org/web/packages/eulerr/vignettes/introduction.html). For both measurements, values closer to zero have less error. Below is a table with these measurements for all of the Euler diagrams presented in this post:
-
-<br>
+<p><br /></p>
 
 <style>
     table {
@@ -996,36 +929,102 @@ We used the `geovar` package in Python to group the ~92 million variants include
     }
 </style>
 
+<table>
+  <thead>
+    <tr>
+      <th>figure</th>
+      <th>stress</th>
+      <th>diagError</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3</td>
+      <td>4.53E-04</td>
+      <td>0.019573681</td>
+    </tr>
+    <tr>
+      <td>4.1</td>
+      <td>1.09E-04</td>
+      <td>0.008677686</td>
+    </tr>
+    <tr>
+      <td>4.2</td>
+      <td>1.52E-04</td>
+      <td>0.0133913503</td>
+    </tr>
+    <tr>
+      <td>4.3</td>
+      <td>1.04E-04</td>
+      <td>0.016955049</td>
+    </tr>
+    <tr>
+      <td>4.4</td>
+      <td>3.08E-04</td>
+      <td>0.0260526896</td>
+    </tr>
+    <tr>
+      <td>4.5</td>
+      <td>2.53E-04</td>
+      <td>0.0236936357</td>
+    </tr>
+    <tr>
+      <td>4.6</td>
+      <td>1.89E-04</td>
+      <td>0.0181390286</td>
+    </tr>
+    <tr>
+      <td>4.7</td>
+      <td>3.58E-04</td>
+      <td>0.0288044056</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1.09E-09</td>
+      <td>0.0001789465</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>2.30E-03</td>
+      <td>0.0198055721</td>
+    </tr>
+    <tr>
+      <td>7.1</td>
+      <td>1.19E-03</td>
+      <td>0.027619266</td>
+    </tr>
+    <tr>
+      <td>7.2</td>
+      <td>4.53E-04</td>
+      <td>0.019573681</td>
+    </tr>
+    <tr>
+      <td>7.3</td>
+      <td>5.77E-04</td>
+      <td>0.0410841878</td>
+    </tr>
+    <tr>
+      <td>7.4</td>
+      <td>6.39E-07</td>
+      <td>0.0004395497</td>
+    </tr>
+    <tr>
+      <td>7.5</td>
+      <td>6.41E-04</td>
+      <td>0.0458260097</td>
+    </tr>
+  </tbody>
+</table>
 
+<p><br /></p>
 
-| figure | stress   | diagError    |
-| ------ | -------- | ------------ |
-| 3      | 4.53E-04 | 0.019573681  |
-| 4.1    | 1.09E-04 | 0.008677686  |
-| 4.2    | 1.52E-04 | 0.0133913503 |
-| 4.3    | 1.04E-04 | 0.016955049  |
-| 4.4    | 3.08E-04 | 0.0260526896 |
-| 4.5    | 2.53E-04 | 0.0236936357 |
-| 4.6    | 1.89E-04 | 0.0181390286 |
-| 4.7    | 3.58E-04 | 0.0288044056 |
-| 5      | 1.09E-09 | 0.0001789465 |
-| 6      | 2.30E-03 | 0.0198055721 |
-| 7.1    | 1.19E-03 | 0.027619266  |
-| 7.2    | 4.53E-04 | 0.019573681  |
-| 7.3    | 5.77E-04 | 0.0410841878 |
-| 7.4    | 6.39E-07 | 0.0004395497 |
-| 7.5    | 6.41E-04 | 0.0458260097 |
+<p>The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of <code class="language-plaintext highlighter-rouge">eulerr</code> into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the code used to generate these figures can be found here.</p>
 
-<br>
+<h3 id="additional-figures">Additional figures</h3>
 
-The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of `eulerr` into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the code used to generate these figures can be found here.
+<p>The following figures offer alternative methods of visualization to those within this post. Details about these figures are provided in the figure captions.</p>
 
-
-### Additional figures
-
-The following figures offer alternative methods of visualization to those within this post. Details about these figures are provided in the figure captions.
-
-<br>
+<p><br /></p>
 <div id="figureS1" style="display: flex; justify-content: center;"></div>
 
 <script>
@@ -1175,28 +1174,28 @@ The following figures offer alternative methods of visualization to those within
         Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of uniquely common variants within the highlighted sample, identified in the title. This is an alternative visualization of Figure 4. The ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area and leaving only the uniquely common variants. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-<br>
+<p><br /></p>
 
-{:.upset}
-![UpSet Plot of Five Global Samples](/assets/blog/visualizing-human-genetic-diversity/upset_global.png)
+<p class="upset"><img src="/assets/blog/visualizing-human-genetic-diversity/upset_global.png" alt="UpSet Plot of Five Global Samples" /></p>
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
         Figure S2 - An UpSet Plot as an alternative visualization of Figure 6. UpSet Plots, created by <a href="https://doi.org/10.1109/TVCG.2014.2346248">Lex et al. (2014)</a>, are useful for handling large numbers of sets. They can communicate the exact overlap between sets, unlike Euler diagrams (as discussed in the Technical details section), but are also a bit more challenging to read as there are multiple subfigures. To draw comparisons with the Euler diagrams, the horizontal bar graph on the bottom left depicts the area of each ellipses and the vertical bar graph shows the area of overlap between ellipses referenced usings dots in the bottom subfigure.
     </p>
 </center>
-<br>
+<p><br /></p>
 
-### Citations
+<h3 id="citations">Citations</h3>
 
-Lewontin (1972) [The Apportionment of Human Diversity](https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf). Dobzhansky, T., Hecht, M.K., Steere, W.C. (eds), *Evolutionary Biology*
+<p>Lewontin (1972) <a href="https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf">The Apportionment of Human Diversity</a>. Dobzhansky, T., Hecht, M.K., Steere, W.C. (eds), <em>Evolutionary Biology</em></p>
 
-Marcus & Novembre (2016) [Visualizing the Geography of Genetic Variants](https://doi.org/10.1093/bioinformatics/btw643). *Bioinformatics*, Volume 33, Issue 4
+<p>Marcus &amp; Novembre (2016) <a href="https://doi.org/10.1093/bioinformatics/btw643">Visualizing the Geography of Genetic Variants</a>. <em>Bioinformatics</em>, Volume 33, Issue 4</p>
 
-Donovan et al. (2019) [Toward a more humane genetics education: Learning about the social and quantitative complexities of human genetic variation research could reduce racial bias in adolescent and adult populations](https://doi.org/10.1002/sce.21506). *Science Education*, Volume 103, Issue 3
+<p>Donovan et al. (2019) <a href="https://doi.org/10.1002/sce.21506">Toward a more humane genetics education: Learning about the social and quantitative complexities of human genetic variation research could reduce racial bias in adolescent and adult populations</a>. <em>Science Education</em>, Volume 103, Issue 3</p>
 
-Arjun Biddanda, Daniel P Rice, John Novembre (2020) [A variant-centric perspective on geographic patterns of human allele frequency variation](https://doi.org/10.7554/eLife.60107). *eLife*, 9:e60107
+<p>Arjun Biddanda, Daniel P Rice, John Novembre (2020) <a href="https://doi.org/10.7554/eLife.60107">A variant-centric perspective on geographic patterns of human allele frequency variation</a>. <em>eLife</em>, 9:e60107</p>
 
-Lex et al. (2014) [UpSet: Visualization of Intersecting Sets](https://doi.org/10.1109/TVCG.2014.2346248). *IEEE Transactions on Visualization and Computer Graphics*, Volume 20, Issue 12
+<p>Lex et al. (2014) <a href="https://doi.org/10.1109/TVCG.2014.2346248">UpSet: Visualization of Intersecting Sets</a>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, Volume 20, Issue 12</p>
+:ET

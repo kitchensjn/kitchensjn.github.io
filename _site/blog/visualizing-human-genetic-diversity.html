@@ -290,18 +290,39 @@
 
     
     var ellipses = [
-        {"h":-173.4314,"k":0,"a":30382.5389,"b":30382.5389,"phi":5.0914,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Measurable"},
-        {"h":9660.3273,"k":0,"a":3527.7784,"b":3527.7784,"phi":5.0914,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Variants"},
+        {"h":-173.4314,"k":0,"a":30382.5389,"b":30382.5389,"phi":5.0914,"color":"#A9A9A9","fill":"#FFFFFF","stroke_dasharray":"5","_row":"Measurable"},
+        {"h":9660.3273,"k":0,"a":3527.7784,"b":3527.7784,"phi":5.0914,"color":"#A9A9A9","fill":"#FFFFFF","stroke_dasharray":"5","_row":"Variants"},
         {"h":10754.3423,"k":362.1589,"a":1783.4049,"b":1783.4049,"phi":5.0914,"color":"none","fill":"#56B4E9","stroke_dasharray":"none","_row":"Common"}
     ] 
 
     var downscale = 130;
     var shift = dim/2;
 
-    svg_container
+    var measurable = svg_container
         .selectAll("ellipses")
         .data(ellipses)
         .enter()
+        .filter(function(d) { return (d._row == "Measurable"); })
+        .append("g");
+
+    measurable
+        .append("path")
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-200, d.k/downscale+d.b/downscale+shift-480], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-400]]) ;})
+        .attr("stroke-width", 2)
+        .attr("stroke", "#A9A9A9")
+        .attr("fill", "none");
+
+    measurable
+        .append("text")
+        .text("Measurable locations in the human genome (~2.9 billion sites)")
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-490; })
+        .style("text-anchor", "middle")
+        .style("fill", "#696969")
+        .style("font-family", "Arial")
+        .style("font-size", 18);
+
+    measurable
         .append("path")
         .attr("id", function(d) { return d._row; })
         .attr("stroke", function(d) { return d.color; })
@@ -315,62 +336,60 @@
             return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
         });
 
-    svg_container
-        .selectAll("text")
-        .data(ellipses)
-        .enter()
-        .filter(function(d) { return (d._row == "Measurable"); })
-        .append("text")
-        .text("Measurable locations in the human genome (~2.9 billion sites)")
-        .attr("x", function(d) {return d.h/downscale+shift;})
-        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-25; })
-        .style("text-anchor", "middle")
-        .style("fill", "#696969")
-        .style("font-family", "Arial")
-        .style("font-size", 18);
-
-    svg_container
-        .selectAll("text")
+   var variants = svg_container
+        .selectAll("ellipses")
         .data(ellipses)
         .enter()
         .filter(function(d) { return (d._row == "Variants"); })
+        .append("g");
+
+    variants
+        .append("path")
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-100, d.k/downscale+d.b/downscale+shift-65], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-25]]) ;})
+        .attr("stroke-width", 2)
+        .attr("stroke", "#A9A9A9")
+        .attr("fill", "none");
+
+    variants
         .append("text")
         .text("Observed variants within 609 individuals from the Americas (~39 millions sites)")
-        .attr("x", function(d) {return d.h/downscale+shift;})
-        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-60; })
+        .attr("x", function(d) {return d.h/downscale+shift-100;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-110; })
         .style("text-anchor", "middle")
         .style("fill", "#696969")
         .style("font-family", "Arial")
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
 
-    common_text = svg_container
+    variants
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
+
+    var common = svg_container
         .selectAll("text")
         .data(ellipses)
         .enter()
         .filter(function(d) { return (d._row == "Common"); })
         .append("g");
 
-    common_text
+    common
         .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-10], [d.h/downscale+shift-50, d.k/downscale+d.b/downscale+shift+60]]) ;})
-        .attr("stroke-width", 3)
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-10], [d.h/downscale+shift-20, d.k/downscale+d.b/downscale+shift+60]]) ;})
+        .attr("stroke-width", 2)
         .attr("stroke", "#56B4E9")
         .attr("fill", "none");
 
-    common_text
-        .append("text")
-        .text("Common variants within 609 individuals from the Americas (~10 million sites)")
-        .attr("x", function(d) {return d.h/downscale+shift-150;})
-        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift+50; })
-        .style("stroke", "white")
-        .style("stroke-width", 20)
-        .style("text-anchor", "middle")
-        .style("font-family", "Arial")
-        .style("font-size", 18)
-        .call(wrap, 250, 1, 1);
-    
-    common_text
+    common
         .append("text")
         .text("Common variants within 609 individuals from the Americas (~10 million sites)")
         .attr("x", function(d) {return d.h/downscale+shift-150;})
@@ -381,6 +400,19 @@
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
 
+    common
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
 
 </script>
 
@@ -704,8 +736,8 @@
 
     
     var ellipses = [
-        {"h":-3473.3056,"k":0,"a":30379.7837,"b":30379.7837,"phi":4.6048,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Measurable"},
-        {"h":4680.7141,"k":0,"a":3503.9703,"b":3503.9703,"phi":4.6048,"color":"#A9A9A9","fill":"none","stroke_dasharray":"5","_row":"Variants"},
+        {"h":-3473.3056,"k":0,"a":30379.7837,"b":30379.7837,"phi":4.6048,"color":"#A9A9A9","fill":"white","stroke_dasharray":"5","_row":"Measurable"},
+        {"h":4680.7141,"k":0,"a":3503.9703,"b":3503.9703,"phi":4.6048,"color":"#A9A9A9","fill":"white","stroke_dasharray":"5","_row":"Variants"},
         {"h":5169.0583,"k":1234.5167,"a":1418.2626,"b":1728.5732,"phi":2.7036,"color":"#D55E00","fill":"none","stroke_dasharray":"none","_row":"ACB"},
         {"h":5011.8328,"k":1184.8433,"a":1803.0682,"b":1302.0182,"phi":4.7352,"color":"#0072B2","fill":"none","stroke_dasharray":"none","_row":"ASW"},
         {"h":4870.3866,"k":528.203,"a":1420.4929,"b":1219.6246,"phi":4.6236,"color":"#CC79A7","fill":"none","stroke_dasharray":"none","_row":"CEU"},
@@ -718,10 +750,32 @@
     var downscale = 130;
     var shift = dim/2;
 
-    svg_container
+
+    var measurable = svg_container
         .selectAll("ellipses")
         .data(ellipses)
         .enter()
+        .filter(function(d) { return (d._row == "Measurable"); })
+        .append("g");
+
+    measurable
+        .append("path")
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-200, d.k/downscale+d.b/downscale+shift-480], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-400]]) ;})
+        .attr("stroke-width", 2)
+        .attr("stroke", "#A9A9A9")
+        .attr("fill", "none");
+
+    measurable
+        .append("text")
+        .text("Measurable locations in the human genome (~2.9 billion sites)")
+        .attr("x", function(d) {return d.h/downscale+shift;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-490; })
+        .style("text-anchor", "middle")
+        .style("fill", "#696969")
+        .style("font-family", "Arial")
+        .style("font-size", 18);
+
+    measurable
         .append("path")
         .attr("id", function(d) { return d._row; })
         .attr("stroke", function(d) { return d.color; })
@@ -735,60 +789,79 @@
             return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
         });
 
-    svg_container
-        .selectAll("text")
-        .data(ellipses)
-        .enter()
-        .filter(function(d) { return (d._row == "Measurable"); })
-        .append("text")
-        .text("Measurable locations in the human genome (~2.9 billion sites)")
-        .attr("x", function(d) {return d.h/downscale+shift;})
-        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-25; })
-        .style("text-anchor", "middle")
-        .style("fill", "#696969")
-        .style("font-family", "Arial")
-        .style("font-size", 18);
-
-    svg_container
-        .selectAll("text")
+   var variants = svg_container
+        .selectAll("ellipses")
         .data(ellipses)
         .enter()
         .filter(function(d) { return (d._row == "Variants"); })
+        .append("g");
+
+    variants
+        .append("path")
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift-100, d.k/downscale+d.b/downscale+shift-65], [d.h/downscale+shift, d.k/downscale+d.b/downscale+shift-25]]) ;})
+        .attr("stroke-width", 2)
+        .attr("stroke", "#A9A9A9")
+        .attr("fill", "none");
+
+    variants
         .append("text")
-        .text("Observed variants within 609 individuals from the Americas (~39 million sites)")
-        .attr("x", function(d) {return d.h/downscale+shift;})
-        .attr("y", function(d) {return d.k/downscale-d.b/downscale+shift-60; })
+        .text("Observed variants within 609 individuals from the Americas (~39 millions sites)")
+        .attr("x", function(d) {return d.h/downscale+shift-100;})
+        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift-110; })
         .style("text-anchor", "middle")
         .style("fill", "#696969")
         .style("font-family", "Arial")
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
 
-    common_text = svg_container
+    variants
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
+
+    var common = svg_container
         .selectAll("text")
         .data(ellipses)
         .enter()
-        .filter(function(d) { return (d._row == "CEU"); })
+        .filter(function(d) { return (d._row != "Measurable" & d._row != "Variants"); })
         .append("g");
 
+    common
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
+
+    var common_text = svg_container
+        .selectAll("text")
+        .data(ellipses)
+        .enter()
+        .filter(function(d) { return (d._row == "ACB"); })
+        .append("g");
+    
     common_text
         .append("path")
-        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift+10], [d.h/downscale+shift-50, d.k/downscale+d.b/downscale+shift+60]]) ;})
-        .attr("stroke-width", 3)
+        .attr("d", function(d) { return stepBefore([[d.h/downscale+shift, d.k/downscale+d.b/downscale+shift], [d.h/downscale+shift-20, d.k/downscale+d.b/downscale+shift+60]]) ;})
+        .attr("stroke-width", 2)
         .attr("stroke", "#A9A9A9")
         .attr("fill", "none");
-
-    common_text
-        .append("text")
-        .text("Common variants within 609 individuals from the Americas (~10 million sites)")
-        .attr("x", function(d) {return d.h/downscale+shift-150;})
-        .attr("y", function(d) {return d.k/downscale+d.b/downscale+shift+50; })
-        .style("stroke", "white")
-        .style("stroke-width", 20)
-        .style("text-anchor", "middle")
-        .style("font-family", "Arial")
-        .style("font-size", 18)
-        .call(wrap, 250, 1, 1);
 
     common_text
         .append("text")
