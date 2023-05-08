@@ -1,66 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    DRAFT - Visualizing Human Genetic Diversity</h2><p style="text-align: left;">James Kitchens and Graham Coop</p><p style="text-align: left;">May 2, 2023</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">D3</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">Python</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <p><br /></p>
+I"i<p><br /></p>
 
 <script src="https://d3js.org/d3.v4.js"></script>
 
@@ -274,7 +212,7 @@
 
 <p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes (<a href="https://www.nature.com/articles/nature18964">Mallick et al. 2016</a>); in that small fraction that doesn’t match (~1/1000 sites), your chromosome might carry an A while the other person’s chromosome carries a T. The majority of sites with variation have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (<a href="https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf">Lewontin, 1972</a>). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome to see how variation is shared - check out the <a href="https://popgen.uchicago.edu/ggv/">Geography of Genetic Variants Browser</a> from the Novembre Lab for a nice interactive tool (<a href="https://doi.org/10.1093/bioinformatics/btw643">Marcus &amp; Novembre, 2016</a>). However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
 
-<p>We wanted to share some resources that we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by <a href="https://doi.org/10.1002/sce.21506">Donovan et al. (2019)</a> and <a href="https://doi.org/10.7554/eLife.60107">Biddanda et al. (2020)</a>. These visualizations first center on the variation in a set of diverse samples from the Americas (see Figure 2) before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from.<sup>1</sup> To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
+<p>We wanted to share some resources that we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by <a href="https://doi.org/10.1002/sce.21506">Donovan et al. (2019)</a> and <a href="https://doi.org/10.7554/eLife.60107">Biddanda et al. (2020)</a>. These visualizations first center on the variation in a set of diverse samples from the Americas (see Figure 2) before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from.<a href="##" title="Indeed, if we sequence the entire population of the world, we'd see nearly every site being variable in some one. But these variants would be vanishingly rare in the population overall."><sup>1</sup></a> To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
 
 <p><br /></p>
 <div id="figure1" style="display: flex; justify-content: center;"></div>
@@ -1322,14 +1260,6 @@
 <hr />
 
 <p><small>
-<sup>1</sup>Indeed, if we sequence the entire population of the world, we’d see nearly every site being variable in some one. But these variants would be vanishingly rare in the population, overall.
+<sup>1</sup>Indeed, if we sequence the entire population of the world, we’d see nearly every site being variable in some one. But these variants would be vanishingly rare in the population overall.
 </small></p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
-
-</html>
+:ET

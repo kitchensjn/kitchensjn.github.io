@@ -1,66 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    DRAFT - Visualizing Human Genetic Diversity</h2><p style="text-align: left;">James Kitchens and Graham Coop</p><p style="text-align: left;">May 2, 2023</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">D3</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">Python</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <p><br /></p>
+I"f<p><br /></p>
 
 <script src="https://d3js.org/d3.v4.js"></script>
 
@@ -272,9 +210,9 @@
     }    
 </script>
 
-<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes (<a href="https://www.nature.com/articles/nature18964">Mallick et al. 2016</a>); in that small fraction that doesn’t match (~1/1000 sites), your chromosome might carry an A while the other person’s chromosome carries a T. The majority of sites with variation have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (<a href="https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf">Lewontin, 1972</a>). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome to see how variation is shared - check out the <a href="https://popgen.uchicago.edu/ggv/">Geography of Genetic Variants Browser</a> from the Novembre Lab for a nice interactive tool (<a href="https://doi.org/10.1093/bioinformatics/btw643">Marcus &amp; Novembre, 2016</a>). However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
+<p>A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes; in that small fraction that doesn’t match (~1/1000 sites), your chromosome might carry an A while the other person’s chromosome carries a T. The majority of sites with variation have no known function; carrying a G instead of an A may have no discernible effect on your traits. Much of the common genetic variation is shared among human groups (<a href="https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf">Lewontin, 1972</a>). Human geneticists are interested both in understanding which sites in the genome are functional and unraveling the subtle differences between individuals and groups that highlight our shared history. However, understanding and visualizing patterns of human genetic variation is often challenging due to the complexity of data involved. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome to see how variation is shared - check out the <a href="https://popgen.uchicago.edu/ggv/">Geography of Genetic Variants Browser</a> from the Novembre Lab for a nice interactive tool (<a href="https://doi.org/10.1093/bioinformatics/btw643">Marcus &amp; Novembre, 2016</a>). However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture overall patterns of genetic variation.</p>
 
-<p>We wanted to share some resources that we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by <a href="https://doi.org/10.1002/sce.21506">Donovan et al. (2019)</a> and <a href="https://doi.org/10.7554/eLife.60107">Biddanda et al. (2020)</a>. These visualizations first center on the variation in a set of diverse samples from the Americas (see Figure 2) before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from.<sup>1</sup> To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
+<p>We wanted to share some resources that we’ve been putting together for teaching genetics using data from the 1000 Genomes Project, inspired by <a href="https://doi.org/10.1002/sce.21506">Donovan et al. (2019)</a> and <a href="https://doi.org/10.7554/eLife.60107">Biddanda et al. (2020)</a>. These visualizations first center on the variation in a set of diverse samples from the Americas (see Figure 2) before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites that people vary at is a small fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically pertinent, they are the properties of particular people and their immediate families rather than the larger human groups that they come from. To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of individuals and then filtered the data based on this criteria.</p>
 
 <p><br /></p>
 <div id="figure1" style="display: flex; justify-content: center;"></div>
@@ -569,7 +507,7 @@
 </center>
 <p><br /></p>
 
-<p>It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. The African Caribbean and African American (ACB and ASW) samples share nearly all of the common variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not common in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (&gt;5%) in a given sample and then identified which other samples share that same common variation. This does not mean that these variants are completely absent from the other groups, but instead, these variants are rare or undetected in the other samples included in the figure. For example, maybe 10% of people in the ACB sample carry a T instead of an A at a particular site, but this T is found in only 1% of the CEU sample.</p>
+<p>It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. From here forward, we use the term “uniquely common” to describe variants that are common in only one of the samples included in that figure. This does not mean that these variants are completely absent from the other samples, but instead refers specifically to these variants being rare or undetected in the other samples included in the figure. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (&gt;5%) in a given sample and then identified which other samples share that same common variation.</p>
 
 <p><br /></p>
 <div id="figure4" style="display: flex; justify-content: center;"></div>
@@ -718,7 +656,7 @@
 </center>
 <p><br /></p>
 
-<p>This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of common variants that are not common in other samples will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is somewhat less common variation (small diagram size) in the other samples, and nearly all of it is shared.</p>
+<p>This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of uniquely common variants will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little uniquely common variation shown in the diagrams of the other samples.</p>
 
 <p>Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.</p>
 
@@ -1307,8 +1245,6 @@
 
 <h3 id="citations">Citations</h3>
 
-<p>Mallick et al. (2016) <a href="https://doi.org/10.1038/nature18964">The Simons Genome Diversity Project: 300 genomes from 142 diverse populations</a>. <em>Nature</em> 538, 201–206</p>
-
 <p>Lewontin (1972) <a href="https://www.vanderbilt.edu/evolution/wp-content/uploads/sites/295/2022/04/lewontin1972.pdf">The Apportionment of Human Diversity</a>. Dobzhansky, T., Hecht, M.K., Steere, W.C. (eds), <em>Evolutionary Biology</em></p>
 
 <p>Marcus &amp; Novembre (2016) <a href="https://doi.org/10.1093/bioinformatics/btw643">Visualizing the Geography of Genetic Variants</a>. <em>Bioinformatics</em>, Volume 33, Issue 4</p>
@@ -1318,18 +1254,4 @@
 <p>Arjun Biddanda, Daniel P Rice, John Novembre (2020) <a href="https://doi.org/10.7554/eLife.60107">A variant-centric perspective on geographic patterns of human allele frequency variation</a>. <em>eLife</em>, 9:e60107</p>
 
 <p>Lex et al. (2014) <a href="https://doi.org/10.1109/TVCG.2014.2346248">UpSet: Visualization of Intersecting Sets</a>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, Volume 20, Issue 12</p>
-
-<hr />
-
-<p><small>
-<sup>1</sup>Indeed, if we sequence the entire population of the world, we’d see nearly every site being variable in some one. But these variants would be vanishingly rare in the population, overall.
-</small></p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
-
-</html>
+:ET
