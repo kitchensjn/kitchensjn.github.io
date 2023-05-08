@@ -1,66 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>James Kitchens</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
-    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="/assets/scripts/navbar.js"></script>
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    
-    
-
-</head><body><div id="topnav">
-    
-    
-        <a class="section-title" id="Logo" href="/#home">
-            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
-        </a>
-        <a class="section-title" id="Home" href="/#home">Home</a>
-        <a class="section-title" id="Bio" href="/#bio">Bio</a>
-        
-            <a class="section-title" id="Projects" href="/#projects">Projects</a>
-        
-            <a class="section-title" id="Blog" href="/#blog">Blog</a>
-        
-    
-    
-    
-        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
-    
-    
-    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
-        <i class="fa fa-bars"></i>
-    </a>
-    
-</div><div class="section"><h2 class="postTitle">
-    DRAFT - Visualizing Human Genetic Diversity</h2><p style="text-align: left;">James Kitchens and Graham Coop</p><p style="text-align: left;">May 2, 2023</p>
-<div class="cat">
-    
-        <div class="background">
-            <p class="skill">Genetics</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">D3</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">Python</p>
-        </div>
-    
-        <div class="background">
-            <p class="skill">R</p>
-        </div>
-    
-</div>
-
-            <p><br /></p>
+I"X<p><br /></p>
 
 <script src="https://d3js.org/d3.v4.js"></script>
 
@@ -537,7 +475,7 @@
 </center>
 <p><br /></p>
 
-<p>It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. From here forward, we use the term “uniquely common” to describe variants that are common in only one of the samples included in that figure. This does not mean that these variants are completely absent from the other samples, but instead refers specifically to these variants being rare or undetected in the other samples included in the figure. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (&gt;5%) in a given sample and then identified which other samples share that same common variation.</p>
+<p>It’s clear from this figure that the majority of common variants are not unique to a single sample, instead they are often widely distributed and shared between samples, resulting in a large degree of overlap between ellipses. From here forward, we use the term “uniquely common” to describe variants that are common in only one of the samples included in that figure. This does not mean that these variants are completely absent from the other samples, but instead refers specifically to these variants being rare or undetected in the other samples used for the figure. The African Caribbean and African American (ACB and ASW) samples share nearly all of the variation found in other samples. However, as noted above, they also have greater amounts of genetic variation compared to that found in the other samples (larger area), and some of that variation is not found in the other samples from the Americas. To look at this in a different way, we first considered the variation that is common (&gt;5%) in a given sample and then identified which other samples share that same common variation.</p>
 
 <p><br /></p>
 <div id="figure4" style="display: flex; justify-content: center;"></div>
@@ -686,7 +624,7 @@
 </center>
 <p><br /></p>
 
-<p>This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of uniquely common variants will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little uniquely common variation shown in the diagrams of the other samples.</p>
+<p>This method of filtering results in a Euler diagram where the ellipse of the filtering sample completely encircles the other ellipses. A sample with greater numbers of uniquely common variants will have a larger disparity in the sizes of the ellipses. As before, these figures illustrate the high degree of sharing of variation among samples in the US. The African Caribbean in Barbados (ACB) and African Ancestry in Southwest US (ASW) samples stand out as containing the most genetic diversity with some of this variation being shared only between those two samples. In comparison, there is very little unique common variation shown in the diagrams of the other samples.</p>
 
 <p>Zooming back out and putting Figure 3 back onto the scale of the whole genome, the Euler diagram shrinks down to match the fraction of common variants in the genome.</p>
 
@@ -1238,17 +1176,9 @@
 
 <p>Marcus &amp; Novembre (2016) <a href="https://doi.org/10.1093/bioinformatics/btw643">Visualizing the Geography of Genetic Variants</a>. <em>Bioinformatics</em>, Volume 33, Issue 4</p>
 
-<p>Donovan et al. (2019) <a href="https://doi.org/10.1002/sce.21506">Toward a more humane genetics education: Learning about the social and quantitative complexities of human genetic variation research could reduce racial bias in adolescent and adult populations</a>. <em>Science Education</em>, Volume 103, Issue 3</p>
+<p>Donovan et al. (2019) <a href="https://doi.org/10.1002/sce.21506">Toward a more humane genetics education: Learning about the social and quantitative complexities of human genetic variation research could reduce racial bias in adolescent and adult populations</a>. <em>Science Eduction</em>, Volume 103, Issue 3</p>
 
 <p>Arjun Biddanda, Daniel P Rice, John Novembre (2020) <a href="https://doi.org/10.7554/eLife.60107">A variant-centric perspective on geographic patterns of human allele frequency variation</a>. <em>eLife</em>, 9:e60107</p>
 
 <p>Lex et al. (2014) <a href="https://doi.org/10.1109/TVCG.2014.2346248">UpSet: Visualization of Intersecting Sets</a>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, Volume 20, Issue 12</p>
-
-
-        </div>
-    <div id="contact" class="contactBar">
-
-        <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
-
-</html>
+:ET
