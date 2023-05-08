@@ -223,7 +223,7 @@
                             .style("opacity", 1);
                         tip
                             .style("display", "block")
-                            .html("<h3 style='margin: 0px;'>" + d.description + "</h3></br>1KGP Abbreviation: " + d.abbreviation + "</br>Number of Sampled Individuals: " + d.sampled_individuals.toLocaleString() + "</br>Number of Common Variants: " + d.common_variants.toLocaleString() + "</br>Number of Unshared Common Variants: "+d.unshared_common_variants.toLocaleString())
+                            .html("<h3 style='margin: 0px;'>" + d.description + "</h3></br>1KGP Abbreviation: " + d.abbreviation + "</br>Number of Sampled Individuals: " + d.sampled_individuals.toLocaleString() + "</br>Number of Common Variants: " + d.common_variants.toLocaleString() + "</br>Number of Common Variants in Non-Overlapping Region: "+d.unshared_common_variants.toLocaleString())
                             .style("border", d.color + " solid 7px")
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY+25) + "px");
