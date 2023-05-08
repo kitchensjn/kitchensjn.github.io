@@ -776,27 +776,6 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
             return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
         });
 
-    var common = svg_container
-        .selectAll("text")
-        .data(ellipses)
-        .enter()
-        .filter(function(d) { return (d._row != "Measurable" & d._row != "Variants"); })
-        .append("g");
-
-    common
-        .append("path")
-        .attr("id", function(d) { return d._row; })
-        .attr("stroke", function(d) { return d.color; })
-        .attr("stroke-width", 3)
-        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
-        .attr("fill", function(d) { return d.fill; })
-        .attr("d", function(d) {
-            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
-        })
-        .attr("transform", function(d) {
-            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
-        });
-
     var common_text = svg_container
         .selectAll("text")
         .data(ellipses)
@@ -821,6 +800,41 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
         .style("font-family", "Arial")
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
+
+    common_text
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
+
+    var common = svg_container
+        .selectAll("text")
+        .data(ellipses)
+        .enter()
+        .filter(function(d) { return (d._row != "Measurable" & d._row != "Variants"); })
+        .append("g");
+
+    common
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
 </script>
 
 <center style="font-style: italic;">
