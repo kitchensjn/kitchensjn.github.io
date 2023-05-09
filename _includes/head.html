@@ -27,8 +27,12 @@
 
     {% if page.layout == "post" %}
         <meta name="twitter:description" content="{{ page.description }}">
+        <meta name="twitter:card"  content="summary">
+        <meta name="twitter:image" content="{{ page.image }}">
     {% else %}
         <meta name="twitter:description" content="{{ site.description }}">
+        <meta name="twitter:card"  content="summary_large_image">
+        <meta name="twitter:image" content="{{ page.image }}">
     {% endif %}
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/logo/logo.ico' | relative_url }}">
