@@ -22,6 +22,15 @@
 
     -->
 
+    <meta name="twitter:site"    content="@kitchensjn">
+    <meta name="twitter:creator" content="@kitchensjn">
+
+    {% if page.layout == "post" %}
+        <meta name="twitter:description" content="{{ page.description }}">
+    {% else %}
+        <meta name="twitter:description" content="{{ site.description }}">
+    {% endif %}
+
     <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/logo/logo.ico' | relative_url }}">
     <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
