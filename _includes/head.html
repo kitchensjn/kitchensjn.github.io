@@ -24,16 +24,7 @@
 
     <meta name="twitter:site"    content="@kitchensjn">
     <meta name="twitter:creator" content="@kitchensjn">
-
-    {% if page.layout == "post" %}
-        <meta name="twitter:description" content="{{ page.description }}">
-        <meta name="twitter:card"  content="summary_large_image">
-        <meta name="twitter:image" content="{{ page.image }}">
-    {% else %}
-        <meta name="twitter:description" content="{{ page.description }}">
-        <meta name="twitter:card"  content="summary_large_image">
-        <meta name="twitter:image" content="{{ page.image }}">
-    {% endif %}
+    <meta name="twitter:description" content="{{ page.description }}">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/logo/logo.ico' | relative_url }}">
     <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
