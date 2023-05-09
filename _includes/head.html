@@ -6,6 +6,7 @@
 
     {% if page.layout == "post" %}
         <meta name="thumbnail" content="{{ page.thumbnail }}"/>
+        <meta property="og:image" content="{{ page.thumbnail }}" />
     {% endif %}
 
     <title>{{ site.name }}</title>
