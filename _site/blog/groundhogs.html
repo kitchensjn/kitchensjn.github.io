@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Groundhogs | James Kitchens</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Groundhogs" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/blog/groundhogs" />
+<meta property="og:url" content="http://localhost:4000/blog/groundhogs" />
+<meta property="og:site_name" content="James Kitchens" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-25T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Groundhogs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-25T00:00:00-07:00","datePublished":"2022-10-25T00:00:00-07:00","headline":"Groundhogs","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/groundhogs"},"url":"http://localhost:4000/blog/groundhogs"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!--
+    <title>Groundhogs | James Kitchens</title><meta name="thumbnail" content="https://james-kitchens.com/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"/>
+        <meta property="og:image" content="/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png" />
+    
+
+    -->
+
+    <meta name="twitter:site"    content="@kitchensjn">
+    <meta name="twitter:creator" content="@kitchensjn">
+    <meta name="twitter:description" content="">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    
+
+</head><body><div id="topnav">
+    
+    
+        <a class="section-title" id="Logo" href="/#home">
+            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
+        </a>
+        <a class="section-title" id="Home" href="/#home">Home</a>
+        <a class="section-title" id="Bio" href="/#bio">Bio</a>
+        
+            <a class="section-title" id="Projects" href="/#projects">Projects</a>
+        
+            <a class="section-title" id="Blog" href="/#blog">Blog</a>
+        
+    
+    
+    
+        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
+    
+    
+    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+</div><div class="section"><h2 class="postTitle">
+    Groundhogs</h2><p style="text-align: left;">James Kitchens</p><p style="text-align: left;">October 25, 2022</p>
+<div class="cat">
+    
+        <div class="background">
+            <p class="skill">R</p>
+        </div>
+    
+</div>
+
+            <h3 id="setup-and-question">Setup and Question</h3>
+
+<p><em>You are an exterminator and have been called to a customer’s home to capture a groundhog that has been digging tunnels underneath their yard. Upon arrival, you see the vermin disappear underground into a what appears to be a maze of passages, depicted below:</em></p>
+
+<p>Maze</p>
+
+<p><em>You block off all of the entrances/exits to the tunnel to prevent the groundhog from escaping but don’t know where the groundhog is within the tunnels. If you can select only one location in the maze, where should you place your trap to optimize the chance that the groundhog will walk into it? For simplicity, assume that the groundhog has a random starting and ending location within the tunnels, with an equal probability given to every position, and that it follows the shortest path between those two locations (no backtracking).</em></p>
+
+<h3 id="thought-process">Thought Process</h3>
+
+<p>To start off, are all of the trap locations equally likely to capture the groundhog under these conditions? I sure hope not, otherwise this thought experiment won’t be very satisfying, but let’s check. Here, I’ve numbered each position within the maze.</p>
+
+<p>Numbered Maze</p>
+
+<p>I know that there are 25 starting positions each with 25 associated ending positions for a total of 625 possible paths for the groundhog to travel. If I place my trap on position 1, I can list out all of the shortest paths that start, stop, or pass through this position:</p>
+
+<p>List of paths</p>
+
+<p>It’s important to see that there aren’t any paths that pass through position 1 on their way from/to another node, only paths which start or end there. This isn’t the case for many of the other possible trap positions. For example, any path that starts or ends at position 1 must utilize position 6, with the exception of 1-&gt;1. So it is clear that some locations have more shortest paths that pass through them than others, and these positions could be candidates for my trap.</p>
+
+<p>In defining the problem this way, I’ve conveniently landed very close to a well known property in network theory, known as betweenness centrality. There are many different methods for measuring centrality, which is a ranking system for nodes based on their positions in a network. Betweenness centrality ranks nodes based on the number of shortest paths that pass through them. This gif shows how a maze can be visualized as a network and color the nodes based on their betweenness centrality value.</p>
+
+<p>GIF of maze to network</p>
+
+<p>I can use these values to calculate the probability of capturing the groundhog for every possible trap position in the maze, but it will take some modification. Returning to position 1, the betweenness centrality value is 0 because there aren’t any paths that pass through position 1, but there are paths that start and stop at position 1, so we will need to take those into account in the probability of trapping. Here is the equation for converting betweenness centrality to trapping probability and a table of all of the nodes with their associated probabilities:</p>
+
+<p>Probability from Betweenness and Number of Nodes
+P[trapping] = (2*(Betweenness + #Nodes) - 1) / #Nodes^2</p>
+
+<p>From the table, position X has the highest probability of trapping the groundhog. So this problem seems to be pretty solved…</p>
+
+<p>But is there more to it than that? If I had two traps, where should I put them to get the best coverage? It isn’t as simple as using the two positions with the highest trapping probability, because there may be significant overlap between the paths that they cover.</p>
+
+
+        </div>
+    <div id="contact" class="contactBar">
+
+        <p class="info">kitchensjn@gmail.com</p>
+    </div></body>
+
+</html>

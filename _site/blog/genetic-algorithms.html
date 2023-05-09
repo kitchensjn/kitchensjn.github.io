@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Genetic Algorithms | James Kitchens</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Genetic Algorithms" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Genetic algorithms are a Darwinian-inspired method finding optimal, or near-optimal, solutions to complex problems. Mirroring natural selection, a population of potential solutions is generated and then repeatedly combined and mutated at a variable rate corresponding to their fitness at solving the problem." />
+<meta property="og:description" content="Genetic algorithms are a Darwinian-inspired method finding optimal, or near-optimal, solutions to complex problems. Mirroring natural selection, a population of potential solutions is generated and then repeatedly combined and mutated at a variable rate corresponding to their fitness at solving the problem." />
+<link rel="canonical" href="http://localhost:4000/blog/genetic-algorithms" />
+<meta property="og:url" content="http://localhost:4000/blog/genetic-algorithms" />
+<meta property="og:site_name" content="James Kitchens" />
+<meta property="og:image" content="http://localhost:4000/assets/blog/genetic-algorithms/thumbnail.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-03T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/blog/genetic-algorithms/thumbnail.png" />
+<meta property="twitter:title" content="Genetic Algorithms" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-09-03T00:00:00-07:00","datePublished":"2020-09-03T00:00:00-07:00","description":"Genetic algorithms are a Darwinian-inspired method finding optimal, or near-optimal, solutions to complex problems. Mirroring natural selection, a population of potential solutions is generated and then repeatedly combined and mutated at a variable rate corresponding to their fitness at solving the problem.","headline":"Genetic Algorithms","image":"http://localhost:4000/assets/blog/genetic-algorithms/thumbnail.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/genetic-algorithms"},"url":"http://localhost:4000/blog/genetic-algorithms"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!--
+    <title>Genetic Algorithms | James Kitchens</title><meta name="thumbnail" content="https://james-kitchens.com"/>
+        <meta property="og:image" content="" />
+    
+
+    -->
+
+    <meta name="twitter:site"    content="@kitchensjn">
+    <meta name="twitter:creator" content="@kitchensjn">
+    <meta name="twitter:description" content="Genetic algorithms are a Darwinian-inspired method finding optimal, or near-optimal, solutions to complex problems. Mirroring natural selection, a population of potential solutions is generated and then repeatedly combined and mutated at a variable rate corresponding to their fitness at solving the problem.">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    
+
+</head><body><div id="topnav">
+    
+    
+        <a class="section-title" id="Logo" href="/#home">
+            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
+        </a>
+        <a class="section-title" id="Home" href="/#home">Home</a>
+        <a class="section-title" id="Bio" href="/#bio">Bio</a>
+        
+            <a class="section-title" id="Projects" href="/#projects">Projects</a>
+        
+            <a class="section-title" id="Blog" href="/#blog">Blog</a>
+        
+    
+    
+    
+        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
+    
+    
+    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+</div><div class="section"><h2 class="postTitle">
+    Genetic Algorithms<a class="github-link" target="_blank" href="https://github.com/kitchensjn/genetic-algorithms">
+            <i class="fab fa-github" title="GitHub"></i>
+        </a></h2><p style="text-align: left;">James Kitchens</p><p style="text-align: left;">September 3, 2020</p>
+<div class="cat">
+    
+        <div class="background">
+            <p class="skill">Python</p>
+        </div>
+    
+</div>
+
+            <p class="images"><img src="/assets/blog/genetic-algorithms/thumbnail.png" alt="Genetic Algorithms" /></p>
+
+<p>Genetic algorithms are a Darwinian-inspired method finding optimal, or near-optimal, solutions to complex problems. Mirroring natural selection, a population of potential solutions is generated and then repeatedly combined and mutated at a variable rate corresponding to their fitness at solving the problem. Solutions that are more fit for solving the problem will be more likely to produce offspring, resembling their parents and hopefully have inherited traits promoting a high fitness as well. Over time, the overall fitness of the population should increase, becoming more adapted to solving the problem, with front running solutions closing in on optimality. Though this method was framed after our observations of evolution in natural populations, when thinking about methods for population structuring, mating, combining traits, and so forth, we are not entirely limited to staying within the bounds of what actually occurs in nature. With that in mind, there are so many different ways to alter this algorithm to better match the problem you are trying to solve. In this post, we are going to discuss just a few examples of very simple genetic algorithms that can illustrate their usefulness across many applications.</p>
+
+<p>My favorite visual example of a genetic algorithm in action is <a href="http://boxcar2d.com">BoxCar2D</a>. In this simulation, cars are randomly generated using variations on 22 different traits that control body shape, wheel number and size, and the general configuration of the car. Cars are driven automatically down a side scrolling track, and the fitness of the car is measured as the distance that it makes it down the track before coming to a stop.</p>
+
+<p>The starting population of a genetic algorithm is generally pretty terrible at solving the problem as their traits are all randomly generated. In the BoxCar2D example, some of the cars in the first generation do not have any wheels and, therefore, have no chance at making it down the track. The most important aspect of the starting population is that it has a variety of traits that can be compared with one another. Bad traits, such as a lack of wheels, will be weeded, and good traits will have greater representation in future generations. But if you start with a population that is either too small or lacks diversity, you are less likely to find the optimal solution.</p>
+
+<p>Let’s start with the very simplest version of a genetic algorithm following these steps:</p>
+
+<ul>
+  <li>Create a random population</li>
+  <li>Measure the fitness of each individual</li>
+  <li>Breed and mutate to create the next generation</li>
+  <li>Repeat Steps 2 and 3</li>
+</ul>
+
+<p>We will have a population of 1000 individuals, each with two continuous traits with random values between -10 and 10. These traits are abstract, but you can think of them as measurements about the mean of something like limb length and torso length for an imaginary hominid species. We are going to look at only two traits to start with because they can be visualized very easily in an xy-plane.</p>
+
+<p class="images"><img src="/assets/blog/genetic-algorithms/blank.png" alt="XY-Plane" /></p>
+
+<p>To measure the fitness of each individual, we will need to have a goal that we are looking to achieve. Establishing the correct goal is the most critical part of a genetic algorithm. If you are not specific enough, the algorithm may discover a loophole that completes the specified goal but does not exhibit the behavior that you were hoping for. This misalignment may alter the solution applicability to other scenarios and ultimately limit the effectiveness of the genetic algorithm.</p>
+
+<p class="images"><img src="/assets/blog/genetic-algorithms/QWOP.jpg" alt="QWOP" /></p>
+
+<p>For example, there is a very popular ragdoll browser game called QWOP where you are controlling an athlete running the 100m Dash. QWOP greatly limits your controls of the runner to just four buttons (Q, W, O, and P) which control the right and left thighs and right and left calves, respectively. At the start of the race you need to time your movements of the athletes legs to get them to run without tripping, but any misclick or falter in timing could result in you flipping backwards and falling over, ending the game. So you think to yourself, I want to train a genetic algorithm to beat this game. You code up everything necessary for your algorithm to run and decide to measure the fitness of each runner in your population as the distance that they were able to run before falling over. At its surface, this fitness function achieves your goal of beating the game, but as your population evolves you find that the solution that the population is converging towards looks less like running and more like sliding the athlete’s knees along the ground while inching slowly to the finish line. While the latter method can technically beat the game, is it what you wanted? If yes, then you can continue evolving the algorithm until it no longer improves. But if not, then what ways could we improve the fitness function to disincentivize the sliding strategy. By including a time component into the fitness function, you may be able to prevent the development of slower runners, including those that use the sliding strategy.</p>
+
+<p>As the fitness function becomes more complicated, the evolutionary process also becomes more complex. As the algorithm is searching for optimality, it is more likely to become caught at a local optimum rather than the global optimum. All of this needs to be considered when developing a fitness function, but is not necessary in our simple example.</p>
+
+<p class="images"><img src="/assets/blog/genetic-algorithms/fitness.png" alt="Fitness" /></p>
+
+<p>In our genetic algorithm, we are going to set a specific combination of traits as the most optimal; let’s say 0 and 0. Normally, we would not know the optimal combination (because why then would we be using a genetic algorithm if we already know), but as this scenario does not have an associated simulation like the BoxCar2D and QWOP tracks, we need to set the optimal manually. The fitness of each individual will then be measured as the euclidean distance between the individual’s traits and the optimal traits. Within the xy-plane, I’ve added a gradient background based on the fitness of that combination of traits; lighter green corresponds to higher fitness and black corresponds to lower fitness.</p>
+
+<p>An individual’s fitness is then used to determine how likely they are to have offspring in the next generation. Individuals with higher fitness will be more likely to be selected to parent offspring than those with lower fitness. As the size of the population is held constant over generations, there are only a limited number of offspring possible, so competition is high.</p>
+
+<p class="codeheader">genetic-algorithm.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">breed</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="n">parent_pool</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">individuals</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">fitness</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="nf">round</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">fitness</span><span class="o">*</span><span class="mi">10</span><span class="p">)):</span>
+            <span class="n">parent_pool</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">new_pop</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">n_indiv</span><span class="p">):</span>
+        <span class="n">parent_1</span> <span class="o">=</span> <span class="n">parent_pool</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">parent_pool</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="n">parent_2</span> <span class="o">=</span> <span class="n">parent_pool</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">parent_pool</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="n">traits</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">n_traits</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">self</span><span class="p">.</span><span class="n">m_rate</span><span class="p">:</span>
+                <span class="n">traits</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">r_traits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">self</span><span class="p">.</span><span class="n">r_traits</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+                    <span class="n">traits</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">parent_1</span><span class="p">.</span><span class="n">traits</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">traits</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">parent_2</span><span class="p">.</span><span class="n">traits</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+        <span class="n">new_pop</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nc">Individual</span><span class="p">(</span><span class="n">n_traits</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">n_traits</span><span class="p">,</span> <span class="n">r_traits</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">r_traits</span><span class="p">,</span> <span class="n">traits</span><span class="o">=</span><span class="n">traits</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nc">Population</span><span class="p">(</span><span class="n">n_indiv</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">n_indiv</span><span class="p">,</span> <span class="n">n_traits</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">n_traits</span><span class="p">,</span> <span class="n">r_traits</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">r_traits</span><span class="p">,</span> <span class="n">m_rate</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">m_rate</span><span class="p">,</span> <span class="n">individuals</span><span class="o">=</span><span class="n">new_pop</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Above is the code for selecting two parents to breed based on their individual fitness levels. When two individuals are bred together, there is a 50% probability of the trait value being passed from either parent. There is also a small probability for a mutation of a trait to occur, in which case, the offspring’s trait value would instead be a random number between -10 and 10, ignoring the parent’s trait values. Mutations are important to maintain diversity in the population, especially because there is significant inbreeding within the small population. For this algorithm, mutation rate remains constant over the course of the evolution. Through breeding, the next generation is filled and the process starts again with determining the fitness of all the new individuals.</p>
+
+<p class="images"><img src="/assets/blog/genetic-algorithms/timelapse.gif" alt="Timelapse" /></p>
+
+<p>We can watch as the population trait values converge onto the optimum with each generation. Each blue dot represents an individual in the population. Over time, dots become concentrated around the center of the graph, with faint cross shape due to the method of heredity used for this specific algorithm. At a certain point, the diversity of the population has decreased so much so that improvements to fitness are insignificant from generation to generation. For a more complex scenario, you may want to let it run hoping that a new mutation might help reinvigorate the evolutionary process. Additionally, you could restart the process entirely to see if it once again converges on a similar trait combination. For this simple scenario, both of these methods would not yield further insight because of how regular the fitness landscape is.</p>
+
+<p>In future blog posts, I may look into further modifications of this algorithm, such as what happens when your optimum is not constant over time or density dependent fitness functions.</p>
+
+<p>All of the code used in this post can be found <a href="https://github.com/kitchensjn/genetic-algorithms">HERE</a>. If you enjoyed this tutorial and want to use this code in your own project, give the repository a star on GitHub and fork the project to your own profile. If you have any questions, create an Issue for the GitHub repository and I will do my best to help!</p>
+
+
+        </div>
+    <div id="contact" class="contactBar">
+
+        <p class="info">kitchensjn@gmail.com</p>
+    </div></body>
+
+</html>
