@@ -5,9 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Animated Website Background | James Kitchens</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Animated Website Background" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/blog/animated-website-background" />
+<meta property="og:url" content="http://localhost:4000/blog/animated-website-background" />
+<meta property="og:site_name" content="James Kitchens" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-03T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Animated Website Background" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-08-03T00:00:00-07:00","datePublished":"2020-08-03T00:00:00-07:00","headline":"Animated Website Background","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/animated-website-background"},"url":"http://localhost:4000/blog/animated-website-background"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!--
     <title>Animated Website Background | James Kitchens</title><meta name="thumbnail" content="https://james-kitchens.com/assets/blog/animated-website-background/thumbnail.png"/>
         <meta property="og:image" content="/assets/blog/animated-website-background/thumbnail.png" />
     
+
+    -->
 
     <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
     <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
@@ -185,30 +205,30 @@
 <p>From the styling, we can see that the background div will cover the bottom 50% of the screen, stretch all the way from right to left, with a minimum height of 300px. Knowing the dimensions of the div that will contain our sketch is important when planning out the animation/design. You could have the div cover the entire screen and make a full background, but this will come at a performance cost to your website and may lead to animation stuttering.</p>
 
 <p class="codeheader">perlinMountains.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">canvasDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">background</span><span class="dl">'</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">myCanvas</span> <span class="o">=</span> <span class="nx">createCanvas</span><span class="p">(</span><span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
-  <span class="nx">myCanvas</span><span class="p">.</span><span class="nx">parent</span><span class="p">(</span><span class="dl">"</span><span class="s2">background</span><span class="dl">"</span><span class="p">);</span>
-  <span class="nx">frameRate</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">canvasDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">background</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">myCanvas</span> <span class="o">=</span> <span class="nf">createCanvas</span><span class="p">(</span><span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
+  <span class="nx">myCanvas</span><span class="p">.</span><span class="nf">parent</span><span class="p">(</span><span class="dl">"</span><span class="s2">background</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nf">frameRate</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nf">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Within your sketch, you have two main functions: setup() and draw(). The setup() function is run only once at the start of the code. The draw() function is run with every frame. Objects are drawn to a canvas object (myCanvas), which needs a width and height parameter for creation. These parameters can be any positive integer; as we want the canvas to completely fill our div, we will use the div’s width and height when creating the canvas. We can then parent our canvas to the background div element, which means that our sketch will now be drawn within this div. Lastly, with frameRate(60); we are telling the sketch that it should try to run at 60 frames per second. Inside the draw function, I’ve set the background color of the canvas to be a dark gray rgba(51, 51, 51, 255).</p>
 
 <p class="codeheader">perlinMountains.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nf">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
 
-  <span class="nx">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-  <span class="nx">beginShape</span><span class="p">();</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">250</span><span class="p">);</span>
+  <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+  <span class="nf">beginShape</span><span class="p">();</span>
+  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">250</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="nx">endShape</span><span class="p">();</span>
+  <span class="nf">endShape</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -221,17 +241,17 @@
 <p>Let’s modify the current draw() function to implement the Perlin noise algorithm.</p>
 
 <p class="codeheader">perlinMountains.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nf">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
   
-  <span class="nx">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-  <span class="nx">beginShape</span><span class="p">();</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nx">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-    <span class="nx">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+  <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+  <span class="nf">beginShape</span><span class="p">();</span>
+  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nf">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="nx">endShape</span><span class="p">();</span>
+  <span class="nf">endShape</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -240,37 +260,37 @@
 <p class="images"><img src="/assets/blog/animated-website-background/animated-website-background-3.png" alt="Animated Website Background - 3" /></p>
 
 <p class="codeheader">perlinMountains.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nf">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
   
-  <span class="nx">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-  <span class="nx">beginShape</span><span class="p">();</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-	  <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nx">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
-	  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-	  <span class="nx">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+  <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+  <span class="nf">beginShape</span><span class="p">();</span>
+  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	  <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
+	  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nf">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+	  <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="nx">endShape</span><span class="p">();</span>
+  <span class="nf">endShape</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>To simulate the mountains sliding to the left, we can simply increment our x values over time. frameCount refers to the number of frames since the start of the script. With this addition to the code, at Frame 0, x=0 may correspond to nx=0, but at Frame 1, x=0 will correspond to nx=1/100, and so on until you end the sketch. At the same time, x=1 would have corresponded to nx=1/100 at Frame 0 and nx&gt;1/100 at Frame 1. This gives the appearance that the mountains are sliding to the left over time. I decided to divide frameCount by 100 to slow down this progression.</p>
 
 <p class="codeheader">perlinMountains.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nf">background</span><span class="p">(</span><span class="mi">51</span><span class="p">);</span>
   
-  <span class="nx">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
-  <span class="nx">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
-  <span class="nx">beginShape</span><span class="p">();</span>
-  <span class="nx">vertex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nx">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-    <span class="nx">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+  <span class="nf">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
+  <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+  <span class="nf">beginShape</span><span class="p">();</span>
+  <span class="nf">vertex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nf">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="nx">vertex</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
-  <span class="nx">endShape</span><span class="p">();</span>
+  <span class="nf">vertex</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+  <span class="nf">endShape</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -281,9 +301,9 @@
 <p>But there is still major bug in our sketch - what happens when we change the size of our browser window? Currently, the canvas size is set within the setup() function, but this is only run right at the start of the sketch. If you are to change the browser window, the canvas remains the original size, leading to some unintended, ugly formatting.</p>
 
 <p>perlinMountains.js</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">windowResized</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">canvasDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">background</span><span class="dl">'</span><span class="p">);</span>
-  <span class="nx">resizeCanvas</span><span class="p">(</span><span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">windowResized</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">canvasDiv</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">background</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nf">resizeCanvas</span><span class="p">(</span><span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span> <span class="nx">canvasDiv</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 

@@ -4,6 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% seo %}
+
+    <!--
     {% if page.layout == "post" %}
         {%- if page.authors -%}
             <title>{{ page.title }} | {{ page.authors }}</title>
@@ -16,6 +19,8 @@
     {% else %}
         <title>{{ site.name }}</title>
     {% endif %}
+
+    -->
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/logo/logo.ico' | relative_url }}">
     <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>

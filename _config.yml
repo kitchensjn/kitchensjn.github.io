@@ -21,3 +21,6 @@ theme_color: "#337ab7"
 sass:
   sass_dir: _sass
   style: compressed
+
+plugins:
+  - jekyll-seo-tag
