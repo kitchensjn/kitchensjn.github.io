@@ -48,8 +48,6 @@ image: "/assets/blog/visualizing-human-genetic-diversity/thumbnail.png"
     }
 </style>
 
-{:.hidden_thumbnail}
-![Visualizing Human Genetic Diversity Using Euler Diagrams](/assets/blog/visualizing-human-genetic-diversity/thumbnail.png)
 
 <script>
     var stepBefore = d3.line().curve(d3.curveStepBefore);
