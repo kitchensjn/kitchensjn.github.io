@@ -1,4 +1,4 @@
-I"žh<p><br /></p>
+I"ºk<p><br /></p>
 
 <script src="https://d3js.org/d3.v4.js"></script>
 
@@ -161,7 +161,7 @@
                             .style("opacity", 1);
                         tip
                             .style("display", "block")
-                            .html("<h3 style='margin: 0px;'>" + d.description + "</h3></br>1KGP Abbreviation: " + d.abbreviation + "</br>Number of Sampled Individuals: " + d.sampled_individuals.toLocaleString() + "</br>Number of Common Variants: " + d.common_variants.toLocaleString() + "</br>Number of Common Variants in Non-Overlapping Region: "+d.unshared_common_variants.toLocaleString())
+                            .html("<h3 style='margin: 0px;'>" + d.description + "</h3></br>1KGP Abbreviation: " + d.abbreviation + "</br>Number of Sampled Individuals: " + d.sampled_individuals.toLocaleString() + "</br>Number of Common Variants: " + d.common_variants.toLocaleString() + "</br>Number of Unshared Common Variants: "+d.unshared_common_variants.toLocaleString())
                             .style("border", d.color + " solid 7px")
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY+25) + "px");
@@ -791,6 +791,20 @@
         .style("font-size", 18)
         .call(wrap, 250, 1, 1);
 
+    common_text
+        .append("path")
+        .attr("id", function(d) { return d._row; })
+        .attr("stroke", function(d) { return d.color; })
+        .attr("stroke-width", 3)
+        .attr("stroke-dasharray", function(d) { return d.stroke_dasharray; })
+        .attr("fill", function(d) { return d.fill; })
+        .attr("d", function(d) {
+            return ["M", (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift), "A", d.a/downscale, d.b/downscale, 0, 1, 1, (d.h/downscale+d.a/downscale+shift), (d.k/downscale+shift-0.001)].join(' ')
+        })
+        .attr("transform", function(d) {
+            return "rotate(" + d.phi*(180/Math.PI) + " " + (d.h/downscale+shift) + " " + (d.k/downscale+shift) + ")"; 
+        });
+
     var common = svg_container
         .selectAll("text")
         .data(ellipses)
@@ -850,7 +864,7 @@
 </center>
 <p><br /></p>
 
-<p>Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This pairs with the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when considering quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation.</p>
+<p>Overall, this diagram has a very similar structure to the diagram created with the samples from the Americas. There is a high degree of overlap between all of the samples, with the higher genetic diversity of the Yoruba in Ibadan, Nigeria sample resulting in a larger ellipse that stretches outside of the cluster of other ellipses. This matches the pattern of high diversity in the African Caribbean and African American (ACB and ASW) samples from the Americas described above. Even when considering quite geographically distant samples of humans, the dominant pattern is that of shared genetic variation.</p>
 
 <p>Lastly, given this global view, we can zoom in and look at how variation is partitioned at finer geographic scales by using all 26 samples within the 1000 Genomes Project dataset. We see that this datasetâ€™s samples from Africa contain the greatest amount of genetic diversity. Much of that common genetic variation is shared, but each sample contains some variation not found in other samples. Thereâ€™s a slight reduction in the variation present in samples whose recent ancestors lived outside Africa, consistent with the view that humans evolved in Africa, and when humans first migrated out of Africa, they took with them only a random subset of the genetic diversity present in Africa.</p>
 
@@ -1074,7 +1088,7 @@
 
 <p><br /></p>
 
-<p>The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of <code class="language-plaintext highlighter-rouge">eulerr</code> into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the code used to generate these figures can be found here.</p>
+<p>The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of <code class="language-plaintext highlighter-rouge">eulerr</code> into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the code used to generate these figures can be found <a href="https://github.com/kitchensjn/visualizing-human-genetic-diversity">here</a>.</p>
 
 <h3 id="additional-figures">Additional figures</h3>
 
