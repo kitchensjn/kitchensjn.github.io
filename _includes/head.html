@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% if page.layout == "post" %}
-        <title>{{ page.title }}</title>
+        {%- if page.authors -%}
+            <title>{{ page.title }} | {{ page.authors }}</title>
+        {%- else -%}
+            <title>{{ page.title }} | James Kitchens</title>
+        {%- endif -%}
+        
         <meta name="thumbnail" content="https://james-kitchens.com{{ page.thumbnail }}"/>
         <meta property="og:image" content="{{ page.thumbnail }}" />
     {% else %}
