@@ -371,7 +371,7 @@ We wanted to share some resources that we’ve been putting together for teachin
 </center>
 <br>
 
-The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, each sample made up of 60-105 people, and we counted the number of common variants found in each sample.
+The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome. There are seven different samples from the Americas in the 1000 Genomes Project dataset, each sample being made up of 60-105 people, and we counted the number of common variants found in each sample.
 
 <br>
 <div id="figure2" style="display: flex; justify-content: center;"></div>
