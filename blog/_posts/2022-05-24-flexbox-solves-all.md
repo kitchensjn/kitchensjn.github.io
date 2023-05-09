@@ -4,8 +4,8 @@ permalink: "/blog/flexbox-solves-all"
 title: "Flexbox Solves All"
 date: "May 24, 2022"
 skills: [HTML, CSS]
-desc: I really like when I get to see clear progress in my programming abilities. When I first created this website, I had relatively little experience with website design, so I was drawing a lot of code and inspiration from YouTube tutorials and Stack Overflow. There are a few aspects of the website that I would categorize as "good enough", falling so perfectly at the intersection of annoyance and complacency that they will likely never be updated. But there was one particular issue that has always bothered me... the blog post thumbnail images.
-thumbnail: "/assets/blog/flexbox-solves-all/flexbox-thumbnail.png"
+description: I really like when I get to see clear progress in my programming abilities. When I first created this website, I had relatively little experience with website design, so I was drawing a lot of code and inspiration from YouTube tutorials and Stack Overflow. There are a few aspects of the website that I would categorize as "good enough", falling so perfectly at the intersection of annoyance and complacency that they will likely never be updated. But there was one particular issue that has always bothered me... the blog post thumbnail images.
+image: "/assets/blog/flexbox-solves-all/flexbox-thumbnail.png"
 ---
 
 {:.images}

@@ -5,8 +5,8 @@ title: "Streamflow and Precipitation"
 github-link: "https://github.com/kitchensjn/streamflow-and-precipitation"
 date: "December 17, 2020"
 skills: [R, Hydrology, USGS, NOAA]
-desc: "With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels."
-thumbnail: "/assets/blog/streamflow-and-precipitation/thumbnail.png"
+description: "With all of the rain coming to the southeastern United States, I started to think about how it is affecting the river levels."
+image: "/assets/blog/streamflow-and-precipitation/thumbnail.png"
 ---
 
 {:.images}

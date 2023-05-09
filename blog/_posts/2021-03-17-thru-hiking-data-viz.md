@@ -5,8 +5,8 @@ github-link: "https://github.com/kitchensjn/trail-data-viz"
 title: "Thru-Hiking Data Visualization"
 date: "March 17, 2021"
 skills: [Hiking, D3, JavaScript, Python]
-desc: "A few years ago, I saw a graphic on Reddit of a Pacific Crest Trail thru-hiker's statistics, including information on daily mileage and cost of the trip as a whole"
-thumbnail: "/assets/blog/thru-hiking-data-viz/thumbnail.png"
+description: "A few years ago, I saw a graphic on Reddit of a Pacific Crest Trail thru-hiker's statistics, including information on daily mileage and cost of the trip as a whole"
+image: "/assets/blog/thru-hiking-data-viz/thumbnail.png"
 ---
 
 {:.images}

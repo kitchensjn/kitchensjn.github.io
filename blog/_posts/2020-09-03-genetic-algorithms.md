@@ -5,8 +5,8 @@ title: "Genetic Algorithms"
 github-link: "https://github.com/kitchensjn/genetic-algorithms"
 date: "September 3, 2020"
 skills: [Python]
-desc: "Genetic algorithms are a Darwinian-inspired method finding optimal, or near-optimal, solutions to complex problems. Mirroring natural selection, a population of potential solutions is generated and then repeatedly combined and mutated at a variable rate corresponding to their fitness at solving the problem."
-thumbnail: "/assets/blog/genetic-algorithms/thumbnail.png"
+description: "Genetic algorithms are a Darwinian-inspired method finding optimal, or near-optimal, solutions to complex problems. Mirroring natural selection, a population of potential solutions is generated and then repeatedly combined and mutated at a variable rate corresponding to their fitness at solving the problem."
+image: "/assets/blog/genetic-algorithms/thumbnail.png"
 ---
 
 {:.images}

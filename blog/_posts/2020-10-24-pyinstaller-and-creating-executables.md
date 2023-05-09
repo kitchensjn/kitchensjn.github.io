@@ -4,8 +4,8 @@ permalink: "/blog/pyinstaller-and-creating-executables"
 title: "Pyinstaller and Creating Executables"
 date: "October 24, 2020"
 skills: [Python]
-desc: "As part of my work at the NASA Jet Propulsion Laboratory, I am developing code that needs to be readily usable across a number of different computer environments and by users with varying levels of programming backgrounds."
-thumbnail: "/assets/blog/pyinstaller-and-creating-executables/thumbnail.jpg"
+description: "As part of my work at the NASA Jet Propulsion Laboratory, I am developing code that needs to be readily usable across a number of different computer environments and by users with varying levels of programming backgrounds."
+image: "/assets/blog/pyinstaller-and-creating-executables/thumbnail.jpg"
 ---
 
 {:.images}

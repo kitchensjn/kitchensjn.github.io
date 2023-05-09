@@ -4,8 +4,8 @@ permalink: "/blog/phenology-climate-and-citizen-science"
 title: "Phenology, Climate, and Citizen Science"
 date: "August 10, 2020"
 skills: [Climate, Citizen Science]
-desc: Phenology, in its simplest definition, is the study of nature's calendar. It seeks to answer questions such as "what signals tell birds that it is time to migrate south for the winter?", "why spring cold snaps can ruin a year's crop yield?", and most importantly, "how accurate have Punxsutawney Phil's predictions been over the years?".
-thumbnail: "/assets/blog/phenology-climate-and-citizen-science/thumbnail.png"
+description: Phenology, in its simplest definition, is the study of nature's calendar. It seeks to answer questions such as "what signals tell birds that it is time to migrate south for the winter?", "why spring cold snaps can ruin a year's crop yield?", and most importantly, "how accurate have Punxsutawney Phil's predictions been over the years?".
+image: "/assets/blog/phenology-climate-and-citizen-science/thumbnail.png"
 ---
 
 {:.images}

@@ -4,8 +4,8 @@ permalink: "/blog/great-basin-and-pinnacles"
 title: "Great Basin and Pinnacles"
 date: "February 09, 2021"
 skills: [Hiking, Photography]
-desc: "Over the last few months, Margaret and I have visited two new US national parks, Great Basin in Nevada and Pinnacles in California."
-thumbnail: "/assets/blog/national-parks-gallery/photos/GRBA/20200906_meg_0146.jpg"
+description: "Over the last few months, Margaret and I have visited two new US national parks, Great Basin in Nevada and Pinnacles in California."
+image: "/assets/blog/national-parks-gallery/photos/GRBA/20200906_meg_0146.jpg"
 ---
 
 {:.images}

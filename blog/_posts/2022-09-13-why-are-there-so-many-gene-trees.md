@@ -4,8 +4,8 @@ permalink: "/blog/why-are-there-so-many-gene-trees"
 title: "Why Are There So Many Gene Trees?"
 date: "September 13, 2022"
 skills: [Genetics, R]
-desc: In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life.
-thumbnail: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
+description: In evolutionary biology, we often think about the phylogeny of a group, the underlying relationships between the samples. When the comparison is of species (particularly those that are distantly related), it is common for these relationships to be relatively well-defined, allowing researchers to represent the shared history as a single phylogenetic tree of life.
+image: "/assets/blog/why-are-there-so-many-gene-trees/coalescent_plot_1.png"
 ---
 
 <br>

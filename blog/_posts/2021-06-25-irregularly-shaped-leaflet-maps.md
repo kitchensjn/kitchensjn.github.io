@@ -4,8 +4,8 @@ permalink: "/blog/irregularly-shaped-leaflet-maps"
 title: "Irregularly Shaped Leaflet Maps"
 date: "June 25, 2021"
 skills: [JavaScript, Leaflet, GIS]
-desc: The Leaflet JavaScript package creates interactive maps that can display geographic information, such as points, lines, and polygons. Many of my websites implement these maps in some capacity or another. By default, all maps that are generated are rectangular in shape, and for most circumstances, this provides this clearest view of all of your information.
-thumbnail: "/assets/blog/irregularly-shaped-leaflet-maps/Screen Shot 2021-06-25 at 10.00.32 AM 2.png"
+description: The Leaflet JavaScript package creates interactive maps that can display geographic information, such as points, lines, and polygons. Many of my websites implement these maps in some capacity or another. By default, all maps that are generated are rectangular in shape, and for most circumstances, this provides this clearest view of all of your information.
+image: "/assets/blog/irregularly-shaped-leaflet-maps/Screen Shot 2021-06-25 at 10.00.32 AM 2.png"
 ---
 
 

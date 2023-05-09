@@ -5,8 +5,8 @@ title: "National Parks Gallery"
 github-link: "https://github.com/kitchensjn/national-parks-gallery"
 date: "August 24, 2020"
 skills: [Hiking, Photography, JavaScript]
-desc: "During the summer of 2019, I was an intern in the Mathematical and Theoretical Biology Institute summer internship program at Arizona State University in Tempe, Arizona. At the end of the summer, my partner (Margaret Graham) and I went on a two week-long road trip around the western United States before heading back east."
-thumbnail: "/assets/blog/national-parks-gallery/thumbnail.png"
+description: "During the summer of 2019, I was an intern in the Mathematical and Theoretical Biology Institute summer internship program at Arizona State University in Tempe, Arizona. At the end of the summer, my partner (Margaret Graham) and I went on a two week-long road trip around the western United States before heading back east."
+image: "/assets/blog/national-parks-gallery/thumbnail.png"
 ---
 
 During the summer of 2019, I was an intern in the Mathematical and Theoretical Biology Institute summer internship program at Arizona State University in Tempe, Arizona. At the end of the summer, my partner (Margaret Graham) and I went on a two week-long road trip around the western United States before heading back east. My program finished two weeks before Margaret's, and, hoping to get a little reprieve from the summer desert heat, I headed up to the John Muir Trail and started a section hike until Margaret could come up and join me. I hiked north from the Golden Trout Wilderness to Mammoth Lakes through Kings Canyon and Sequoia National Parks, summiting Mount Whitney (14,505’, highest point in the contiguous United States).

@@ -1,10 +1,10 @@
 <div class="card">
     <div class="flexing">
-        <div class="thumbnail" style="background-image: url('{{ post.thumbnail  | relative_url }}');"></div> 
+        <div class="thumbnail" style="background-image: url('{{ post.image  | relative_url }}');"></div> 
         <div class="info">
             <p class="title">{{ post.title }}</p>
             <p class="date">{{ post.date | date: "%B %-d, %Y"}}</p>
-            <p class="desc">{{ post.desc }}</p>
+            <p class="desc">{{ post.description }}</p>
             <div class="cat">
                 {% for skill in post.skills %}
                     <div class="background">
