@@ -5,11 +5,10 @@ title: "DRAFT - Visualizing Human Genetic Diversity"
 date: "May 02, 2023"
 authors: "James Kitchens and Graham Coop"
 skills: [Genetics, D3, Python, R]
-desc: A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes; at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.
-thumbnail: "/assets/blog/visualizing-human-genetic-diversity/thumbnail.png"
-
 description: A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes; at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.
 image: "/assets/blog/visualizing-human-genetic-diversity/thumbnail.png"
+twitter:
+    card: summary
 ---
 
 <br>
