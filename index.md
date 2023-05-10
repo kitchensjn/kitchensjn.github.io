@@ -1,6 +1,7 @@
 ---
 layout: home
 
+title: Home
 image: assets/headshot/background.jpg
 description: Hi, my name is James Kitchens, and I am a second year graduate student studying population genetics in the Coop Lab through the UC Davis Population Graduate Group.
 
