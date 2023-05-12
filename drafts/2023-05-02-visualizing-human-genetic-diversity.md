@@ -232,7 +232,7 @@ A key insight from human genetics is that, as a species, we are all very genetic
 
 Due to the complexity of data involved, understanding and visualizing patterns of human genetic variation is often challenging. One helpful place to start is to visualize the global frequencies of variants at individual sites within the genome to see how variation is shared - check out the [Geography of Genetic Variants Browser](https://popgen.uchicago.edu/ggv/) from the Novembre Lab for a nice interactive tool ([Marcus & Novembre, 2016](https://doi.org/10.1093/bioinformatics/btw643)). However, because the human genome contains approximately 3 billion sites, it would take a few lifetimes to view all of the variants in this manner, so researchers often turn to genome-wide summary statistics to capture patterns of genetic variation.
 
-We wanted to share some resources that we’ve been putting together for teaching human genetics using data from the 1000 Genomes Project, inspired by [Donovan et al. (2019)](https://doi.org/10.1002/sce.21506) and [Biddanda et al. (2020)](https://doi.org/10.7554/eLife.60107). These visualizations first center on the variation in a set of diverse samples from the Americas (see Figure 2) before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites at which people vary is a fraction of their entire sequenced genomes. Most of this variation is rare, and though these rare variants can be medically salient, they are the properties of specific people and their immediate families, rather than of the larger human groups. To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of people and then filtered the data based on this criterion.
+We wanted to share some resources that we’ve been putting together for teaching human genetics using data from the 1000 Genomes Project, inspired by [Donovan et al. (2019)](https://doi.org/10.1002/sce.21506) and [Biddanda et al. (2020)](https://doi.org/10.7554/eLife.60107). These visualizations first center on the variation in a set of diverse samples from the Americas (see Figure 2) before expanding to include more globally distributed examples. If we take a small sample of people, the number of genomic sites at which people vary is a fraction of their entire sequenced genomes.<sup>1</sup> Most of this variation is rare, and though these rare variants can be medically salient, they are the properties of specific people and their immediate families, rather than of the larger human groups. To learn about more widely shared variation and following methods similar to those in Biddanda et al., we defined a variant as “common” in a sample if it was found in more than 5% of people and then filtered the data based on this criterion.
 
 <br>
 <div id="figure1" style="display: flex; justify-content: center;"></div>
@@ -383,7 +383,7 @@ We wanted to share some resources that we’ve been putting together for teachin
 
 The small blue circle in the above figure captures just how little variation rises to this frequency in the Americas. As the rest of this post focuses on the sharing of these common variants, it’s important to maintain perspective regarding the scale of these differences relative to the size of the human genome.
 
-There are seven different samples from the Americas in the 1000 Genomes Project dataset (as described in Biddanda et al.), each sample being made up of 60-105 people, and we counted the number of common variants found in each sample.
+There are seven different samples from the Americas in the 1000 Genomes Project dataset (as described in Biddanda et al.), each sample being made up of 60-105 people, and we counted the number of common variants found in each sample.<sup>2</sup>
 
 <br>
 <div id="figure2" style="display: flex; justify-content: center;"></div>
@@ -861,7 +861,7 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
 Genetic diversity in the Americas reflects the history of colonialism and the transatlantic slave trade, which has moved people from across the globe into the region over the past few hundred years. Given this history, you may wonder if the high degree of overlap reflects this recent history of the Americas or whether it is representative of sharing that is present in geographically distant samples. To look into this question, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.
 
 <br>
-<div id="figure6" style="display: flex; justify-content: center; transform: rotate(180deg);"></div>
+<div id="figure6" style="display: flex; justify-content: center;"></div>
 
 <script>
     d3_euler(
@@ -1234,5 +1234,9 @@ Lex et al. (2014) [UpSet: Visualization of Intersecting Sets](https://doi.org/10
 ---
 
 <small>
-<sup>1</sup>Indeed, if we sequence the entire population of the world, we'd see nearly every site being variable in some one. But these variants would be vanishingly rare in the population, overall.
+    <sup>1</sup>Indeed, if we sequence the entire population of the world, we'd see nearly every site being variable in some one. But these variants would be vanishingly rare in the population, overall.
+</small>
+
+<small>
+    <sup>2</sup>It would be interesting to explore rarefaction approaches to account for the differences in the sample size ([Cotter et al. 2023](https://doi.org/10.1093/genetics/iyad070)).
 </small>
