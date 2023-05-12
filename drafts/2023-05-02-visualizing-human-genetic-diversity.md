@@ -1,8 +1,8 @@
 ---
 layout: "post"
 permalink: "/blog/visualizing-human-genetic-diversity"
-title: "DRAFT - Visualizing Human Genetic Diversity"
-date: "May 02, 2023"
+title: "Visualizing Human Genetic Diversity"
+date: "May 15, 2023"
 authors: "James Kitchens and Graham Coop"
 skills: [Genetics, D3, Python, R]
 description: A key insight from human genetics is that, as a species, we are all very genetically similar and share much of our genetic variation. Our genome can be depicted as a string of letters (A, T, G, and C), referring to the four nucleobases found in DNA. Two humans picked at random are identical at ~99.9% of sites in their genomes; at ~1/1000 sites, your chromosome might carry an A while the other person’s chromosome carries a T.
@@ -855,7 +855,7 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
 Genetic diversity in the Americas reflects the history of colonialism and transatlantic slave trade which has moved people from across the globe into the region over the past few hundred years. Because of this, you might wonder if the high degree of overlap reflects this recent history of the Americas versus a deeper sharing that is present in geographically distant samples. To look into this, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.
 
 <br>
-<div id="figure6" style="display: flex; justify-content: center;"></div>
+<div id="figure6" style="display: flex; justify-content: center; transform: rotate(180deg);"></div>
 
 <script>
     d3_euler(
