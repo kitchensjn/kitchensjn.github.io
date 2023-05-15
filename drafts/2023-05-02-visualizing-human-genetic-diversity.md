@@ -1082,7 +1082,7 @@ We used the `geovar` package in Python to group the ~92 million variants include
 
 <br>
 
-The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of `eulerr` into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the figures alongside the code we used to generate them can be found [here](https://github.com/kitchensjn/visualizing-human-genetic-diversity).
+The package also breaks down error by set overlap to better understand exactly which sections are over-/underrepresented by the visualization, though that is not included here. With all of that being said, these diagrams offer a unique visualization method that can be particularly useful for more qualitative interpretations of the population relationships. We converted the output of `eulerr` into a JSON format and passed this to JavaScript for plotting using D3.js. Plotting is possible directly from R, but we used D3.js for its customizability and support of interactive figures. All of the figures (alongside the code we used to generate them) can be found [here](https://github.com/kitchensjn/visualizing-human-genetic-diversity).
 
 
 ### Additional figures
