@@ -135,7 +135,7 @@ twitter:
         });
         }
 
-    function d3_euler(data, id, dim, title, title_color, loc, interactive) {
+    function d3_euler(data, id, dim, title, title_color, flip_title, loc, interactive) {
 
         var svg_container = d3.select(loc)
             .append("svg")
@@ -193,16 +193,30 @@ twitter:
         }
         
         if (title != "") {
-            svg_container
-                .append("text")
-                .text(title)
-                .attr("x", dim/2)
-                .attr("y", dim/2)
-                .attr("text-anchor", "middle")
-                .style("font-family", "Arial")
-                .style("font-size", 25)
-                .style("fill", title_color)
-                .call(wrap, 300, 0, 1)
+            if (flip_title != "") {
+                svg_container
+                    .append("text")
+                    .text(title)
+                    .attr("x", dim/2)
+                    .attr("y", dim/2)
+                    .attr("text-anchor", "middle")
+                    .attr("transform", "rotate(180, " + dim/2 + ", " + dim/2 + ")")
+                    .style("font-family", "Arial")
+                    .style("font-size", 25)
+                    .style("fill", title_color)
+                    .call(wrap, 300, 0, 1);
+            } else {
+                svg_container
+                    .append("text")
+                    .text(title)
+                    .attr("x", dim/2)
+                    .attr("y", dim/2)
+                    .attr("text-anchor", "middle")
+                    .style("font-family", "Arial")
+                    .style("font-size", 25)
+                    .style("fill", title_color)
+                    .call(wrap, 300, 0, 1);
+            }
         }
     }
 
@@ -520,6 +534,7 @@ The levels of genetic diversity, shown as differences in the number of common va
         dim = 350,
         title = "Americas",
         title_color = "#696969",
+        flip_title = "",
         loc = "#figure3",
         interactive = true
     )
@@ -563,6 +578,7 @@ To look at the overlap in a different way, we first considered the variation tha
         dim = common_dim,
         title = "ACB",
         title_color = "#D55E00",
+        flip_title = "",
         loc = "#common_pops",
         interactive = true
     );
@@ -581,6 +597,7 @@ To look at the overlap in a different way, we first considered the variation tha
         dim = common_dim,
         title = "ASW",
         title_color = "#0072B2",
+        flip_title = "",
         loc = "#common_pops",
         interactive = true
     );
@@ -599,6 +616,7 @@ To look at the overlap in a different way, we first considered the variation tha
         dim = common_dim,
         title = "CEU",
         title_color = "#CC79A7",
+        flip_title = "",
         loc = "#common_pops",
         interactive = true
     );
@@ -617,6 +635,7 @@ To look at the overlap in a different way, we first considered the variation tha
         dim = common_dim,
         title = "CLM",
         title_color = "#009E73",
+        flip_title = "",
         loc = "#common_pops",
         interactive = true
     );
@@ -635,6 +654,7 @@ To look at the overlap in a different way, we first considered the variation tha
         dim = common_dim,
         title = "MXL",
         title_color = "#56B4E9",
+        flip_title = "",
         loc = "#common_pops",
         interactive = true
     );
@@ -653,6 +673,7 @@ To look at the overlap in a different way, we first considered the variation tha
         dim = common_dim,
         title = "PEL",
         title_color = "#E69F00",
+        flip_title = "",
         loc = "#common_pops",
         interactive = true
     );
@@ -671,6 +692,7 @@ To look at the overlap in a different way, we first considered the variation tha
         dim = common_dim,
         title = "PUR",
         title_color = "#000000",
+        flip_title = "",
         loc = "#common_pops",
         interactive = true
     );
@@ -864,7 +886,7 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
 Genetic diversity in the Americas reflects the history of colonialism and the transatlantic slave trade, which has moved people from across the globe into the region over the past few hundred years. Given this history, you may wonder whether the high degree of overlap reflects this recent history of the Americas or whether it is representative of sharing that is present in geographically distant samples. To look into this question, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.
 
 <br>
-<div id="figure6" style="display: flex; justify-content: center;"></div>
+<div id="figure6" style="display: flex; justify-content: center; transform: rotate(180deg);"></div>
 
 <script>
     d3_euler(
@@ -874,11 +896,12 @@ Genetic diversity in the Americas reflects the history of colonialism and the tr
             {"abbreviation":"GBR","h":102.6356,"k":-237.4416,"a":1387.917,"b":1243.9952,"phi":8.025,"common_variants":5592182,"unshared_common_variants":249975,"description":"British in England and Scotland","sampled_individuals":91,"color":"#CC79A7","fill":"none","stroke_dasharray":"none"},
             {"abbreviation":"MXL","h":-15.8317,"k":-188.1657,"a":1323.2218,"b":1260.246,"phi":8.806,"common_variants":5663208,"unshared_common_variants":167945,"description":"Mexican Ancestry in Los Angeles, California","sampled_individuals":64,"color":"#009E73","fill":"none","stroke_dasharray":"none"},
             {"abbreviation":"YRI","h":208.4168,"k":578.8131,"a":1470.648,"b":1705.8368,"phi":8.7792,"common_variants":8138465,"unshared_common_variants":3120507,"description":"Yoruba in Ibadan, Nigeria","sampled_individuals":108,"color":"#56B4E9","fill":"none","stroke_dasharray":"none"}
-        ] ,
+        ],
         id = "global_samples",
         dim = 350,
         title = "Global",
         title_color = "#696969",
+        flip_title = true,
         loc = "#figure6",
         interactive = true
     )
@@ -920,6 +943,7 @@ Lastly, given this global view, we can zoom in and look at how variation is part
         dim = global_dim,
         title = "Africa",
         title_color = "#696969",
+        flip_title = "",
         loc = "#global",
         interactive = true
     );
@@ -935,6 +959,7 @@ Lastly, given this global view, we can zoom in and look at how variation is part
         dim = global_dim,
         title = "Europe",
         title_color = "#696969",
+        flip_title = "",
         loc = "#global",
         interactive = true
     );
@@ -951,6 +976,7 @@ Lastly, given this global view, we can zoom in and look at how variation is part
         dim = global_dim,
         title = "South Asia",
         title_color = "#696969",
+        flip_title = "",
         loc = "#global",
         interactive = true
     );
@@ -967,6 +993,7 @@ Lastly, given this global view, we can zoom in and look at how variation is part
         dim = global_dim,
         title = "East Asia",
         title_color = "#696969",
+        flip_title = "",
         loc = "#global",
         interactive = true
     );
@@ -985,6 +1012,7 @@ Lastly, given this global view, we can zoom in and look at how variation is part
         dim = global_dim,
         title = "Americas",
         title_color = "#696969",
+        flip_title = "",
         loc = "#global",
         interactive = true
     );
@@ -1082,6 +1110,7 @@ The following figures offer alternative methods of visualization to those within
         dim = common_dim,
         title = "ACB",
         title_color = "#D55E00",
+        flip_title = "",
         loc = "#coffee_stains",
         interactive = false
     );
@@ -1101,6 +1130,7 @@ The following figures offer alternative methods of visualization to those within
         dim = common_dim,
         title = "ASW",
         title_color = "#0072B2",
+        flip_title = "",
         loc = "#coffee_stains",
         interactive = false
     );
@@ -1120,6 +1150,7 @@ The following figures offer alternative methods of visualization to those within
         dim = common_dim,
         title = "CEU",
         title_color = "#CC79A7",
+        flip_title = "",
         loc = "#coffee_stains",
         interactive = false
     );
@@ -1139,6 +1170,7 @@ The following figures offer alternative methods of visualization to those within
         dim = common_dim,
         title = "CLM",
         title_color = "#009E73",
+        flip_title = "",
         loc = "#coffee_stains",
         interactive = false
     );
@@ -1158,6 +1190,7 @@ The following figures offer alternative methods of visualization to those within
         dim = common_dim,
         title = "MXL",
         title_color = "#56B4E9",
+        flip_title = "",
         loc = "#coffee_stains",
         interactive = false
     );
@@ -1177,6 +1210,7 @@ The following figures offer alternative methods of visualization to those within
         dim = common_dim,
         title = "PEL",
         title_color = "#E69F00",
+        flip_title = "",
         loc = "#coffee_stains",
         interactive = false
     );
@@ -1196,6 +1230,7 @@ The following figures offer alternative methods of visualization to those within
         dim = common_dim,
         title = "PUR",
         title_color = "#000000",
+        flip_title = "",
         loc = "#coffee_stains",
         interactive = false
     );
