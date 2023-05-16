@@ -390,7 +390,7 @@ We wanted to share some resources that we’ve been putting together for teachin
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 1 - The relative scale of common variants in the Americas compared to the size of the human genome. The area of each circle is scaled proportionally by the number of sites in that category. The small blue circle corresponds with the number of common variants; “common” is defined as having a minor allele frequency of greater than 5% in at least one of the samples.
+        <span style="font-weight: bold;">Figure 1 - The scale of common variants in the Americas compared to the human genome.</span> The area of each circle is scaled proportionally by the number of sites in that category. The small blue circle corresponds with the number of common variants; “common” is defined as having a minor allele frequency of greater than 5% in at least one of the samples.
     </p>
 </center>
 <br>
@@ -509,7 +509,7 @@ There are seven different samples from the Americas in the 1000 Genomes Project 
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 2 - Seven circles, one for each sample located in the Americas. The area of each circle is proportional to the number of common variants within that sample from the 1000 Genomes Project. A “common” variant is defined as having a minor allele frequency of greater than 5%, where the minor allele identity is determined by its global allele frequency (its frequency across all samples in the 1000 Genomes Project). The number of individuals within each sample has also been included to ensure that this quantity is relatively consistent between samples.
+        <span style="font-weight: bold;">Figure 2 - Number of common variants in seven samples from the Americas.</span> The area of each circle is proportional to the number of common variants within that sample from the 1000 Genomes Project. A “common” variant is defined as having a minor allele frequency of greater than 5%, where the minor allele identity is determined by its global allele frequency (its frequency across all samples in the 1000 Genomes Project). The number of individuals within each sample has also been included to ensure that this quantity is relatively consistent between samples.
     </p>
 </center>
 <br>
@@ -542,7 +542,7 @@ The levels of genetic diversity, shown as differences in the number of common va
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 3 - An interactive Euler diagram of the common variants in samples located in the Americas. Hovering over the ellipses displays a popup with information about the samples. It is not mathematically possible to generate ellipses with a given overlap without distortions to the areas. See the Technical details section (below) for statistics quantifying the slight errors in this and following Euler diagrams.
+        <span style="font-weight: bold;">Figure 3 - Overlap in common variants between samples from the Americas.</span> This Euler diagram is interactive; hovering over the ellipses displays a popup with information about the samples. It is not mathematically possible to generate ellipses with a given overlap without distortions to the areas. See the Technical details section (below) for statistics quantifying the slight errors in this and following Euler diagrams.
     </p>
 </center>
 <br>
@@ -700,7 +700,7 @@ To look at the overlap in a different way, we first considered the variation tha
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 4 - Seven interactive Euler diagrams of the common variants in samples located in the Americas. Each diagram highlights a different sample, identified in the title, that was used to filter the variants down to only those that were common in the sample. The sizes of each plot are proportional to the number of variants included in the analysis (sizes are not proportional to previous figures). See Figure S1 near the bottom of this post for an alternative visualization of this figure.
+        <span style="font-weight: bold;">Figure 4 - Sharing of common variants found in each sample from the Americas.</span> Each diagram highlights a different sample, identified in the title, that was used to filter the variants down to only those that were common in the sample. The sizes of each plot are proportional to the number of variants included in the analysis (sizes are not proportional to previous figures). See Figure S1 near the bottom of this post for an alternative visualization of this figure.
     </p>
 </center>
 <br>
@@ -878,7 +878,7 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 5 - An Euler diagram of the common variants in samples located in the Americas relative to the scale of the human genome. As a small note, the positions and orientations of ellipses within the Euler diagram differ slightly from Figure 3. This is because the eulerr package gives varied results with each run due to random starting conditions within the algorithm.
+        <span style="font-weight: bold;">Figure 5 - Common variants in perspective.</span> An Euler diagram of the common variants in samples located in the Americas relative to the scale of the human genome. As a small note, the positions and orientations of ellipses within the Euler diagram differ slightly from Figure 3. This is because the eulerr package gives varied results with each run due to random starting conditions within the algorithm.
     </p>
 </center>
 <br>
@@ -909,7 +909,7 @@ Genetic diversity in the Americas reflects the history of colonialism and the tr
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 6 - An interactive Euler diagram of the common variants in five geographically distant samples: Bengali in Bangladesh (BEB), Han Chinese in Beijing, China (CHB), British in England and Scotland (GBR), Mexican Ancestry in Los Angeles, California (MXL), and Yoruba in Ibadan, Nigeria (YRI).
+        <span style="font-weight: bold;">Figure 6 - Overlap in common variants between samples from global samples.</span> An interactive Euler diagram of the common variants in five geographically distant samples: Bengali in Bangladesh (BEB), Han Chinese in Beijing, China (CHB), British in England and Scotland (GBR), Mexican Ancestry in Los Angeles, California (MXL), and Yoruba in Ibadan, Nigeria (YRI).
     </p>
 </center>
 <br>
@@ -1021,7 +1021,7 @@ Lastly, given this global view, we can zoom in and look at how variation is part
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure 7 - Five interactive Euler diagrams of the 26 global samples using the broad geographic groupings from Biddanda et al. 2020.
+        <span style="font-weight: bold;">Figure 7 - Sharing of common variation within geographic regions.</span> Five interactive Euler diagrams of the 26 global samples using the broad geographic groupings from Biddanda et al. 2020.
     </p>
 </center>
 <br>
@@ -1243,7 +1243,7 @@ The following figures offer alternative methods of visualization to those within
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S1 - Seven interactive “coffee stain” diagrams. The colored area is proportional in size to the number of common variants within the highlighted sample, identified in the title, that aren’t shared with another sample. This is an alternative visualization of Figure 4. Within each subfigure, the ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area and leaving only the common variants that aren’t shared with another sample. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
+        <span style="font-weight: bold;">Figure S1 - Sharing of common variants found in each sample from the Americas.</span> Seven interactive "coffee stain" diagrams, an alternate visualization of Figure 4. The colored area is proportional in size to the number of common variants within the highlighted sample, identified in the title, that aren’t shared with another sample. Within each subfigure, the ellipse on the bottom corresponds with the highlighted sample and is filled in with that sample’s respective color. All other ellipses are filled in with white and stacked on top, thus giving the appearance of cutting out the area and leaving only the common variants that aren’t shared with another sample. If you hover over the diagram, the exact orientation of the other ellipses become more apparent.
     </p>
 </center>
 <br>
@@ -1255,7 +1255,7 @@ The following figures offer alternative methods of visualization to those within
 
 <center style="font-style: italic;">
     <p style="font-size: 16px; max-width: 1000px; text-align: left;">
-        Figure S2 - An UpSet Plot as an alternative visualization of Figure 6. UpSet Plots, created by <a href="https://doi.org/10.1109/TVCG.2014.2346248">Lex et al. (2014)</a>, are useful for handling large numbers of sets. They can communicate the exact overlap between sets, unlike Euler diagrams (as discussed in the Technical details section), but are also a bit more challenging to read as there are multiple subfigures. To draw comparisons with the Euler diagrams, the horizontal bar graph on the bottom left depicts the areas of the ellipses and the vertical bar graph shows the areas of the overlaps between ellipses referenced usings dots in the bottom subfigure.
+        <span style="font-weight: bold;">Figure S2 - Sharing of common variation within geographic regions.</span> An UpSet plot, an alternative visualization of Figure 6. UpSet plots, created by <a href="https://doi.org/10.1109/TVCG.2014.2346248">Lex et al. (2014)</a>, are useful for handling large numbers of sets. They can communicate the exact overlap between sets, unlike Euler diagrams (as discussed in the Technical details section), but are also a bit more challenging to read as there are multiple subfigures. To draw comparisons with the Euler diagrams, the horizontal bar graph on the bottom left depicts the areas of the ellipses and the vertical bar graph shows the areas of the overlaps between ellipses referenced usings dots in the bottom subfigure.
     </p>
 </center>
 <br>
