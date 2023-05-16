@@ -883,7 +883,7 @@ Zooming back out and putting Figure 3 back onto the scale of the whole genome, t
 </center>
 <br>
 
-Genetic diversity in the Americas reflects the history of colonialism and the transatlantic slave trade, which has moved people from across the globe into the region over the past few hundred years. Given this history, you may wonder whether the high degree of overlap reflects this recent history of the Americas or whether it is representative of sharing that is present in geographically distant samples. To look into this question, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.
+Genetic diversity in the Americas reflects the history of colonialism and the transatlantic slave trade, which has moved people from across the globe into the region over the past few hundred years. Given this, you may wonder whether the high degree of overlap reflects this recent history of the Americas or whether it is representative of sharing that is present in geographically distant samples. To look into this question, we created a Euler diagram with five samples, one from each of the broad geographic groupings used by Biddanda et al.
 
 <br>
 <div id="figure6" style="display: flex; justify-content: center; transform: rotate(180deg);"></div>
