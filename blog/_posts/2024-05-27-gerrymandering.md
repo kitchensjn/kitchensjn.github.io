@@ -281,4 +281,4 @@ gerrymandering.html
 </html>
 ```
 
-With the long weekend coming to an end, this is as far as I'm going to take this exploration for now. It was nice to think about a very different set of problems than what I normally encounter in my research, though this has shown me that there really might be more crossover than I would have initially thought. Even the algorithm name, "ReComb", is a nod to the genetic process of recombination (and which is a major focus of my research). Hey maybe, like the maze generator, this project will come around again as something fun to build out even more!
+With the long weekend coming to an end, this is as far as I'm going to take this exploration for now. It was nice to think about a very different set of problems than what I normally encounter in my research, though this has shown me that there really might be more crossover than I would have initially thought. Even the algorithm name, "ReCom", is a nod to the genetic process of recombination (and which is a major focus of my research). Hey maybe, like the maze generator, this project will come around again as something fun to build out even more!
