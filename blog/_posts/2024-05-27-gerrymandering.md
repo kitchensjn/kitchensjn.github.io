@@ -5,7 +5,7 @@ title: "Gerrymandering"
 date: "May 25, 2024"
 skills: [Python]
 desc: In 2022 during a late night (couldn't sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network).
-thumbnail: "/assets/blog/gerrymandering/gerrymandering_figure1.png"
+thumbnail: "/assets/blog/gerrymandering/thumbnail.png"
 ---
 
 <script src='https://d3js.org/d3.v7.min.js'></script>
