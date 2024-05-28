@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61WED1VDVV"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-61WED1VDVV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Gerrymandering | James Kitchens</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Gerrymandering" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/blog/gerrymandering" />
+<meta property="og:url" content="http://localhost:4000/blog/gerrymandering" />
+<meta property="og:site_name" content="James Kitchens" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-25T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Gerrymandering" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-05-25T00:00:00-07:00","datePublished":"2024-05-25T00:00:00-07:00","headline":"Gerrymandering","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/gerrymandering"},"url":"http://localhost:4000/blog/gerrymandering"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <meta name="twitter:site"    content="@kitchensjn">
+    <meta name="twitter:creator" content="@kitchensjn">
+    <meta name="twitter:description" content="">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    
+
+</head><body><div id="topnav">
+    
+    
+        <a class="section-title" id="Logo" href="/#home">
+            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
+        </a>
+        <a class="section-title" id="Home" href="/#home">Home</a>
+        <a class="section-title" id="Bio" href="/#bio">Bio</a>
+        
+            <a class="section-title" id="Projects" href="/#projects">Projects</a>
+        
+            <a class="section-title" id="Blog" href="/#blog">Blog</a>
+        
+    
+    
+    
+        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
+    
+    
+    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+</div><div class="section"><h2 class="postTitle">
+    Gerrymandering</h2><p style="text-align: left;">James Kitchens</p><p style="text-align: left;">May 25, 2024</p>
+<div class="cat">
+    
+        <div class="background">
+            <p class="skill">Python</p>
+        </div>
+    
+</div>
+
+            <script src="https://d3js.org/d3.v7.min.js"></script>
+
+<div class="images" style="padding: 25px;">
+    <div id="districts"></div>
+</div>
+
+<script>
+    var width = 500;
+    var height = 500;
+
+    // Create the SVG
+    const svg = d3.select("#districts").append("svg")
+        .attr("viewBox", "0 0 267.21 265.5")
+        .attr("width", 400);
+    
+    var outline = svg.append("path")
+        .attr("d", "M51.6,313.8h265.7v-264H51.6V313.8")
+        .attr("fill", "white")
+        .attr("stroke-width", 2)
+        .attr("stroke", "black")
+        .attr("transform", "translate(-50.89 -49.05)");
+
+    // Add the line
+    var path = svg.append("path")
+        .attr("fill", "none")
+        .attr("stroke-width", 2)
+        .attr("stroke", "black")
+        .attr("transform", "translate(-50.89 -49.05)");
+
+    const district_boundaries = [
+        "M197.8,313.8v-13.2v-13.2h13.3v-13.2V261v-13.2v-13.2v-13.2v-13.2h13.3V195v-13.2v-13.2v-13.2h13.3v-13.2h13.3V129h-13.3h-13.3v13.2h-13.3v13.2h-13.3h-13.3v-13.2h-13.3h-13.3V129v-13.2h-13.3h-13.3h-13.3v-13.2h-13.3V89.4V76.2h13.3V63h13.3V49.8",
+        "M250.93,49.8V63H277.5V76.2h13.29v39.6H211.07V89.4H171.21V76.2H131.36V89.4h13.28v26.4h13.29V129h13.28V115.8h26.58V129h13.28v13.2h13.29v26.4h39.85V155.4H277.5V142.2h13.29V195h13.28v13.2H277.5v13.2H264.21v13.2H237.64V221.4h13.29V195H237.64v13.2H211.07v39.6H184.5V234.6H171.21V221.4H157.93V195H118.07V181.8H104.79V261H91.5V247.8H64.93V261H51.64",
+        "M237.6,49.8V63v13.2v13.2h13.3v13.2h13.3v13.2V129h-13.3v-13.2h-13.3h-13.3V129h-13.3h-13.3v13.2h13.3h13.3h13.3h13.3h13.3v13.2h-13.3v13.2v13.2h-13.3h-13.3V195v13.2h-13.3h-13.3h-13.3v13.2v13.2v13.2h-13.3V261h-13.3h-13.3v13.2h-13.3h-13.3h-13.3V261h13.3h13.3v-13.2v-13.2v-13.2h-13.3v13.2h-13.3H91.5H78.2H64.9v13.2H51.6",
+        "M317.4,234.6h-13.3h-13.3h-13.3h-13.3h-13.3v-13.2v-13.2h-13.3h-13.3h-13.3h-13.3V195h-13.3h-13.3h-13.3h-13.3v-13.2h-13.3v-13.2v-13.2v-13.2V129h-13.3v-13.2v-13.2V89.4h-13.3H91.5H78.2v13.2v13.2h13.3V129H78.2H64.9H51.6",
+        "M317.4,181.8h-13.3v-13.2h-13.3h-13.3h-13.3h-13.3v-13.2v-13.2h-13.3h-13.3v13.2v13.2h-13.3h-13.3h-13.3h-13.3v13.2h-13.3V195v13.2v13.2h-13.3v-13.2V195h-13.3h-13.3h-13.3H91.5H78.2v13.2v13.2H64.9H51.6"
+    ]
+    var n = 0;
+
+    function repeat() {
+        if (n==district_boundaries.length) { n = 0;}
+        path
+            .attr("d", district_boundaries[n])
+        // Get the length of the path, which we will use for the intial offset to "hide"
+        // the graph
+        n = n + 1;
+        var length = path.node().getTotalLength();
+        // Animate the path by setting the initial offset and dasharray and then transition the offset to 0
+        path
+            .attr("stroke-dasharray", length + " " + length)
+            .attr("stroke-dashoffset", length)
+            .transition()
+            .ease(d3.easeLinear)
+            .attr("stroke-dashoffset", 0)
+            .duration(2000)
+            .on("end", () => setTimeout(repeat, 1000)); // this will repeat the animation after waiting 1 second
+        
+    };
+    
+    // Animate the graph for the first time
+    repeat();
+    
+</script>
+
+<p>In 2022 during a late night (couldn’t sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network). Say we have a graph, where the nodes are laid out in a square grid and connected to their direct neighbors. We can think of removing an edge between two nodes as placing a wall down between those positions in our maze. In both the graph and maze, this action means the same thing - traveling directly between those two positions is prohibited. If we continue to remove edges in the graph, while being careful to ensure that all nodes can still be reached by any other node, we eventually work our way down to a so called spanning tree. A spanning tree is a tree which connects to every single node in the graph without forming any loops (when a node is connected in multiple ways). Simple mazes like this all have an associated spanning tree, which is what is past into the pathfinding algorithms to solve them. But why am I talking about some throw away code from over a year ago…</p>
+
+<p>I was reading <a href="https://www.amazon.com/Shape-Geometry-Information-Democracy-Everything/dp/1984879057">Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else</a> by Jordan Ellenberg and in one of the last chapters, Ellenberg talked about gerrymandering and specifically the ReCom algorithm developed in <a href="https://hdsr.mitpress.mit.edu/pub/1ds8ptxu/release/5">Deford, Duchin, and Solomon 2021</a> for dividing up a voting district. In essence, this algorithm uses graph theory to move through various districting configurations with the goal of finding a set which bests fits desired criteria, such as population balance, contiguity, compactness, etc. The algorithm works off of many of the same principles as my maze generator (which will become more obvious shortly) so I thought I would take a shot at expanding my script during a long weekend.</p>
+
+<p>The ReComb algorithm generates a spanning tree on a graph positioned within the bounds of the map region that it is looking to divide into two districts. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I’m sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there <strong>isn’t</strong> a central edge, the ReComb algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there <strong>is</strong> a central edge, it chop that edge resulting in two groups of connected nodes - these represent the two new districts.</p>
+
+<p class="codeheader">gerrymandering.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="n">networkx</span> <span class="k">as</span> <span class="n">nx</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="n">matplotlib</span> <span class="kn">import</span> <span class="n">collections</span> <span class="k">as</span> <span class="n">mc</span>
+<span class="kn">import</span> <span class="n">random</span>
+
+<span class="k">def</span> <span class="nf">create_random_spanning_tree</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nf">create_empty_copy</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+    <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="nf">number_of_nodes</span><span class="p">()</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="nf">nodes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">visited</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">num_nodes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+            <span class="n">visited</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">neighbors</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="nf">neighbors</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+        <span class="n">possible_neighbors</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">neighbors</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">possible_neighbors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_node</span> <span class="o">=</span> <span class="n">possible_neighbors</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nf">len</span><span class="p">(</span><span class="n">possible_neighbors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">tree</span><span class="p">.</span><span class="nf">add_edge</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">new_node</span><span class="p">)</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">new_node</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">neighbors</span><span class="p">[</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nf">len</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">tree</span>
+
+<span class="k">def</span> <span class="nf">divide_into_two_districts</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="nf">create_random_spanning_tree</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">betweenness</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nf">betweenness_centrality</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">betweenness</span><span class="p">.</span><span class="nf">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">.</span><span class="nf">neighbors</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+                    <span class="n">test</span> <span class="o">=</span> <span class="n">tree</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+                    <span class="n">test</span><span class="p">.</span><span class="nf">remove_edge</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">)</span>
+                    <span class="n">groups</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">nx</span><span class="p">.</span><span class="nf">connected_components</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                        <span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+                        <span class="k">break</span>
+    <span class="n">districts</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">group</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">groups</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+            <span class="n">districts</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">districts</span>
+
+
+<span class="n">dim</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nf">grid_2d_graph</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+<span class="n">districts</span> <span class="o">=</span> <span class="nf">divide_into_two_districts</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Though my original maze generator was written in R, I’ve been working with Python’s <code class="language-plaintext highlighter-rouge">networkx</code> library a lot recently and knew that it would have some helpful functions for this project, so I converted everything over to Python. I started by generating a square lattice graph using <code class="language-plaintext highlighter-rouge">networkx.grid_2d_graph()</code>. To identify a spanning tree, I initially used <code class="language-plaintext highlighter-rouge">networkx.random_spanning_tree()</code> but found it to be quite slow on large grids. My maze generator script was much faster (maybe because it doesn’t evenly sample spanning trees, I don’t know?), so I used that instead. Now armed with the spanning tree, I identify the central edge in the tree by filtering edges based on their betweenness and checking the most likely candidates. Similar to the ReComb algorithm, if this central edge does not exist, I generate a new spanning tree and try again.</p>
+
+<p class="codeheader">gerrymandering.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">determine_boundary</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span><span class="n">dim</span><span class="p">):</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ends</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">dim</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">groups</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">!=</span> <span class="n">groups</span><span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="p">)]:</span>
+                <span class="n">starts</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
+                <span class="n">ends</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mf">0.5</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">y</span> <span class="o">==</span> <span class="n">dim</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">y</span> <span class="o">!=</span> <span class="n">dim</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">groups</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span> <span class="o">!=</span> <span class="n">groups</span><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)]:</span>
+                <span class="n">starts</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mf">0.5</span><span class="p">))</span>
+                <span class="n">ends</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mf">0.5</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">dim</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">boundary_line</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
+    <span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">boundary_line</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nf">len</span><span class="p">(</span><span class="n">starts</span><span class="p">):</span>
+        <span class="n">possible_new_s</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">starts</span><span class="p">:</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">n</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">s</span><span class="p">]</span>
+            <span class="n">possible_new_s</span><span class="p">.</span><span class="nf">extend</span><span class="p">([</span><span class="n">ends</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">ends</span><span class="p">:</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">n</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">ends</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">s</span><span class="p">]</span>
+            <span class="n">possible_new_s</span><span class="p">.</span><span class="nf">extend</span><span class="p">([</span><span class="n">starts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">])</span>
+        <span class="n">new_s</span> <span class="o">=</span> <span class="p">[</span><span class="n">ns</span> <span class="k">for</span> <span class="n">ns</span> <span class="ow">in</span> <span class="n">possible_new_s</span> <span class="k">if</span> <span class="n">ns</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">boundary_line</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">new_s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">boundary_line</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">new_s</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">new_s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nf">elif </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">boundary_line</span><span class="p">)</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span><span class="n">starts</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="n">boundary_line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">possible_new_s</span><span class="p">):</span>
+            <span class="n">boundary_line</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">boundary_line</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"FAIL"</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">boundary_line</span>
+
+
+<span class="n">boundary</span> <span class="o">=</span> <span class="nf">determine_boundary</span><span class="p">(</span><span class="n">districts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Since all of the nodes have a geographic position, its straightforward to then plot the districts and the boundary between them. To identify the boundary between the districts, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn’t necessarily hold up in more complex cases. Luckily, we don’t need to worry about those here in this simple two district case.</p>
+
+<p class="codeheader">gerrymandering.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">boundary_line</span> <span class="o">=</span> <span class="n">mc</span><span class="p">.</span><span class="nc">LineCollection</span><span class="p">([</span><span class="n">boundary</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">add_collection</span><span class="p">(</span><span class="n">boundary_line</span><span class="p">)</span>
+<span class="n">rim_line</span> <span class="o">=</span> <span class="n">mc</span><span class="p">.</span><span class="nc">LineCollection</span><span class="p">([[(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),(</span><span class="n">dim</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),(</span><span class="n">dim</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">dim</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">dim</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)]],</span> <span class="n">color</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">add_collection</span><span class="p">(</span><span class="n">rim_line</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="s">"districts.svg"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>I find it pretty interesting to just rotate through all of the ways that you can split up the region, with some cuts being quite straight and others being a bit more “organic”. The algorithm ensures that districts are contiguous shapes and under very unlikely circumstances it is possible that one district complete envelops the other (I’ve only seen this occur when I use a custom built spanning tree). My version of this algorithm only ensures that there is an equal number of nodes in each district, but you can see how you could add many more rules to ensure that the districts are balanced for other characteristics. At the top of this blog post, I’ve animated various districting cuts by exporting the SVGs of different runs and providing those paths to D3.js.</p>
+
+<p>This is as far as I’m going to take this exploration for now. Maybe, like the maze generator, it’ll come around again as something fun to build out a bit more!</p>
+
+<p class="codeheader">gerrymandering.html</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Gerrymandering<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width,initial-scale=1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'https://d3js.org/d3.v7.min.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"districts"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+        <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+
+        <span class="c1">// Create the SVG</span>
+        <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="dl">"</span><span class="s2">#districts</span><span class="dl">"</span><span class="p">).</span><span class="nf">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">svg</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">viewBox</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0 0 267.21 265.5</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">width</span><span class="dl">"</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+        
+        <span class="kd">var</span> <span class="nx">outline</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">d</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">M51.6,313.8h265.7v-264H51.6V313.8</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">fill</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">white</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">stroke-width</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">stroke</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">black</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">transform</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">translate(-50.89 -49.05)</span><span class="dl">"</span><span class="p">);</span>
+
+        <span class="c1">// Add the line</span>
+        <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">fill</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">stroke-width</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">stroke</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">black</span><span class="dl">"</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">transform</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">translate(-50.89 -49.05)</span><span class="dl">"</span><span class="p">);</span>
+
+        <span class="kd">const</span> <span class="nx">district_boundaries</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="dl">"</span><span class="s2">M197.8,313.8v-13.2v-13.2h13.3v-13.2V261v-13.2v-13.2v-13.2v-13.2h13.3V195v-13.2v-13.2v-13.2h13.3v-13.2h13.3V129h-13.3h-13.3v13.2h-13.3v13.2h-13.3h-13.3v-13.2h-13.3h-13.3V129v-13.2h-13.3h-13.3h-13.3v-13.2h-13.3V89.4V76.2h13.3V63h13.3V49.8</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">M250.93,49.8V63H277.5V76.2h13.29v39.6H211.07V89.4H171.21V76.2H131.36V89.4h13.28v26.4h13.29V129h13.28V115.8h26.58V129h13.28v13.2h13.29v26.4h39.85V155.4H277.5V142.2h13.29V195h13.28v13.2H277.5v13.2H264.21v13.2H237.64V221.4h13.29V195H237.64v13.2H211.07v39.6H184.5V234.6H171.21V221.4H157.93V195H118.07V181.8H104.79V261H91.5V247.8H64.93V261H51.64</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">M237.6,49.8V63v13.2v13.2h13.3v13.2h13.3v13.2V129h-13.3v-13.2h-13.3h-13.3V129h-13.3h-13.3v13.2h13.3h13.3h13.3h13.3h13.3v13.2h-13.3v13.2v13.2h-13.3h-13.3V195v13.2h-13.3h-13.3h-13.3v13.2v13.2v13.2h-13.3V261h-13.3h-13.3v13.2h-13.3h-13.3h-13.3V261h13.3h13.3v-13.2v-13.2v-13.2h-13.3v13.2h-13.3H91.5H78.2H64.9v13.2H51.6</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">M317.4,234.6h-13.3h-13.3h-13.3h-13.3h-13.3v-13.2v-13.2h-13.3h-13.3h-13.3h-13.3V195h-13.3h-13.3h-13.3h-13.3v-13.2h-13.3v-13.2v-13.2v-13.2V129h-13.3v-13.2v-13.2V89.4h-13.3H91.5H78.2v13.2v13.2h13.3V129H78.2H64.9H51.6</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">M317.4,181.8h-13.3v-13.2h-13.3h-13.3h-13.3h-13.3v-13.2v-13.2h-13.3h-13.3v13.2v13.2h-13.3h-13.3h-13.3h-13.3v13.2h-13.3V195v13.2v13.2h-13.3v-13.2V195h-13.3h-13.3h-13.3H91.5H78.2v13.2v13.2H64.9H51.6</span><span class="dl">"</span>
+        <span class="p">]</span>
+        <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="kd">function</span> <span class="nf">repeat</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nf">if </span><span class="p">(</span><span class="nx">n</span><span class="o">==</span><span class="nx">district_boundaries</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;}</span>
+            <span class="nx">path</span>
+                <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">d</span><span class="dl">"</span><span class="p">,</span> <span class="nx">district_boundaries</span><span class="p">[</span><span class="nx">n</span><span class="p">])</span>
+            <span class="c1">// Get the length of the path, which we will use for the intial offset to "hide"</span>
+            <span class="c1">// the graph</span>
+            <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nf">node</span><span class="p">().</span><span class="nf">getTotalLength</span><span class="p">();</span>
+            <span class="c1">// Animate the path by setting the initial offset and dasharray and then transition the offset to 0</span>
+            <span class="nx">path</span>
+                <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">stroke-dasharray</span><span class="dl">"</span><span class="p">,</span> <span class="nx">length</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">length</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">stroke-dashoffset</span><span class="dl">"</span><span class="p">,</span> <span class="nx">length</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">transition</span><span class="p">()</span>
+                <span class="p">.</span><span class="nf">ease</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">easeLinear</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">stroke-dashoffset</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">duration</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">end</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="nx">repeat</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span> <span class="c1">// this will repeat the animation after waiting 1 second</span>
+            
+        <span class="p">};</span>
+        
+        <span class="c1">// Animate the graph for the first time</span>
+        <span class="nf">repeat</span><span class="p">();</span>
+        
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+
+        </div>
+    <div id="contact" class="contactBar">
+
+        <p class="info">kitchensjn@gmail.com</p>
+    </div></body>
+
+</html>
