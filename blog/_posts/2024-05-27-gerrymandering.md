@@ -2,7 +2,7 @@
 layout: "post"
 permalink: "/blog/gerrymandering"
 title: "Gerrymandering"
-date: "May 25, 2024"
+date: "May 28, 2024"
 skills: [Python, D3.js]
 description: In 2022 during a late night (couldn't sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network).
 image: "/assets/blog/gerrymandering/thumbnail.png"
