@@ -225,6 +225,7 @@ gerrymandering.html
     </div>
 
     <script>
+        //Adapted from https://observablehq.com/@onoratod/animate-a-path-in-d3
         // Create the SVG
         const svg = d3.select("#districts").append("svg")
             .attr("viewBox", "0 0 267.21 265.5");
