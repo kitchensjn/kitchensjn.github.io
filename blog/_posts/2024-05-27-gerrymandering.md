@@ -70,6 +70,17 @@ In 2022 during a late night (couldn't sleep) coding exploration, I wrote a small
 
 I was reading [Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else](https://www.amazon.com/Shape-Geometry-Information-Democracy-Everything/dp/1984879057) by Jordan Ellenberg and in one of the last chapters, Ellenberg talked about gerrymandering and specifically the ReCom algorithm developed in [Deford, Duchin, and Solomon 2021](https://hdsr.mitpress.mit.edu/pub/1ds8ptxu/release/5) for dividing up a voting district. In essence, this algorithm uses graph theory to move through various districting configurations with the goal of finding a set which bests fits desired criteria, such as population balance, contiguity, compactness, etc. The algorithm works off of many of the same principles as my maze generator (which will become more obvious shortly) so I thought I would take a shot at expanding my script during a long weekend.
 
+{:.images}
+![Cutting A Spanning Tree Into Districts](/assets/blog/gerrymandering/tree_example.png)
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: left;">
+        <span style="font-weight: bold;">Cutting a spanning tree into districts.</span> The spanning tree reaches every node within the square lattice graph. It is chopped at the central edge marked in red, resulting in the equally-sized purple and yellow districts. The grey line marks the boundary line between the districts.
+    </p>
+</center>
+
+<br>
+
 The ReComb algorithm generates a spanning tree on a graph positioned within the bounds of the map region that it is looking to divide into two districts. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I'm sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there **isn't** a central edge, the ReComb algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there **is** a central edge, it chop that edge resulting in two groups of connected nodes - these represent the two new districts.
 
 {:.codeheader}
