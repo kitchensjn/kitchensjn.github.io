@@ -66,9 +66,9 @@ image: "/assets/blog/gerrymandering/thumbnail.png"
     
 </script>
 
-In 2022 during a late night (couldn't sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network). Say we have a graph, where the nodes are laid out in a square grid and connected to their direct neighbors. We can think of removing an edge between two nodes as placing a wall down between those positions in our maze. In both the graph and maze, this action means the same thing - traveling directly between those two positions is prohibited. If we continue to remove edges in the graph, while being careful to ensure that all nodes can still be reached by any other node, we eventually work our way down to a so called spanning tree. A spanning tree is a tree which connects to every single node in the graph without forming any loops (when a node is connected in multiple ways). Simple mazes like this all have an associated spanning tree, which is what is past into the pathfinding algorithms to solve them. But why am I talking about some throw away code from over a year ago...
+In 2022 during a late night (couldn't sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network). Say we have a graph, where the nodes are laid out in a square grid and connected to their direct neighbors. We can think of removing an edge between two nodes as placing a wall down between those positions in our maze. In both the graph and maze, this action means the same thing - traveling directly between those two positions is prohibited. If we continue to remove edges in the graph, while being careful to ensure that all nodes can still be reached by any other node, we eventually work our way down to a so-called spanning tree. A spanning tree is a tree which connects to every single node in the graph without forming any loops (when a node is connected in multiple ways). Simple mazes like this all have an associated spanning tree, which is what is passed into the pathfinding algorithms to solve them. But why am I talking about some throw away code from over a year ago...
 
-I was reading [Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else](https://www.amazon.com/Shape-Geometry-Information-Democracy-Everything/dp/1984879057) by Jordan Ellenberg and in one of the last chapters, Ellenberg talked about gerrymandering and specifically the ReCom algorithm developed in [Deford, Duchin, and Solomon 2021](https://hdsr.mitpress.mit.edu/pub/1ds8ptxu/release/5) for dividing up a voting district. In essence, this algorithm uses graph theory to move through various districting configurations with the goal of finding a set which bests fits desired criteria, such as population balance, contiguity, compactness, etc. The algorithm works off of many of the same principles as my maze generator (which will become more obvious shortly) so I thought I would take a shot at expanding my script during a long weekend.
+I was reading [Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else](https://www.amazon.com/Shape-Geometry-Information-Democracy-Everything/dp/1984879057) by Jordan Ellenberg and in one of the last chapters, Ellenberg talked about gerrymandering and specifically the ReCom algorithm developed in [Deford, Duchin, and Solomon 2021](https://hdsr.mitpress.mit.edu/pub/1ds8ptxu/release/5) for dividing up a voting district. In essence, this algorithm uses graph theory to move through various districting configurations with the goal of finding a set which best fits desired criteria, such as population balance, contiguity, compactness, etc. The algorithm works off of many of the same principles as my maze generator (which will become more obvious shortly) so I thought I would take a shot at expanding my script during a long weekend.
 
 {:.images}
 ![Cutting A Spanning Tree Into Districts](/assets/blog/gerrymandering/tree_example.png)
@@ -119,6 +119,7 @@ def divide_into_two_districts(g):
             if not found:
                 for neighbor in tree.neighbors(k):
                     test = tree.copy()
+                    chopped_edge = (k, neighbor)
                     test.remove_edge(k, neighbor)
                     groups = list(nx.connected_components(test))
                     if len(groups[0]) == len(groups[1]):
@@ -128,12 +129,12 @@ def divide_into_two_districts(g):
     for i,group in enumerate(groups):
         for node in group:
             districts[node] = i
-    return districts
+    return districts, tree, chopped_edge
 
 
 dim = 20
 graph = nx.grid_2d_graph(dim, dim)
-districts = divide_into_two_districts(graph)
+districts, tree, chopped_edge = divide_into_two_districts(graph)
 ```
 
 Though my original maze generator was written in R, I've been working with Python's `networkx` library a lot recently and knew that it would have some helpful functions for this project, so I converted everything over to Python. I started by generating a square lattice graph using `networkx.grid_2d_graph()`. To identify a spanning tree, I initially used `networkx.random_spanning_tree()` but found it to be quite slow on large grids. My maze generator script was much faster (maybe because it doesn't evenly sample spanning trees, I don't know?), so I used that instead. Now armed with the spanning tree, I identify the central edge in the tree by filtering edges based on their betweenness and checking the most likely candidates. Similar to the ReComb algorithm, if this central edge does not exist, I generate a new spanning tree and try again.
@@ -187,7 +188,7 @@ def determine_boundary(groups,dim):
 boundary = determine_boundary(districts, dim)
 ```
 
-Since all of the nodes have a geographic position, its straightforward to then plot the districts and the boundary between them. To identify the boundary between the districts, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn't necessarily hold up in more complex cases. Luckily, we don't need to worry about those here in this simple two district case.
+Since all of the nodes have a geographic position, it's straightforward to then plot the districts and the boundary between them. To identify the boundary between the districts, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn't necessarily hold up in more complex cases. Luckily, we don't need to worry about those here in this simple two district case.
 
 {:.codeheader}
 gerrymandering.py
@@ -203,9 +204,7 @@ ax.set_axis_off()
 plt.savefig("districts.svg")
 ```
 
-I find it pretty interesting to just rotate through all of the ways that you can split up the region, with some cuts being quite straight and others being a bit more "organic". The algorithm ensures that districts are contiguous shapes and under very unlikely circumstances it is possible that one district complete envelops the other (I've only seen this occur when I use a custom built spanning tree). My version of this algorithm only ensures that there is an equal number of nodes in each district, but you can see how you could add many more rules to ensure that the districts are balanced for other characteristics. At the top of this blog post, I've animated various districting cuts by exporting the SVGs of different runs and providing those paths to D3.js.
-
-This is as far as I'm going to take this exploration for now. Maybe, like the maze generator, it'll come around again as something fun to build out a bit more!
+I find it pretty interesting to just rotate through all of the ways that you can split up the region, with some cuts being quite straight and others being a bit more "organic". The algorithm ensures that districts are contiguous shapes and under very unlikely circumstances it is possible that one district completely envelops the other (I've only seen this occur when I use a custom built spanning tree). My version of this algorithm only ensures that there is an equal number of nodes in each district, but you can see how you could add many more rules to ensure that the districts are balanced for other characteristics. At the top of this blog post, I've animated various districting cuts by exporting the SVGs of different runs and providing those paths to D3.js.
 
 {:.codeheader}
 gerrymandering.html
@@ -221,16 +220,14 @@ gerrymandering.html
 </header>
 
 <body>
-    <div id="districts"></div>
+    <div class="images" style="max-width: 600px; margin: auto; padding: 25px;">
+        <div id="districts"></div>
+    </div>
 
     <script>
-        var width = 500;
-        var height = 500;
-
         // Create the SVG
         const svg = d3.select("#districts").append("svg")
-            .attr("viewBox", "0 0 267.21 265.5")
-            .attr("width", 400);
+            .attr("viewBox", "0 0 267.21 265.5");
         
         var outline = svg.append("path")
             .attr("d", "M51.6,313.8h265.7v-264H51.6V313.8")
@@ -283,3 +280,5 @@ gerrymandering.html
 
 </html>
 ```
+
+With the long weekend coming to an end, this is as far as I'm going to take this exploration for now. It was nice to think about a very different set of problems than what I normally encounter in my research, though this has shown me that there really might be more crossover than I would have initially thought. Even the algorithm name, "ReComb", is a nod to the genetic process of recombination (and which is a major focus of my research). Hey maybe, like the maze generator, this project will come around again as something fun to build out even more!

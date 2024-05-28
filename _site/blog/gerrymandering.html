@@ -146,9 +146,9 @@
     
 </script>
 
-<p>In 2022 during a late night (couldn’t sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network). Say we have a graph, where the nodes are laid out in a square grid and connected to their direct neighbors. We can think of removing an edge between two nodes as placing a wall down between those positions in our maze. In both the graph and maze, this action means the same thing - traveling directly between those two positions is prohibited. If we continue to remove edges in the graph, while being careful to ensure that all nodes can still be reached by any other node, we eventually work our way down to a so called spanning tree. A spanning tree is a tree which connects to every single node in the graph without forming any loops (when a node is connected in multiple ways). Simple mazes like this all have an associated spanning tree, which is what is past into the pathfinding algorithms to solve them. But why am I talking about some throw away code from over a year ago…</p>
+<p>In 2022 during a late night (couldn’t sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network). Say we have a graph, where the nodes are laid out in a square grid and connected to their direct neighbors. We can think of removing an edge between two nodes as placing a wall down between those positions in our maze. In both the graph and maze, this action means the same thing - traveling directly between those two positions is prohibited. If we continue to remove edges in the graph, while being careful to ensure that all nodes can still be reached by any other node, we eventually work our way down to a so-called spanning tree. A spanning tree is a tree which connects to every single node in the graph without forming any loops (when a node is connected in multiple ways). Simple mazes like this all have an associated spanning tree, which is what is passed into the pathfinding algorithms to solve them. But why am I talking about some throw away code from over a year ago…</p>
 
-<p>I was reading <a href="https://www.amazon.com/Shape-Geometry-Information-Democracy-Everything/dp/1984879057">Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else</a> by Jordan Ellenberg and in one of the last chapters, Ellenberg talked about gerrymandering and specifically the ReCom algorithm developed in <a href="https://hdsr.mitpress.mit.edu/pub/1ds8ptxu/release/5">Deford, Duchin, and Solomon 2021</a> for dividing up a voting district. In essence, this algorithm uses graph theory to move through various districting configurations with the goal of finding a set which bests fits desired criteria, such as population balance, contiguity, compactness, etc. The algorithm works off of many of the same principles as my maze generator (which will become more obvious shortly) so I thought I would take a shot at expanding my script during a long weekend.</p>
+<p>I was reading <a href="https://www.amazon.com/Shape-Geometry-Information-Democracy-Everything/dp/1984879057">Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else</a> by Jordan Ellenberg and in one of the last chapters, Ellenberg talked about gerrymandering and specifically the ReCom algorithm developed in <a href="https://hdsr.mitpress.mit.edu/pub/1ds8ptxu/release/5">Deford, Duchin, and Solomon 2021</a> for dividing up a voting district. In essence, this algorithm uses graph theory to move through various districting configurations with the goal of finding a set which best fits desired criteria, such as population balance, contiguity, compactness, etc. The algorithm works off of many of the same principles as my maze generator (which will become more obvious shortly) so I thought I would take a shot at expanding my script during a long weekend.</p>
 
 <p class="images"><img src="/assets/blog/gerrymandering/tree_example.png" alt="Cutting A Spanning Tree Into Districts" /></p>
 
@@ -196,6 +196,7 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">.</span><span class="nf">neighbors</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
                     <span class="n">test</span> <span class="o">=</span> <span class="n">tree</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+                    <span class="n">chopped_edge</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">)</span>
                     <span class="n">test</span><span class="p">.</span><span class="nf">remove_edge</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">)</span>
                     <span class="n">groups</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">nx</span><span class="p">.</span><span class="nf">connected_components</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
                     <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -205,12 +206,12 @@
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">group</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">groups</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
             <span class="n">districts</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="k">return</span> <span class="n">districts</span>
+    <span class="k">return</span> <span class="n">districts</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">chopped_edge</span>
 
 
 <span class="n">dim</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nf">grid_2d_graph</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
-<span class="n">districts</span> <span class="o">=</span> <span class="nf">divide_into_two_districts</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<span class="n">districts</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">chopped_edge</span> <span class="o">=</span> <span class="nf">divide_into_two_districts</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Though my original maze generator was written in R, I’ve been working with Python’s <code class="language-plaintext highlighter-rouge">networkx</code> library a lot recently and knew that it would have some helpful functions for this project, so I converted everything over to Python. I started by generating a square lattice graph using <code class="language-plaintext highlighter-rouge">networkx.grid_2d_graph()</code>. To identify a spanning tree, I initially used <code class="language-plaintext highlighter-rouge">networkx.random_spanning_tree()</code> but found it to be quite slow on large grids. My maze generator script was much faster (maybe because it doesn’t evenly sample spanning trees, I don’t know?), so I used that instead. Now armed with the spanning tree, I identify the central edge in the tree by filtering edges based on their betweenness and checking the most likely candidates. Similar to the ReComb algorithm, if this central edge does not exist, I generate a new spanning tree and try again.</p>
@@ -262,7 +263,7 @@
 <span class="n">boundary</span> <span class="o">=</span> <span class="nf">determine_boundary</span><span class="p">(</span><span class="n">districts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Since all of the nodes have a geographic position, its straightforward to then plot the districts and the boundary between them. To identify the boundary between the districts, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn’t necessarily hold up in more complex cases. Luckily, we don’t need to worry about those here in this simple two district case.</p>
+<p>Since all of the nodes have a geographic position, it’s straightforward to then plot the districts and the boundary between them. To identify the boundary between the districts, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn’t necessarily hold up in more complex cases. Luckily, we don’t need to worry about those here in this simple two district case.</p>
 
 <p class="codeheader">gerrymandering.py</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -276,9 +277,7 @@
 <span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="s">"districts.svg"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>I find it pretty interesting to just rotate through all of the ways that you can split up the region, with some cuts being quite straight and others being a bit more “organic”. The algorithm ensures that districts are contiguous shapes and under very unlikely circumstances it is possible that one district complete envelops the other (I’ve only seen this occur when I use a custom built spanning tree). My version of this algorithm only ensures that there is an equal number of nodes in each district, but you can see how you could add many more rules to ensure that the districts are balanced for other characteristics. At the top of this blog post, I’ve animated various districting cuts by exporting the SVGs of different runs and providing those paths to D3.js.</p>
-
-<p>This is as far as I’m going to take this exploration for now. Maybe, like the maze generator, it’ll come around again as something fun to build out a bit more!</p>
+<p>I find it pretty interesting to just rotate through all of the ways that you can split up the region, with some cuts being quite straight and others being a bit more “organic”. The algorithm ensures that districts are contiguous shapes and under very unlikely circumstances it is possible that one district completely envelops the other (I’ve only seen this occur when I use a custom built spanning tree). My version of this algorithm only ensures that there is an equal number of nodes in each district, but you can see how you could add many more rules to ensure that the districts are balanced for other characteristics. At the top of this blog post, I’ve animated various districting cuts by exporting the SVGs of different runs and providing those paths to D3.js.</p>
 
 <p class="codeheader">gerrymandering.html</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
@@ -292,16 +291,14 @@
 <span class="nt">&lt;/header&gt;</span>
 
 <span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"districts"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"images"</span> <span class="na">style=</span><span class="s">"max-width: 600px; margin: auto; padding: 25px;"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"districts"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
 
     <span class="nt">&lt;script&gt;</span>
-        <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-
         <span class="c1">// Create the SVG</span>
         <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="dl">"</span><span class="s2">#districts</span><span class="dl">"</span><span class="p">).</span><span class="nf">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">svg</span><span class="dl">"</span><span class="p">)</span>
-            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">viewBox</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0 0 267.21 265.5</span><span class="dl">"</span><span class="p">)</span>
-            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">width</span><span class="dl">"</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+            <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">viewBox</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0 0 267.21 265.5</span><span class="dl">"</span><span class="p">);</span>
         
         <span class="kd">var</span> <span class="nx">outline</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">)</span>
             <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">d</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">M51.6,313.8h265.7v-264H51.6V313.8</span><span class="dl">"</span><span class="p">)</span>
@@ -354,6 +351,8 @@
 
 <span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
+
+<p>With the long weekend coming to an end, this is as far as I’m going to take this exploration for now. It was nice to think about a very different set of problems than what I normally encounter in my research, though this has shown me that there really might be more crossover than I would have initially thought. Even the algorithm name, “ReComb”, is a nod to the genetic process of recombination (and which is a major focus of my research). Hey maybe, like the maze generator, this project will come around again as something fun to build out even more!</p>
 
 
         </div>
