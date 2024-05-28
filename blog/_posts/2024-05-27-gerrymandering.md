@@ -9,18 +9,14 @@ image: "/assets/blog/gerrymandering/thumbnail.png"
 ---
 
 <script src='https://d3js.org/d3.v7.min.js'></script>
-<div class="images" style="padding: 25px;">
+<div class="images" style="max-width: 600px; margin: auto; padding: 25px;">
     <div id="districts"></div>
 </div>
 
 <script>
-    var width = 500;
-    var height = 500;
-
     // Create the SVG
     const svg = d3.select("#districts").append("svg")
-        .attr("viewBox", "0 0 267.21 265.5")
-        .attr("width", 400);
+        .attr("viewBox", "0 0 267.21 265.5");
     
     var outline = svg.append("path")
         .attr("d", "M51.6,313.8h265.7v-264H51.6V313.8")
