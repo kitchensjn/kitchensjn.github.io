@@ -81,7 +81,7 @@ I was reading [Shape: The Hidden Geometry of Information, Biology, Strategy, Dem
 
 <br>
 
-The ReComb algorithm generates a spanning tree on a graph positioned within the bounds of the map region that it is looking to divide into two districts. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I'm sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there **isn't** a central edge, the ReComb algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there **is** a central edge, it chop that edge resulting in two groups of connected nodes - these represent the two new districts.
+The ReComb algorithm generates a spanning tree on a graph positioned within the bounds of the region that is to be divided. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I'm sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there **isn't** a central edge, the ReComb algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there **is** a central edge, it chops that edge, resulting in two groups of connected nodes. These represent the two new districts.
 
 {:.codeheader}
 gerrymandering.py
@@ -188,7 +188,7 @@ def determine_boundary(groups,dim):
 boundary = determine_boundary(districts, dim)
 ```
 
-Since all of the nodes have a geographic position, it's straightforward to then plot the districts and the boundary between them. To identify the boundary between the districts, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn't necessarily hold up in more complex cases. Luckily, we don't need to worry about those here in this simple two district case.
+Since all of the nodes have a geographic position, it's straightforward to then plot the districts and the boundary between them. To identify this boundary, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn't necessarily hold up in more complex cases, but luckily, we don't need to worry about those here in this simple two district case.
 
 {:.codeheader}
 gerrymandering.py
