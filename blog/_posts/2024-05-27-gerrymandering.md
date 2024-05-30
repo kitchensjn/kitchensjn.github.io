@@ -204,6 +204,21 @@ ax.set_axis_off()
 plt.savefig("districts.svg")
 ```
 
+<br>
+
+{:.images}
+![Cutting A Spanning Tree Into Districts](/assets/blog/gerrymandering/collage.png)
+
+<br>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: center;">
+        <span style="font-weight: bold;">Collage of random districting results.</span> Each subfigure is a separate run of the code. Colors are added only for styling.
+    </p>
+</center>
+
+<br>
+
 I find it pretty interesting to just rotate through all of the ways that you can split up the region, with some cuts being quite straight and others being a bit more "organic". The algorithm ensures that districts are contiguous shapes and under very unlikely circumstances it is possible that one district completely envelops the other (I've only seen this occur when I use a custom built spanning tree). My version of this algorithm only ensures that there is an equal number of nodes in each district, but you can see how you could add many more rules to ensure that the districts are balanced for other characteristics. At the top of this blog post, I've animated various districting cuts by exporting the SVGs of different runs and providing those paths to D3.js.
 
 {:.codeheader}

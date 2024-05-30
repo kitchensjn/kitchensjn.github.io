@@ -146,7 +146,7 @@
     
 </script>
 
-<p>In 2022 during a late night (couldn’t sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network). Say we have a graph, where the nodes are laid out in a square grid and connected to their direct neighbors. We can think of removing an edge between two nodes as placing a wall down between those positions in our maze. In both the graph and maze, this action means the same thing - traveling directly between those two positions is prohibited. If we continue to remove edges in the graph, while being careful to ensure that all nodes can still be reached by any other node, we eventually work our way down to a so-called spanning tree. A spanning tree is a tree which connects to every single node in the graph without forming any loops (when a node is connected in multiple ways). Simple mazes like this all have an associated spanning tree, which is what is passed into the pathfinding algorithms to solve them. But why am I talking about some throw away code from over a year ago…</p>
+<p>In 2022 during a late night (couldn’t sleep) coding exploration, I wrote a small maze generator script in R. I was interested in pathfinding algorithms and specifically whether certain nodes in a graph are more likely to be traversed through than others. It may not be obvious but a maze can be reinterpreted as a graph (or network). Say we have a graph where the nodes are laid out in a square grid and connected to their direct neighbors. We can think of removing an edge between two nodes as placing a wall down between those positions in our maze. In both the graph and maze, this action means the same thing - traveling directly between those two positions is prohibited. If we continue to remove edges in the graph, while being careful to ensure that all nodes can still be reached by any other node, we eventually work our way down to a so-called spanning tree. A spanning tree is a tree which connects every single node in the graph without forming any loops (when a node is connected in multiple ways). Simple mazes like this all have an associated spanning tree, which is what is passed into the pathfinding algorithms to solve them. But why am I talking about some throw away code from over a year ago…</p>
 
 <p>I was reading <a href="https://www.amazon.com/Shape-Geometry-Information-Democracy-Everything/dp/1984879057">Shape: The Hidden Geometry of Information, Biology, Strategy, Democracy, and Everything Else</a> by Jordan Ellenberg and in one of the last chapters, Ellenberg talked about gerrymandering and specifically the ReCom algorithm developed in <a href="https://hdsr.mitpress.mit.edu/pub/1ds8ptxu/release/5">Deford, Duchin, and Solomon 2021</a> for dividing up a voting district. In essence, this algorithm uses graph theory to move through various districting configurations with the goal of finding a set which best fits desired criteria, such as population balance, contiguity, compactness, etc. The algorithm works on many of the same principles as my maze generator (which will become more obvious shortly) so I thought I would take a shot at expanding my script during a long weekend.</p>
 
@@ -160,7 +160,7 @@
 
 <p><br /></p>
 
-<p>The ReComb algorithm generates a spanning tree on a graph positioned within the bounds of the map region that it is looking to divide into two districts. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I’m sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there <strong>isn’t</strong> a central edge, the ReComb algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there <strong>is</strong> a central edge, it chop that edge resulting in two groups of connected nodes - these represent the two new districts.</p>
+<p>The ReComb algorithm generates a spanning tree on a graph positioned within the bounds of the region that is to be divided. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I’m sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there <strong>isn’t</strong> a central edge, the ReComb algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there <strong>is</strong> a central edge, it chops that edge, resulting in two groups of connected nodes. These represent the two new districts.</p>
 
 <p class="codeheader">gerrymandering.py</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
@@ -263,7 +263,7 @@
 <span class="n">boundary</span> <span class="o">=</span> <span class="nf">determine_boundary</span><span class="p">(</span><span class="n">districts</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Since all of the nodes have a geographic position, it’s straightforward to then plot the districts and the boundary between them. To identify the boundary between the districts, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn’t necessarily hold up in more complex cases. Luckily, we don’t need to worry about those here in this simple two district case.</p>
+<p>Since all of the nodes have a geographic position, it’s straightforward to then plot the districts and the boundary between them. To identify this boundary, I looped through every node and checked whether its neighbor was in the same district. If not, then I added a wall between the nodes. I then linked all of these walls together to get the continuous boundary line by following some assumptions that wouldn’t necessarily hold up in more complex cases, but luckily, we don’t need to worry about those here in this simple two district case.</p>
 
 <p class="codeheader">gerrymandering.py</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -276,6 +276,20 @@
 <span class="n">ax</span><span class="p">.</span><span class="nf">set_axis_off</span><span class="p">()</span>
 <span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="s">"districts.svg"</span><span class="p">)</span>
 </code></pre></div></div>
+
+<p><br /></p>
+
+<p class="images"><img src="/assets/blog/gerrymandering/collage.png" alt="Cutting A Spanning Tree Into Districts" /></p>
+
+<p><br /></p>
+
+<center style="font-style: italic;">
+    <p style="font-size: 16px; max-width: 1000px; text-align: center;">
+        <span style="font-weight: bold;">Collage of random districting results.</span> Each subfigure is a separate run of the code. Colors are added only for styling.
+    </p>
+</center>
+
+<p><br /></p>
 
 <p>I find it pretty interesting to just rotate through all of the ways that you can split up the region, with some cuts being quite straight and others being a bit more “organic”. The algorithm ensures that districts are contiguous shapes and under very unlikely circumstances it is possible that one district completely envelops the other (I’ve only seen this occur when I use a custom built spanning tree). My version of this algorithm only ensures that there is an equal number of nodes in each district, but you can see how you could add many more rules to ensure that the districts are balanced for other characteristics. At the top of this blog post, I’ve animated various districting cuts by exporting the SVGs of different runs and providing those paths to D3.js.</p>
 
@@ -296,6 +310,7 @@
     <span class="nt">&lt;/div&gt;</span>
 
     <span class="nt">&lt;script&gt;</span>
+        <span class="c1">//Adapted from https://observablehq.com/@onoratod/animate-a-path-in-d3</span>
         <span class="c1">// Create the SVG</span>
         <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="dl">"</span><span class="s2">#districts</span><span class="dl">"</span><span class="p">).</span><span class="nf">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">svg</span><span class="dl">"</span><span class="p">)</span>
             <span class="p">.</span><span class="nf">attr</span><span class="p">(</span><span class="dl">"</span><span class="s2">viewBox</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">0 0 267.21 265.5</span><span class="dl">"</span><span class="p">);</span>
