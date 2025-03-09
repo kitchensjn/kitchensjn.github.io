@@ -3,7 +3,7 @@ layout: home
 
 title: Home
 image: assets/headshot/background.jpg
-description: Hi, my name is James Kitchens, and I am a second year graduate student studying population genetics in the Coop Lab through the UC Davis Population Graduate Group.
+description: Hi, my name is James Kitchens, and I am a graduate student studying population genetics in the Coop Lab through the UC Davis Population Graduate Group.
 
 homepage_background: assets/headshot/background.jpg
 title_align: right
@@ -11,7 +11,7 @@ title_align: right
 headshot: assets/headshot/KitchensJames_Headshot.jpg
 
 bio: |
-  Hi, my name is James Kitchens, and I am a second year graduate student studying population genetics in the <a href="https://gcbias.org">Coop Lab</a> through the UC Davis Population Graduate Group. Before graduate school, I interned at NASA's Jet Propulsion Lab in Pasadena, California, researching the application of remote sensing for groundwater observation and management. In December 2019, I graduated from Warren Wilson College in Asheville, North Carolina, where I earned a B.S. in Biology and B.S. in Chemistry. While in undergraduate, I worked in the Warren Wilson College Genetics and Plant Physiology Laboratory as a Research Assistant on projects focused around the conservation of human-impacted species in the United States.
+  Hi, my name is James Kitchens, and I am a graduate student studying population genetics in the <a href="https://gcbias.org">Coop Lab</a> through the UC Davis Population Graduate Group. Before graduate school, I interned at NASA's Jet Propulsion Lab in Pasadena, California, researching the application of remote sensing for groundwater observation and management. In December 2019, I graduated from Warren Wilson College in Asheville, North Carolina, where I earned a B.S. in Biology and B.S. in Chemistry. While in undergraduate, I worked in the Warren Wilson College Genetics and Plant Physiology Laboratory as a Research Assistant on projects focused around the conservation of human-impacted species in the United States.
 
 skills:
   - [Python, R, Shiny, HTML, CSS, JavaScript, Git, SQLite]
