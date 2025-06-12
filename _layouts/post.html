@@ -13,7 +13,8 @@
 
             {% if page.title == "National Parks Gallery" %}
                 {%- include national-parks-gallery.html -%}
-            {% else if page.title == "Upper Cherry Creek" %}
+            {% endif %}
+            {% if page.title == "Upper Cherry Creek" %}
                 {%- include upper-cherry-creek-gallery.html -%}
             {% endif %}
         
