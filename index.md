@@ -18,7 +18,7 @@ skills:
   - [QGIS, ArcGIS, GRASS GIS]
 
 publications:
-  - Kitchens, J. & Wong, Y. (2025) <a href="https://doi.org/10.48550/arXiv.2508.03958">tskit_arg_visualizer\: interactive plotting of ancestral recombination graphs</a>. <i>arXiv</i>
+  - Kitchens, J. & Wong, Y. (2025) <a href="https://doi.org/10.48550/arXiv.2508.03958">tskit_arg_visualizer":" interactive plotting of ancestral recombination graphs</a>. <i>arXiv</i>
   - Deraje, P., Kitchens, J., Coop, G., & Osmond, M. M. (2025) <a href="https://doi.org/10.1093/g3journal/jkaf214">The promise and challenge of spatial inference with the full ancestral recombination graph under Brownian motion</a>. <i>G3 Genes|Genomes|Genetics</i>
   - Kitchens, J. & Coop, G. (2023) <a href="https://doi.org/10.5281/zenodo.11245632">Visualizing the shared nature of human genetic variation</a>. <i>Zenodo</i>
   - Whipple, A.L., C. Ray, et al. (2021) <a href="https://academic.oup.com/conphys/article/9/1/coab024/6262596?login=true">Temporal vs. spatial variation in stress-associated metabolites within a population of climate-sensitive small mammals</a>. <i>Conservation Physiology</i>, Volume 9, Issue 1
