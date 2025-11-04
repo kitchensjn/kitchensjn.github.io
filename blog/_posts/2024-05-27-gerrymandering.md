@@ -81,7 +81,7 @@ I was reading [Shape: The Hidden Geometry of Information, Biology, Strategy, Dem
 
 <br>
 
-The ReComb algorithm generates a spanning tree on a graph positioned within the bounds of the region that is to be divided. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I'm sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there **isn't** a central edge, the ReComb algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there **is** a central edge, it chops that edge, resulting in two groups of connected nodes. These represent the two new districts.
+The ReCom algorithm generates a spanning tree on a graph positioned within the bounds of the region that is to be divided. It then identifies the edge in the tree that when cut results in an equal number of nodes in the resulting two subtrees. Disappointingly, not all trees have an edge like this! I'm sure that there is some really interesting graph theory work on ways to identify when this is the case, though that extends beyond the scope of this exploration. In the case that there **isn't** a central edge, the ReCom algorithm starts over from the beginning, generating a new spanning tree for the region, and tries again. In the event that there **is** a central edge, it chops that edge, resulting in two groups of connected nodes. These represent the two new districts.
 
 {:.codeheader}
 gerrymandering.py
@@ -137,7 +137,7 @@ graph = nx.grid_2d_graph(dim, dim)
 districts, tree, chopped_edge = divide_into_two_districts(graph)
 ```
 
-Though my original maze generator was written in R, I've been working with Python's `networkx` library a lot recently and knew that it would have some helpful functions for this project, so I converted everything over to Python. I started by generating a square lattice graph using `networkx.grid_2d_graph()`. To identify a spanning tree, I initially used `networkx.random_spanning_tree()` but found it to be quite slow on large grids. My maze generator script was much faster (maybe because it doesn't evenly sample spanning trees, I don't know?), so I used that instead. Now armed with the spanning tree, I identify the central edge in the tree by filtering edges based on their betweenness and checking the most likely candidates. Similar to the ReComb algorithm, if this central edge does not exist, I generate a new spanning tree and try again.
+Though my original maze generator was written in R, I've been working with Python's `networkx` library a lot recently and knew that it would have some helpful functions for this project, so I converted everything over to Python. I started by generating a square lattice graph using `networkx.grid_2d_graph()`. To identify a spanning tree, I initially used `networkx.random_spanning_tree()` but found it to be quite slow on large grids. My maze generator script was much faster (maybe because it doesn't evenly sample spanning trees, I don't know?), so I used that instead. Now armed with the spanning tree, I identify the central edge in the tree by filtering edges based on their betweenness and checking the most likely candidates. Similar to the ReCom algorithm, if this central edge does not exist, I generate a new spanning tree and try again.
 
 {:.codeheader}
 gerrymandering.py
