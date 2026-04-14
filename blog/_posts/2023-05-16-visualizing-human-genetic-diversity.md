@@ -1278,7 +1278,7 @@ Lex et al. (2014) [UpSet: Visualization of Intersecting Sets](https://doi.org/10
 ---
 
 <small>
-    <sup>1</sup>Indeed, if we sequence the entire population of the world, we'd see nearly every site being variable in some one. But these variants would be vanishingly rare in the population, overall.
+    <sup>1</sup>Indeed, if we sequence the entire population of the world, we'd see nearly every site being variable in someone. But these variants would be vanishingly rare in the population, overall.
 </small>
 
 <small>
