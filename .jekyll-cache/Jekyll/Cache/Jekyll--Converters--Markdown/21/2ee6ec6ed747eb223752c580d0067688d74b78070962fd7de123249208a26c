@@ -1,4 +1,4 @@
-I"†u<p class="images"><img src="/assets/blog/animated-website-background/animated-website-background-1.gif" alt="Animated Website Background - 1" /></p>
+I"¢u<p class="images"><img src="/assets/blog/animated-website-background/animated-website-background-1.gif" alt="Animated Website Background - 1" /></p>
 
 <p>This tutorial walks you through how to use the p5.js JavaScript library to create an animated website background similar to that seen in the GIF above. For those of you who have not heard of p5.js, it is an open source JavaScript library targeted towards ‚Äúartists, designers, educators, and beginners‚Äù. There are a number of great tutorials on YouTube created by Daniel Shiffman of <a href="https://www.youtube.com/user/shiffman" target="_blank">The Coding Train</a> where he walks you through different visual algorithms and creative uses for the library. I recommend that you check out his channel, as well as the <a href="https://p5js.org" target="_blank">official p5.js website</a>, for more information about the library.</p>
 
@@ -84,14 +84,14 @@
       <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
       <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
       <span class="nl">min-height</span><span class="p">:</span> <span class="m">600px</span><span class="p">;</span>
-      <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333333</span><span class="p">;</span>
+      <span class="nl">background-color</span><span class="p">:</span> <span class="nx">#333333</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="nc">.textbox</span> <span class="p">{</span>
       <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
       <span class="nl">left</span><span class="p">:</span><span class="m">50%</span><span class="p">;</span>
       <span class="nl">top</span><span class="p">:</span><span class="m">40%</span><span class="p">;</span>
-      <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">);</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="m">#FFFFFF</span><span class="p">;</span>
+      <span class="nl">transform</span><span class="p">:</span> <span class="nf">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">);</span>
+      <span class="nl">color</span><span class="p">:</span> <span class="nx">#FFFFFF</span><span class="p">;</span>
       <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="nc">.title</span> <span class="p">{</span>
@@ -100,7 +100,7 @@
       <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="nc">.desc</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="m">#BBBBBB</span><span class="p">;</span>
+      <span class="nl">color</span><span class="p">:</span> <span class="nx">#BBBBBB</span><span class="p">;</span>
       <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">25px</span><span class="p">;</span>
       <span class="nl">font-size</span><span class="p">:</span> <span class="m">25px</span><span class="p">;</span>
   <span class="p">}</span>
@@ -110,10 +110,10 @@
       <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="nc">.link</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="m">#BBBBBB</span><span class="p">;</span>
+      <span class="nl">color</span><span class="p">:</span> <span class="nx">#BBBBBB</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="nc">.link</span><span class="nd">:hover</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="m">#FFFFFF</span><span class="p">;</span>
+      <span class="nl">color</span><span class="p">:</span> <span class="nx">#FFFFFF</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="nt">&lt;/style&gt;</span>
 </code></pre></div></div>
@@ -141,7 +141,7 @@
 
   <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
   <span class="nf">beginShape</span><span class="p">();</span>
-  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">250</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="nf">endShape</span><span class="p">();</span>
@@ -162,7 +162,7 @@
   
   <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
   <span class="nf">beginShape</span><span class="p">();</span>
-  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nf">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
     <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
@@ -181,7 +181,7 @@
   
   <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
   <span class="nf">beginShape</span><span class="p">();</span>
-  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 	  <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
 	  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nf">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 	  <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
@@ -200,7 +200,7 @@
   <span class="nf">stroke</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
   <span class="nf">beginShape</span><span class="p">();</span>
   <span class="nf">vertex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
-  <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">width</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">nx</span> <span class="o">=</span> <span class="nf">map</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="o">+</span><span class="nx">frameCount</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="nf">noise</span><span class="p">(</span><span class="nx">nx</span><span class="p">))</span> <span class="o">+</span> <span class="nx">height</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
     <span class="nf">vertex</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>

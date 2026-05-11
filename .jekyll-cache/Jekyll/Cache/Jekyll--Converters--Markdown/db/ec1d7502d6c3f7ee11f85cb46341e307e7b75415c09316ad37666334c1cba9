@@ -1,4 +1,4 @@
-I"­è<p class="images"><img src="/assets/blog/nmr-and-non-square-jigsaw-puzzles/post-photo.png" alt="Post Photo" /></p>
+I"­ë<p class="images"><img src="/assets/blog/nmr-and-non-square-jigsaw-puzzles/post-photo.png" alt="Post Photo" /></p>
 
 <p>In organic chemistry during freshman year of undergraduate, we were discussing nuclear magnetic resonance (NMR) spectroscopy, a technique to determine the chemical structure of compounds in solution. Isotopes with an odd number of protons and/or neutrons, such as H-1 and C-13, have a resonant frequency within a spinning magnetic field that is dependent on the atoms that are bonded to them. Below is a map of these common resonant frequencies for C-13 NMR spectroscopy and their corresponding bonds:</p>
 
@@ -20,7 +20,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">JigsawPiece</span><span class="p">:</span>
 
   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">empty</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">buildingConstraints</span> <span class="o">=</span> <span class="p">{}):</span>
-    <span class="s">"""
+    <span class="sh">"""</span><span class="s">
     Creates a square puzzle piece with jagged edges.
     Pixels along edges have three states (-1-concave, 0-flat, 1-protrudes).
     Corners are always flat to keep continuity
@@ -29,7 +29,7 @@
     size: integer, number of pixels in length/width of piece
     empty: boolean, whether piece is empty or not
     buildingConstraints: dictionary, any edge contraints from neighboring pieces
-    """</span>
+    </span><span class="sh">"""</span>
     <span class="n">self</span><span class="p">.</span><span class="n">empty</span> <span class="o">=</span> <span class="n">empty</span>
     <span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">=</span> <span class="n">size</span>
     <span class="n">self</span><span class="p">.</span><span class="n">pieceInfo</span> <span class="o">=</span> <span class="p">[]</span>
@@ -44,13 +44,13 @@
       <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
         <span class="n">line</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
-          <span class="n">line</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="s">"-"</span><span class="p">)</span>
+          <span class="n">line</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sh">"</span><span class="s">-</span><span class="sh">"</span><span class="p">)</span>
         <span class="n">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="k">for</span> <span class="n">info</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
         <span class="n">line</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
-          <span class="n">constrain</span> <span class="o">=</span> <span class="n">buildingConstraints</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+          <span class="n">constrain</span> <span class="o">=</span> <span class="n">buildingConstraints</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
           <span class="k">if</span> <span class="n">constrain</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">element</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">info</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">element</span> <span class="o">!=</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">info</span> <span class="o">!=</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
               <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">info</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
@@ -74,9 +74,9 @@
                   <span class="k">else</span><span class="p">:</span>
                     <span class="n">flatSide</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
                   <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">self</span><span class="p">.</span><span class="n">topConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+                    <span class="n">self</span><span class="p">.</span><span class="n">topConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
                   <span class="k">else</span><span class="p">:</span>
-                    <span class="n">self</span><span class="p">.</span><span class="n">bottomConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+                    <span class="n">self</span><span class="p">.</span><span class="n">bottomConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
                 <span class="k">else</span><span class="p">:</span>
                   <span class="n">line</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
               <span class="k">elif</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">element</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
@@ -99,9 +99,9 @@
                 <span class="k">else</span><span class="p">:</span>
                   <span class="n">flatSide</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                  <span class="n">self</span><span class="p">.</span><span class="n">leftConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+                  <span class="n">self</span><span class="p">.</span><span class="n">leftConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
                 <span class="k">else</span><span class="p">:</span>
-                  <span class="n">self</span><span class="p">.</span><span class="n">rightConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
+                  <span class="n">self</span><span class="p">.</span><span class="n">rightConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">number</span>
               <span class="k">else</span><span class="p">:</span>
                 <span class="n">line</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -109,13 +109,13 @@
           <span class="k">else</span><span class="p">:</span>
             <span class="n">line</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">constrain</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">info</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-              <span class="n">self</span><span class="p">.</span><span class="n">topConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+              <span class="n">self</span><span class="p">.</span><span class="n">topConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
             <span class="k">elif</span> <span class="n">info</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-              <span class="n">self</span><span class="p">.</span><span class="n">bottomConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+              <span class="n">self</span><span class="p">.</span><span class="n">bottomConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
             <span class="k">elif</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-              <span class="n">self</span><span class="p">.</span><span class="n">leftConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+              <span class="n">self</span><span class="p">.</span><span class="n">leftConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
             <span class="k">else</span><span class="p">:</span>
-              <span class="n">self</span><span class="p">.</span><span class="n">rightConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s">","</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
+              <span class="n">self</span><span class="p">.</span><span class="n">rightConstraints</span><span class="p">[</span><span class="nf">str</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">,</span><span class="sh">"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">element</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">constrain</span>
         <span class="n">self</span><span class="p">.</span><span class="n">pieceInfo</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
     <span class="n">self</span><span class="p">.</span><span class="n">solvedOrientation</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">pieceInfo</span>
 </code></pre></div></div>
@@ -124,9 +124,9 @@
 
 <p class="codeheader">creator.py</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">rotatePiece</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-  <span class="s">"""
+  <span class="sh">"""</span><span class="s">
   Rotates piece by 90 degrees clockwise, resets edge indices
-  """</span>
+  </span><span class="sh">"""</span>
   <span class="n">rotated</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span><span class="p">):</span>
     <span class="n">line</span> <span class="o">=</span> <span class="p">[]</span>
@@ -137,14 +137,14 @@
   <span class="n">self</span><span class="p">.</span><span class="nf">determineEdgeIndex</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">displayPiece</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-  <span class="s">"""
+  <span class="sh">"""</span><span class="s">
   Saves single piece of puzzle as a png
 
   Parameters
   path: string, path to output png
-  """</span>
+  </span><span class="sh">"""</span>
   <span class="n">outFile</span> <span class="o">=</span> <span class="n">path</span>
-  <span class="n">out</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s">"RGB"</span><span class="p">,</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+  <span class="n">out</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="sh">"</span><span class="s">RGB</span><span class="sh">"</span><span class="p">,</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
   <span class="k">for</span> <span class="n">pixelLine</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">pieceSize</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
       <span class="n">out</span><span class="p">.</span><span class="nf">putpixel</span><span class="p">((</span><span class="n">pixel</span><span class="p">,</span> <span class="n">pixelLine</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
@@ -177,9 +177,9 @@
 
 <p class="codeheader">creator.py</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">determineEdgeIndex</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-  <span class="s">"""
+  <span class="sh">"""</span><span class="s">
   Calculates edge indices by summing values along each edge, stored as list of integers
-  """</span>
+  </span><span class="sh">"""</span>
   <span class="n">self</span><span class="p">.</span><span class="n">edgeIndex</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="n">self</span><span class="p">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]]</span>
   <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">empty</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
@@ -213,7 +213,7 @@
 
 <p class="codeheader">solver.py</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">newSolvePuzzle</span><span class="p">(</span><span class="n">puzzle</span><span class="p">):</span>
-  <span class="s">"""
+  <span class="sh">"""</span><span class="s">
   Solves a scrambled puzzle that has pieces with all unique edges
 
   Parameters
@@ -221,7 +221,7 @@
 
   Return
   dictionary, all pieces with unscrambled coordinates
-  """</span>
+  </span><span class="sh">"""</span>
   <span class="n">flatSide</span> <span class="o">=</span> <span class="p">[]</span>   <span class="c1"># creates an example of a flat side for comparison, flat sides do not have connections
 </span>  <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">puzzle</span><span class="p">.</span><span class="n">pieceSize</span><span class="p">):</span>  <span class="c1"># loop based on piece size
 </span>    <span class="n">flatSide</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>

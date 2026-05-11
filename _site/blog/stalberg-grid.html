@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-61WED1VDVV"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-61WED1VDVV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Stalberg Grid | James Kitchens</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Stalberg Grid" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cherry Creek winds its way through the polished granite domes of Emigrant Wilderness, just northwest of Yosemite National Park. In late spring, clear blue snow melt water from the high peaks to the northeast is funneled through the canyon as it descends to Cherry Lake." />
+<meta property="og:description" content="Cherry Creek winds its way through the polished granite domes of Emigrant Wilderness, just northwest of Yosemite National Park. In late spring, clear blue snow melt water from the high peaks to the northeast is funneled through the canyon as it descends to Cherry Lake." />
+<link rel="canonical" href="http://localhost:4000/blog/stalberg-grid" />
+<meta property="og:url" content="http://localhost:4000/blog/stalberg-grid" />
+<meta property="og:site_name" content="James Kitchens" />
+<meta property="og:image" content="http://localhost:4000/assets/blog/upper-cherry-creek/photos/cherry_bomb_gorge.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-17T00:00:00-08:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/blog/upper-cherry-creek/photos/cherry_bomb_gorge.jpg" />
+<meta property="twitter:title" content="Stalberg Grid" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-02-17T00:00:00-08:00","datePublished":"2026-02-17T00:00:00-08:00","description":"Cherry Creek winds its way through the polished granite domes of Emigrant Wilderness, just northwest of Yosemite National Park. In late spring, clear blue snow melt water from the high peaks to the northeast is funneled through the canyon as it descends to Cherry Lake.","headline":"Stalberg Grid","image":"http://localhost:4000/assets/blog/upper-cherry-creek/photos/cherry_bomb_gorge.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/stalberg-grid"},"url":"http://localhost:4000/blog/stalberg-grid"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <meta name="twitter:site"    content="@kitchensjn">
+    <meta name="twitter:creator" content="@kitchensjn">
+    <meta name="twitter:description" content="Cherry Creek winds its way through the polished granite domes of Emigrant Wilderness, just northwest of Yosemite National Park. In late spring, clear blue snow melt water from the high peaks to the northeast is funneled through the canyon as it descends to Cherry Lake.">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/logo/logo.ico">
+    <script src="https://kit.fontawesome.com/b53b88607b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/navbar.js"></script>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    
+    
+
+</head><body><div id="topnav">
+    
+    
+        <a class="section-title" id="Logo" href="/#home">
+            <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
+        </a>
+        <a class="section-title" id="Home" href="/#home">Home</a>
+        <a class="section-title" id="Bio" href="/#bio">Bio</a>
+        
+            <a class="section-title" id="Projects" href="/#projects">Projects</a>
+        
+            <a class="section-title" id="Blog" href="/#blog">Blog</a>
+        
+    
+    
+    
+        <a class="section-title" id="CV" href="/assets/CV/KitchensJames_CV.pdf" target="_blank">CV</a>
+    
+    
+    <a href="javascript:void(0);" class="burger" onclick="hamburger()">
+        <i class="fa fa-bars"></i>
+    </a>
+    
+</div><div class="section"><h2 class="postTitle">
+    Stalberg Grid</h2><p style="text-align: left;">James Kitchens</p><p style="text-align: left;">February 17, 2026</p>
+<div class="cat">
+    
+        <div class="background">
+            <p class="skill">Python</p>
+        </div>
+    
+</div>
+            
+        
+            <p>Oskar Stålberg is a video game developer who has worked on many projects involving procedural map generation (Townscaper, Bad North, etc). With a relatively small number 3D tilesets and rules for their connections, he’s work algorithms to generate random maps that share a distictive style.</p>
+
+<p>He is known best for his use of “wave function collapse”-style algorithms for map generation in his games. Superficially inspired by ideas from quantum mechanics, wave function collapse (WFC) works in the same way you might solve a Sudoku puzzle. It starts with a prebuilt set of tiles and rules for how these tiles can connect. The algorithm then seeds an empty map with a small number of fixed tiles. It then fills in empty tiles in the map based on those connection rules until the random map is fully complete. WFC can be implemented during development to generate base maps that can then be updated by environmental artists, within the game loop to allow for infinite levels of similar styling for users to play (Bad North), or as part of a map builder that players can directly interact with (Townscaper).</p>
+
+<p>Though WFC is well-deserving of its own blog post, I was actually most intrigued by another feature in Townscaper - its irregular grid. Rather than using a square grid as the base map for WFC, he uses an aperiodic quadrilateral mesh that I’ve been referring to as a Stålberg grid. I haven’t come across a grid like this before, but it gives the Townscaper maps an organic randomness on top of a familiar boxy layout. It looks very reminiscent of real life towns, where streets don’t always flow in a perfectly straight line but instead contour to the environment. Luckily, Stålberg has been very open about how he’s thought about and designed Townscaper, and I was interested in recreating his grid in Python.</p>
+
+<p>There are only four steps needed to create the grid:</p>
+
+<ul>
+  <li>Create a triangular mesh</li>
+  <li>Remove edges to create a quadrilateral mesh (with some triangles still left over)</li>
+  <li>Subdivide the faces into smaller quadrilaterals</li>
+  <li>Run a relaxation algorithm to reposition the nodes</li>
+</ul>
+
+<p>In the following sections, I’ll dive into my implementation of these steps based on descriptions from his presentations.</p>
+
+<h3 id="the-triangular-mesh">The triangular mesh</h3>
+
+<p class="codeheader">stalberg_grid.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">populate_vertices</span><span class="p">(</span><span class="n">num_rings</span><span class="p">,</span> <span class="n">gap_between_rings</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num_rings</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">"</span><span class="s">`num_rings` must be &gt;=0.</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="n">vertices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_rings</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ring</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">corner</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+                <span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="n">corner</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">gap_between_rings</span><span class="o">*</span><span class="n">ring</span><span class="p">)</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">gap_between_rings</span><span class="o">*</span><span class="n">ring</span><span class="p">)</span>
+                <span class="n">vertices</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                    <span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">:</span> <span class="n">counter</span><span class="p">,</span>
+                    <span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+                    <span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
+                    <span class="sh">"</span><span class="s">ring</span><span class="sh">"</span><span class="p">:</span> <span class="n">ring</span><span class="p">,</span>
+                    <span class="sh">"</span><span class="s">angle</span><span class="sh">"</span><span class="p">:</span> <span class="n">angle</span><span class="p">,</span>
+                    <span class="sh">"</span><span class="s">vertex</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span>
+                <span class="p">})</span>
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">edge_length</span> <span class="o">=</span> <span class="n">ring</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">next_angle</span> <span class="o">=</span> <span class="p">((</span><span class="n">corner</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+                <span class="n">next_x</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">next_angle</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">gap_between_rings</span><span class="o">*</span><span class="n">ring</span><span class="p">)</span>
+                <span class="n">next_y</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">next_angle</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">gap_between_rings</span><span class="o">*</span><span class="n">ring</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">edge_length</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="n">new_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">vertex</span><span class="o">/</span><span class="p">(</span><span class="n">edge_length</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">next_x</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+                    <span class="n">new_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">vertex</span><span class="o">/</span><span class="p">(</span><span class="n">edge_length</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">next_y</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+                    <span class="n">vertices</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                        <span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">:</span> <span class="n">counter</span><span class="p">,</span>
+                        <span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">:</span> <span class="n">new_x</span><span class="p">,</span>
+                        <span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">:</span> <span class="n">new_y</span><span class="p">,</span>
+                        <span class="sh">"</span><span class="s">ring</span><span class="sh">"</span><span class="p">:</span> <span class="n">ring</span><span class="p">,</span>
+                        <span class="sh">"</span><span class="s">angle</span><span class="sh">"</span><span class="p">:</span> <span class="n">angle</span><span class="p">,</span>
+                        <span class="sh">"</span><span class="s">vertex</span><span class="sh">"</span><span class="p">:</span> <span class="n">vertex</span>
+                    <span class="p">})</span>
+                    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vertices</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                <span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">:</span> <span class="n">counter</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">ring</span><span class="sh">"</span><span class="p">:</span> <span class="n">ring</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">angle</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">vertex</span><span class="sh">"</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="p">})</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="k">def</span> <span class="nf">get_num_vertices_in_ring</span><span class="p">(</span><span class="n">ring</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ring</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="n">edge_length</span> <span class="o">=</span> <span class="n">ring</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">6</span> <span class="o">+</span> <span class="n">edge_length</span><span class="o">*</span><span class="mi">6</span>
+
+<span class="k">def</span> <span class="nf">get_starting_vertex_of_ring</span><span class="p">(</span><span class="n">ring</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ring</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">"</span><span class="s">`num_rings` must be &gt;=0.</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">ring</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="nf">get_num_vertices_in_ring</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">total</span>
+    
+
+
+<span class="n">num_rings</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">vertices</span> <span class="o">=</span> <span class="nf">populate_vertices</span><span class="p">(</span><span class="n">num_rings</span><span class="p">,</span> <span class="n">gap_between_rings</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">triangles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">starting_a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">starting_b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_rings</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">working_a</span> <span class="o">=</span> <span class="n">starting_a</span> <span class="o">+</span> <span class="mi">0</span>
+    <span class="n">working_b</span> <span class="o">=</span> <span class="n">starting_b</span> <span class="o">+</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">ring</span><span class="p">):</span>
+            <span class="nf">if </span><span class="p">(</span><span class="n">edge</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">ring</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">triangles</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">starting_a</span><span class="p">,</span> <span class="n">starting_b</span><span class="p">,</span> <span class="n">working_b</span><span class="p">))</span>
+                <span class="n">starting_a</span> <span class="o">=</span> <span class="n">working_a</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">starting_b</span> <span class="o">=</span> <span class="n">working_b</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">triangles</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">working_a</span><span class="p">,</span> <span class="n">working_b</span><span class="p">,</span> <span class="n">working_b</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ring</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="nf">if </span><span class="p">(</span><span class="n">edge</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">ring</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+                    <span class="n">triangles</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">starting_a</span><span class="p">,</span> <span class="n">working_a</span><span class="p">,</span> <span class="n">working_b</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">triangles</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">working_a</span><span class="p">,</span> <span class="n">working_a</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">working_b</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                    <span class="n">working_a</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">working_b</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t</span><span class="p">,</span><span class="n">tri</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">triangles</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">tri</span><span class="p">)):</span>
+        <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="n">tri</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">edges</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">tri</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tri</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">edges</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">t</span><span class="p">,</span> <span class="n">tri</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tri</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="n">faces</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">])</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">faces</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">().</span><span class="nf">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]).</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)[[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<h3 id="removing-edges">Removing edges</h3>
+
+<p class="codeheader">stalberg_grid.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">remove_edge</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">faces</span><span class="p">):</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">edges</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]),</span> <span class="sh">"</span><span class="s">locked</span><span class="sh">"</span><span class="p">].</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sh">"</span><span class="s">red</span><span class="sh">"</span><span class="p">):</span>
+        <span class="n">relevant_faces</span> <span class="o">=</span> <span class="n">faces</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">].</span><span class="nf">isin</span><span class="p">(</span><span class="n">faces</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]),</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">].</span><span class="n">values</span><span class="p">)]</span>
+        <span class="n">faces</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">].</span><span class="nf">isin</span><span class="p">(</span><span class="n">faces</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]),</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">].</span><span class="n">values</span><span class="p">),</span> <span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">relevant_faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">].</span><span class="nf">min</span><span class="p">()</span>
+        <span class="n">relevant_edges</span> <span class="o">=</span> <span class="n">relevant_faces</span><span class="p">[[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]].</span><span class="nf">drop_duplicates</span><span class="p">().</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="n">relevant_edges</span><span class="p">.</span><span class="nf">iterrows</span><span class="p">():</span>
+            <span class="n">edges</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]),</span> <span class="sh">"</span><span class="s">locked</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">red</span><span class="sh">"</span>
+        <span class="n">edges</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]),</span> <span class="sh">"</span><span class="s">locked</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">white</span><span class="sh">"</span>
+        <span class="n">edges</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]),</span> <span class="sh">"</span><span class="s">removed</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="n">faces</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">().</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="n">faces</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">faces</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">e</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">])].</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">edges</span><span class="p">,</span> <span class="n">faces</span>
+
+<span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">locked</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">blue</span><span class="sh">"</span>
+<span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">removed</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">starting_vertex</span> <span class="o">=</span> <span class="nf">get_starting_vertex_of_ring</span><span class="p">(</span><span class="n">num_rings</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">get_num_vertices_in_ring</span><span class="p">(</span><span class="n">num_rings</span><span class="p">)):</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="nf">get_num_vertices_in_ring</span><span class="p">(</span><span class="n">num_rings</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">starting_vertex</span><span class="p">,</span> <span class="n">starting_vertex</span><span class="o">+</span><span class="n">i</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">starting_vertex</span><span class="o">+</span><span class="n">i</span><span class="p">,</span> <span class="n">starting_vertex</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">edges</span><span class="p">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">a</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">b</span><span class="p">),</span><span class="sh">"</span><span class="s">locked</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">red</span><span class="sh">"</span>
+
+<span class="n">removal_order</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">sample</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">edges</span><span class="p">.</span><span class="n">index</span><span class="p">)),</span> <span class="nf">len</span><span class="p">(</span><span class="n">edges</span><span class="p">.</span><span class="n">index</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">removal_order</span><span class="p">:</span>
+    <span class="n">edges</span><span class="p">,</span> <span class="n">faces</span> <span class="o">=</span> <span class="nf">remove_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">edge</span><span class="p">],</span> <span class="n">edges</span><span class="p">,</span> <span class="n">faces</span><span class="p">)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">edges</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">edges</span><span class="p">[</span><span class="sh">"</span><span class="s">removed</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="bp">False</span><span class="p">]</span>
+<span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The key to this step is knowing which edges are allowed to be removed. Edges on the perimeter of the grid shouldn’t be removed. Additionally, the goal is to convert most of the triangle faces into quadrilaterals, so we need to avoid removing edges from faces that are already quads as this would make pentagons. In the <code class="language-plaintext highlighter-rouge">edges</code> dataframe, I keep track of which edges are “locked” which means they cannot be removed. All edges start out “unlocked” or “blue”; I then lock (“red”) all of the perimeter edges. I then create a random edge removal order that includes all of the edges in the grid. For each edge, I check whether it’s locked, and if not, remove it by setting “locked” to “white” and “removed” to <code class="language-plaintext highlighter-rouge">True</code>. I also lock any edges that originally shared a face with this edge; this makes sure that edge removal only ever makes quadrilaterals. Because of the random edge removal order, it’s likely that you will have triangles left over that cannot be turned into a quadrilateral because all of the faces associated edges are locked. That’s okay and leads to some nice features in the resulting grid!</p>
+
+<h3 id="subdivided-the-faces">Subdivided the faces</h3>
+
+<p class="codeheader">stalberg_grid.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_center</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">faces</span><span class="p">,</span> <span class="n">vertices</span><span class="p">):</span>
+    <span class="n">relevant_edges</span> <span class="o">=</span> <span class="n">faces</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]]</span>
+    <span class="n">relevant_vertices</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">concat</span><span class="p">([</span><span class="n">relevant_edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">],</span> <span class="n">relevant_edges</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="nf">unique</span><span class="p">()</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">vertices</span><span class="p">[</span><span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">].</span><span class="nf">isin</span><span class="p">(</span><span class="n">relevant_vertices</span><span class="p">),</span> <span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]].</span><span class="nf">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">coords</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nc">Graph</span><span class="p">()</span>
+<span class="n">starting_pos</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">outer_ring</span> <span class="o">=</span> <span class="nf">range</span><span class="p">(</span><span class="n">starting_vertex</span><span class="p">,</span> <span class="n">starting_vertex</span><span class="o">+</span><span class="nf">get_num_vertices_in_ring</span><span class="p">(</span><span class="n">num_rings</span><span class="p">))</span>
+<span class="n">fixed</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">].</span><span class="nf">unique</span><span class="p">():</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="nf">find_center</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">faces</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">edge</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">faces</span><span class="p">[</span><span class="sh">"</span><span class="s">face</span><span class="sh">"</span><span class="p">]</span><span class="o">==</span><span class="n">f</span><span class="p">].</span><span class="nf">iterrows</span><span class="p">():</span>
+        <span class="n">G</span><span class="p">.</span><span class="nf">add_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">m_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">G</span><span class="p">.</span><span class="nf">add_edge</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">m_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">])</span>
+        <span class="n">G</span><span class="p">.</span><span class="nf">add_edge</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">m_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">c_</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">v0</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">],</span> <span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]]</span>
+        <span class="n">v1</span> <span class="o">=</span> <span class="n">vertices</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">],</span> <span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]]</span>
+        <span class="n">starting_pos</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v0</span><span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">],</span> <span class="n">v0</span><span class="p">[</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]]</span>
+        <span class="n">starting_pos</span><span class="p">[</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v1</span><span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">],</span> <span class="n">v1</span><span class="p">[</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]]</span>
+        <span class="n">starting_pos</span><span class="p">[</span><span class="sa">f</span><span class="sh">"</span><span class="s">m_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">v0</span><span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">]</span><span class="o">+</span><span class="n">v1</span><span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">v0</span><span class="p">[</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]</span><span class="o">+</span><span class="n">v1</span><span class="p">[</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+        <span class="nf">if </span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span> <span class="ow">in</span> <span class="n">outer_ring</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span> <span class="ow">in</span> <span class="n">outer_ring</span><span class="p">):</span>
+            <span class="n">fixed</span><span class="p">.</span><span class="nf">extend</span><span class="p">([</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">],</span> <span class="sa">f</span><span class="sh">"</span><span class="s">m_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex0</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span> <span class="n">edge</span><span class="p">[</span><span class="sh">"</span><span class="s">vertex1</span><span class="sh">"</span><span class="p">]])</span>
+    <span class="n">starting_pos</span><span class="p">[</span><span class="sa">f</span><span class="sh">"</span><span class="s">c_</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">center</span><span class="p">[</span><span class="sh">"</span><span class="s">x</span><span class="sh">"</span><span class="p">],</span> <span class="n">center</span><span class="p">[</span><span class="sh">"</span><span class="s">y</span><span class="sh">"</span><span class="p">]]</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nf">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">starting_pos</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">G</span><span class="p">.</span><span class="n">nodes</span><span class="p">)</span>
+<span class="n">nx</span><span class="p">.</span><span class="nf">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">equal</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>I said that the Stålberg grid was an aperiodic <strong>quadrilateral</strong> grid, but we still have triangular faces. We can finish this conversion by further subdividing the faces, specifically connecting the midpoint of each edge to the center of the face. With this strategy, triangles are divided into three quads and quads are divided into four quads.</p>
+
+<p>![Example of triangle and square being subdivided]</p>
+
+<h3 id="relaxation">Relaxation</h3>
+
+<p class="codeheader">stalberg_grid.py</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fixed</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">fixed</span><span class="p">))</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nf">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">starting_pos</span><span class="p">,</span> <span class="n">fixed</span><span class="o">=</span><span class="n">fixed</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="n">nx</span><span class="p">.</span><span class="nf">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">equal</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>I started this project thinking that I could easily implement the relaxation algorithm using a force-directed layout in <code class="language-plaintext highlighter-rouge">D3.js</code> (the same as I use for <code class="language-plaintext highlighter-rouge">tskit_arg_visualizer</code>). I ended up dropping this idea in favor of staying entirely in Python and using a <code class="language-plaintext highlighter-rouge">spring_layout</code> from <code class="language-plaintext highlighter-rouge">networkx</code>.</p>
+
+<p>![Image of prerelaxed to relaxed grid]</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+
+        </div>
+    <div id="contact" class="contactBar">
+
+        <p class="info">kitchensjn@gmail.com</p>
+    </div></body>
+
+</html>
