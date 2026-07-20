@@ -46,18 +46,18 @@
         <script src="/assets/scripts/home.js"></script>
     
 
-</head><body><div id="topnav">
+</head><body><nav id="topnav">
     
     
-        <a class="section-title" id="Logo" href="javascript:void(0);" onclick="goTo('#home')">
+        <a class="section-title" id="Logo" href="#home">
             <i class="fas fa-hiking fa-lg logo" title="James Kitchens"></i>
         </a>
-        <a class="section-title active" id="Home" href="javascript:void(0);" onclick="goTo('#home')">Home</a>
-        <a class="section-title" id="Bio" href="javascript:void(0);" onclick="goTo('#bio')">Bio</a>
+        <a class="section-title active" id="Home" href="#home">Home</a>
+        <a class="section-title" id="Bio" href="#bio">Bio</a>
         
-            <a class="section-title" id="Projects" href="javascript:void(0);" onclick="goTo( '#projects' )">Projects</a>
+            <a class="section-title" id="Projects" href="#projects">Projects</a>
         
-            <a class="section-title" id="Blog" href="javascript:void(0);" onclick="goTo( '#blog' )">Blog</a>
+            <a class="section-title" id="Blog" href="#blog">Blog</a>
         
     
     
@@ -69,7 +69,7 @@
         <i class="fa fa-bars"></i>
     </a>
     
-</div><div id="home">
+</nav><section id="home">
     
         <div class="background" style="background-image: linear-gradient( 90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url('/assets/headshot/background.jpg');"></div>
     
@@ -92,7 +92,7 @@
             
         </div>
     </div>
-</div><div id="bio" class="section">
+</section><section id="bio" class="section" tabindex="-1">
     
         <div style="margin: auto auto 60px auto; background-image:url('/assets/headshot/KitchensJames_Headshot.jpg'); height: 300px; width: 300px; border-radius: 50%; background-position: center; background-size: cover;"></div>
     
@@ -164,7 +164,7 @@
     
         <h2>Publications & Preprints</h2>
         
-            <p><b>6. </b>Kitchens, J. & Wong, Y. (2025) <a href="https://doi.org/10.1093/bioadv/vbaf302">tskit_arg_visualizer - interactive plotting of ancestral recombination graphs</a>. <i>arXiv</i></p>
+            <p><b>6. </b>Kitchens, J. & Wong, Y. (2025) <a href="https://doi.org/10.1093/bioadv/vbaf302">tskit_arg_visualizer - interactive plotting of ancestral recombination graphs</a>. <i>Bioinformatics Advances</i>, Volume 5, Issue 1</p>
         
             <p><b>5. </b>Deraje, P., Kitchens, J., Coop, G., & Osmond, M. M. (2025) <a href="https://doi.org/10.1093/g3journal/jkaf214">The promise and challenge of spatial inference with the full ancestral recombination graph under Brownian motion</a>. <i>G3 Genes|Genomes|Genetics</i></p>
         
@@ -177,7 +177,7 @@
             <p><b>1. </b>Webb et al. (2017) <a href="https://www.frontiersin.org/articles/10.3389/fgene.2017.00030/full" target="_blank">Molecular Genetic Influences on Normative and Problematic Alcohol Use in a Population-Based Sample of College Students</a>. <i>Frontiers in Genetics</i>, Volume 8, Article 30</p>
         
     
-</div>
+</section>
 
     
 
@@ -188,7 +188,7 @@
     
     
     
-    <div id="projects" class="section" style="background-color: #BBBBBB;">
+    <section id="projects" class="section" tabindex="-1" style="background-color: #BBBBBB;">
         <h1 style="text-align: center;">Projects</h1>
         
             
@@ -333,7 +333,7 @@
                 </a>
             
         </div>
-    </div>
+    </section>
 
 
 
@@ -346,7 +346,7 @@
     
     
     
-    <div id="blog" class="section" style="background-color: #FFFFFF;">
+    <section id="blog" class="section" tabindex="-1" style="background-color: #FFFFFF;">
         <h1 style="text-align: center;">Blog</h1>
         
             
@@ -1460,12 +1460,12 @@
                 </a>
             
         </div>
-    </div>
+    </section>
 
 
-    <div id="contact" class="contactBar unstick">
+    <footer id="contact" class="contactBar unstick">
 
         <p class="info">kitchensjn@gmail.com</p>
-    </div></body>
+    </footer></body>
 
 </html>

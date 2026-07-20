@@ -1,13 +1,13 @@
-<div id="topnav">
+<nav id="topnav">
     
     {% if page.layout == 'home' %}
-        <a class="section-title" id="Logo" href="javascript:void(0);" onclick="goTo('#home')">
+        <a class="section-title" id="Logo" href="#home">
             <i class="fas fa-hiking fa-lg logo" title="{{ site.name }}"></i>
         </a>
-        <a class="section-title active" id="Home" href="javascript:void(0);" onclick="goTo('#home')">Home</a>
-        <a class="section-title" id="Bio" href="javascript:void(0);" onclick="goTo('#bio')">Bio</a>
+        <a class="section-title active" id="Home" href="#home">Home</a>
+        <a class="section-title" id="Bio" href="#bio">Bio</a>
         {% for category in site.categories %}
-            <a class="section-title" id="{{ category[0] | capitalize }}" href="javascript:void(0);" onclick="goTo( '{{ '#' | append: category[0] }}' )">{{ category[0] | capitalize }}</a>
+            <a class="section-title" id="{{ category[0] | capitalize }}" href="{{ '#' | append: category[0] }}">{{ category[0] | capitalize }}</a>
         {% endfor %}
     {% else %}
         <a class="section-title" id="Logo" href="{{ '/#home' | relative_url }}">
@@ -28,4 +28,4 @@
         <i class="fa fa-bars"></i>
     </a>
     
-</div>
+</nav>

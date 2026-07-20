@@ -9,7 +9,7 @@
     {% assign template = page.categories.[category_name].template %}
     
     {% assign to_show = rows_to_show | times:posts_per_row %}
-    <div id="{{ category_name }}" class="section" style="background-color: {{ section_color }};">
+    <section id="{{ category_name }}" class="section" tabindex="-1" style="background-color: {{ section_color }};">
         <h1 style="text-align: center;">{{ category_name | capitalize }}</h1>
         {% for post in category[1] %}
             {% if forloop.index > to_show %}
@@ -45,6 +45,6 @@
                 </a>
             {% endif %}
         </div>
-    </div>
+    </section>
 
 {% endfor %}

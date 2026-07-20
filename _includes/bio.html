@@ -1,4 +1,4 @@
-<div id="bio" class="section">
+<section id="bio" class="section" tabindex="-1">
     {% if page.headshot.size > 0 %}
         <div style="margin: auto auto 60px auto; background-image:url('{{ page.headshot | relative_url }}'); height: 300px; width: 300px; border-radius: 50%; background-position: center; background-size: cover;"></div>
     {% endif %}
@@ -30,4 +30,4 @@
             <p><b>{{forloop.rindex}}. </b>{{ pub }}</p>
         {% endfor %}
     {% endif %}
-</div>
+</section>
