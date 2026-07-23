@@ -5,17 +5,23 @@
 
 a {
     color: {{ site.theme_color }};
+    text-decoration: underline;
 }
 
 a:hover {
     color: {{ site.theme_color }};
 }
 
-.link:hover {
+button {
+    background: none;
+    border: none;
+}
+
+button:hover, button:hover i {
     color: {{ site.theme_color }};
 }
 
-.arrow:hover {
+.link:hover {
     color: {{ site.theme_color }};
 }
 
@@ -35,9 +41,6 @@ a:hover {
     color: {{ site.theme_color }};
 }
 
-//.logo {
-//    color: {{ site.theme_color }};
-//}
 
 @media screen and (max-width: 868px) {
     #topnav.responsive .section-title:hover {

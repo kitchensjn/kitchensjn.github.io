@@ -1,4 +1,4 @@
-window.addEventListener('scroll', function(event){
+window.addEventListener("scroll", function(event){
     if (window.pageYOffset+window.innerHeight >= document.getElementById("bio").offsetTop+100) {
         document.getElementById("contact").classList.remove("unstick");
     } else {
@@ -26,12 +26,19 @@ window.addEventListener('scroll', function(event){
     }
   });
 
-function projectsArrow(id) {
+
+// Select the button element by its ID
+const projectsArrow = document.getElementById("ProjectsArrow");
+
+// Add the click event listener
+projectsArrow.addEventListener("click", () => {
     var x = document.getElementById("arrowProjects");
     if (x.className == "fas fa-chevron-down arrow") {
         x.classList.add("flip");
+        document.getElementById("textProjects").innerText = "Show Less";
     } else {
         x.className = "fas fa-chevron-down arrow";
+        document.getElementById("textProjects").innerText = "Show More";
     }
     var p = document.querySelectorAll(".hideProjects");
     var q = document.querySelectorAll(".unhideProjects");
@@ -48,14 +55,21 @@ function projectsArrow(id) {
     if (q.length > 0) {
         $('html,body').animate({scrollTop: $("#projects").offset().top},'fast'); 
     }
-}
-  
-function blogArrow(id) {
+});
+
+
+// Select the button element by its ID
+const blogArrow = document.getElementById("BlogArrow");
+
+// Add the click event listener
+blogArrow.addEventListener("click", () => {
     var x = document.getElementById("arrowBlog");
     if (x.className == "fas fa-chevron-down arrow") {
         x.classList.add("flip");
+        document.getElementById("textBlog").innerText = "Show Less";
     } else {
         x.className = "fas fa-chevron-down arrow";
+        document.getElementById("textBlog").innerText = "Show More";
     }
     var p = document.querySelectorAll(".hideBlog");
     var q = document.querySelectorAll(".unhideBlog");
@@ -72,4 +86,4 @@ function blogArrow(id) {
     if (q.length > 0) {
         $('html,body').animate({scrollTop: $("#blog").offset().top},'fast'); 
     }
-}
+});

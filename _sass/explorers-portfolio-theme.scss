@@ -54,7 +54,17 @@ p {
     overflow: hidden;
 }
 
+.show_more_less {
+    display: flex;
+    flex-direction: column;
+}
+
+.show_more_less p {
+    margin: 0px;
+}
+
 .arrow {
+    font-size: 2em;
     color: #333333;
     padding-left: 2px;
 }

@@ -19,7 +19,7 @@ skills:
 
 publications:
   - Kitchens, J. & Wong, Y. (2025) <a href="https://doi.org/10.1093/bioadv/vbaf302">tskit_arg_visualizer - interactive plotting of ancestral recombination graphs</a>. <i>Bioinformatics Advances</i>, Volume 5, Issue 1
-  - Deraje, P., Kitchens, J., Coop, G., & Osmond, M. M. (2025) <a href="https://doi.org/10.1093/g3journal/jkaf214">The promise and challenge of spatial inference with the full ancestral recombination graph under Brownian motion</a>. <i>G3 Genes|Genomes|Genetics</i>
+  - Deraje, P., Kitchens, J., Coop, G., & Osmond, M. M. (2025) <a href="https://doi.org/10.1093/g3journal/jkaf214">The promise and challenge of spatial inference with the full ancestral recombination graph under Brownian motion</a>. <i>G3 Genes|Genomes|Genetics</i>, Volume 15, Issue 11
   - Kitchens, J. & Coop, G. (2023) <a href="https://doi.org/10.5281/zenodo.11245632">Visualizing the shared nature of human genetic variation</a>. <i>Zenodo</i>
   - Whipple, A.L., C. Ray, et al. (2021) <a href="https://academic.oup.com/conphys/article/9/1/coab024/6262596?login=true">Temporal vs. spatial variation in stress-associated metabolites within a population of climate-sensitive small mammals</a>. <i>Conservation Physiology</i>, Volume 9, Issue 1
   - Kim et al. (2021) <a href="https://onlinelibrary.wiley.com/doi/10.1111/1752-1688.12898">An evaluation of remotely sensed and in-situ data sufficiency for SGMA-scale groundwater studies in the Central Valley, California</a>. <i>Journal of the American Water Resources Association</i>, Volume 57, Issue 5
